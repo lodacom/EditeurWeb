@@ -1,0 +1,34 @@
+# Décomposition en sous-systèmes.
+[Utilisateur]-(Gestion de projets)
+[Utilisateur]-(Gestion de fichiers)
+(Gestion de fichiers)<(Gestion du code)
+
+# Système de gestion de fichiers.
+[Utilisateur]-(Création fichier)
+[Utilisateur]-(Ouverture fichier)
+[Utilisateur]-(Edition fichier)
+[Utilisateur]-(Fermeture fichier)
+[Utilisateur]-(Suppression fichier)
+(Edition fichier)>(Gestion du code)
+
+# Système de gestion du code.
+[Utilisateur]-(Modification code)
+(Modification code)<(…)
+(Modification code)<(Coloration)
+(Modification code)<(Indentation)
+(Modification code)<(Auto complétion)
+(Modification code)<(Vision arborescente)
+
+# Système de gestion de projets.
+[Utilisateur]-(Création projet)
+[Utilisateur]-(Ouverture projet)
+[Utilisateur]-(Modification projet)
+[Utilisateur]-(Fermeture projet)
+[Utilisateur]-(Suppression projet)
+(Création projet)<(Création projet préexistant)
+
+# Système de modification de projet.
+[Utilisateur]-(Ajout dossier au projet)
+[Utilisateur]-(Suppression dossier du projet)
+[Utilisateur]-(Ajout fichier au projet)
+[Utilisateur]-(Suppression fichier du projet)
