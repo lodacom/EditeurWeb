@@ -39,9 +39,9 @@
 			{\large Réalisé par :} \\
 			~\\
 			{\LARGE Pierre Burc, Olivier Duplouy, \\
-				      Hamza Erraji, Issam Amal,\\
+				      Hamza Erraji, Issame Amal,\\
 				      Mickaël Berger, Joachim Divet,\\
-				      Zidane Sadiki et Abdelhamid Belarbi}\\
+				      Zaydane Sadiki et Abdelhamid Belarbi}\\
 			\vspace{1,5cm}
 			{\large Sous la direction de :} \\
 			~\\
@@ -53,15 +53,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{chapter}*{Avant-propos}
-	Il serait profondément malsain de commencer la description de ce projet sans, avant cela, une touche de présentation.\\
+	Il serait profondément malsain de commencer la description de ce projet sans une touche de présentation avant cela.\\
 	Nous sommes donc huit étudiants de la Faculté des sciences de Montpellier, dans le domaine de l'informatique.
-	Nous fûmes réunis pour la première fois en janvier 2012 pour débattre sur le sujet de notre projet, à savoir:\\ 
+	Nous fûmes réunis pour la première fois en janvier 2012 pour débattre sur le sujet de notre projet, à savoir :\\ 
 	\quotation{\emph{"Dans le cadre du développement de sites web, on souhaiterait utiliser un éditeur multi-fichiers permettant de réaliser différentes actions sur des fichiers relatifs à un site."}}\\
 
 
     Après cette réunion nous avons à force de discussions, d'argumentations opposées, d'idées nouvelles et de feuilles de papier, décidés d'une 
     marche à suivre pour répondre à cette problématique.\\
-    Et c'est ainsi que dans les pages qui vont suivre sont exposées nos conclusion quant à la mise en place d'une solution.	
+    Et c'est ainsi que dans les pages qui vont suivre sont exposées nos conclusions quant à la mise en place d'une solution.	
 \end{chapter}
 
 	\begin{part}{Conception}
@@ -73,18 +73,20 @@
 						\caption{Espresso}
 					\end{center}
 				\end{figure}~\\
-				Le premier programme d'édition de site web que nous avons étudié, il propose les mêmes fonctionnalités (chap. 2) que le
-				logiciel que nous nous proposons de développer.\\
-				Il sera a priori une bonne source d'inspiration pour nous et lorsque l'on constate a fortiori que l'interface est très soignée, on en déduit que le travail est fait très sérieusement.
+				Le premier programme d'édition de site web que nous avons étudié, il propose les mêmes fonctionnalités que le
+				logiciel que nous nous proposons de développer, à savoir coloration syntaxique, indentation automatique, arborescence des codes, etc.
+				Il sera à priori une bonne source d'inspiration pour nous d'autant plus que l'interface est très soignée et agréable d'utilisation.
 			\end{section}
 			~\\
 			\begin{section}{Aptana}
 				\begin{figure}[h]
 					\begin{center}
-						\includegraphics[width=3cm]{images/logoAptana.png}
+						\includegraphics[width=4cm]{images/logoAptana.png}
 						\caption{Aptana}
 					\end{center}
 				\end{figure}~\\
+				Cet éditeur propose un ensemble de fonctionnalités nombreuses et variées. Beaucoup plus fourni que Espresso, il propose des fonctionnalités complexes dans divers langages : déboguage, déploiement automatique, gestionnaire de version inclus, terminal intégré et moult autres outils.
+				Pour nous c'est un bon modèle à suivre en évitant tout de même de tomber dans le piège du sur-nombre d'options qui importuneraientt l'utilisateur. 
 			\end{section}
 			~\\
 			\begin{section}{Dreamweaver}
@@ -94,57 +96,59 @@
 						\caption{Dreamweaver}
 					\end{center}
 				\end{figure}~\\
-				
+				Dreamweaver est une référence en la matière. Il réunit les atouts des deux éditeurs sus-cités en joignant l'utile à l'agréable.
+				Il possède en outre un mode dit WYSIWYG. Derrière ce sigle barbare se cache la possibilité intéressante de dessiner l'interface d'un site web.
+				Nous concernant, nous pourrons proposer à l'utilisateur de visualiser le site sur lequel il travaille.
 			\end{section}
 			~\\
 		\end{chapter}
-		\begin{chapter}{Spécifications}
-				
-				Implémentation d'un IDE comprenant les fonctionnalités suivantes :
-
-				- édition des fichiers Javascript, PHP, CSS, HTML
-				- Un système multi-onglets permettant de naviguer rapidement entre plusieurs fichiers d'un même projet.
-				- Possibilité de visualiser le site sous forme d'arborescence.
-				- Auto-complétion et coloration syntaxique. 
-				- Auto-indentation ( Ou à la demande de l'utilisateur ?).
-				- Accès en un clic au manuel PHP/HTML/CSS/Javascript
-				- Permettre la validation HTML (Via W3c ?).
-				- Bouton ouvrant un naviguateur internet pour visualiser le site.
-				- Squelette de site préexistant ???
+		\begin{chapter}{Spécifications}				
+				Voici une liste des fonctionnalités que nous devrons implémenter :
+				\begin{itemize}
+					\item Édition des fichiers JavaScript, PHP, CSS et HTML ;
+					\item Un système multi-onglets permettant de naviguer rapidement entre plusieurs fichiers d'un même projet ;
+					\item Possibilité de visualiser le site sous forme d'arborescence ;
+					\item Auto-complétion et coloration syntaxique ;
+					\item Auto-indentation;
+					\item Accès en un clic au manuel PHP/HTML/CSS/JavaScript ;
+					\item Validation HTML ;
+					\item Visualisation du site ;
+					\item Squelette de site préexistant.
+				\end{itemize}
 			~\\
-		\end{chapter}
-		\begin{chapter}{Modélisation}
 		\end{chapter}
 	\end{part}
 	\begin{part}{Planification}
-		\begin{chapter}{Contraintes}
-		\end{chapter}
 		\begin{chapter}{Choix des outils}
-
-			Pour le développement de l'IDE :
-
-			QTCreator (C++)
-
-			Contrôle de versions du projet :
-
-			GIT
-
-			Pour l'analyse UML :
-
-			yUML.me
-
-			Discussions de groupe :
-
-			Facebook et Micromobs (http://micromobs.com/)
-
-			Diagramme de Gantt :
-
-			www.teamgantt.com
+			\begin{section}{La contrainte du temps}
+				Le projet s'étale sur les mois de février, mars et avril.\\
+				Nous devrons dans cet intervalle, apprendre à bien utiliser les différents outils que nous ne maîtrisons pas encore et dans le même temps commencer la réalisation des premiers prototypes.
+			\end{section}~\\
 
 
+			Voici la liste des outils principaux pour le développement :
+			\begin{description}
+				\item[C++ :] un langage que nous connaissons, très documenté et adapté à la réalisation de logiciels ;
+				\item[QT (avec QT Creator) :] le framework proposé par M. Meynard, très documenté aussi et reconnu ;
+				\item[GIT :] ce gestionnaire de version nous permettra de travailler synchronisés ;		
+			\end{description}~\\
 
-
+			Et la liste des outils auxiliaires : 
+			\begin{description}
+				\item[yUML.me :] une excellente application web pour générer des diagrammes UML, nécessaires à la conception ;
+				\item[MicroMobs.com et Facebook :] discussions professionnelles pour le premier, annonces ou messages pour le second ;
+				\item[TeamGantt.com :] application web pour les diagrammes de Gantt ;		
+			\end{description}~\\
+		\end{chapter}
+		\begin{chapter}{Calendrier}
+			\begin{section}{Diagramme de Gantt}
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=17cm]{DiagrammeGantt.png}
+						\caption{Diagramme de Gantt}
+					\end{center}
+				\end{figure}~\\
+			\end{section}
 		\end{chapter}
 	\end{part}
-
 \end{document}
