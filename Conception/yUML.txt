@@ -1,34 +1,46 @@
-# Décomposition en sous-systèmes.
+# DÈcomposition en sous-systËmes.
 [Utilisateur]-(Gestion de projets)
 [Utilisateur]-(Gestion de fichiers)
 (Gestion de fichiers)<(Gestion du code)
 
-# Système de gestion de fichiers.
-[Utilisateur]-(Création fichier)
+# SystËme de gestion de fichiers.
+[Utilisateur]-(CrÈation fichier)
 [Utilisateur]-(Ouverture fichier)
 [Utilisateur]-(Edition fichier)
 [Utilisateur]-(Fermeture fichier)
 [Utilisateur]-(Suppression fichier)
 (Edition fichier)>(Gestion du code)
 
-# Système de gestion du code.
+# SystËme de gestion du code.
 [Utilisateur]-(Modification code)
 (Modification code)<(…)
 (Modification code)<(Coloration)
 (Modification code)<(Indentation)
-(Modification code)<(Auto complétion)
+(Modification code)<(Auto complÈtion)
 (Modification code)<(Vision arborescente)
+(Modification code)<(Visualisation d'un aperÁu sur demande)
+(Modification code)<(Validation du code sur W3C)
 
-# Système de gestion de projets.
-[Utilisateur]-(Création projet)
+# SystËme de gestion de projets.
+[Utilisateur]-(CrÈation projet)
 [Utilisateur]-(Ouverture projet)
 [Utilisateur]-(Modification projet)
 [Utilisateur]-(Fermeture projet)
 [Utilisateur]-(Suppression projet)
-(Création projet)<(Création projet préexistant)
+(CrÈation projet)<(CrÈation projet prÈexistant)
+(Ouverture projet)<(Afficher un aperÁu gÈnÈral du site)
 
-# Système de modification de projet.
+# SystËme de modification de projet.
 [Utilisateur]-(Ajout dossier au projet)
 [Utilisateur]-(Suppression dossier du projet)
 [Utilisateur]-(Ajout fichier au projet)
 [Utilisateur]-(Suppression fichier du projet)
+
+# Diagramme de classe
+[note: Vous aurez compris que l'analyseur syntaxique ne contiendra pas de faÁon si clair telles ou telles fonctions mais fera en sorte de reproduire ou d'enclenchÈ le phÈnomËne de "coloration" ou encore "d'indentation" (ce ne seront pas des fonctions au premier sens du terme informatique). 
+Vous aurez remarquÈ Ègalement la prÈsence des classes "fichier" ou autre "Èdition" qui l‡ encore ne sont pas vraiment des classes ]
+[Interface]uses-.->[Analyseur Syntaxique|indentation();auto-complÈtion();coloration();arborescence()]
+[fichier||ouvrir();enregistrer();enregistrer-sous()]^[Interface]
+[Èdition|copier();coller();annuler();rÈtablir();supprimer();tout sÈlectionner()]^[Interface]
+[affichage|mode de coloration();]^[Interface]
+[aide|validation W3C();]^[Interface]
