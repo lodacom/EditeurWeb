@@ -1,5 +1,7 @@
 /*
- * Commentaires ici.
+ * Auteur : Abdelhamid
+ * Description : liste des mots reconnaissables du JavaScript,
+ * utilisable pour colorer et auto-compléter le code.
  */
 
 #ifndef JavaScriptData_h

@@ -1,3 +1,9 @@
+/*
+ * Auteur : Abdelhamid
+ * Description : configuration des formats, chaque type de mot reconnaissable
+ * aura son propre format (format mot-clé, format commentaire, ...).
+ */
+
 #include <QtGui>
 
 #include "JavaScriptHighlighter.h"

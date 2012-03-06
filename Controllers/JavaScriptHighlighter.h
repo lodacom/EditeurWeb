@@ -1,3 +1,8 @@
+/*
+ * Auteur : Abdelhamid
+ * Description : couleurs et formats à appliquer au code JavaScript.
+ */
+
 #ifndef JavaScriptHighlighter_h
 #define JavaScriptHighlighter_h
 
