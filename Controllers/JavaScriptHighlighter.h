@@ -32,6 +32,7 @@ private:
     };
     QVector<HighlightingRule> highlightingRules;
 
+    QTextCharFormat functionFormat;
     QTextCharFormat keywordFormat;
     QTextCharFormat keywordDeclarationFormat;
     QTextCharFormat keywordReservedFormat;

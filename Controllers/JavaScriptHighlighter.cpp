@@ -6,6 +6,12 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent) : QSyntaxHig
 {
     HighlightingRule rule;
 
+    // Les méthodes et fonctions.
+    functionFormat.setFontWeight(QFont::Bold);
+    rule.pattern = JavaScriptData::functionRegex;
+    rule.format = functionFormat;
+    highlightingRules.append(rule);
+
     // Les mots clé.
     keywordFormat.setForeground(Qt::darkBlue);
     keywordFormat.setFontWeight(QFont::Bold);
