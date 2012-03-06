@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "JavaScriptHighlighter.h"
+#include "../Controllers/JavaScriptHighlighter.h"
 
 
 QT_BEGIN_NAMESPACE

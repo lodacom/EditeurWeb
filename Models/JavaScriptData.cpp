@@ -1,5 +1,6 @@
 #include "JavaScriptData.h"
 
+QRegExp JavaScriptData::functionRegex("\\b[A-Za-z0-9_]+(?=\\()");
 QRegExp JavaScriptData::fileExtensionRegex("*.js");
 QRegExp JavaScriptData::keywordRegex("\\bfor\\b|\\bin\\b\\b|\\b\\bwhile\\b\\b|\\b\\bdo\\b|\\bbreak\\b|\\breturn\\b|\\bcontinue\\b|\\bswitch\\b|\\bcase\\b|\\bdefault\\b|\\bif\\b|\\belse\\b|\\bthrow\\b|\\btry\\b|\\bcatch\\b|\\bfinally\\b|\\bnew\\b|\\bdelete\\b|\\btypeof\\b|\\binstanceof\\b|\\bvoid\\b|\\bthis\\b");
 QRegExp JavaScriptData::keywordDeclarationRegex("\\bvar\\b|\\blet\\b|\\bwith\\b|\\bfunction\\b");

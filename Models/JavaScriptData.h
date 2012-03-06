@@ -10,7 +10,11 @@
 class JavaScriptData
 {
     public:
+        // Pour reconnaître les fichiers.
         static QRegExp fileExtensionRegex;
+
+        // Pour le langage.
+        static QRegExp functionRegex;
         static QRegExp keywordRegex;
         static QRegExp keywordDeclarationRegex;
         static QRegExp keywordReservedRegex;
@@ -18,9 +22,12 @@ class JavaScriptData
         static QRegExp idRegex;
         static QRegExp numberRegex;
         static QRegExp quotationRegex;
+        static QRegExp singleLineCommentRegex;
+
+        // États spéciaux.
+        // Commentaires multilignes.
         static QRegExp multilineCommentStartRegex;
         static QRegExp multilineCommentEndRegex;
-        static QRegExp singleLineCommentRegex;
 };
 
 
