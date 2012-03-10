@@ -51,7 +51,7 @@ void MainWindow::setupEditor()
     editor = new QTextEdit;
     editor->setFont(font);
 
-    highlighter = new JavaScriptHighlighter(editor->document());
+    highlighter = new HtmlHighlighter(editor->document());
 }
 
 void MainWindow::setupFileMenu()

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "../Controllers/JavaScriptHighlighter.h"
+#include "../Controllers/HtmlHighlighter.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -28,7 +29,7 @@ private:
     void setupHelpMenu();
 
     QTextEdit *editor;
-    JavaScriptHighlighter *highlighter;
+    Highlighter *highlighter;
 };
 
 #endif
