@@ -8,7 +8,12 @@ HEADERS += \
     Controllers/CSSHighlighter.h \
     Views/MainWindow.h \
     Controllers/PhpHighlighter.h \
-    Models/PhpData.h
+    Models/PhpData.h \
+    Models/WorkSpace.h \
+    Models/Project.h \
+    Models/Folder.h \
+    Models/File.h \
+    Models/Element.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -21,4 +26,9 @@ SOURCES += \
     Views/MainWindow.cpp \
     main.cpp \
     Controllers/PhpHighlighter.cpp \
-    Models/PhpData.cpp
+    Models/PhpData.cpp \
+    Models/WorkSpace.cpp \
+    Models/Project.cpp \
+    Models/Folder.cpp \
+    Models/File.cpp \
+    Models/Element.cpp
