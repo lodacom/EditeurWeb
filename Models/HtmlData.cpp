@@ -1,20 +1,28 @@
+/*
+ * Auteur : Abdelhamid
+ * Description : liste des mots reconnaissables du Html,
+ * utilisable pour colorer et auto-compléter le code.
+ */
+
 #include "HtmlData.h"
 
-QRegExp fileExtensionRegex("*.html|*.htm|*.xhtml|*.xslt");
+QRegExp HtmlData::fileExtensionRegex("*.html|*.htm|*.xhtml|*.xslt");
 
-QRegExp numberRegex("[0-9][0-9]*\\.[0-9]+([eE][0-9]+)?[fd]?|0x[0-9a-fA-F]+|[0-9]+");
-QRegExp quotationRegex("\".*\"|\'.*\'");
-QRegExp specialCharRegex("\\b&.*;\\b");
+QRegExp HtmlData::numberRegex("[0-9][0-9]*\\.[0-9]+([eE][0-9]+)?[fd]?|0x[0-9a-fA-F]+|[0-9]+");
+QRegExp HtmlData::quotationRegex("\"[^\"]*\"|\'[^\']*\'");
+QRegExp HtmlData::specialCharRegex("&\\w+;");
 
-static QRegExp multilineCommentStartRegex("<!--");
-static QRegExp multilineCommentEndRegex("-->");
+QRegExp HtmlData::multilineCommentStartRegex("<!--");
+QRegExp HtmlData::multilineCommentEndRegex("-->");
 
-static QRegExp scriptTagOpenRegex("<script");
-static QRegExp scriptTagCloseRegex("</script>");
+QRegExp HtmlData::scriptTagOpenRegex("<script");
+QRegExp HtmlData::scriptTagCloseRegex("</script>");
 
-static QRegExp styleTagOpenRegex("<style");
-static QRegExp styleTagCloseRegex("</style>");
+QRegExp HtmlData::styleTagOpenRegex("<style");
+QRegExp HtmlData::styleTagCloseRegex("</style>");
 
-static QRegExp tagOpenRegex("<[A-Za-z0-9_]+");
-static QRegExp tagCloseRegex("</[A-Za-z0-9_]>");
-static QRegExp tagAttributeRegex;
+QRegExp HtmlData::tagOpenBeginRegex("<\\w+");
+QRegExp HtmlData::tagOpenEndRegex(">");
+QRegExp HtmlData::singleTagCloseRegex("/>");
+QRegExp HtmlData::tagCloseRegex("</\\w+>");
+QRegExp HtmlData::tagAttributeRegex("\\w+\\s*=");

@@ -14,7 +14,7 @@ QRegExp JavaScriptData::keywordReservedRegex("\\babstract\\b|\\bboolean\\b|\\bby
 QRegExp JavaScriptData::builtInRegex("\\bArray\\b|\\bBoolean\\b|\\bDate\\b|\\bError\\b|\\bFunction\\b|\\bMath\\b|\\bnetscape\\b|\\bNumber\\b|\\bObject\\b|\\bPackages\\b|\\bRegExp\\b|\\bString\\b|\\bsun\\b|\\bdecodeURI\\b|\\bdecodeURIComponent\\b|\\bencodeURI\\b|\\bencodeURIComponent\\b|\\bError\\b|\\beval\\b|\\bisFinite\\b|\\bisNaN\\b|\\bparseFloat\\b|\\bparseInt\\b|\\bdocument\\b|\\bthis\\b|\\bwindow\\b");
 QRegExp JavaScriptData::idRegex("[$a-zA-Z_][a-zA-Z0-9_]*");
 QRegExp JavaScriptData::numberRegex("[0-9][0-9]*\\.[0-9]+([eE][0-9]+)?[fd]?|0x[0-9a-fA-F]+|[0-9]+");
-QRegExp JavaScriptData::quotationRegex("\".*\"|\'.*\'");
+QRegExp JavaScriptData::quotationRegex("\"[^\"]*\"|\'[^\']*\'");
 QRegExp JavaScriptData::multilineCommentStartRegex("/\\*");
 QRegExp JavaScriptData::multilineCommentEndRegex("\\*/");
 QRegExp JavaScriptData::singleLineCommentRegex("//[^\n]*");

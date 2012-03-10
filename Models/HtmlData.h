@@ -1,5 +1,7 @@
 /*
- * Commentaires ici.
+ * Auteur : Abdelhamid
+ * Description : liste des mots reconnaissables du Html,
+ * utilisable pour colorer et auto-compléter le code.
  */
 
 #ifndef Html_h
@@ -32,8 +34,10 @@ class HtmlData
         static QRegExp styleTagCloseRegex;
 
         // Balises ouvrantes et fermantes.
-        static QRegExp tagOpenRegex;
+        static QRegExp tagOpenBeginRegex;
+        static QRegExp tagOpenEndRegex;
         static QRegExp tagCloseRegex;
+        static QRegExp singleTagCloseRegex;
 
         // Attributs d'une balise.
         static QRegExp tagAttributeRegex;
