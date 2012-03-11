@@ -31,5 +31,6 @@ CSSHighlighter::CSSHighlighter(QTextDocument *parent) : Highlighter(parent)
     multilineCommentFormat.setForeground(Qt::darkRed);    
     setMultilineRule(CSSData::multilineCommentStartRegex,
                     CSSData::multilineCommentEndRegex,
+                    multilineCommentFormat,
                     IN_COMMENT_STATE);
 }
