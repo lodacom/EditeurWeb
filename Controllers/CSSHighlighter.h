@@ -6,6 +6,7 @@
 #include <QTextCharFormat>
 
 #include "../Models/CSSData.h"
+#include "Highlighter.h"
 
 #define DEFAULT_STATE 0     // L'état par défaut.
 #define IN_COMMENT_STATE 1  // En commentaires multilignes.
@@ -14,7 +15,7 @@ QT_BEGIN_NAMESPACE
 class QTextDocument;
 QT_END_NAMESPACE
 
-class CSSHighlighter : public QSyntaxHighlighter
+class CSSHighlighter : public Highlighter
 {
     Q_OBJECT
 
@@ -22,22 +23,16 @@ public:
     CSSHighlighter(QTextDocument *parent = 0);
 
 protected:
-    void highlightBlock(const QString &text);
+    //void highlightBlock(const QString &text);
 
 private:
-    struct HighlightingRule
-    {
-        QRegExp pattern;
-        QTextCharFormat format;
-    };
-    QVector<HighlightingRule> highlightingRules;
-
     QTextCharFormat fileExtensionFormat;
     QTextCharFormat keywordFormat;
     QTextCharFormat subclassFormat;
     QTextCharFormat idFormat;
     QTextCharFormat idclassFormat;
     QTextCharFormat numberFormat;
+
     QTextCharFormat multilineCommentFormat;
 };
 #endif // CSSHIGHLIGHTER_H
