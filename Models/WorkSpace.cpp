@@ -70,7 +70,7 @@ void WorkSpace::scan(){
 }
 
 void WorkSpace::sort(){
-	projects.sort(projects.begin(),projects.end());
+	std::sort(projects.begin(),projects.end());
 }
 
 void WorkSpace::output(int prof){
