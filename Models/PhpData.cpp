@@ -5,7 +5,7 @@ QRegExp PhpData::keywordRegex("\\band\\b|\\bE_PARSE\\b|\\bfunction\\b|\\bold_fun
 QRegExp PhpData::keywordConstantRegex("\\btrue\\b|\\bfalse\\b|\\bnull\\b");
 QRegExp PhpData::idRegex("\\$[a-zA-Z_][a-zA-Z0-9_]*");
 QRegExp PhpData::numberRegex("[0-9][0-9]*\\.[0-9]+([eE][0-9]+)?[fd]?\\b|\\b0x[0-9a-fA-F]+\\b|\\b[0-9]+");
-QRegExp PhpData::quotationRegex("\".*\"|\'.*\'");
+QRegExp PhpData::quotationRegex("\"[^\"]*\"|\'[^\']*\'");
 QRegExp PhpData::multilineCommentStartRegex("/\\*");
 QRegExp PhpData::multilineCommentEndRegex("\\*/");
 QRegExp PhpData::singleLineCommentRegex("//[^\n]*|\\#.*");
