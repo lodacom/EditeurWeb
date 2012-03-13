@@ -11,38 +11,38 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent) : Highlighte
     // Les nombres.
     numberFormat.setFontWeight(QFont::Bold);
     numberFormat.setForeground(Qt::darkBlue);
-    setRule(JavaScriptData::numberRegex, numberFormat);
+    addRule(JavaScriptData::numberRegex, numberFormat);
 
     // Les méthodes et fonctions.
     functionFormat.setFontWeight(QFont::Bold);
-    setRule(JavaScriptData::functionRegex, functionFormat);
+    addRule(JavaScriptData::functionRegex, functionFormat);
 
     // Les mots clé.
     keywordFormat.setForeground(Qt::darkBlue);
     keywordFormat.setFontWeight(QFont::Bold);
-    setRule(JavaScriptData::keywordRegex, keywordFormat);
+    addRule(JavaScriptData::keywordRegex, keywordFormat);
 
     // Les mots clé de déclaration.
     keywordDeclarationFormat.setFontWeight(QFont::Bold);
     keywordDeclarationFormat.setForeground(Qt::darkMagenta);
-    setRule(JavaScriptData::keywordDeclarationRegex, keywordDeclarationFormat);
+    addRule(JavaScriptData::keywordDeclarationRegex, keywordDeclarationFormat);
 
     // Les mots réservés.
     keywordReservedFormat.setFontWeight(QFont::Bold);
     keywordReservedFormat.setForeground(Qt::darkYellow);
-    setRule(JavaScriptData::keywordReservedRegex, keywordReservedFormat);
+    addRule(JavaScriptData::keywordReservedRegex, keywordReservedFormat);
 
     // Les fonctions internes de JavaScript.
     builtInFormat.setForeground(Qt::darkYellow);
-    setRule(JavaScriptData::builtInRegex, builtInFormat);
+    addRule(JavaScriptData::builtInRegex, builtInFormat);
 
     // Commentaire sur une seule ligne.
     singleLineCommentFormat.setForeground(Qt::red);
-    setRule(JavaScriptData::singleLineCommentRegex, singleLineCommentFormat);
+    addRule(JavaScriptData::singleLineCommentRegex, singleLineCommentFormat);
 
     // Les simples et doubles quotes.
     quotationFormat.setForeground(Qt::darkGreen);
-    setRule(JavaScriptData::quotationRegex, quotationFormat);
+    addRule(JavaScriptData::quotationRegex, quotationFormat);
 
     // Commentaires multilignes.
     multilineCommentFormat.setForeground(Qt::darkRed);

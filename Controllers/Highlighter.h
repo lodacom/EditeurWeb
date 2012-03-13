@@ -44,15 +44,10 @@ public:
 
 protected:
     void highlightBlock(const QString &text);
-    QRegExp multilineCommentStartRegex;
-    QRegExp multilineCommentEndRegex;
 
 private:
     QVector<HighlightingRule> highlightingRules;
     QVector<MultilineHighlightingRule> multilineHighlightingRules;
-
-    // Les quatre langages ont en communs les commentaires multiligne.
-    QTextCharFormat multilineCommentFormat;
 };
 
 #endif

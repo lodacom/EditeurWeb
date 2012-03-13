@@ -11,34 +11,34 @@ HtmlHighlighter::HtmlHighlighter(QTextDocument *parent) : Highlighter(parent)
     // Les nombres.
     numberFormat.setFontWeight(QFont::Bold);
     numberFormat.setForeground(Qt::darkBlue);
-    setRule(HtmlData::numberRegex, numberFormat);
+    addRule(HtmlData::numberRegex, numberFormat);
 
     // Les balises.
     tagsFormat.setForeground(Qt::lightGray);
     tagsFormat.setFontWeight(QFont::Bold);
 
-    setRule(HtmlData::tagOpenBeginRegex, tagsFormat);
-    setRule(HtmlData::tagOpenEndRegex, tagsFormat);
-    setRule(HtmlData::tagCloseRegex, tagsFormat);
-    setRule(HtmlData::singleTagCloseRegex, tagsFormat);
-    setRule(HtmlData::scriptTagOpenRegex, tagsFormat);
-    setRule(HtmlData::scriptTagCloseRegex, tagsFormat);
-    setRule(HtmlData::styleTagOpenRegex, tagsFormat);
-    setRule(HtmlData::styleTagCloseRegex, tagsFormat);
+    addRule(HtmlData::tagOpenBeginRegex, tagsFormat);
+    addRule(HtmlData::tagOpenEndRegex, tagsFormat);
+    addRule(HtmlData::tagCloseRegex, tagsFormat);
+    addRule(HtmlData::singleTagCloseRegex, tagsFormat);
+    addRule(HtmlData::scriptTagOpenRegex, tagsFormat);
+    addRule(HtmlData::scriptTagCloseRegex, tagsFormat);
+    addRule(HtmlData::styleTagOpenRegex, tagsFormat);
+    addRule(HtmlData::styleTagCloseRegex, tagsFormat);
 
     // Les attributs d'une balise.
     tagAttributeFormat.setForeground(Qt::darkMagenta);
     tagAttributeFormat.setFontWeight(QFont::Bold);
-    setRule(HtmlData::tagAttributeRegex, tagAttributeFormat);
+    addRule(HtmlData::tagAttributeRegex, tagAttributeFormat);
 
     // Les mots spéciaux (p.ex. &nbsp;).
     specialCharFormat.setForeground(Qt::darkBlue);
     specialCharFormat.setFontWeight(QFont::Bold);
-    setRule(HtmlData::specialCharRegex, specialCharFormat);
+    addRule(HtmlData::specialCharRegex, specialCharFormat);
 
     // Les simples et doubles quotes.
     quotationFormat.setForeground(Qt::darkGreen);
-    setRule(HtmlData::quotationRegex, quotationFormat);
+    addRule(HtmlData::quotationRegex, quotationFormat);
 
     // Commentaires multilignes.
     multilineCommentFormat.setForeground(Qt::darkRed);
@@ -46,4 +46,28 @@ HtmlHighlighter::HtmlHighlighter(QTextDocument *parent) : Highlighter(parent)
                      HtmlData::multilineCommentEndRegex,
                      multilineCommentFormat,
                      IN_COMMENT_STATE);
+
+    QTextCharFormat a;
+    a.setForeground(Qt::darkBlue);
+    a.setFontWeight(QFont::Bold);
+    setMultilineRule(HtmlData::scriptTagOpenRegex,
+                     HtmlData::scriptTagCloseRegex,
+                     a,
+                     IN_SCRIPT_TAG_STATE);
+
+    QTextCharFormat b;
+    b.setForeground(Qt::darkGreen);
+    b.setFontWeight(QFont::Bold);
+    setMultilineRule(HtmlData::styleTagOpenRegex,
+                     HtmlData::styleTagCloseRegex,
+                     b,
+                     IN_STYLE_TAG_STATE);
 }
+
+/*
+void HtmlHighlighter::highlightBlock(const QString &text)
+{
+    Highlighter::highlightBlock(text);
+
+}
+*/

@@ -57,7 +57,6 @@ void Highlighter::highlightBlock(const QString &text)
     }
 }
 
-
 void Highlighter::setRule(QRegExp pattern, QTextCharFormat format)
 {
     HighlightingRule rule;

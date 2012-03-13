@@ -7,7 +7,6 @@
 #ifndef HtmlHighlighter_h
 #define HtmlHighlighter_h
 
-#include <QSyntaxHighlighter>
 #include <QTextCharFormat>
 
 #include "Highlighter.h"
