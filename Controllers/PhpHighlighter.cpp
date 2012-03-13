@@ -6,53 +6,53 @@
 
 #include "PhpHighlighter.h"
 //#include "HtmlHighlighterh"
-PhpHighlighter::PhpHighlighter(QTextDocument *parent) : QSyntaxHighlighter(parent)
+PhpHighlighter::PhpHighlighter(QTextDocument *parent) : Highlighter(parent)
 {
     // Les mots clé.
     keywordFormat.setForeground(Qt::darkBlue);
     keywordFormat.setFontWeight(QFont::Bold);
-    setRule(PhpData::keywordRegex, keywordFormat);
+    addRule(PhpData::keywordRegex, keywordFormat);
 
 
     // Pour les déclarations de variable
 
     idFormat.setForeground(Qt::gray);
     idFormat.setFontWeight(QFont::Bold);
-    setRule(PhpData::idRegex, idFormat);
+    addRule(PhpData::idRegex, idFormat);
 
     // Les mots clé de déclaration.
     keywordConstantFormat.setFontWeight(QFont::Bold);
     keywordConstantFormat.setForeground(Qt::darkMagenta);
-    setRule(PhpData::keywordConstantRegex, keywordConstantFormat);
+    addRule(PhpData::keywordConstantRegex, keywordConstantFormat);
 
     // Les nombres.
     numberFormat.setFontWeight(QFont::Bold);
     numberFormat.setForeground(Qt::darkBlue);
-    setRule(PhpData::numberRegex, numberFormat);
+    addRule(PhpData::numberRegex, numberFormat);
 
     // Commentaire sur une seule ligne.
     singleLineCommentFormat.setForeground(Qt::red);
-    setRule(PhpData::singleLineCommentRegex, singleLineCommentFormat);
+    addRule(PhpData::singleLineCommentRegex, singleLineCommentFormat);
 
     // Commentaires multilignes.
     multilineCommentFormat.setForeground(Qt::darkRed);
-    setMultilineRule(PhpData::multilineCommentStartRegex,
+    addMultilineRule(PhpData::multilineCommentStartRegex,
                      PhpData::multilineCommentEndRegex,
                      multilineCommentFormat,
                      IN_COMMENT_STATE);
 
     // Les simples et doubles quotes.
     quotationFormat.setForeground(Qt::darkGreen);
-    setRule(PhpData::quotationRegex, quotationFormat);
+    addRule(PhpData::quotationRegex, quotationFormat);
 
     // Les déclarations de fonction
     functionFormat.setForeground(Qt::darkGreen);
-    setRule(PhpData::functionRegex, functionFormat);
-    
+    addRule(PhpData::functionRegex, functionFormat);
+
     // Coloration balise php
     startPhpFormat.setForeground(Qt::red);
-    setRule(PhpData::startPhpRegex, startPhpFormat);
+    addRule(PhpData::startPhpRegex, startPhpFormat);
 
     endPhpFormat.setForeground(Qt::red);
-    setRule(PhpData::endPhpRegex, endPhpFormat);
+    addRule(PhpData::endPhpRegex, endPhpFormat);
 }
