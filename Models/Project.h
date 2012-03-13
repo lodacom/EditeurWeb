@@ -6,7 +6,7 @@
 class Project : public virtual Folder{
 public:
     //Constructeur Destructeur
-    Project(string name , string parentPath );
+    Project(string name = "", string parentPath = "");
     virtual ~Project();
     //Méthodes
 private:

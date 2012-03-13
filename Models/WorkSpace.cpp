@@ -13,7 +13,7 @@ void WorkSpace::addProject(Project *project){
 }
 void WorkSpace::scan(){
 	DIR* workSpaceDir;
-	struct dirent* readedFile;
+        struct dirent* readFile;
 	string sPath;
 	char* wPath;
 	size_t wPathSize;
@@ -34,27 +34,29 @@ void WorkSpace::scan(){
                 char* folderPath = NULL;
                 char* proPath = NULL;
 
-		while ((readedFile = readdir(workSpaceDir)) != NULL){//On parcourt les éléments du workspace
-			if(strcmp(readedFile->d_name, ".") && strcmp(readedFile->d_name, "..")){//On évite . et ..
+                while ((readFile = readdir(workSpaceDir)) != NULL){//On parcourt les éléments du workspace
+                        if(strcmp(readFile->d_name, ".") && strcmp(readFile->d_name, "..")){//On évite . et ..
 				//Bloc de création du path de l'élément
-				folderPath = (char*)malloc(strlen(wPath) + sizeof(readedFile->d_name) + 2);
+                                folderPath = (char*)malloc(strlen(wPath) + sizeof(readFile->d_name) + 2);
 				strcpy(folderPath, wPath);
 				strcat(folderPath, "/");
-				strcat(folderPath, readedFile->d_name);
+                                strcat(folderPath, readFile->d_name);
 				
 				if (! lstat(folderPath, &infosFichier)){//récupération des infos du fichier
 					if(S_IFDIR & infosFichier.st_mode){//Si c'est un répertoire
-						//Bloc de création du path du .pro
+                                                //Bloc de création du path du .pro
 						proPath = (char*)malloc(strlen(folderPath) + sizeof("/.pro") + 1);
 						strcpy(proPath, folderPath);
 						strcat(proPath, "/.pro");
-						projectFile = fopen(proPath, "r");// On tente l'ouverture
+                                                projectFile = fopen(proPath, "r");// On tente l'ouverture
 						if(projectFile){//S'il existe
 							//Création d'un nouveau projet
-							Project project(readedFile->d_name, this->getPath());
+                                                        Project project(readFile->d_name, this->getPath());
+                                                        project.scan();
+                                                        project.sort();
 							projects.push_back(project);//Ajout du projet au vecteur
 						} else {
-							cout << "Pas de .pro dans " << readedFile->d_name << endl;
+                                                        cout << "Pas de .pro dans " << readFile->d_name << endl;
 						}
 					}
 				}
@@ -65,7 +67,7 @@ void WorkSpace::scan(){
 		delete [] proPath;
 	}
         closedir(workSpaceDir);
-	delete readedFile;
+        delete readFile;
 	delete wPath;
 }
 
@@ -74,4 +76,11 @@ void WorkSpace::output(int prof){
         for(size_t i = 0; i < projects.size(); i++){
 		projects[i].output(prof + 1);
 	}
+}
+
+QStandardItem* WorkSpace::getQItem(){
+    for(size_t i = 0; i < projects.size(); i++){
+        qItem->appendRow(projects[i].getQItem());
+    }
+    return qItem;
 }

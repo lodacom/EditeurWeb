@@ -13,6 +13,7 @@ public:
     virtual void addProject(Project *project);
     virtual void scan();// Liste les projets du workspace
     virtual void output(int prof);// Méthode pour le debuggage
+    virtual QStandardItem* getQItem();
 private:
     //Attributs
     vector<Project> projects;//Vecteur de projets
