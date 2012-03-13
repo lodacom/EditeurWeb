@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <QStandardItem>
+#include <algorithm>
 
 using namespace std;
 
