@@ -2,21 +2,20 @@
 #define ELEMENT_H
 #include <string>
 #include <iostream>
-#include <algorithm>
-#include <functional>
 #include <vector>
 #include <stdio.h>
-#include <string.h>
 #include <errno.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <dirent.h>
 #include <QStandardItem>
+
 using namespace std;
 
 class Element{
 //Opérateur permettant le tri. 
+
 friend bool operator < (const Element & lElem, const Element & rElem)
 {
     //Création de variables temporaires, nécessaire pour le tri par ordre aplhabétique

@@ -71,6 +71,10 @@ void WorkSpace::scan(){
 	delete wPath;
 }
 
+void WorkSpace::sort(){
+	std::sort(projects.begin(),projects.end());
+}
+
 void WorkSpace::output(int prof){
 	Element::output(prof);
         for(size_t i = 0; i < projects.size(); i++){
