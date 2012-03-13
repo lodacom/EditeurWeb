@@ -1,10 +1,7 @@
 #ifndef PhpHighlighter_h
 #define PhpHighlighter_h
 
-#include <QSyntaxHighlighter>
-#include <QHash>
-#include <QTextCharFormat>
-
+#include "Highlighter.h"
 #include "../Models/PhpData.h"
 
 #define DEFAULT_STATE 0     // L'état par défaut.
@@ -21,17 +18,7 @@ class PhpHighlighter : public QSyntaxHighlighter
 public:
     PhpHighlighter(QTextDocument *parent = 0);
 
-protected:
-    void highlightBlock(const QString &text);
-
 private:
-    struct HighlightingRule
-    {
-        QRegExp pattern;
-        QTextCharFormat format;
-    };
-    QVector<HighlightingRule> highlightingRules;
-
     QTextCharFormat keywordFormat;
     QTextCharFormat functionFormat;
     QTextCharFormat keywordConstantFormat;

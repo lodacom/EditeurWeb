@@ -1,117 +1,58 @@
-#include <QtGui>
+/*
+ * Auteur : Pierre
+ * Description : configuration des formats, chaque type de mot reconnaissable
+ * aura son propre format (format mot-clé, format commentaire, ...).
+ */
 
 #include "PhpHighlighter.h"
 //#include "HtmlHighlighterh"
 PhpHighlighter::PhpHighlighter(QTextDocument *parent) : QSyntaxHighlighter(parent)
 {
-    HighlightingRule rule;
-
     // Les mots clé.
     keywordFormat.setForeground(Qt::darkBlue);
     keywordFormat.setFontWeight(QFont::Bold);
-    rule.pattern = PhpData::keywordRegex;
-    rule.format = keywordFormat;
-    highlightingRules.append(rule);
+    setRule(PhpData::keywordRegex, keywordFormat);
+
 
     // Pour les déclarations de variable
 
     idFormat.setForeground(Qt::gray);
     idFormat.setFontWeight(QFont::Bold);
-    rule.pattern = PhpData::idRegex;
-    rule.format = idFormat;
-    highlightingRules.append(rule);
+    setRule(PhpData::idRegex, idFormat);
 
     // Les mots clé de déclaration.
     keywordConstantFormat.setFontWeight(QFont::Bold);
     keywordConstantFormat.setForeground(Qt::darkMagenta);
-    rule.pattern = PhpData::keywordConstantRegex;
-    rule.format = keywordConstantFormat;
-    highlightingRules.append(rule);
-
-    // Les identifiants.
-
+    setRule(PhpData::keywordConstantRegex, keywordConstantFormat);
 
     // Les nombres.
     numberFormat.setFontWeight(QFont::Bold);
     numberFormat.setForeground(Qt::darkBlue);
-    rule.pattern = PhpData::numberRegex;
-    highlightingRules.append(rule);
+    setRule(PhpData::numberRegex, numberFormat);
 
     // Commentaire sur une seule ligne.
     singleLineCommentFormat.setForeground(Qt::red);
-    rule.pattern = PhpData::singleLineCommentRegex;
-    rule.format = singleLineCommentFormat;
-    highlightingRules.append(rule);
+    setRule(PhpData::singleLineCommentRegex, singleLineCommentFormat);
 
     // Commentaires multilignes.
     multilineCommentFormat.setForeground(Qt::darkRed);
+    setMultilineRule(PhpData::multilineCommentStartRegex,
+                     PhpData::multilineCommentEndRegex,
+                     multilineCommentFormat,
+                     IN_COMMENT_STATE);
 
     // Les simples et doubles quotes.
     quotationFormat.setForeground(Qt::darkGreen);
-    rule.pattern = PhpData::quotationRegex;
-    rule.format = quotationFormat;
-    highlightingRules.append(rule);
+    setRule(PhpData::quotationRegex, quotationFormat);
 
     // Les déclarations de fonction
     functionFormat.setForeground(Qt::darkGreen);
-    rule.pattern = PhpData::functionRegex;
-    rule.format = functionFormat;
-    highlightingRules.append(rule);
-
+    setRule(PhpData::functionRegex, functionFormat);
     
     // Coloration balise php
     startPhpFormat.setForeground(Qt::red);
-    rule.pattern=PhpData::startPhpRegex;
-    rule.format=startPhpFormat;
-    highlightingRules.append(rule);
+    setRule(PhpData::startPhpRegex, startPhpFormat);
 
     endPhpFormat.setForeground(Qt::red);
-    rule.pattern=PhpData::endPhpRegex;
-    rule.format=endPhpFormat;
-    highlightingRules.append(rule);
-
-
-
-}
-
-void PhpHighlighter::highlightBlock(const QString &text)
-{
-    foreach (const HighlightingRule &rule, highlightingRules)
-    {
-        QRegExp expression(rule.pattern);
-        int index = expression.indexIn(text);
-        while (index >= 0)
-        {
-            int length = expression.matchedLength();
-            setFormat(index, length, rule.format);
-            index = expression.indexIn(text, index + length);
-        }
-    }
-
-    setCurrentBlockState(DEFAULT_STATE);
-
-    int startIndex = 0;
-    if (previousBlockState() != IN_COMMENT_STATE)
-    {
-        startIndex = PhpData::multilineCommentStartRegex.indexIn(text);
-    }
-
-    while (startIndex >= 0)
-    {
-        int endIndex = PhpData::multilineCommentEndRegex.indexIn(text, startIndex);
-        int commentLength;
-
-        if (endIndex == -1)
-        {
-            setCurrentBlockState(IN_COMMENT_STATE);
-            commentLength = text.length() - startIndex;
-        }
-        else
-        {
-            commentLength = endIndex - startIndex + PhpData::multilineCommentEndRegex.matchedLength();
-        }
-
-        setFormat(startIndex, commentLength, multilineCommentFormat);
-        startIndex = PhpData::multilineCommentStartRegex.indexIn(text, startIndex + commentLength);
-    }
+    setRule(PhpData::endPhpRegex, endPhpFormat);
 }
