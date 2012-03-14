@@ -3,6 +3,7 @@
 Element::Element(string name, string parentPath){
     this->name = name;
     this->parentPath = parentPath;
+    qItem = new QStandardItem(QString(name.c_str()));
 }
 
 Element::~Element(){};
@@ -33,4 +34,8 @@ void Element::output(int prof){
     for (int i = 0; i < prof; i++)
 	cout << "\t";
     cout << name << endl;
+}
+
+QStandardItem* Element::getQItem(){
+    return qItem;
 }

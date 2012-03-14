@@ -1,15 +1,6 @@
 #ifndef FOLDER_H
 #define FOLDER_H
-#include <vector>
-#include <iostream>
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <dirent.h>
-#include <algorithm>
+
 #include "Element.h"
 #include "File.h"
 class Folder: public virtual Element{
@@ -25,6 +16,7 @@ public:
     virtual void scan();//Scanne les dossiers et fichiers du repertoire
     virtual void output(int prof);//Fonction de debbugage
     virtual void sort();//Fonction qui tri dans l'ordre alphabétique les dossiers et fichiers
+    virtual QStandardItem* getQItem();
 private:
     //Attributs
     vector<File> files;//Les fichiers du répertoire
