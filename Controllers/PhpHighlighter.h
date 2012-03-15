@@ -11,7 +11,7 @@ QT_BEGIN_NAMESPACE
 class QTextDocument;
 QT_END_NAMESPACE
 
-class PhpHighlighter : public QSyntaxHighlighter
+class PhpHighlighter : public Highlighter
 {
     Q_OBJECT
 

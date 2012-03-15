@@ -6,7 +6,7 @@
 
 #include "PhpHighlighter.h"
 //#include "HtmlHighlighterh"
-PhpHighlighter::PhpHighlighter(QTextDocument *parent) : QSyntaxHighlighter(parent)
+PhpHighlighter::PhpHighlighter(QTextDocument *parent) : Highlighter(parent)
 {
     // Les mots clé.
     keywordFormat.setForeground(Qt::darkBlue);
