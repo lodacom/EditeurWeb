@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setupFileMenu();
     setupHelpMenu();
     setupEditor();
-
+    setupColoration();
     setCentralWidget(editor);
     setWindowTitle(tr("Syntax Highlighter"));
 }
@@ -41,6 +41,26 @@ void MainWindow::openFile(const QString &path)
     }
 }
 
+void MainWindow::colorationCSS()
+{
+        highlighter = new CSSHighlighter(editor->document());
+}
+
+void MainWindow::colorationHTML()
+{
+     highlighter = new HtmlHighlighter(editor->document());
+}
+
+void MainWindow::colorationJavaScript()
+{
+     highlighter = new JavaScriptHighlighter(editor->document());
+}
+
+void MainWindow::colorationPHP()
+{
+     highlighter = new PhpHighlighter(editor->document());
+}
+
 void MainWindow::setupEditor()
 {
     QFont font;
@@ -50,8 +70,6 @@ void MainWindow::setupEditor()
 
     editor = new QTextEdit;
     editor->setFont(font);
-
-    highlighter = new HtmlHighlighter(editor->document());
 }
 
 void MainWindow::setupFileMenu()
@@ -76,4 +94,25 @@ void MainWindow::setupHelpMenu()
 
     helpMenu->addAction(tr("&About"), this, SLOT(about()));
     helpMenu->addAction(tr("About &Qt"), qApp, SLOT(aboutQt()));
+}
+
+void MainWindow::setupColoration()
+{
+    menuColoration = new QMenu(tr("&Coloration"),this);
+    menuBar()->addMenu(menuColoration);
+
+    actionHTML = new QAction(tr("&HTML"),this);
+    actionJavaScript = new QAction(tr("JavaScript"),this);
+    actionPHP = new QAction(tr("PHP"),this);
+    actionCSS = new QAction(tr("CSS"),this);
+
+     menuColoration->addAction(actionCSS);
+     menuColoration->addAction(actionHTML);
+     menuColoration->addAction(actionJavaScript);
+     menuColoration->addAction(actionPHP);
+
+     QObject::connect(actionCSS, SIGNAL(triggered()), this, SLOT(colorationCSS()));
+     QObject::connect(actionPHP, SIGNAL(triggered()), this, SLOT(colorationPHP()));
+     QObject::connect(actionJavaScript, SIGNAL(triggered()), this, SLOT(colorationJavaScript()));
+     QObject::connect(actionHTML, SIGNAL(triggered()), this, SLOT(colorationHTML()));
 }
