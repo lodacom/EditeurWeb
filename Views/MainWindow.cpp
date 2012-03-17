@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setupHelpMenu();
     setupEditor();
     setupColoration();
+    setupWorkSpaceDock();
     setCentralWidget(editor);
     setWindowTitle(tr("Syntax Highlighter"));
 }
@@ -117,4 +118,18 @@ void MainWindow::setupColoration()
      QObject::connect(actionPHP, SIGNAL(triggered()), this, SLOT(colorationPHP()));
      QObject::connect(actionJavaScript, SIGNAL(triggered()), this, SLOT(colorationJavaScript()));
      QObject::connect(actionHTML, SIGNAL(triggered()), this, SLOT(colorationHTML()));
+}
+
+void MainWindow::setupWorkSpaceDock(){
+    QDockWidget *dock = new QDockWidget("WorkSpace", this);
+    addDockWidget(Qt::LeftDockWidgetArea, dock);
+    QWidget *dockContents = new QWidget;
+    dock->setWidget(dockContents);
+
+    QTreeView *treeView = new QTreeView;
+    WorkSpaceTreeController *wsController = new WorkSpaceTreeController();
+    treeView->setModel(wsController->getQItemModel());
+    QVBoxLayout *dockLayout = new QVBoxLayout;
+    dockLayout->addWidget(treeView);
+    dockContents->setLayout(dockLayout);
 }

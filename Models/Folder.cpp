@@ -3,6 +3,7 @@
 Folder::Folder(string name, string parentPath):Element(name, parentPath){
     folders = vector<Folder>();
     files = vector<File>();
+    qItem->setIcon(QIcon("Pics/Folder-icon.png"));
 }
 
 Folder::~Folder(){}
@@ -16,8 +17,8 @@ bool Folder::isEmpty(){
 
 
 void Folder::sort(){
-	std::sort(files.begin(), files.end());
 	std::sort(folders.begin(), folders.end());
+        std::sort(files.begin(), files.end());
 }
 void Folder::addFile(File *file){
     files.push_back(*file);
@@ -34,7 +35,6 @@ void Folder::scan(){
     char *cPath, *temp = NULL;
     size_t cPathSize;
     struct stat infosFichier;
-
     //Bloc de conversion string vers char* pour la compatibilité avec les appels systeme
     sPath = this->getPath();
     cPathSize = sPath.size() + 1;
@@ -96,5 +96,6 @@ QStandardItem* Folder::getQItem(){
     for(size_t i = 0; i < files.size(); i++){
         qItem->appendRow(files[i].getQItem());
     }
+
     return qItem;
 }

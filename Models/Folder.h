@@ -1,6 +1,5 @@
 #ifndef FOLDER_H
 #define FOLDER_H
-
 #include "Element.h"
 #include "File.h"
 class Folder: public virtual Element{
@@ -17,7 +16,7 @@ public:
     virtual void output(int prof);//Fonction de debbugage
     virtual void sort();//Fonction qui tri dans l'ordre alphabétique les dossiers et fichiers
     virtual QStandardItem* getQItem();
-private:
+protected:
     //Attributs
     vector<File> files;//Les fichiers du répertoire
     vector<Folder> folders;//Les dossiers du répertoire

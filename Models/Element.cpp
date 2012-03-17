@@ -3,10 +3,10 @@
 Element::Element(string name, string parentPath){
     this->name = name;
     this->parentPath = parentPath;
-    qItem = new QStandardItem(QString(name.c_str()));
+    this->qItem = new QStandardItem(QString(name.c_str()));
 }
 
-Element::~Element(){};
+Element::~Element(){}
 
 string Element::getName(){
     return name;
@@ -29,13 +29,11 @@ string Element::getPath(){
     path = parentPath + "/" + name;
     return path;
 }
-
+QStandardItem* Element::getQItem(){
+	return qItem;
+}
 void Element::output(int prof){
     for (int i = 0; i < prof; i++)
 	cout << "\t";
     cout << name << endl;
-}
-
-QStandardItem* Element::getQItem(){
-    return qItem;
 }

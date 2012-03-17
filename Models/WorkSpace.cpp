@@ -51,14 +51,14 @@ void WorkSpace::scan(){
                                                 projectFile = fopen(proPath, "r");// On tente l'ouverture
 						if(projectFile){//S'il existe
 							//Création d'un nouveau projet
-                                                        Project project(readFile->d_name, this->getPath());
+                                                        Project project = Project(readFile->d_name, this->getPath());
                                                         project.scan();
                                                         project.sort();
 							projects.push_back(project);//Ajout du projet au vecteur
 						} else {
                                                         cout << "Pas de .pro dans " << readFile->d_name << endl;
 						}
-					}
+                                        }
 				}
 			}
 		}

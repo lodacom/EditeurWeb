@@ -1,9 +1,7 @@
 #ifndef WORKSPACE_H
 #define WORKSPACE_H
-#include <vector>
-#include <dirent.h>
+#include "Element.h"
 #include "Project.h"
-
 class WorkSpace : public virtual Element {
 public:
     //Constructeur Destructeur

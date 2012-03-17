@@ -11,7 +11,7 @@
 #include <dirent.h>
 #include <QStandardItem>
 #include <algorithm>
-
+#include <QIcon>
 using namespace std;
 
 class Element{
