@@ -5,7 +5,8 @@
 
 #include "../Controllers/JavaScriptHighlighter.h"
 #include "../Controllers/HtmlHighlighter.h"
-
+#include "../Controllers/CSSHighlighter.h"
+#include "../Controllers/PhpHighlighter.h"
 
 QT_BEGIN_NAMESPACE
 class QTextEdit;
@@ -22,14 +23,25 @@ public slots:
     void about();
     void newFile();
     void openFile(const QString &path = QString());
+    void colorationCSS();
+    void colorationHTML();
+    void colorationJavaScript();
+    void colorationPHP();
 
 private:
     void setupEditor();
     void setupFileMenu();
     void setupHelpMenu();
+    void setupColoration();
 
     QTextEdit *editor;
     Highlighter *highlighter;
+
+    QMenu *menuColoration;
+    QAction *actionHTML;
+    QAction *actionJavaScript;
+    QAction *actionPHP;
+    QAction *actionCSS;
 };
 
 #endif
