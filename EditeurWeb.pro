@@ -13,7 +13,8 @@ HEADERS += \
     Models/Project.h \
     Models/Folder.h \
     Models/File.h \
-    Models/Element.h
+    Models/Element.h \
+    Controllers/WorkSpaceTreeController.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -31,4 +32,9 @@ SOURCES += \
     Models/Project.cpp \
     Models/Folder.cpp \
     Models/File.cpp \
-    Models/Element.cpp
+    Models/Element.cpp \
+    Controllers/WorkSpaceTreeController.cpp
+
+OTHER_FILES += \
+    Pics/Folder-icon.png \
+    Pics/File-icon.png

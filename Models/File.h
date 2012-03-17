@@ -2,6 +2,7 @@
 #define FILE_H
 #include "Element.h"
 class File: public virtual Element{
+
 public:
     //Constructeur Destructeur
     File(string name = "", string parentPath = "", string extension = "");

@@ -7,7 +7,7 @@
 #include "../Controllers/HtmlHighlighter.h"
 #include "../Controllers/CSSHighlighter.h"
 #include "../Controllers/PhpHighlighter.h"
-
+#include "../Controllers/WorkSpaceTreeController.h"
 QT_BEGIN_NAMESPACE
 class QTextEdit;
 QT_END_NAMESPACE
@@ -33,7 +33,7 @@ private:
     void setupFileMenu();
     void setupHelpMenu();
     void setupColoration();
-
+    void setupWorkSpaceDock();
     QTextEdit *editor;
     Highlighter *highlighter;
 

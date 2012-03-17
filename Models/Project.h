@@ -1,8 +1,6 @@
 #ifndef PROJECT_H
 #define PROJECT_H
-#include <vector>
 #include "Folder.h"
-#include "File.h"
 class Project : public virtual Folder{
 public:
     //Constructeur Destructeur
@@ -11,7 +9,7 @@ public:
     //Méthodes
 private:
     //Attributs
-    File projectFile;
+
 };
 
 #endif // PROJECT_H
