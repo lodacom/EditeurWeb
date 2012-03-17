@@ -46,7 +46,7 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent) : Highlighte
 
     // Commentaires multilignes.
     multilineCommentFormat.setForeground(Qt::darkRed);
-    setMultilineRule(JavaScriptData::multilineCommentStartRegex,
+    addMultilineRule(JavaScriptData::multilineCommentStartRegex,
                      JavaScriptData::multilineCommentEndRegex,
                      multilineCommentFormat,
                      IN_COMMENT_STATE);

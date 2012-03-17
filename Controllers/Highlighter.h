@@ -36,10 +36,11 @@ class Highlighter : public QSyntaxHighlighter
 
 public:
     Highlighter(QTextDocument *parent = 0);
-    void setRule(QRegExp, QTextCharFormat);
-    void setMultilineRule(QRegExp start, QRegExp end, QTextCharFormat, int statusCodes);
+    void addRule(QRegExp, QTextCharFormat);
+    void addMultilineRule(QRegExp start, QRegExp end, QTextCharFormat, int statusCodes);
 
     QVector<HighlightingRule> getHighlightingRules();
+    void setHighlightingRules(QVector<HighlightingRule>);
     QVector<MultilineHighlightingRule> getMultilineHighlightingRules();
 
 protected:

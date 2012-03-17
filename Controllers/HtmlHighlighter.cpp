@@ -42,15 +42,15 @@ HtmlHighlighter::HtmlHighlighter(QTextDocument *parent) : Highlighter(parent)
 
     // Commentaires multilignes.
     multilineCommentFormat.setForeground(Qt::darkRed);
-    setMultilineRule(HtmlData::multilineCommentStartRegex,
+    addMultilineRule(HtmlData::multilineCommentStartRegex,
                      HtmlData::multilineCommentEndRegex,
                      multilineCommentFormat,
                      IN_COMMENT_STATE);
-
+/*
     QTextCharFormat a;
     a.setForeground(Qt::darkBlue);
     a.setFontWeight(QFont::Bold);
-    setMultilineRule(HtmlData::scriptTagOpenRegex,
+    addMultilineRule(HtmlData::scriptTagOpenRegex,
                      HtmlData::scriptTagCloseRegex,
                      a,
                      IN_SCRIPT_TAG_STATE);
@@ -58,16 +58,14 @@ HtmlHighlighter::HtmlHighlighter(QTextDocument *parent) : Highlighter(parent)
     QTextCharFormat b;
     b.setForeground(Qt::darkGreen);
     b.setFontWeight(QFont::Bold);
-    setMultilineRule(HtmlData::styleTagOpenRegex,
+    addMultilineRule(HtmlData::styleTagOpenRegex,
                      HtmlData::styleTagCloseRegex,
                      b,
-                     IN_STYLE_TAG_STATE);
+                     IN_STYLE_TAG_STATE);*/
 }
 
-/*
+#include "JavaScriptHighlighter.h"
 void HtmlHighlighter::highlightBlock(const QString &text)
 {
-    Highlighter::highlightBlock(text);
-
 }
-*/
+

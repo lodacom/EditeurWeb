@@ -24,7 +24,6 @@ void Highlighter::highlightBlock(const QString &text)
     }
 
     setCurrentBlockState(DEFAULT_STATE);
-
     foreach (const MultilineHighlightingRule &rule, multilineHighlightingRules)
     {
         QRegExp startExpression(rule.patternStart);
@@ -39,25 +38,25 @@ void Highlighter::highlightBlock(const QString &text)
         while (startIndex >= 0)
         {
             int endIndex = endExpression.indexIn(text, startIndex);
-            int commentLength;
+            int matchLength;
 
             if (endIndex == -1)
             {
                 setCurrentBlockState(rule.statusCode);
-                commentLength = text.length() - startIndex;
+                matchLength = text.length() - startIndex;
             }
             else
             {
-                commentLength = endIndex - startIndex + endExpression.matchedLength();
+                matchLength = endIndex - startIndex + endExpression.matchedLength();
             }
 
-            setFormat(startIndex, commentLength, rule.format);
-            startIndex = rule.patternStart.indexIn(text, startIndex + commentLength);
+            setFormat(startIndex, matchLength, rule.format);
+            startIndex = rule.patternStart.indexIn(text, startIndex + matchLength);
         }
     }
 }
 
-void Highlighter::setRule(QRegExp pattern, QTextCharFormat format)
+void Highlighter::addRule(QRegExp pattern, QTextCharFormat format)
 {
     HighlightingRule rule;
 
@@ -67,7 +66,7 @@ void Highlighter::setRule(QRegExp pattern, QTextCharFormat format)
     highlightingRules.append(rule);
 }
 
-void Highlighter::setMultilineRule(QRegExp start, QRegExp end, QTextCharFormat format, int statusCode)
+void Highlighter::addMultilineRule(QRegExp start, QRegExp end, QTextCharFormat format, int statusCode)
 {
     MultilineHighlightingRule rule;
 
@@ -82,6 +81,11 @@ void Highlighter::setMultilineRule(QRegExp start, QRegExp end, QTextCharFormat f
 QVector<HighlightingRule> Highlighter::getHighlightingRules()
 {
     return highlightingRules;
+}
+
+void Highlighter::setHighlightingRules(QVector<HighlightingRule> hr)
+{
+    this->highlightingRules = hr;
 }
 
 QVector<MultilineHighlightingRule> Highlighter::getMultilineHighlightingRules()
