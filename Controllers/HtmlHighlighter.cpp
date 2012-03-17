@@ -46,26 +46,79 @@ HtmlHighlighter::HtmlHighlighter(QTextDocument *parent) : Highlighter(parent)
                      HtmlData::multilineCommentEndRegex,
                      multilineCommentFormat,
                      IN_COMMENT_STATE);
-/*
-    QTextCharFormat a;
-    a.setForeground(Qt::darkBlue);
-    a.setFontWeight(QFont::Bold);
-    addMultilineRule(HtmlData::scriptTagOpenRegex,
-                     HtmlData::scriptTagCloseRegex,
-                     a,
-                     IN_SCRIPT_TAG_STATE);
 
-    QTextCharFormat b;
-    b.setForeground(Qt::darkGreen);
-    b.setFontWeight(QFont::Bold);
-    addMultilineRule(HtmlData::styleTagOpenRegex,
-                     HtmlData::styleTagCloseRegex,
-                     b,
-                     IN_STYLE_TAG_STATE);*/
+    // Le JavaScript inclus.
+    SpecialMode mode;
+    mode.patternStart = HtmlData::scriptTagOpenRegex;
+    mode.patternEnd = HtmlData::scriptTagCloseRegex;
+    mode.statusCode = IN_SCRIPT_TAG_STATE;
+    JavaScriptHighlighter j;
+    mode.format = j.getHighlightingRules();
+    mode.multilineFormat = j.getMultilineHighlightingRules();
+
+    specialModes.append(mode);
+
+    // Le Css inclus.
+    mode.patternStart = HtmlData::styleTagOpenRegex;
+    mode.patternEnd = HtmlData::styleTagCloseRegex;
+    mode.statusCode = IN_STYLE_TAG_STATE;
+    CSSHighlighter c;
+    mode.format = c.getHighlightingRules();
+    mode.multilineFormat = c.getMultilineHighlightingRules();
+
+    specialModes.append(mode);
 }
 
-#include "JavaScriptHighlighter.h"
 void HtmlHighlighter::highlightBlock(const QString &text)
 {
+    Highlighter::highlightBlock(text);
+
+    foreach (const SpecialMode &mode, specialModes)
+    {
+        QRegExp startExpression(mode.patternStart);
+        QRegExp endExpression(mode.patternEnd);
+
+        int startIndex = 0;
+        if (previousBlockState() != mode.statusCode)
+        {
+            startIndex = startExpression.indexIn(text);
+        }
+
+        while (startIndex >= 0)
+        {
+            int endIndex = endExpression.indexIn(text, startIndex);
+            int matchLength;
+
+            if (endIndex == -1)
+            {
+                setCurrentBlockState(mode.statusCode);
+                matchLength = text.length() - startIndex;
+            }
+            else
+            {
+                matchLength = endIndex - startIndex + endExpression.matchedLength();
+            }
+
+            setFormat(text, startIndex, matchLength, mode.format, mode.multilineFormat);
+            startIndex = mode.patternStart.indexIn(text, startIndex + matchLength);
+        }
+    }
+
 }
 
+void HtmlHighlighter::setFormat(const QString &text, int start, int count,
+                                const QVector<HighlightingRule> &format,
+                                const QVector<MultilineHighlightingRule> &multilineFormat)
+{
+    foreach (const HighlightingRule &rule, format)
+    {
+        QRegExp expression(rule.pattern);
+        int index = expression.indexIn(text);
+        while (index >= start and index <= start+count)
+        {
+            int length = expression.matchedLength();
+            Highlighter::setFormat(index, length, rule.format);
+            index = expression.indexIn(text, index + length);
+        }
+    }
+}
