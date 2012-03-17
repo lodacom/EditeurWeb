@@ -2,7 +2,7 @@
 
 WorkSpaceTreeController::WorkSpaceTreeController(){
     qItemModel = new QStandardItemModel();
-    workSpace = new WorkSpace("WSworkspace", "/home/jo");
+    workSpace = new WorkSpace("WS", "/home/burger/Prog/CPP/QT/Projet/EditeurWebTest");
     workSpace->scan();
     QStandardItem *wsItem = workSpace->getQItem();
     for (int i = 0; i < wsItem->rowCount(); i++){

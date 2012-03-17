@@ -6,7 +6,7 @@ Element::Element(string name, string parentPath){
     this->qItem = new QStandardItem(QString(name.c_str()));
 }
 
-Element::~Element(){};
+Element::~Element(){}
 
 string Element::getName(){
     return name;

@@ -3,7 +3,7 @@
 Folder::Folder(string name, string parentPath):Element(name, parentPath){
     folders = vector<Folder>();
     files = vector<File>();
-    qItem->setIcon(QIcon("/home/jo/git/EditeurWebLocal/Pics/Folder-icon.png"));
+    qItem->setIcon(QIcon("Pics/Folder-icon.png"));
 }
 
 Folder::~Folder(){}
