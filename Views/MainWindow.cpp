@@ -1,6 +1,7 @@
 #include <QtGui>
 
 #include "MainWindow.h"
+#include "../Models/LeftTree.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -125,11 +126,9 @@ void MainWindow::setupWorkSpaceDock(){
     addDockWidget(Qt::LeftDockWidgetArea, dock);
     QWidget *dockContents = new QWidget;
     dock->setWidget(dockContents);
-
-    QTreeView *treeView = new QTreeView;
-    WorkSpaceTreeController *wsController = new WorkSpaceTreeController();
-    treeView->setModel(wsController->getQItemModel());
+    LeftTree *treeView = new LeftTree();
     QVBoxLayout *dockLayout = new QVBoxLayout;
     dockLayout->addWidget(treeView);
     dockContents->setLayout(dockLayout);
 }
+
