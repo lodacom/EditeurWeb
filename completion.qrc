@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/CSS.txt</file>
+        <file>Resources/HTML.txt</file>
+        <file>Resources/JavaScript.txt</file>
+        <file>Resources/PHP.txt</file>
+    </qresource>
+</RCC>
