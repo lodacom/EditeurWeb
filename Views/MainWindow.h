@@ -8,13 +8,16 @@
 #include "../Controllers/CSSHighlighter.h"
 #include "../Controllers/PhpHighlighter.h"
 #include "../Controllers/WorkSpaceTreeController.h"
+#include "Controllers/completion.h"
+
 QT_BEGIN_NAMESPACE
 class QTextEdit;
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
-   Q_OBJECT
+    Q_OBJECT
+
 public:
     MainWindow(QWidget *parent = 0);
 
@@ -33,7 +36,7 @@ private:
     void setupHelpMenu();
     void setupColoration();
     void setupWorkSpaceDock();
-    QTextEdit *editor;
+    Completion *editor;
     Highlighter *highlighter;
 
     QMenu *menuColoration;
@@ -41,6 +44,10 @@ private:
     QAction *actionJavaScript;
     QAction *actionPHP;
     QAction *actionCSS;
+
+    QAbstractItemModel *modelFromFile(const QString& fileName);
+
+    QCompleter *completer;
 };
 
 #endif

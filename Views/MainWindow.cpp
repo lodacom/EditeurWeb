@@ -3,8 +3,11 @@
 #include "MainWindow.h"
 #include "../Models/LeftTree.h"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),completer(0)
 {
+    editor = new Completion;
+    completer = new QCompleter(this);
+
     setupFileMenu();
     setupHelpMenu();
     setupEditor();
@@ -45,22 +48,38 @@ void MainWindow::openFile(const QString &path)
 
 void MainWindow::colorationCSS()
 {
-        highlighter = new CSSHighlighter(editor->document());
+    highlighter = new CSSHighlighter(editor->document());
+    completer->setModelSorting(QCompleter::UnsortedModel);
+    completer->setCaseSensitivity(Qt::CaseInsensitive);
+    completer->setWrapAround(false);
+    completer->setModel(modelFromFile(":/Resources/CSS.txt"));
 }
 
 void MainWindow::colorationHTML()
 {
      highlighter = new HtmlHighlighter(editor->document());
+     completer->setModelSorting(QCompleter::UnsortedModel);
+     completer->setCaseSensitivity(Qt::CaseInsensitive);
+     completer->setWrapAround(false);
+     completer->setModel(modelFromFile(":/Resources/HTML.txt"));
 }
 
 void MainWindow::colorationJavaScript()
 {
      highlighter = new JavaScriptHighlighter(editor->document());
+     completer->setModelSorting(QCompleter::UnsortedModel);
+     completer->setCaseSensitivity(Qt::CaseInsensitive);
+     completer->setWrapAround(false);
+     completer->setModel(modelFromFile(":/Resources/JavaScript.txt"));
 }
 
 void MainWindow::colorationPHP()
 {
      highlighter = new PhpHighlighter(editor->document());
+     completer->setModelSorting(QCompleter::UnsortedModel);
+     completer->setCaseSensitivity(Qt::CaseInsensitive);
+     completer->setWrapAround(false);
+     completer->setModel(modelFromFile(":/Resources/PHP.txt"));
 }
 
 void MainWindow::setupEditor()
@@ -68,12 +87,12 @@ void MainWindow::setupEditor()
     QFont font;
     font.setFamily("Courier");
     font.setFixedPitch(true);
-    font.setPointSize(10);
+    font.setPointSize(12);
 
-    editor = new QTextEdit;
     editor->setFont(font);
+    editor->setCompleter(completer);
 
-    highlighter = new HtmlHighlighter(editor->document());
+    //highlighter = new HtmlHighlighter(editor->document());
 }
 
 void MainWindow::setupFileMenu()
@@ -121,7 +140,8 @@ void MainWindow::setupColoration()
      QObject::connect(actionHTML, SIGNAL(triggered()), this, SLOT(colorationHTML()));
 }
 
-void MainWindow::setupWorkSpaceDock(){
+void MainWindow::setupWorkSpaceDock()
+{
     QDockWidget *dock = new QDockWidget("WorkSpace", this);
     addDockWidget(Qt::LeftDockWidgetArea, dock);
     QWidget *dockContents = new QWidget;
@@ -132,3 +152,27 @@ void MainWindow::setupWorkSpaceDock(){
     dockContents->setLayout(dockLayout);
 }
 
+
+QAbstractItemModel *MainWindow::modelFromFile(const QString& fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QFile::ReadOnly))
+        return new QStringListModel(completer);
+
+#ifndef QT_NO_CURSOR
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+#endif
+    QStringList words;
+
+    while (!file.atEnd())
+    {
+        QByteArray line = file.readLine();
+        if (!line.isEmpty())
+            words << line.trimmed();
+    }
+
+#ifndef QT_NO_CURSOR
+    QApplication::restoreOverrideCursor();
+#endif
+    return new QStringListModel(words, completer);
+}
