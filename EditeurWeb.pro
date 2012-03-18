@@ -15,6 +15,7 @@ HEADERS += \
     Models/File.h \
     Models/Element.h \
     Controllers/WorkSpaceTreeController.h \
+    Controllers/completion.h \
     Models/LeftTree.h
 
 SOURCES += \
@@ -35,8 +36,16 @@ SOURCES += \
     Models/File.cpp \
     Models/Element.cpp \
     Controllers/WorkSpaceTreeController.cpp \
+    Controllers/completion.cpp \
     Models/LeftTree.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \
-    Pics/File-icon.png
+    Pics/File-icon.png \
+    Resources/PHP.txt \
+    Resources/JavaScript.txt \
+    Resources/HTML.txt \
+    Resources/CSS.txt
+
+RESOURCES += \
+    completion.qrc
