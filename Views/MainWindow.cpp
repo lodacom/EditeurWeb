@@ -1,7 +1,6 @@
 #include <QtGui>
 
 #include "MainWindow.h"
-#include "../Models/LeftTree.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),completer(0)
 {
@@ -44,6 +43,25 @@ void MainWindow::openFile(const QString &path)
         if (file.open(QFile::ReadOnly | QFile::Text))
             editor->setPlainText(file.readAll());
     }
+}
+void MainWindow::openFile(const QModelIndex& index){
+    list<int> *elementWay = new list<int>();
+    QModelIndex indexCopie = QModelIndex(index);
+    while (indexCopie != QModelIndex()){
+        elementWay->push_front(indexCopie.row());
+        indexCopie = indexCopie.parent();
+    }
+    string elementPath = treeView->getFilePath(elementWay);
+    if (elementPath != ""){
+        QFile file(QString(elementPath.c_str()));
+        if (file.open(QFile::ReadOnly | QFile::Text))
+            editor->setPlainText(file.readAll());
+    }
+}
+void MainWindow::selectWorkSpace(){
+    QString workSpacePath;
+    workSpacePath = QFileDialog::getExistingDirectory(this, tr("Select workspace"), tr("/home"));
+    treeView->selectWorkSpace(workSpacePath.toStdString());
 }
 
 void MainWindow::colorationCSS()
@@ -105,6 +123,7 @@ void MainWindow::setupFileMenu()
 
     fileMenu->addAction(tr("&Open..."), this, SLOT(openFile()),
                         QKeySequence::Open);
+    fileMenu->addAction(tr("&Select WorkSpace"), this, SLOT(selectWorkSpace()));
 
     fileMenu->addAction(tr("E&xit"), qApp, SLOT(quit()),
                         QKeySequence::Quit);
@@ -146,10 +165,11 @@ void MainWindow::setupWorkSpaceDock()
     addDockWidget(Qt::LeftDockWidgetArea, dock);
     QWidget *dockContents = new QWidget;
     dock->setWidget(dockContents);
-    LeftTree *treeView = new LeftTree();
+        treeView = new WorkSpaceTree();
     QVBoxLayout *dockLayout = new QVBoxLayout;
     dockLayout->addWidget(treeView);
     dockContents->setLayout(dockLayout);
+    QObject::connect(treeView, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(openFile(const QModelIndex &)));
 }
 
 

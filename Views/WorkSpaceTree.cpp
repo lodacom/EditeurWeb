@@ -1,11 +1,20 @@
 #include "WorkSpaceTree.h"
-#include "../Controllers/WorkSpaceTreeController.h"
-WorkSpaceTree::WorkSpaceTree(){
-    WorkSpaceTreeController *wsController = new WorkSpaceTreeController();
-    this->setModel(wsController->getQItemModel());
 
+WorkSpaceTree::WorkSpaceTree(){
+    wsController = new WorkSpaceTreeController();
+    model = wsController->getQItemModel();
+    this->setModel(model);
+    this->setEditTriggers(NoEditTriggers);
+    this->setExpandsOnDoubleClick(true);
+
+}
+void WorkSpaceTree::selectWorkSpace(string path){
+    wsController->setWorkSpace(path);
 }
 
 WorkSpaceTree::~WorkSpaceTree(){
 
+}
+string WorkSpaceTree::getFilePath(list<int>* workSpacePath){
+    return wsController->getFilePath(workSpacePath);
 }

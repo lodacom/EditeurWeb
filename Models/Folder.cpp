@@ -96,6 +96,19 @@ QStandardItem* Folder::getQItem(){
     for(size_t i = 0; i < files.size(); i++){
         qItem->appendRow(files[i].getQItem());
     }
-
     return qItem;
+}
+File* Folder::getFile(list<int> *path){
+    if (path->size() == 1){
+        if (path->front() < (int)folders.size()){
+            return NULL;
+        }
+        else
+            return &files[path->front() - folders.size()];
+    }
+    else{
+        int folderNumber = path->front();
+        path->pop_front();
+        return folders[folderNumber].getFile(path);
+    }
 }

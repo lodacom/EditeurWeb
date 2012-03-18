@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <list>
 #include <stdio.h>
 #include <errno.h>
 #include <sys/stat.h>

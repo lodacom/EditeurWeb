@@ -62,7 +62,10 @@ void WorkSpace::scan(){
 				}
 			}
 		}
-		fclose(projectFile);
+                if (projectFile){
+                    fclose(projectFile);
+                }
+
 		delete [] folderPath;
 		delete [] proPath;
 	}
@@ -87,4 +90,14 @@ QStandardItem* WorkSpace::getQItem(){
         qItem->appendRow(projects[i].getQItem());
     }
     return qItem;
+}
+File* WorkSpace::getFile(list<int> *path){
+    if (path->size() == 1){
+        return NULL;
+    }
+    else{
+        int projectNumber = path->front();
+        path->pop_front();
+        return projects[projectNumber].getFile(path);
+    }
 }

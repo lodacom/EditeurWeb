@@ -7,6 +7,7 @@ HEADERS += \
     Controllers/HtmlHighlighter.h \
     Controllers/CSSHighlighter.h \
     Views/MainWindow.h \
+    Views/WorkSpaceTree.h \
     Controllers/PhpHighlighter.h \
     Models/PhpData.h \
     Models/WorkSpace.h \
@@ -16,7 +17,6 @@ HEADERS += \
     Models/Element.h \
     Controllers/WorkSpaceTreeController.h \
     Controllers/completion.h \
-    Models/LeftTree.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -37,7 +37,7 @@ SOURCES += \
     Models/Element.cpp \
     Controllers/WorkSpaceTreeController.cpp \
     Controllers/completion.cpp \
-    Models/LeftTree.cpp
+    Views/WorkSpaceTree.cpp \
 
 OTHER_FILES += \
     Pics/Folder-icon.png \

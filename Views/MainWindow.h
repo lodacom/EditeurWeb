@@ -9,7 +9,7 @@
 #include "../Controllers/PhpHighlighter.h"
 #include "../Controllers/WorkSpaceTreeController.h"
 #include "Controllers/completion.h"
-
+#include "WorkSpaceTree.h"
 QT_BEGIN_NAMESPACE
 class QTextEdit;
 QT_END_NAMESPACE
@@ -25,11 +25,12 @@ public slots:
     void about();
     void newFile();
     void openFile(const QString &path = QString());
+    void openFile(const QModelIndex& index);
     void colorationCSS();
     void colorationHTML();
     void colorationJavaScript();
     void colorationPHP();
-
+    void selectWorkSpace();
 private:
     void setupEditor();
     void setupFileMenu();
@@ -46,7 +47,7 @@ private:
     QAction *actionCSS;
 
     QAbstractItemModel *modelFromFile(const QString& fileName);
-
+    WorkSpaceTree *treeView;
     QCompleter *completer;
 };
 
