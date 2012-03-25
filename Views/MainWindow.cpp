@@ -14,15 +14,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),completer(0)
     setupWorkSpaceDock();
     setCentralWidget(editor);
     setWindowTitle(tr("Syntax Highlighter"));
+
+    QDockWidget *dock = new QDockWidget("Html", this);
+    addDockWidget(Qt::RightDockWidgetArea, dock);
+    QWidget *dockContents = new QWidget;
+    dock->setWidget(dockContents);
+    this->htmlTreeWidget = new HtmlTreeWidget(this);
+    QVBoxLayout *dockLayout = new QVBoxLayout;
+    dockLayout->addWidget(htmlTreeWidget);
+    dockContents->setLayout(dockLayout);
 }
 
 void MainWindow::about()
 {
     QMessageBox::about(this, tr("About Syntax Highlighter"),
-                tr("<p>The <b>Syntax Highlighter</b> example shows how " \
-                   "to perform simple syntax highlighting by subclassing " \
-                   "the QSyntaxHighlighter class and describing " \
-                   "highlighting rules using regular expressions.</p>"));
+                tr("<p> Ok </p>"));
 }
 
 void MainWindow::newFile()
@@ -109,8 +115,6 @@ void MainWindow::setupEditor()
 
     editor->setFont(font);
     editor->setCompleter(completer);
-
-    //highlighter = new HtmlHighlighter(editor->document());
 }
 
 void MainWindow::setupFileMenu()
@@ -148,15 +152,15 @@ void MainWindow::setupColoration()
     actionPHP = new QAction(tr("PHP"),this);
     actionCSS = new QAction(tr("CSS"),this);
 
-     menuColoration->addAction(actionCSS);
-     menuColoration->addAction(actionHTML);
-     menuColoration->addAction(actionJavaScript);
-     menuColoration->addAction(actionPHP);
+    menuColoration->addAction(actionCSS);
+    menuColoration->addAction(actionHTML);
+    menuColoration->addAction(actionJavaScript);
+    menuColoration->addAction(actionPHP);
 
-     QObject::connect(actionCSS, SIGNAL(triggered()), this, SLOT(colorationCSS()));
-     QObject::connect(actionPHP, SIGNAL(triggered()), this, SLOT(colorationPHP()));
-     QObject::connect(actionJavaScript, SIGNAL(triggered()), this, SLOT(colorationJavaScript()));
-     QObject::connect(actionHTML, SIGNAL(triggered()), this, SLOT(colorationHTML()));
+    QObject::connect(actionCSS, SIGNAL(triggered()), this, SLOT(colorationCSS()));
+    QObject::connect(actionPHP, SIGNAL(triggered()), this, SLOT(colorationPHP()));
+    QObject::connect(actionJavaScript, SIGNAL(triggered()), this, SLOT(colorationJavaScript()));
+    QObject::connect(actionHTML, SIGNAL(triggered()), this, SLOT(colorationHTML()));
 }
 
 void MainWindow::setupWorkSpaceDock()
@@ -171,7 +175,6 @@ void MainWindow::setupWorkSpaceDock()
     dockContents->setLayout(dockLayout);
     QObject::connect(treeView, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(openFile(const QModelIndex &)));
 }
-
 
 QAbstractItemModel *MainWindow::modelFromFile(const QString& fileName)
 {

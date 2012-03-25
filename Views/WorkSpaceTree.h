@@ -7,7 +7,7 @@
 #include <QAbstractItemView>
 #include "../Controllers/WorkSpaceTreeController.h"
 
-class WorkSpaceTree : public virtual QTreeView {
+class WorkSpaceTree : public QTreeView {
 Q_OBJECT
 public:
     //Constructeur, Destructeur

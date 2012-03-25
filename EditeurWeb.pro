@@ -1,3 +1,5 @@
+QT       += webkit network
+
 HEADERS += \
     Models/JavaScriptData.h \
     Models/HtmlData.h \
@@ -17,6 +19,7 @@ HEADERS += \
     Models/Element.h \
     Controllers/WorkSpaceTreeController.h \
     Controllers/completion.h \
+    Views/htmltreewidget.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -38,6 +41,7 @@ SOURCES += \
     Controllers/WorkSpaceTreeController.cpp \
     Controllers/completion.cpp \
     Views/WorkSpaceTree.cpp \
+    Views/htmltreewidget.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \
@@ -49,3 +53,6 @@ OTHER_FILES += \
 
 RESOURCES += \
     completion.qrc
+
+FORMS += \
+    Views/htmltreewidget.ui

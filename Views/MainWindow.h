@@ -9,9 +9,16 @@
 #include "../Controllers/PhpHighlighter.h"
 #include "../Controllers/WorkSpaceTreeController.h"
 #include "Controllers/completion.h"
+
+#include "htmltreewidget.h"
 #include "WorkSpaceTree.h"
+
+
 QT_BEGIN_NAMESPACE
 class QTextEdit;
+class QTreeWidgetItem;
+class QWebView;
+class QTreeWidget;
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -37,6 +44,7 @@ private:
     void setupHelpMenu();
     void setupColoration();
     void setupWorkSpaceDock();
+    void setupHtmlDock();
     Completion *editor;
     Highlighter *highlighter;
 
@@ -48,7 +56,9 @@ private:
 
     QAbstractItemModel *modelFromFile(const QString& fileName);
     WorkSpaceTree *treeView;
+
     QCompleter *completer;
+    HtmlTreeWidget *htmlTreeWidget;
 };
 
 #endif
