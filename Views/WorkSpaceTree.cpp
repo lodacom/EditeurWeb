@@ -14,6 +14,7 @@ WorkSpaceTree::WorkSpaceTree(){
     this->setAcceptDrops(true);
     //
     setContextMenuPolicy(Qt::CustomContextMenu);
+    QObject::connect(this, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(getFilePath(const QModelIndex &)));
 }
 
 WorkSpaceTree::~WorkSpaceTree(){
@@ -23,7 +24,9 @@ WorkSpaceTree::~WorkSpaceTree(){
 void WorkSpaceTree::setupMenu(){
     menu = new QMenu(this);
     QAction* deleteAction = new QAction(tr("&Delete"),this);
+    QAction* renameAction = new QAction(tr("&Rename"),this);
     menu->addAction(deleteAction);
+    menu->addAction(renameAction);
     QObject::connect(deleteAction, SIGNAL(triggered()), this ,SLOT(deleteFileFromPos()));
 }
 
@@ -42,8 +45,8 @@ void WorkSpaceTree::mousePressEvent(QMouseEvent * e){
      QTreeView::mousePressEvent(e);
 }
 
-string WorkSpaceTree::getFilePath(const QModelIndex &index){
-    return wsController->getFilePath(index);
+void WorkSpaceTree::getFilePath(const QModelIndex &index){
+    emit fileOpened(QString(wsController->getFilePath(index).c_str()));
 }
 
 void WorkSpaceTree::deleteFileFromPos(){

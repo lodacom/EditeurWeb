@@ -17,11 +17,13 @@ public:
     WorkSpaceTree();
     virtual ~WorkSpaceTree();
     virtual void selectWorkSpace(string path);
-
+signals:
+    virtual void fileOpened(const QString& fileName);
 public slots:
-    virtual string getFilePath(const QModelIndex& index);
+    virtual void getFilePath(const QModelIndex& index);
     virtual void deleteFileFromPos();
     //virtual void rightClickMenu(const QPoint& pos);
+
 private:
     QStandardItemModel *model;
     WorkSpaceTreeController *wsController;

@@ -65,7 +65,6 @@ void WorkSpace::scan(){
                 if (projectFile){
                     fclose(projectFile);
                 }
-
 		delete [] folderPath;
 		delete [] proPath;
 	}

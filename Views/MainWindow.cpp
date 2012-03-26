@@ -50,15 +50,7 @@ void MainWindow::openFile(const QString &path)
             editor->setPlainText(file.readAll());
     }
 }
-void MainWindow::openFile(const QModelIndex& index){
-    string elementPath = treeView->getFilePath(index);
-    if (elementPath != ""){
-        QFile file(QString(elementPath.c_str()));
-        if (file.open(QFile::ReadOnly | QFile::Text))
-            editor->setPlainText(file.readAll());
-    }
 
-}
 void MainWindow::selectWorkSpace(){
     QString workSpacePath;
     workSpacePath = QFileDialog::getExistingDirectory(this, tr("Select workspace"), tr("/home"));
@@ -168,7 +160,7 @@ void MainWindow::setupWorkSpaceDock()
     QVBoxLayout *dockLayout = new QVBoxLayout;
     dockLayout->addWidget(treeView);
     dockContents->setLayout(dockLayout);
-    QObject::connect(treeView, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(openFile(const QModelIndex &)));
+    QObject::connect(treeView, SIGNAL(fileOpened(const QString&)), this, SLOT(openFile(const QString&)));
 }
 
 QAbstractItemModel *MainWindow::modelFromFile(const QString& fileName)

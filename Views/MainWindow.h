@@ -32,7 +32,6 @@ public slots:
     void about();
     void newFile();
     void openFile(const QString &path = QString());
-    void openFile(const QModelIndex& index);
     void colorationCSS();
     void colorationHTML();
     void colorationJavaScript();
