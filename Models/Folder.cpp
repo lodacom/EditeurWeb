@@ -98,17 +98,46 @@ QStandardItem* Folder::getQItem(){
     }
     return qItem;
 }
-File* Folder::getFile(list<int> *path){
-    if (path->size() == 1){
-        if (path->front() < (int)folders.size()){
-            return NULL;
+
+Element* Folder::getElement(list<int>* accessList){
+    if (accessList->size() == 1){
+        if (accessList->front() < (int)folders.size()){
+            return &folders[accessList->front()];
         }
         else
-            return &files[path->front() - folders.size()];
+            return &files[accessList->front() - folders.size()];
     }
     else{
-        int folderNumber = path->front();
-        path->pop_front();
-        return folders[folderNumber].getFile(path);
+        int folderNumber = accessList->front();
+        accessList->pop_front();
+        return folders[folderNumber].getElement(accessList);
+    }
+}
+
+int Folder::getType(){
+    return FOLDER_TYPE;
+}
+
+void Folder::deleteElement(){
+        for(size_t i=0; i < folders.size(); i++){
+            folders[i].deleteElement();
+        }
+        for(size_t i=0; i <files.size();i++){
+            files[i].deleteElement();
+        }
+        qItem->parent()->removeRow(qItem->row());
+        remove(this->getPath().c_str());
+}
+
+void Folder::dropElement(int position){
+    if ((size_t)position < folders.size() + files.size() && position >= 0){
+        if ((size_t)position<folders.size()){
+            folders[position].deleteElement();
+            folders.erase(folders.begin() + position);
+        }
+        else{
+            files[position - folders.size()].deleteElement();
+            files.erase(files.begin() + (position - folders.size()));
+        }
     }
 }

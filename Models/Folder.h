@@ -15,8 +15,11 @@ public:
     virtual void scan();//Scanne les dossiers et fichiers du repertoire
     virtual void output(int prof);//Fonction de debbugage
     virtual void sort();//Fonction qui tri dans l'ordre alphabétique les dossiers et fichiers
-    virtual File* getFile(list<int>* path);
+    virtual Element* getElement(list<int>* accessList);
+    virtual int getType();
     virtual QStandardItem* getQItem();
+    virtual void deleteElement();
+    virtual void dropElement(int position);
 protected:
     //Attributs
     vector<File> files;//Les fichiers du répertoire

@@ -14,3 +14,8 @@ void File::setExtension(string extension){
     this->extension = extension;
 }
 
+int File::getType(){
+    return FILE_TYPE;
+}
+
+

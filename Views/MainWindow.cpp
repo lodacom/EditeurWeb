@@ -51,18 +51,13 @@ void MainWindow::openFile(const QString &path)
     }
 }
 void MainWindow::openFile(const QModelIndex& index){
-    list<int> *elementWay = new list<int>();
-    QModelIndex indexCopie = QModelIndex(index);
-    while (indexCopie != QModelIndex()){
-        elementWay->push_front(indexCopie.row());
-        indexCopie = indexCopie.parent();
-    }
-    string elementPath = treeView->getFilePath(elementWay);
+    string elementPath = treeView->getFilePath(index);
     if (elementPath != ""){
         QFile file(QString(elementPath.c_str()));
         if (file.open(QFile::ReadOnly | QFile::Text))
             editor->setPlainText(file.readAll());
     }
+
 }
 void MainWindow::selectWorkSpace(){
     QString workSpacePath;

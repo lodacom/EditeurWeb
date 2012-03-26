@@ -6,6 +6,8 @@ public:
     //Constructeur Destructeur
     Project(string name = "", string parentPath = "");
     virtual ~Project();
+    virtual int getType();
+    virtual void deleteElement();
     //Méthodes
 private:
     //Attributs
