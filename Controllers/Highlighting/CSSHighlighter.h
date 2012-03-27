@@ -5,7 +5,7 @@
 #include <QHash>
 #include <QTextCharFormat>
 
-#include "../Models/CSSData.h"
+#include "../../Models/CSSData.h"
 #include "Highlighter.h"
 
 #define DEFAULT_STATE 0     // L'état par défaut.

@@ -6,7 +6,7 @@
 #ifndef JavaScriptHighlighter_h
 #define JavaScriptHighlighter_h
 
-#include "../Models/JavaScriptData.h"
+#include "../../Models/JavaScriptData.h"
 #include "Highlighter.h"
 
 QT_BEGIN_NAMESPACE

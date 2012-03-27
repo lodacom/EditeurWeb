@@ -9,7 +9,7 @@ HtmlTreeWidget::HtmlTreeWidget(QWidget *parent) :
     ui(new Ui::HtmlTreeWidget)
 {
     ui->setupUi(this);
-    ui->webView->setUrl(QUrl("http://google.com"));
+    ui->webView->setUrl(QUrl("file:///users/Abdelhamid/Downloads/p.html"));
     ui->webView->setZoomFactor(0.3);
 }
 
@@ -32,8 +32,8 @@ void HtmlTreeWidget::examineChildElements(const QWebElement &parentElement,
                                   QTreeWidgetItem *parentItem)
 {
     QWebElement element = parentElement.firstChild();
-    while (!element.isNull()) {
-
+    while (!element.isNull())
+    {
         QTreeWidgetItem *item = new QTreeWidgetItem();
         item->setText(0, element.tagName());
         parentItem->addChild(item);

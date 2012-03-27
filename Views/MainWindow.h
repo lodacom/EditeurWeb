@@ -3,10 +3,10 @@
 
 #include <QMainWindow>
 
-#include "../Controllers/JavaScriptHighlighter.h"
-#include "../Controllers/HtmlHighlighter.h"
-#include "../Controllers/CSSHighlighter.h"
-#include "../Controllers/PhpHighlighter.h"
+#include "../Controllers/Highlighting/JavaScriptHighlighter.h"
+#include "../Controllers/Highlighting/HtmlHighlighter.h"
+#include "../Controllers/Highlighting/CSSHighlighter.h"
+#include "../Controllers/Highlighting/PhpHighlighter.h"
 #include "../Controllers/WorkSpaceTreeController.h"
 #include "Controllers/completion.h"
 

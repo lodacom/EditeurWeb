@@ -2,7 +2,7 @@
 #define PhpHighlighter_h
 
 #include "Highlighter.h"
-#include "../Models/PhpData.h"
+#include "../../Models/PhpData.h"
 
 #define DEFAULT_STATE 0     // L'état par défaut.
 #define IN_COMMENT_STATE 1  // En commentaires multilignes.

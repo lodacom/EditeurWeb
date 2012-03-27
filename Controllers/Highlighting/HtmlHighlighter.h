@@ -10,7 +10,7 @@
 #include <QTextCharFormat>
 
 #include "Highlighter.h"
-#include "../Models/HtmlData.h"
+#include "../../Models/HtmlData.h"
 
 #include "JavaScriptHighlighter.h"
 #include "CSSHighlighter.h"
