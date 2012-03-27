@@ -1,28 +1,29 @@
 #include <QtGui>
 
 #include "MainWindow.h"
+//#include "Models/PhpDico.h"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),completer(0)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)//,completer(0)
 {
-    editor = new Completion;
-    completer = new QCompleter(this);
+/*    completer = new QCompleter(this);*/
+    editor=new CentralEditor(parent);
 
     setupFileMenu();
     setupHelpMenu();
-    setupEditor();
+    //setupEditor();
     setupColoration();
-    setupWorkSpaceDock();
+   //setupWorkSpaceDock();
     setCentralWidget(editor);
     setWindowTitle(tr("Syntax Highlighter"));
 
-    QDockWidget *dock = new QDockWidget("Html", this);
+   /* QDockWidget *dock = new QDockWidget("Html", this);
     addDockWidget(Qt::RightDockWidgetArea, dock);
     QWidget *dockContents = new QWidget;
     dock->setWidget(dockContents);
     this->htmlTreeWidget = new HtmlTreeWidget(this);
     QVBoxLayout *dockLayout = new QVBoxLayout;
     dockLayout->addWidget(htmlTreeWidget);
-    dockContents->setLayout(dockLayout);
+    dockContents->setLayout(dockLayout);*/
 }
 
 void MainWindow::about()
@@ -51,13 +52,28 @@ void MainWindow::openFile(const QString &path)
     }
 }
 
+void MainWindow::openFile(const QModelIndex& index){
+    list<int> *elementWay = new list<int>();
+    QModelIndex indexCopie = QModelIndex(index);
+    while (indexCopie != QModelIndex()){
+        elementWay->push_front(indexCopie.row());
+        indexCopie = indexCopie.parent();
+    }
+    string elementPath = treeView->getFilePath(elementWay);
+    if (elementPath != ""){
+        QFile file(QString(elementPath.c_str()));
+        if (file.open(QFile::ReadOnly | QFile::Text))
+            editor->setPlainText(file.readAll());
+    }
+}
+
 void MainWindow::selectWorkSpace(){
     QString workSpacePath;
     workSpacePath = QFileDialog::getExistingDirectory(this, tr("Select workspace"), tr("/home"));
     treeView->selectWorkSpace(workSpacePath.toStdString());
 }
 
-void MainWindow::colorationCSS()
+/*void MainWindow::colorationCSS()
 {
     highlighter = new CSSHighlighter(editor->document());
     completer->setModelSorting(QCompleter::UnsortedModel);
@@ -87,6 +103,7 @@ void MainWindow::colorationJavaScript()
 void MainWindow::colorationPHP()
 {
      highlighter = new PhpHighlighter(editor->document());
+
      completer->setModelSorting(QCompleter::UnsortedModel);
      completer->setCaseSensitivity(Qt::CaseInsensitive);
      completer->setWrapAround(false);
@@ -102,7 +119,8 @@ void MainWindow::setupEditor()
 
     editor->setFont(font);
     editor->setCompleter(completer);
-}
+    //highlighter = new HtmlHighlighter(editor->document());
+}*/
 
 void MainWindow::setupFileMenu()
 {
@@ -133,24 +151,24 @@ void MainWindow::setupColoration()
 {
     menuColoration = new QMenu(tr("&Coloration"),this);
     menuBar()->addMenu(menuColoration);
+    editor->setupColoration(menuColoration);
+   /* QAction *actionHTML = new QAction(tr("&HTML"),this);
+    QAction *actionJavaScript = new QAction(tr("JavaScript"),this);
+    QAction *actionPHP = new QAction(tr("PHP"),this);
+    QAction *actionCSS = new QAction(tr("CSS"),this);
 
-    actionHTML = new QAction(tr("&HTML"),this);
-    actionJavaScript = new QAction(tr("JavaScript"),this);
-    actionPHP = new QAction(tr("PHP"),this);
-    actionCSS = new QAction(tr("CSS"),this);
+     menuColoration->addAction(actionCSS);
+     menuColoration->addAction(actionHTML);
+     menuColoration->addAction(actionJavaScript);
+     menuColoration->addAction(actionPHP);*/
 
-    menuColoration->addAction(actionCSS);
-    menuColoration->addAction(actionHTML);
-    menuColoration->addAction(actionJavaScript);
-    menuColoration->addAction(actionPHP);
-
-    QObject::connect(actionCSS, SIGNAL(triggered()), this, SLOT(colorationCSS()));
-    QObject::connect(actionPHP, SIGNAL(triggered()), this, SLOT(colorationPHP()));
-    QObject::connect(actionJavaScript, SIGNAL(triggered()), this, SLOT(colorationJavaScript()));
-    QObject::connect(actionHTML, SIGNAL(triggered()), this, SLOT(colorationHTML()));
+     QObject::connect(editor->actionCSS, SIGNAL(triggered()), this, SLOT(CentralEditor::colorationCSS()));
+     QObject::connect(editor->actionPHP, SIGNAL(triggered()), this, SLOT(CentralEditor::colorationPHP()));
+     QObject::connect(editor->actionJavaScript, SIGNAL(triggered()), this, SLOT(CentralEditor::colorationJavaScript()));
+     QObject::connect(editor->actionHTML, SIGNAL(triggered()), this, SLOT(CentralEditor::colorationHTML()));
 }
 
-void MainWindow::setupWorkSpaceDock()
+/*void MainWindow::setupWorkSpaceDock()
 {
     QDockWidget *dock = new QDockWidget("WorkSpace", this);
     addDockWidget(Qt::LeftDockWidgetArea, dock);
@@ -160,7 +178,16 @@ void MainWindow::setupWorkSpaceDock()
     QVBoxLayout *dockLayout = new QVBoxLayout;
     dockLayout->addWidget(treeView);
     dockContents->setLayout(dockLayout);
-    QObject::connect(treeView, SIGNAL(fileOpened(const QString&)), this, SLOT(openFile(const QString&)));
+    QObject::connect(treeView, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(openFile(const QModelIndex &)));
+}*/
+
+
+/*QStringListModel* MainWindow::updateListVar()
+{
+    QStringList list_var;
+    PhpDico *essai=new PhpDico(editor->document());
+    list_var=essai->searchInFile();
+    return new QStringListModel(list_var,completer);
 }
 
 QAbstractItemModel *MainWindow::modelFromFile(const QString& fileName)
@@ -185,4 +212,4 @@ QAbstractItemModel *MainWindow::modelFromFile(const QString& fileName)
     QApplication::restoreOverrideCursor();
 #endif
     return new QStringListModel(words, completer);
-}
+}*/
