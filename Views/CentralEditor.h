@@ -1,4 +1,4 @@
-#include <QTextEdit>
+#include <QWidget>
 #include <QStringListModel>
 #include <QCompleter>
 #include <QFile>
@@ -20,25 +20,18 @@ class CentralEditor:public QTextEdit
 
 public:
     CentralEditor(QWidget *parent = 0);
-    QAction *actionHTML;
-    QAction *actionJavaScript;
-    QAction *actionPHP;
-    QAction *actionCSS;
+    void setupEditor();
 
 public slots:
     void colorationCSS();
     void colorationHTML();
     void colorationJavaScript();
     void colorationPHP();
-    void setupColoration(QMenu *);
 
 private:
-    void setupEditor();
     QStringListModel* updateListVar();
     Completion *editor;
     Highlighter *highlighter;
-
-    //QMenu *menuColoration;
 
     QCompleter *completer;
     QAbstractItemModel *modelFromFile(const QString& fileName);

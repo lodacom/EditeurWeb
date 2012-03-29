@@ -13,6 +13,7 @@
 #include "../Controllers/WorkSpaceTreeController.h"
 //#include "htmltreewidget.h"
 #include "WorkSpaceTree.h"
+
 QT_BEGIN_NAMESPACE
 class QTextEdit;
 class QTreeWidgetItem;
@@ -32,28 +33,18 @@ public slots:
     void newFile();
     void openFile(const QString &path = QString());
     void openFile(const QModelIndex& index);
-    /*void colorationCSS();
-    void colorationHTML();
-    void colorationJavaScript();
-    void colorationPHP();*/
     void selectWorkSpace();
 private:
-   // void setupEditor();
+    //void setupEditor();
     void setupFileMenu();
     void setupHelpMenu();
     void setupColoration();
-    //void setupWorkSpaceDock();
+    void setupWorkSpaceDock();
     //void setupHtmlDock();
     CentralEditor *editor;
     /*QStringListModel* updateListVar();
     Completion *editor;
     Highlighter *highlighter;
-
-    QMenu *menuColoration;
-    QAction *actionHTML;
-    QAction *actionJavaScript;
-    QAction *actionPHP;
-    QAction *actionCSS;
 
     QCompleter *completer;
     QAbstractItemModel *modelFromFile(const QString& fileName);*/

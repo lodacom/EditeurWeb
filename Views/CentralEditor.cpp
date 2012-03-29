@@ -7,7 +7,6 @@ CentralEditor::CentralEditor(QWidget *parent):QTextEdit(parent),completer(0)
     completer = new QCompleter(this);
 
     setupEditor();
-    //setupColoration();
 }
 
 void CentralEditor::setupEditor()
@@ -15,7 +14,7 @@ void CentralEditor::setupEditor()
     QFont font;
     font.setFamily("Courier");
     font.setFixedPitch(true);
-    font.setPointSize(12);
+    font.setPointSize(14);
 
     editor->setFont(font);
     editor->setCompleter(completer);
@@ -90,26 +89,5 @@ void CentralEditor::colorationPHP()
      completer->setCaseSensitivity(Qt::CaseInsensitive);
      completer->setWrapAround(false);
      completer->setModel(modelFromFile(":/Resources/PHP.txt"));
-}
-
-void CentralEditor::setupColoration(QMenu* menuColoration)
-{
-   /* menuColoration = new QMenu(tr("&Coloration"),this);
-    menuBar()->addMenu(menuColoration);*/
-
-    actionHTML = new QAction(tr("&HTML"),this);
-    actionJavaScript = new QAction(tr("JavaScript"),this);
-    actionPHP = new QAction(tr("PHP"),this);
-    actionCSS = new QAction(tr("CSS"),this);
-
-     menuColoration->addAction(actionCSS);
-     menuColoration->addAction(actionHTML);
-     menuColoration->addAction(actionJavaScript);
-     menuColoration->addAction(actionPHP);
-
-     /*QObject::connect(actionCSS, SIGNAL(triggered()), this, SLOT(colorationCSS()));
-     QObject::connect(actionPHP, SIGNAL(triggered()), this, SLOT(colorationPHP()));
-     QObject::connect(actionJavaScript, SIGNAL(triggered()), this, SLOT(colorationJavaScript()));
-     QObject::connect(actionHTML, SIGNAL(triggered()), this, SLOT(colorationHTML()));*/
 }
 /*...............................................................................................................*/
