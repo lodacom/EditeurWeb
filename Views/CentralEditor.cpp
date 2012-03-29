@@ -1,10 +1,9 @@
 #include "CentralEditor.h"
-#include "Models/PhpDico.h"
+//#include "Models/PhpDico.h"
 
-CentralEditor::CentralEditor(QWidget *parent):QTextEdit(parent),completer(0)
+CentralEditor::CentralEditor(QWidget *parent):QTextEdit(parent)
 {
-    editor = new Completion;
-    completer = new QCompleter(this);
+    completerController = new CompleterController();
 
     setupEditor();
 }
@@ -14,23 +13,23 @@ void CentralEditor::setupEditor()
     QFont font;
     font.setFamily("Courier");
     font.setFixedPitch(true);
-    font.setPointSize(14);
+    font.setPointSize(10);
 
-    editor->setFont(font);
-    editor->setCompleter(completer);
+    this->setFont(font);
+
 }
 
 /*Partie coloration et complétion*/
 /*...............................................................................................................*/
-QStringListModel* CentralEditor::updateListVar()
+/*QStringListModel* CentralEditor::updateListVar()
 {
     QStringList list_var;
     PhpDico *essai=new PhpDico(editor->document());
     list_var=essai->searchInFile();
     return new QStringListModel(list_var,completer);
 }
-
-QAbstractItemModel *CentralEditor::modelFromFile(const QString& fileName)
+*/
+/*QAbstractItemModel *CentralEditor::modelFromFile(const QString& fileName)
 {
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly))
@@ -53,41 +52,41 @@ QAbstractItemModel *CentralEditor::modelFromFile(const QString& fileName)
 #endif
     return new QStringListModel(words, completer);
 }
-
+*/
 void CentralEditor::colorationCSS()
 {
-    highlighter = new CSSHighlighter(editor->document());
-    completer->setModelSorting(QCompleter::UnsortedModel);
+    highlighter = new CSSHighlighter(this->document());
+    /*completer->setModelSorting(QCompleter::UnsortedModel);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     completer->setWrapAround(false);
-    completer->setModel(modelFromFile(":/Resources/CSS.txt"));
+    completer->setModel(modelFromFile(":/Resources/CSS.txt"));*/
 }
 
 void CentralEditor::colorationHTML()
 {
-     highlighter = new HtmlHighlighter(editor->document());
-     completer->setModelSorting(QCompleter::UnsortedModel);
+     highlighter = new HtmlHighlighter(this->document());
+     /*completer->setModelSorting(QCompleter::UnsortedModel);
      completer->setCaseSensitivity(Qt::CaseInsensitive);
      completer->setWrapAround(false);
-     completer->setModel(modelFromFile(":/Resources/HTML.txt"));
+     completer->setModel(modelFromFile(":/Resources/HTML.txt"));*/
 }
 
 void CentralEditor::colorationJavaScript()
 {
-     highlighter = new JavaScriptHighlighter(editor->document());
-     completer->setModelSorting(QCompleter::UnsortedModel);
+     highlighter = new JavaScriptHighlighter(this->document());
+     /*completer->setModelSorting(QCompleter::UnsortedModel);
      completer->setCaseSensitivity(Qt::CaseInsensitive);
      completer->setWrapAround(false);
-     completer->setModel(modelFromFile(":/Resources/JavaScript.txt"));
+     completer->setModel(modelFromFile(":/Resources/JavaScript.txt"));*/
 }
 
 void CentralEditor::colorationPHP()
 {
-     highlighter = new PhpHighlighter(editor->document());
+     highlighter = new PhpHighlighter(this->document());
 
-     completer->setModelSorting(QCompleter::UnsortedModel);
+     /*completer->setModelSorting(QCompleter::UnsortedModel);
      completer->setCaseSensitivity(Qt::CaseInsensitive);
      completer->setWrapAround(false);
-     completer->setModel(modelFromFile(":/Resources/PHP.txt"));
+     completer->setModel(modelFromFile(":/Resources/PHP.txt"));*/
 }
 /*...............................................................................................................*/

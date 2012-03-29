@@ -1,44 +1,41 @@
-#include "completion.h"
-#include <QCompleter>
-#include <QKeyEvent>
-#include <QAbstractItemView>
-#include <QScrollBar>
+#include "CompleterController.h"
 
-Completion::Completion():completion_text(0)
+CompleterController::CompleterController():completion_text(0)
 {
 }
 
-Completion::~Completion()
+CompleterController::~CompleterController()
 {
 }
 
-void Completion::setCompleter(QCompleter *completer)
+void CompleterController::setCompleter(QCompleter *completer)
 {
-    if (completion_text)
-        QObject::disconnect(completion_text, 0, this, 0);//on déconnecte l'auto-compléteur de la fenêtre
-
+    /*if (completion_text)
+        QObject::disconnect(completion_text, 0, completion_text, 0);//on déconnecte l'auto-compléteur de la fenêtre
+    */
     completion_text = completer;
 
     /*if (!completion_text)
         return;*/
-
+/*
     completion_text->setWidget(this);//on met en place la completion
     completion_text->setCompletionMode(QCompleter::PopupCompletion);//mode de complétion
     completion_text->setCaseSensitivity(Qt::CaseInsensitive);//non prise en compte de la casse (majuscule, minuscule)
     QObject::connect(completion_text, SIGNAL(activated(QString)),this, SLOT(insertCompletion(QString)));
-    /*on connecte le compléteur à la fenêtre principale
+    on connecte le compléteur à la fenêtre principale
       la complétion s'active sur lactivation du clavier
       et on fait l'action insertCompletion*/
+
 }
 
-QCompleter *Completion::completer() const
+QCompleter *CompleterController::completer() const
 {
     return completion_text;//on retourne tous les mots affiliés à ceux qu'on a trouvé
 }
 
-void Completion::insertCompletion(const QString& completion)
+/*void CompleterController::insertCompletion(const QString& completion)
 {
-    if (completion_text->widget() != this)
+    if (completion_text->widget() != this->completer())
         return;
     QTextCursor tc = textCursor();
     int extra = completion.length() - completion_text->completionPrefix().length();
@@ -48,21 +45,21 @@ void Completion::insertCompletion(const QString& completion)
     setTextCursor(tc);//mise en place de la suivie du curseur
 }
 
-QString Completion::textUnderCursor() const
+QString CompleterController::textUnderCursor() const
 {
     QTextCursor tc = textCursor();
     tc.select(QTextCursor::WordUnderCursor);//on sélectionne le mot que l'utilisateur a choisi
     return tc.selectedText();//on renvoie le mot choisi par l'utilisateur
 }
 
-void Completion::focusInEvent(QFocusEvent *e)
+void CompleterController::focusInEvent(QFocusEvent *e)
 {
     if (completion_text)//on regarde si la complétion est lancée
         completion_text->setWidget(this);
     QTextEdit::focusInEvent(e);
 }
 
-void Completion::keyPressEvent(QKeyEvent *e)
+void CompleterController::keyPressEvent(QKeyEvent *e)
 {
     if (completion_text && completion_text->popup()->isVisible())
     {
@@ -106,11 +103,12 @@ void Completion::keyPressEvent(QKeyEvent *e)
         completion_text->popup()->setCurrentIndex(completion_text->completionModel()->index(0, 0));
     }
 
-    /*Ci-dessous on met en place le rectangle avec srcoll bar qui apparaitra
+    Ci-dessous on met en place le rectangle avec srcoll bar qui apparaitra
       *lors de la complétion. On calcule sa lageur avec le plus long mot trouvé
-      * et sa hauteur avec le nombre de mots trouvés*/
+      * et sa hauteur avec le nombre de mots trouvés
     QRect cr = cursorRect();
     cr.setWidth(completion_text->popup()->sizeHintForColumn(0)
                 + completion_text->popup()->verticalScrollBar()->sizeHint().width());
     completion_text->complete(cr); // popup it up!
 }
+*/

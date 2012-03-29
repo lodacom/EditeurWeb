@@ -1,4 +1,4 @@
-#include "htmltreewidget.h"
+#include "HtmlTreeWidget.h"
 #include "ui_htmltreewidget.h"
 
 #include <QtGui>

@@ -18,8 +18,9 @@ HEADERS += \
     Models/File.h \
     Models/Element.h \
     Controllers/WorkSpaceTreeController.h \
-    Controllers/completion.h \
-    Views/htmltreewidget.h
+    Views/CentralEditor.h \
+    Controllers/CompleterController.h \
+    Views/HtmlTreeWidget.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -34,14 +35,15 @@ SOURCES += \
     Models/File.cpp \
     Models/Element.cpp \
     Controllers/WorkSpaceTreeController.cpp \
-    Controllers/completion.cpp \
     Views/WorkSpaceTree.cpp \
-    Views/htmltreewidget.cpp \
     Controllers/Highlighting/PhpHighlighter.cpp \
     Controllers/Highlighting/JavaScriptHighlighter.cpp \
     Controllers/Highlighting/HtmlHighlighter.cpp \
     Controllers/Highlighting/Highlighter.cpp \
-    Controllers/Highlighting/CSSHighlighter.cpp
+    Controllers/Highlighting/CSSHighlighter.cpp \
+    Views/CentralEditor.cpp \
+    Controllers/CompleterController.cpp \
+    Views/HtmlTreeWidget.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \

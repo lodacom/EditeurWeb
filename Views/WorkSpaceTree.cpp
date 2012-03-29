@@ -14,7 +14,7 @@ WorkSpaceTree::WorkSpaceTree(){
     this->setAcceptDrops(true);
     //
     setContextMenuPolicy(Qt::CustomContextMenu);
-    QObject::connect(this, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(getFilePath(const QModelIndex &)));
+    //QObject::connect(this, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(getFilePath(const QModelIndex &)));
 }
 
 WorkSpaceTree::~WorkSpaceTree(){

@@ -5,12 +5,12 @@
 #include <QMenu>
 #include <QApplication>
 
-#include "../Controllers/JavaScriptHighlighter.h"
-#include "../Controllers/HtmlHighlighter.h"
-#include "../Controllers/CSSHighlighter.h"
-#include "../Controllers/PhpHighlighter.h"
-#include "Controllers/completion.h"
-
+#include "Controllers/CompleterController.h"
+#include "Controllers/Highlighting/Highlighter.h"
+#include "Controllers/Highlighting/CSSHighlighter.h"
+#include "Controllers/Highlighting/HtmlHighlighter.h"
+#include "Controllers/Highlighting/JavaScriptHighlighter.h"
+#include "Controllers/Highlighting/PhpHighlighter.h"
 #ifndef CENTRALEDITOR_H
 #define CENTRALEDITOR_H
 
@@ -29,12 +29,10 @@ public slots:
     void colorationPHP();
 
 private:
-    QStringListModel* updateListVar();
-    Completion *editor;
+    //QStringListModel* updateListVar();
+    CompleterController *completerController;
     Highlighter *highlighter;
-
-    QCompleter *completer;
-    QAbstractItemModel *modelFromFile(const QString& fileName);
+    //QAbstractItemModel *modelFromFile(const QString& fileName);
 };
 
 #endif // CENTRALEDITOR_H

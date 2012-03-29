@@ -1,7 +1,5 @@
-#include <QtGui>
-
 #include "MainWindow.h"
-//#include "Models/PhpDico.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)//,completer(0)
 {
@@ -15,14 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)//,completer(0)
     setCentralWidget(editor);
     QMainWindow::setWindowTitle(tr("Syntax Highlighter"));
 
-   /* QDockWidget *dock = new QDockWidget("Html", this);
+    QDockWidget *dock = new QDockWidget("Html", this);
     addDockWidget(Qt::RightDockWidgetArea, dock);
     QWidget *dockContents = new QWidget;
     dock->setWidget(dockContents);
     this->htmlTreeWidget = new HtmlTreeWidget(this);
     QVBoxLayout *dockLayout = new QVBoxLayout;
     dockLayout->addWidget(htmlTreeWidget);
-    dockContents->setLayout(dockLayout);*/
+    dockContents->setLayout(dockLayout);
 }
 
 void MainWindow::about()
@@ -52,24 +50,6 @@ void MainWindow::openFile(const QString &path)
     }
 }
 
-void MainWindow::openFile(const QModelIndex& index)
-{
-    list<int> *elementWay = new list<int>();
-    QModelIndex indexCopie = QModelIndex(index);
-    while (indexCopie != QModelIndex())
-    {
-        elementWay->push_front(indexCopie.row());
-        indexCopie = indexCopie.parent();
-    }
-    string elementPath = treeView->getFilePath(elementWay);
-    if (elementPath != "")
-    {
-        QFile file(QString(elementPath.c_str()));
-        if (file.open(QFile::ReadOnly | QFile::Text))
-            editor->setPlainText(file.readAll());
-    }
-}
-
 void MainWindow::selectWorkSpace()
 {
     QString workSpacePath;
@@ -77,18 +57,6 @@ void MainWindow::selectWorkSpace()
     treeView->selectWorkSpace(workSpacePath.toStdString());
 }
 
-/*void MainWindow::setupEditor()
-{
-    editor->setupEditor();
-    QFont font;
-    font.setFamily("Courier");
-    font.setFixedPitch(true);
-    font.setPointSize(12);
-
-    editor->setFont(font);
-    editor->setCompleter(completer);*/
-    //highlighter = new HtmlHighlighter(editor->document());
-//}
 
 void MainWindow::setupFileMenu()
 {
@@ -142,11 +110,11 @@ void MainWindow::setupWorkSpaceDock()
     addDockWidget(Qt::LeftDockWidgetArea, dock);
     QWidget *dockContents = new QWidget;
     dock->setWidget(dockContents);
-        treeView = new WorkSpaceTree();
+    treeView = new WorkSpaceTree();
     QVBoxLayout *dockLayout = new QVBoxLayout;
     dockLayout->addWidget(treeView);
     dockContents->setLayout(dockLayout);
-    QObject::connect(treeView, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(openFile(const QModelIndex &)));
+    //QObject::connect(treeView, SIGNAL(doubleClicked(const QModelIndex &)), editor, SLOT(openFile(const QModelIndex &)));
 }
 
 

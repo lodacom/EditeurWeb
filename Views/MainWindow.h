@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-/*#include <QStringListModel>
+#include <QtGui>
+#include <QStringListModel>
 
 #include "../Controllers/Highlighting/JavaScriptHighlighter.h"
 #include "../Controllers/Highlighting/HtmlHighlighter.h"
@@ -10,7 +11,7 @@
 #include "../Controllers/Highlighting/PhpHighlighter.h"
 #include "CentralEditor.h"
 #include "../Controllers/WorkSpaceTreeController.h"
-//#include "htmltreewidget.h"
+#include "HtmlTreeWidget.h"
 #include "WorkSpaceTree.h"
 
 QT_BEGIN_NAMESPACE
@@ -31,7 +32,6 @@ public slots:
     void about();
     void newFile();
     void openFile(const QString &path = QString());
-    void openFile(const QModelIndex& index);
     void selectWorkSpace();
 private:
     //void setupEditor();
@@ -41,15 +41,10 @@ private:
     void setupWorkSpaceDock();
     //void setupHtmlDock();
     CentralEditor *editor;
-    /*QStringListModel* updateListVar();
-    Completion *editor;
-    Highlighter *highlighter;
 
-    QCompleter *completer;
-    QAbstractItemModel *modelFromFile(const QString& fileName);*/
     QMenu *menuColoration;
     WorkSpaceTree *treeView;
-    //HtmlTreeWidget *htmlTreeWidget;
+    HtmlTreeWidget *htmlTreeWidget;
 };
 
 #endif

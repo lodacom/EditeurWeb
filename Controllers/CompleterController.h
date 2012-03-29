@@ -1,5 +1,15 @@
 #include <QTextEdit>
-
+#include <QString>
+#include <QAbstractItemModel>
+#include <QFile>
+#include <QStringListModel>
+#include <string>
+#include <QApplication>
+#include <QCompleter>
+#include <QKeyEvent>
+#include <QAbstractItemView>
+#include <QScrollBar>
+#include <QtGui>
 QT_BEGIN_NAMESPACE
 class QCompleter;
 QT_END_NAMESPACE
@@ -7,17 +17,17 @@ QT_END_NAMESPACE
 #ifndef COMPLETION_H
 #define COMPLETION_H
 
-class Completion: public QTextEdit
+class CompleterController
 {
-    Q_OBJECT
+
 
 public:
-    Completion();
-    ~Completion();
+    CompleterController();
+    ~CompleterController();
 
     void setCompleter(QCompleter *c);
     QCompleter *completer() const;
-
+/*
 protected:
     void keyPressEvent(QKeyEvent *e);
     void focusInEvent(QFocusEvent *e);
@@ -27,7 +37,7 @@ private slots:
 
 private:
     QString textUnderCursor() const;
-
+*/
 private:
     QCompleter *completion_text;
 };
