@@ -152,7 +152,7 @@ void MainWindow::setupColoration()
     menuColoration = new QMenu(tr("&Coloration"),this);
     menuBar()->addMenu(menuColoration);
     editor->setupColoration(menuColoration);
-   /* QAction *actionHTML = new QAction(tr("&HTML"),this);
+    QAction *actionHTML = new QAction(tr("&HTML"),this);
     QAction *actionJavaScript = new QAction(tr("JavaScript"),this);
     QAction *actionPHP = new QAction(tr("PHP"),this);
     QAction *actionCSS = new QAction(tr("CSS"),this);
@@ -160,12 +160,12 @@ void MainWindow::setupColoration()
      menuColoration->addAction(actionCSS);
      menuColoration->addAction(actionHTML);
      menuColoration->addAction(actionJavaScript);
-     menuColoration->addAction(actionPHP);*/
+     menuColoration->addAction(actionPHP);
 
-     QObject::connect(editor->actionCSS, SIGNAL(triggered()), this, SLOT(CentralEditor::colorationCSS()));
-     QObject::connect(editor->actionPHP, SIGNAL(triggered()), this, SLOT(CentralEditor::colorationPHP()));
-     QObject::connect(editor->actionJavaScript, SIGNAL(triggered()), this, SLOT(CentralEditor::colorationJavaScript()));
-     QObject::connect(editor->actionHTML, SIGNAL(triggered()), this, SLOT(CentralEditor::colorationHTML()));
+     QObject::connect(actionCSS, SIGNAL(triggered()), editor, SLOT(colorationCSS()));
+     QObject::connect(actionPHP, SIGNAL(triggered()), editor, SLOT(colorationPHP()));
+     QObject::connect(actionJavaScript, SIGNAL(triggered()), editor, SLOT(colorationJavaScript()));
+     QObject::connect(actionHTML, SIGNAL(triggered()), editor, SLOT(colorationHTML()));
 }
 
 /*void MainWindow::setupWorkSpaceDock()
