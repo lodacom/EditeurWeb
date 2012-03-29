@@ -12,7 +12,10 @@ public:
     virtual void scan();// Liste les projets du workspace
     virtual void output(int prof);// Méthode pour le debuggage
     virtual QStandardItem* getQItem();
-    virtual File* getFile(list<int> *path);
+    virtual Element* getElement(list<int> *accessList);
+    virtual int getType();
+    virtual void deleteElement();
+    virtual void dropElement(int position);
     virtual void sort();
 private:
     //Attributs

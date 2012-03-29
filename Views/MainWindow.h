@@ -2,17 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+/*#include <QStringListModel>
 
 #include "../Controllers/Highlighting/JavaScriptHighlighter.h"
 #include "../Controllers/Highlighting/HtmlHighlighter.h"
 #include "../Controllers/Highlighting/CSSHighlighter.h"
 #include "../Controllers/Highlighting/PhpHighlighter.h"
+#include "CentralEditor.h"
 #include "../Controllers/WorkSpaceTreeController.h"
-#include "Controllers/completion.h"
-
-#include "htmltreewidget.h"
+//#include "htmltreewidget.h"
 #include "WorkSpaceTree.h"
-
 
 QT_BEGIN_NAMESPACE
 class QTextEdit;
@@ -33,32 +32,24 @@ public slots:
     void newFile();
     void openFile(const QString &path = QString());
     void openFile(const QModelIndex& index);
-    void colorationCSS();
-    void colorationHTML();
-    void colorationJavaScript();
-    void colorationPHP();
     void selectWorkSpace();
 private:
-    void setupEditor();
+    //void setupEditor();
     void setupFileMenu();
     void setupHelpMenu();
     void setupColoration();
     void setupWorkSpaceDock();
-    void setupHtmlDock();
+    //void setupHtmlDock();
+    CentralEditor *editor;
+    /*QStringListModel* updateListVar();
     Completion *editor;
     Highlighter *highlighter;
 
-    QMenu *menuColoration;
-    QAction *actionHTML;
-    QAction *actionJavaScript;
-    QAction *actionPHP;
-    QAction *actionCSS;
-
-    QAbstractItemModel *modelFromFile(const QString& fileName);
-    WorkSpaceTree *treeView;
-
     QCompleter *completer;
-    HtmlTreeWidget *htmlTreeWidget;
+    QAbstractItemModel *modelFromFile(const QString& fileName);*/
+    QMenu *menuColoration;
+    WorkSpaceTree *treeView;
+    //HtmlTreeWidget *htmlTreeWidget;
 };
 
 #endif

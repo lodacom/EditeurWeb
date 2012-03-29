@@ -3,6 +3,7 @@
 Element::Element(string name, string parentPath){
     this->name = name;
     this->parentPath = parentPath;
+    this->parent = parent;
     this->qItem = new QStandardItem(QString(name.c_str()));
 }
 
@@ -36,4 +37,21 @@ void Element::output(int prof){
     for (int i = 0; i < prof; i++)
 	cout << "\t";
     cout << name << endl;
+}
+
+Element* Element::getElement(list<int>* accessList){
+    if (accessList){;}
+    return this;
+}
+
+void Element::deleteElement(){
+    qItem->parent()->removeRow(qItem->row());
+    remove(this->getPath().c_str());
+}
+void Element::dropElement(int i){
+    if(i){;}
+}
+
+int Element::getType(){
+    return ELEMENT_TYPE;
 }

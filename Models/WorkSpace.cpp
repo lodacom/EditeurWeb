@@ -65,7 +65,6 @@ void WorkSpace::scan(){
                 if (projectFile){
                     fclose(projectFile);
                 }
-
 		delete [] folderPath;
 		delete [] proPath;
 	}
@@ -91,13 +90,26 @@ QStandardItem* WorkSpace::getQItem(){
     }
     return qItem;
 }
-File* WorkSpace::getFile(list<int> *path){
-    if (path->size() == 1){
-        return NULL;
+Element* WorkSpace::getElement(list<int> *accessList){
+    if (accessList->size() == 1){
+        return &projects[accessList->front()];
     }
     else{
-        int projectNumber = path->front();
-        path->pop_front();
-        return projects[projectNumber].getFile(path);
+        int projectNumber = accessList->front();
+        accessList->pop_front();
+        return projects[projectNumber].getElement(accessList);
     }
 }
+
+void WorkSpace::dropElement(int position){
+    if((size_t)position < projects.size() && position >= 0){
+        projects[position].deleteElement();
+        projects.erase(projects.begin() + position);
+    }
+}
+
+int WorkSpace::getType(){
+    return WORKSPACE_TYPE;
+}
+
+void WorkSpace::deleteElement(){}

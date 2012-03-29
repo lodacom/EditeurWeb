@@ -13,6 +13,11 @@
 #include <QStandardItem>
 #include <algorithm>
 #include <QIcon>
+#define ELEMENT_TYPE 0
+#define FILE_TYPE 1
+#define FOLDER_TYPE 2
+#define PROJECT_TYPE 3
+#define WORKSPACE_TYPE 4
 using namespace std;
 
 class Element{
@@ -42,10 +47,16 @@ public:
     //Méthodes
     virtual string getPath();//Retourne le chemin de l'élément
     virtual void output(int prof);//Méthode pour le debuggage
+    virtual Element* getElement(list<int>* accessList);//retourne l'élément souhaité à partir d'une liste d'entier
+    virtual int getType();//retourne une constante permettant de reconnaitre le type de l'objet instancié
+    virtual void deleteElement();//efface physiquement et visuellement l'élément
+    virtual void dropElement(int i); //
+
 protected:
     //Attributs
     string parentPath;//Chemin du dossier parent
     string name;//Nom de l'élément
+    Element *parent;
     QStandardItem *qItem;
 };
 

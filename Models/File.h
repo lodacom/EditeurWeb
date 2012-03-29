@@ -11,6 +11,7 @@ public:
     virtual string getExtension();
     virtual void setExtension(string extension);
     //Méthodes
+    virtual int getType();
 private:
     //Attributs
     string extension;//Extension du fichier
