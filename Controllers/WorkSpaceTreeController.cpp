@@ -98,8 +98,8 @@ int WorkSpaceTreeController::newProject(string projectName){
 
 void WorkSpaceTreeController::deleteFile(const QModelIndex& index){
     list<int> *accessList = indexToList(index);
-    Element *parentElement;
     if(accessList->size() > 1){
+        Element *parentElement;
         int sonIndex = accessList->back();
         accessList->pop_back();
         parentElement = workSpace->getElement(accessList);
@@ -119,8 +119,19 @@ string WorkSpaceTreeController::getNameFromIndex(const QModelIndex& index){
 
 int WorkSpaceTreeController::renameFile(const QModelIndex &index, string newName){
     list<int> *accessList = indexToList(index);
-    Element* element = workSpace->getElement(accessList);
-    int renamingResult = element->renameFile(newName);
-    return renamingResult;
+    int ok;
+    if(accessList->size() > 1){
+        Element *parentElement;
+        int sonIndex = accessList->back();
+        accessList->pop_back();
+        parentElement = workSpace->getElement(accessList);
+        ok = parentElement->renameElement(sonIndex, newName);
+    }
+    else{
+        ok = workSpace->renameElement(accessList->back(), newName);
+        int newPosition = workSpace->findProjectPosition(newName);
+        qItemModel->insertRow(newPosition, qItemModel->takeRow(accessList->back()));
+    }
+    return ok;
 }
 

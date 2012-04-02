@@ -23,7 +23,7 @@ public:
     virtual ~WorkSpaceTree();
     virtual void selectWorkSpace(string path);
 signals:
-    void fileOpened(const QString& fileName, const QString& fileExtension);
+    void fileOpened(const QString& fileName);
 public slots:
     virtual void getFilePath(const QModelIndex& index);
     virtual void deleteFileFromPos();

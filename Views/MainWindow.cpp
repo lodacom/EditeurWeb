@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)//,completer(0)
     setupColoration();
     setupWorkSpaceDock();
     setCentralWidget(editor);
-    QMainWindow::setWindowTitle(tr("Syntax Highlighter"));
+    QMainWindow::setWindowTitle(tr("WebShacke"));
 
     QDockWidget *dock = new QDockWidget("Html", this);
     addDockWidget(Qt::RightDockWidgetArea, dock);
@@ -114,7 +114,7 @@ void MainWindow::setupWorkSpaceDock()
     QVBoxLayout *dockLayout = new QVBoxLayout;
     dockLayout->addWidget(treeView);
     dockContents->setLayout(dockLayout);
-    //QObject::connect(treeView, SIGNAL(doubleClicked(const QModelIndex &)), editor, SLOT(openFile(const QModelIndex &)));
+    QObject::connect(treeView, SIGNAL(fileOpened(QString)), this, SLOT(openFile(QString)));
 }
 
 

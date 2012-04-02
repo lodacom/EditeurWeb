@@ -107,9 +107,52 @@ void WorkSpace::dropElement(int position){
         projects.erase(projects.begin() + position);
     }
 }
+int WorkSpace::findProjectPosition(string projectName){
+    size_t i = 0;
+    while(i < projects.size() && projects[i].getName() != projectName){
+        i++;
+    }
+    if (i == projects.size())
+        return -1;
+    else
+        return i;
+}
+int WorkSpace::newProject(string projectName){
+    string projectPath = this->getPath() + '/' + projectName;
+    if (mkdir(projectPath.c_str(), 0777) == -1){
+        cerr << "erreur de création du dossier" << endl;
+        return -1;
+    }
+    ofstream file;
+    string filePath = projectPath + '/' + ".pro";
+    file.open(filePath.c_str(), ios::out);
+    if(file.bad()){
+        cerr << "Erreur d'ouverture du fichier" << endl;
+        return -1;
+    }
+    return 0;
+}
 
 int WorkSpace::getType(){
     return WORKSPACE_TYPE;
 }
 
 void WorkSpace::deleteElement(){}
+
+int WorkSpace::renameElement(int elementPosition, string newName){
+    if(findProjectPosition(newName) != -1){
+        return -1;
+    }
+    int renamingResult = 0;
+    if((size_t) elementPosition < projects.size()){
+        string oldPath = projects[elementPosition].getPath();
+        string newPath = this->getPath() + "/" + newName;
+        renamingResult = rename(oldPath.c_str(), newPath.c_str());
+        if(renamingResult == 0){
+            projects[elementPosition].setName(newName);
+            projects[elementPosition].setQItemName(newName);
+            this->sort();
+        }
+    }
+    return renamingResult;
+}

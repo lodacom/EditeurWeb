@@ -17,6 +17,9 @@ public:
     virtual void deleteElement();
     virtual void dropElement(int position);
     virtual void sort();
+    virtual int findProjectPosition(string projectName);
+    virtual int newProject(string projectName);
+    virtual int renameElement(int elementPosition, string newName);
 private:
     //Attributs
     vector<Project> projects;//Vecteur de projets

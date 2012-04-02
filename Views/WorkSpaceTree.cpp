@@ -4,6 +4,7 @@ WorkSpaceTree::WorkSpaceTree(){
     wsController = new WorkSpaceTreeController();
     model = wsController->getQItemModel();
     workSpaceEtablished = false;
+    this->setMinimumWidth(200);
     this->setupMenus();
     this->setModel(model);
     this->setEditTriggers(NoEditTriggers);
@@ -156,7 +157,7 @@ void WorkSpaceTree::mousePressEvent(QMouseEvent * e){
 }
 
 void WorkSpaceTree::getFilePath(const QModelIndex &index){
-    emit fileOpened(QString(wsController->getFilePath(index).c_str()), QString(wsController->getFileExtension(index).c_str()));
+    emit fileOpened(QString(wsController->getFilePath(index).c_str()));
 }
 
 void WorkSpaceTree::deleteFileFromPos(){

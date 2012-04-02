@@ -68,7 +68,17 @@ int Element::renameFile(string newName){
     string path;
     path = parentPath + "/" + newName;
     int renamingResult = rename(this->getPath().c_str(), path.c_str());
-    if(renamingResult == 0)
+    if(renamingResult == 0){
         this->name = newName;
+        this->qItem->setText(QString(newName.c_str()));
+    }
     return renamingResult;
 }
+int Element::renameElement(int elementPosition, string newName){
+    if(newName.empty() && elementPosition){;}
+    return 0;
+}
+void Element::setQItemName(string newName){
+    this->qItem->setText(newName.c_str());
+}
+void Element::sort(){}

@@ -27,6 +27,24 @@ void Folder::addFile(File *file){
 void Folder::addFolder(Folder *folder){
     folders.push_back(*folder);
 }
+void Folder::setName(string name){
+    this->name = name;
+    for(size_t i = 0; i < folders.size(); i++){
+        folders[i].setParentPath(this->getPath());
+    }
+    for(size_t i = 0; i <files.size(); i++){
+        files[i].setParentPath(this->getPath());
+    }
+}
+void Folder::setParentPath(string parentPath){
+    this->parentPath = parentPath;
+    for(size_t i = 0; i < folders.size(); i++){
+        folders[i].setParentPath(this->getPath());
+    }
+    for(size_t i = 0; i <files.size(); i++){
+        files[i].setParentPath(this->getPath());
+    }
+}
 
 void Folder::scan(){
     DIR* currentDirectory;
@@ -89,15 +107,18 @@ void Folder::output(int prof){
     }
 }
 
-QStandardItem* Folder::getQItem(){
-    for(size_t i = 0; i < folders.size(); i++){
-        qItem->appendRow(folders[i].getQItem());
-    }
-    for(size_t i = 0; i < files.size(); i++){
-        qItem->appendRow(files[i].getQItem());
+QStandardItem* Folder::getQItem(int i){
+    if(i == 0){
+        for(size_t i = 0; i < folders.size(); i++){
+            qItem->appendRow(folders[i].getQItem());
+        }
+        for(size_t i = 0; i < files.size(); i++){
+            qItem->appendRow(files[i].getQItem());
+        }
     }
     return qItem;
 }
+
 
 Element* Folder::getElement(list<int>* accessList){
     if (accessList->size() == 1){
@@ -140,4 +161,94 @@ void Folder::dropElement(int position){
             files.erase(files.begin() + (position - folders.size()));
         }
     }
+}
+
+int Folder::newFile(string fileName){
+    if(findFilePosition(fileName) != -1){
+        return -1;
+    }
+    ofstream file;
+    string filePath = this->getPath() + '/' + fileName;
+    file.open(filePath.c_str(), ios::out);
+    if(file.bad()){
+        cerr << "Erreur d'ouverture du fichier" << endl;
+        return -1;
+    }
+    else{
+        File *logicalFile = new File(fileName, this->getPath());
+        this->addFile(logicalFile);
+        this->sort();
+        int position = findFilePosition(fileName);
+        qItem->insertRow(position + folders.size(), logicalFile->getQItem());
+    }
+    file.close();
+    return 0;
+}
+
+int Folder::newFolder(string folderName){
+    string folderPath = this->getPath() + '/' + folderName;
+
+    if (mkdir(folderPath.c_str(), 0777) == -1){
+        cerr << "erreur de création du dossier" << endl;
+        return -1;
+    }
+    else{
+        Folder *logicalFolder = new Folder(folderName, this->getPath());
+        this->addFolder(logicalFolder);
+        this->sort();
+        int position = findFolderPosition(folderName);
+        qItem->insertRow(position, logicalFolder->getQItem());
+        return 0;
+    }
+}
+int Folder::findFilePosition(string fileName){
+    size_t i = 0;
+    while(i < files.size() && files[i].getName() != fileName){
+        i++;
+    }
+    if (i == files.size())
+        return -1;
+    else
+        return i;
+}
+int Folder::findFolderPosition(string folderName){
+    size_t i = 0;
+    while(i < folders.size() && folders[i].getName() != folderName){
+        i++;
+    }
+    if (i == folders.size())
+        return -1;
+    else
+        return i;
+}
+
+int Folder::renameElement(int elementPosition, string newName){
+    if(findFolderPosition(newName) != -1 || findFilePosition(newName) != -1){
+        return -1;
+    }
+    int newPosition = 0, renamingResult;
+    if((size_t)elementPosition < folders.size()){
+        string oldPath = folders[elementPosition].getPath();
+        string newPath = this->getPath() + "/" + newName;
+        renamingResult = rename(oldPath.c_str(), newPath.c_str());
+        if(renamingResult == 0){
+            folders[elementPosition].setName(newName);
+            folders[elementPosition].setQItemName(newName);
+            this->sort();
+            newPosition = findFolderPosition(newName);
+        }
+    }
+    else{
+        string oldPath = files[elementPosition - folders.size()].getPath();
+        string newPath = this->getPath() + "/" + newName;
+        renamingResult = rename(oldPath.c_str(), newPath.c_str());
+        if(renamingResult == 0){
+            files[elementPosition - folders.size()].setName(newName);
+            files[elementPosition - folders.size()].setQItemName(newName);
+            this->sort();
+            newPosition = findFilePosition(newName);
+        }
+    }
+    qItem->insertRow(newPosition, qItem->takeRow(elementPosition));
+    return renamingResult;
 }

@@ -5,11 +5,10 @@ class File: public virtual Element{
 
 public:
     //Constructeur Destructeur
-    File(string name = "", string parentPath = "", string extension = "");
+    File(string name = "", string parentPath = "");
     virtual ~File();
     //Accesseurs
     virtual string getExtension();
-    virtual void setExtension(string extension);
     //Méthodes
     virtual int getType();
 private:

@@ -41,7 +41,7 @@ public:
     virtual ~Element();
     //Accesseurs
     virtual string getName();
-    virtual void setName(string parentPath);
+    virtual void setName(string name);
     virtual string getParentPath();
     virtual void setParentPath(string parentPath);
     virtual QStandardItem* getQItem(int i = 0);
@@ -55,6 +55,9 @@ public:
     virtual int newFile(string fileName);
     virtual int newFolder(string fileName);
     virtual int renameFile(string newName);
+    virtual int renameElement(int elementPosition, string newName);
+    virtual void sort();
+    virtual void setQItemName(string newName);
 protected:
     //Attributs
     string parentPath;//Chemin du dossier parent

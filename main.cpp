@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     MainWindow window;
-
+    QApplication::setWindowIcon(QIcon("Pics/App-icon.png"));
     window.showMaximized();
     return app.exec();
 }
