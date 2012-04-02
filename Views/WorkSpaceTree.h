@@ -6,7 +6,12 @@
 #include <QAbstractItemView>
 #include <QMenu>
 #include <QMouseEvent>
+#include <QInputDialog>
+#include <QMessageBox>
 #include "../Controllers/WorkSpaceTreeController.h"
+#define COPY_ID 1
+#define CUT_ID 2
+#define NIL_ID 0
 
 class WorkSpaceTree : public QTreeView {
 
@@ -18,22 +23,31 @@ public:
     virtual ~WorkSpaceTree();
     virtual void selectWorkSpace(string path);
 signals:
-    virtual void fileOpened(const QString& fileName);
+    void fileOpened(const QString& fileName, const QString& fileExtension);
 public slots:
     virtual void getFilePath(const QModelIndex& index);
     virtual void deleteFileFromPos();
+    virtual void openFileFromPos();
+    virtual void copyFileFromPos();
+    virtual void newFileFromPos();
+    virtual void newFolderFromPos();
+    virtual void newProject();
+    virtual void pasteFileFromPos();
+    virtual void cutFileFromPos();
+    virtual void renameElementFromPos();
     //virtual void rightClickMenu(const QPoint& pos);
 
 private:
     QStandardItemModel *model;
     WorkSpaceTreeController *wsController;
-    QMenu *menu;
+    QMenu *fileMenu;
+    QMenu *folderMenu;
     QModelIndex clickedIndex;
-    void setupMenu();
+    void setupMenus();
+    bool workSpaceEtablished;
+    int selectionStatus; //Trois valeurs possibles
+    QModelIndex indexFileToCopy;
 protected:
-    virtual void dragLeaveEvent(QDragLeaveEvent * event);
-    virtual void dragMoveEvent(QDragMoveEvent * event);
-    virtual void dropEvent(QDropEvent * event);
     virtual void mousePressEvent(QMouseEvent * e);
 
 };

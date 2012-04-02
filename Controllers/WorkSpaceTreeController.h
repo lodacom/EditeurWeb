@@ -11,8 +11,15 @@ public:
     virtual ~WorkSpaceTreeController();
     virtual QStandardItemModel* getQItemModel();
     virtual string getFilePath(const QModelIndex& index);
+    virtual string getFileExtension(const QModelIndex& index);
+    virtual int getElementType(const QModelIndex& index);
+    virtual int newFile(const QModelIndex& index, string fileName);
+    virtual int newFolder(const QModelIndex& index, string folderName);
+    virtual int newProject(string projectName);
     virtual void setWorkSpace(string path);
     virtual void deleteFile(const QModelIndex& index);
+    virtual string getNameFromIndex(const QModelIndex& index);
+    virtual int renameFile(const QModelIndex &index, string newName);
 private:
     virtual list<int>* indexToList(const QModelIndex& index);
     QStandardItemModel *qItemModel;

@@ -30,8 +30,9 @@ string Element::getPath(){
     path = parentPath + "/" + name;
     return path;
 }
-QStandardItem* Element::getQItem(){
-	return qItem;
+QStandardItem* Element::getQItem(int i){
+    if(i){;}
+    return qItem;
 }
 void Element::output(int prof){
     for (int i = 0; i < prof; i++)
@@ -51,7 +52,23 @@ void Element::deleteElement(){
 void Element::dropElement(int i){
     if(i){;}
 }
-
+int Element::newFile(string fileName){
+    if(fileName.empty()){;}
+    return -1;
+}
+int Element::newFolder(string folderName){
+    if(folderName.empty()){;}
+    return -1;
+}
 int Element::getType(){
     return ELEMENT_TYPE;
+}
+
+int Element::renameFile(string newName){
+    string path;
+    path = parentPath + "/" + newName;
+    int renamingResult = rename(this->getPath().c_str(), path.c_str());
+    if(renamingResult == 0)
+        this->name = newName;
+    return renamingResult;
 }

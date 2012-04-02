@@ -13,6 +13,7 @@
 #include <QStandardItem>
 #include <algorithm>
 #include <QIcon>
+#include <fstream>
 #define ELEMENT_TYPE 0
 #define FILE_TYPE 1
 #define FOLDER_TYPE 2
@@ -43,7 +44,7 @@ public:
     virtual void setName(string parentPath);
     virtual string getParentPath();
     virtual void setParentPath(string parentPath);
-    virtual QStandardItem* getQItem();
+    virtual QStandardItem* getQItem(int i = 0);
     //Méthodes
     virtual string getPath();//Retourne le chemin de l'élément
     virtual void output(int prof);//Méthode pour le debuggage
@@ -51,7 +52,9 @@ public:
     virtual int getType();//retourne une constante permettant de reconnaitre le type de l'objet instancié
     virtual void deleteElement();//efface physiquement et visuellement l'élément
     virtual void dropElement(int i); //
-
+    virtual int newFile(string fileName);
+    virtual int newFolder(string fileName);
+    virtual int renameFile(string newName);
 protected:
     //Attributs
     string parentPath;//Chemin du dossier parent
