@@ -9,6 +9,32 @@ Element::Element(string name, string parentPath){
 
 Element::~Element(){}
 
+string Element::getContent(){
+    string content="";
+    string contemp="";
+    ifstream file(this->getPath().c_str(), ios::in);  // on ouvre en lecture
+    if(file){
+        string line;
+        while(getline(file, line)){
+            contemp = contemp + line;
+        }
+        file.close();
+    } else
+        cerr << "Impossible d'ouvrir le fichier !" << endl;
+     content = contemp;
+     return content;
+}
+
+void Element::setContent(string newContent){
+    ofstream file(this->getPath().c_str(), ios::out | ios::trunc);
+    if (file){
+        file << newContent << endl;
+        file.close();
+    } else {
+        cerr << "Impossible d'ouvrir le fichier !" << endl;
+    }
+}
+
 string Element::getName(){
     return name;
 }
@@ -52,7 +78,7 @@ void Element::deleteElement(){
 void Element::dropElement(int i){
     if(i){;}
 }
-int Element::newFile(string fileName){
+int Element::newFile(string fileName, string content){
     if(fileName.empty()){;}
     return -1;
 }

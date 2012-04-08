@@ -34,5 +34,3 @@ string File::getExtension(){
 int File::getType(){
     return FILE_TYPE;
 }
-
-

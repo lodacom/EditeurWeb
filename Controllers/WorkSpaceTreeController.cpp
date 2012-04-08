@@ -8,6 +8,12 @@ WorkSpaceTreeController::~WorkSpaceTreeController(){
 
 }
 
+string WorkSpaceTreeController::getContentFromIndex(const QModelIndex &index){
+    list<int> *accessList = indexToList(index);
+    Element* element = workSpace->getElement(accessList);
+    return element->getContent();
+}
+
 void WorkSpaceTreeController::setWorkSpace(string path){
     string parentPath, name;
     size_t lastSlashPos = path.find_last_of('/');
@@ -69,11 +75,21 @@ int WorkSpaceTreeController::getElementType(const QModelIndex& index){
     return element->getType();
 }
 
-int WorkSpaceTreeController::newFile(const QModelIndex& index, string fileName){
+int WorkSpaceTreeController::newFile(const QModelIndex& index, string fileName, string content){
     list<int> *accessList = indexToList(index);
     Element* element = workSpace->getElement(accessList);
-    return element->newFile(fileName);
+    return element->newFile(fileName, content);
 }
+
+//int WorkSpaceTreeController::pasteInFolder(const QModelIndex& index, string fileName, string content){
+//    int newFileResult = newFile(index, fileName);
+//    if(newFileResult != -1){
+//        list<int> *accessList = indexToList(index);
+//        Folder* fold = workSpace->getFolder(accessList);
+//        File fil = fold->getFileByPosition(fold->findFilePosition(fileName));
+//        fil.setContent(content);
+//    }
+//}
 
 int WorkSpaceTreeController::newFolder(const QModelIndex& index, string folderName){
     list<int> *accessList = indexToList(index);

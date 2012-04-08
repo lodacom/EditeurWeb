@@ -4,6 +4,7 @@ WorkSpaceTree::WorkSpaceTree(){
     wsController = new WorkSpaceTreeController();
     model = wsController->getQItemModel();
     workSpaceEtablished = false;
+    indexFileToCopy = QModelIndex();
     this->setMinimumWidth(200);
     this->setupMenus();
     this->setModel(model);
@@ -84,11 +85,13 @@ void WorkSpaceTree::cutFileFromPos(){
 
 void WorkSpaceTree::pasteFileFromPos(){
     if(selectionStatus == COPY_ID){
-        if(wsController->newFile(clickedIndex, wsController->getNameFromIndex(indexFileToCopy)) == -1){
+        string contentToCopy = wsController->getContentFromIndex(indexFileToCopy);
+        if(wsController->newFile(clickedIndex, wsController->getNameFromIndex(indexFileToCopy), contentToCopy) == -1){
             QMessageBox::warning(this, "Adding File Error", "A file with this name already exists!");
         }
     } else if(selectionStatus == CUT_ID){
-        if(wsController->newFile(clickedIndex, wsController->getNameFromIndex(indexFileToCopy)) == -1){
+        string contentToCopy = wsController->getContentFromIndex(indexFileToCopy);
+        if(wsController->newFile(clickedIndex, wsController->getNameFromIndex(indexFileToCopy), contentToCopy) == -1){
             QMessageBox::warning(this, "Adding File Error", "A file with this name already exists!");
         } else {
             wsController->deleteFile(indexFileToCopy);

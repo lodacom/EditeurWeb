@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <QIcon>
 #include <fstream>
+#include <fcntl.h>
 #define ELEMENT_TYPE 0
 #define FILE_TYPE 1
 #define FOLDER_TYPE 2
@@ -52,12 +53,14 @@ public:
     virtual int getType();//retourne une constante permettant de reconnaitre le type de l'objet instancié
     virtual void deleteElement();//efface physiquement et visuellement l'élément
     virtual void dropElement(int i); //
-    virtual int newFile(string fileName);
+    virtual int newFile(string fileName, string content = "");
     virtual int newFolder(string fileName);
     virtual int renameFile(string newName);
     virtual int renameElement(int elementPosition, string newName);
     virtual void sort();
     virtual void setQItemName(string newName);
+    virtual string getContent();
+    virtual void setContent(string newContent);
 protected:
     //Attributs
     string parentPath;//Chemin du dossier parent

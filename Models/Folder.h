@@ -22,11 +22,13 @@ public:
     virtual QStandardItem* getQItem(int i = 0);
     virtual void deleteElement();
     virtual void dropElement(int position);
-    virtual int newFile(string fileName);
+    virtual int newFile(string fileName, string content="");
     virtual int newFolder(string folderName);
     virtual int findFilePosition(string fileName);
     virtual int findFolderPosition(string folderName);
     virtual int renameElement(int elementPosition, string newName);
+    virtual File getFileByPosition(int position);
+
 protected:
     //Attributs
     vector<File> files;//Les fichiers du répertoire

@@ -90,6 +90,7 @@ QStandardItem* WorkSpace::getQItem(){
     }
     return qItem;
 }
+
 Element* WorkSpace::getElement(list<int> *accessList){
     if (accessList->size() == 1){
         return &projects[accessList->front()];

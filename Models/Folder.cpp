@@ -135,6 +135,25 @@ Element* Folder::getElement(list<int>* accessList){
     }
 }
 
+//Folder* Folder::getFolder(list<int>* accessList){
+//    if (accessList->size() == 1){
+//        if (accessList->front() < (int)folders.size()){
+//            return &folders[accessList->front()];
+//        }
+////        else
+////            return NULL;
+//    }
+//    else{
+//        int folderNumber = accessList->front();
+//        accessList->pop_front();
+//        return folders[folderNumber].getFolder(accessList);
+//    }
+//}
+
+File Folder::getFileByPosition(int position){
+    return files[position];
+}
+
 int Folder::getType(){
     return FOLDER_TYPE;
 }
@@ -163,7 +182,7 @@ void Folder::dropElement(int position){
     }
 }
 
-int Folder::newFile(string fileName){
+int Folder::newFile(string fileName,string content){
     if(findFilePosition(fileName) != -1){
         return -1;
     }
@@ -176,6 +195,9 @@ int Folder::newFile(string fileName){
     }
     else{
         File *logicalFile = new File(fileName, this->getPath());
+        if(!content.empty()){
+            logicalFile->setContent(content);
+        }
         this->addFile(logicalFile);
         this->sort();
         int position = findFilePosition(fileName);
