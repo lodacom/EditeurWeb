@@ -20,7 +20,9 @@ HEADERS += \
     Controllers/WorkSpaceTreeController.h \
     Views/CentralEditor.h \
     Controllers/CompleterController.h \
-    Views/HtmlTreeWidget.h
+    Views/HtmlTreeWidget.h \
+    Models/syntaxtreeitem.h \
+    Models/syntaxtree.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -43,7 +45,9 @@ SOURCES += \
     Controllers/Highlighting/CSSHighlighter.cpp \
     Views/CentralEditor.cpp \
     Controllers/CompleterController.cpp \
-    Views/HtmlTreeWidget.cpp
+    Views/HtmlTreeWidget.cpp \
+    Models/syntaxtreeitem.cpp \
+    Models/syntaxtree.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \
@@ -54,7 +58,8 @@ OTHER_FILES += \
     Resources/CSS.txt
 
 RESOURCES += \
-    completion.qrc
+    completion.qrc \
+    examples.qrc
 
 FORMS += \
     Views/htmltreewidget.ui
