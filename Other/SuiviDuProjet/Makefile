@@ -1,17 +1,18 @@
 # Fichier principal.
-latexfile = rapportPreliminaire
+latexfile = rapportProjet
 
 # Compilateur.
 TEX = xelatex
 
 
 $(latexfile).pdf : $(latexfile).tex
-	while ($(TEX) $(latexfile) ; \
-	grep -q "Rerun to get cross" $(latexfile).log ) do true ; \
-	done
+	xelatex $(latexfile).tex
+	makeglossaries $(latexfile).glo
+	xelatex $(latexfile).tex
+	xelatex $(latexfile).tex
 
 clean:
-	rm *.glo *.xdy *.pyg *.aux
+	rm  -f *.glo *.xdy *.pyg *.aux *.glg *.gls *.lof *.toc *.ist
 
 look:
 	open $(latexfile).pdf

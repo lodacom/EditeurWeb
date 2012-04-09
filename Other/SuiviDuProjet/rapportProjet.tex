@@ -1,0 +1,158 @@
+\documentclass[a4paper, 12pt]{report}
+
+\title{Editeur web}
+\author{Pierre Burc, Olivier Duplouy, Hamza Erraji, Issame Amal, Mickaël Berger, Joachim Divet, Zaydane Sadiki & Abdelhamid Belarbi}
+
+%% Pour des marges plus équitables.
+\usepackage[margin=1.5cm]{geometry}
+%% Pour la langue des titres et sous-titres.
+\usepackage[francais]{babel}
+%% Pour de belles images.
+\usepackage{graphicx}
+%% Pour la police de caractères.
+\usepackage{fontspec}
+\setmainfont{Delicious-Roman}
+%% Pour faire le glossaire.
+\usepackage{glossaries}
+\makeglossaries
+%% Après première compilation écrire ligne suivante dans un terminal:
+%% miktex-makeindex -s rapportStageAbdel.ist -t rapportStageAbdel.glg -o rapportStageAbdel.gls rapportStageAbdel.glo
+%% re-compiler ensuite.
+\begin{document}
+	%% Glossaire
+	\newglossaryentry{UML}
+	{
+		name=UML,
+		description={Unified Modeling Language, langage de modélisation graphique à base de pictogrammes}
+	}
+
+	\newglossaryentry{diagramme de Gantt}
+	{
+		name=diagramme de Gantt,
+		description={Le diagramme de Gantt est un outil utilisé en ordonnancement et gestion de projet et permettant de visualiser dans le temps
+		les diverses tâches liées composant un projet. Il permet de représenter graphiquement l'avancement du projet}
+	}
+	
+	\newglossaryentry{bogue}
+	{
+		name=bogue,
+		description={En informatique, un bug (de l’anglais bug, « insecte ») ou bogue est un défaut de conception d'un programme
+		informatique à l'origine d'un dysfonctionnement},
+		plural=bogues
+	}
+	
+	\begin{titlepage}
+		\center{\includegraphics[width=5cm]{images/logoUM2.png}}	\\ 
+		~\\
+		~\\
+		~\\
+		~\\
+		~\\		
+		\begin{center}
+			{\large Rapport préliminaire de projet} \\
+			{\large Licence 3}\\
+			\vspace{1,5cm}
+			{\Huge Editeur de sites web}\\
+			~\\
+			~\\
+			~\\
+			\includegraphics[width=12.5cm]{images/logoTest1.png}
+			~\\
+			~\\
+			{\large Réalisé par :} \\
+			~\\
+			{\LARGE Pierre Burc, Olivier Duplouy, \\
+				      Hamza Erraji, Issame Amal,\\
+				      Mickaël Berger, Joachim Divet,\\
+				      Zaydane Sadiki et Abdelhamid Belarbi}\\
+			\vspace{1,5cm}
+			{\large Sous la direction de :} \\
+			~\\
+			{\LARGE Michel Meynard} \\
+			\vspace{2.5cm}
+			{\large Année universitaire 2011-2012}			
+		\end{center}
+	\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{chapter}*{Remerciements}
+	Merci
+	\end{chapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%% Table des matières.
+	\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{chapter}*{Introduction}
+	\addcontentsline{toc}{chapter}{Introduction}
+	Petite description: lieu date contexte météo...
+	\end{chapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{part}{Analyse}
+		\begin{chapter}{Cahier des charges}
+		\end{chapter}
+		\begin{chapter}{Étude de projets existants}
+		\end{chapter}
+		\begin{chapter}{Choix des outils}
+		\end{chapter}
+		\begin{chapter}{Organisation}
+		\end{chapter}
+	\end{part}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{part}{Conception}
+		\begin{chapter}{Décomposition en sous systèmes}
+					\gls{UML}
+		\end{chapter}
+		\begin{chapter}{Cas d'utilisations}
+		\end{chapter}
+		\begin{chapter}{Diagrammes des classes}
+		\end{chapter}
+		\begin{chapter}{Diagrammes d'états-transitions}
+			Pas sûr on verra si on à le temps.
+		\end{chapter}
+	\end{part}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{part}{L'oeuvre}
+		\begin{chapter}{Travail de groupe}
+			Là on parle des réunions, pourquoi pas mettre un extrait de journal.
+		\end{chapter}
+		\begin{chapter}{Implémentation}
+			Ici on aborde les problèmes de la documentation, de nouvelles bibliothèques, de mettre en place nos algorithmes "en vrai", ... 
+		\end{chapter}
+		\begin{chapter}{Résultat}
+			On va essayer de caser des trucs ici.
+		\end{chapter}
+		\begin{chapter}{Discussion}
+			Critique (positive) du résultat, le cahier des charges est-il respecté ? améliorations possibles, erreurs qu'on à pu faire.
+		\end{chapter}
+	\end{part}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{chapter}*{Conclusion}
+		Oué on s'est bien marré et tout et tout.
+	\end{chapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%% Glossaire
+	\renewcommand\glossaryname{Glossaire}
+	\printglossaries
+	%% Table des figures
+	\listoffigures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%% Sitographie
+	\renewcommand\bibname{Sitographie}%% Changement du titre de bibliographie en sitographie.
+	\begin{thebibliography}{2}
+		\bibitem{wikipedia}
+		Wikipédia : http://fr.wikipedia.org/wiki\\
+		L'encyclopédie en ligne de laquelle j'ai tiré certaines définitions présentes dans le glossaire.
+		~\\
+		\bibitem{yUML}
+		yUML : www.yuml.me \\
+		Ce site permet de générer à la volée des diagrammes \gls{UML}, extrêmement utile lorsqu'il s'agit de travail de groupe.
+	\end{thebibliography}
+\end{document}
