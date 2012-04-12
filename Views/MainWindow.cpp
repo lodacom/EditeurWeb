@@ -4,12 +4,12 @@
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)//,completer(0)
 {
     editor=new CentralEditor(parent);
-
+    setupWorkSpaceDock();
     setupFileMenu();
     setupHelpMenu();
     //setupEditor();
     setupColoration();
-    setupWorkSpaceDock();
+
     setCentralWidget(editor);
     QMainWindow::setWindowTitle(tr("WebShacke"));
 
@@ -65,7 +65,7 @@ void MainWindow::setupFileMenu()
 
     fileMenu->addAction(tr("&New"), this, SLOT(newFile()),
                         QKeySequence::New);
-
+    fileMenu->addAction(tr("&New Project"), treeView, SLOT(newProject()));
     fileMenu->addAction(tr("&Open..."), this, SLOT(openFile()),
                         QKeySequence::Open);
     fileMenu->addAction(tr("&Select WorkSpace"), this, SLOT(selectWorkSpace()));
