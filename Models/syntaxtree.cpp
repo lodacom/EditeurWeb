@@ -1,14 +1,11 @@
-#include "syntaxtree.h"
-
 #include <QtGui>
+#include <QtXml/QDomDocument>
+#include <QtXml/QDomNode>
 
-#include "syntaxtreeitem.h"
 #include "syntaxtree.h"
-
-#include <iostream>
-using std::cout;
-using std::endl;
+#include "syntaxtreeitem.h"
 #include "HtmlData.h"
+
 //! [0]
 SyntaxTree::SyntaxTree(const QString &data, QObject *parent)
     : QAbstractItemModel(parent)
@@ -136,40 +133,60 @@ void SyntaxTree::setupModelData(const QStringList &lines, SyntaxTreeItem *parent
     int number = 0;
     while (number < lines.count())
     {
-        int position = 0;
-        while (position < lines[number].length())
-        {
-            if (lines[number].mid(position, 1) != " ")
-                break;
-            position++;
-        }
         // Supprime les espaces blancs au début et à la fin de la ligne.
-        QString lineData = lines[number].mid(position).trimmed();
+        QString lineData = lines[number].trimmed();
 
         if (!lineData.isEmpty())
         {
-            QList<QVariant> s;
-            /*
-            if (HtmlData::scriptTagOpenRegex.indexIn(lineData) != -1)
-            {
-            }
+            QList<QVariant> newNode;
 
-            if (HtmlData::styleTagOpenRegex.indexIn(lineData) != -1)
-            {
-            }
-            */
+            QRegExp expOpenTag = HtmlData::tagOpenBeginRegex;
+            QRegExp expCloseTag = HtmlData::tagCloseRegex;
+            int index1 = expOpenTag.indexIn(lineData);
+            int index2 = expCloseTag.indexIn(lineData);
 
-            if (HtmlData::tagOpenBeginRegex.indexIn(lineData) != -1)
+            while (index1 >= 0 or index2 >= 0)
             {
-                s << HtmlData::tagOpenBeginRegex.capturedTexts() << number + 1;
-            }
+                newNode.clear();
+                if(index2 < index1)
+                {
+                    QMessageBox msgBox;
+                    QStringList t = expOpenTag.capturedTexts();
+                    t << QString::number(index1) << QString::number(index2);
+                    msgBox.setText(t.join(""));
+                    msgBox.exec();
+                    newNode << expOpenTag.capturedTexts() << number + 1;
+                    if (!parents.isEmpty())
+                    {
+                        if (parents.last()->childCount() > 0)
+                        {
+                            parents << parents.last()->child(parents.last()->childCount()-1);
+                        }
 
-            if (!s.isEmpty())
-            {
-                parents.last()->appendChild(new SyntaxTreeItem(s, parents.last()));
+                        if (!newNode.isEmpty())
+                        {
+                            parents.last()->appendChild(new SyntaxTreeItem(newNode, parents.last()));
+                            newNode.clear();
+                        }
+                    }
+                    else
+                    {
+                        parent->appendChild(new SyntaxTreeItem(newNode, parent));
+                    }
+                    int len = expOpenTag.matchedLength();
+                    index1 = expOpenTag.indexIn(lineData, index1 + len);
+                    index2 = expCloseTag.indexIn(lineData, index1 + len);
+               }
+               else
+               {
+                    if(!parents.isEmpty())
+                        parents.pop_back();
+                    int len = expCloseTag.matchedLength();
+                    index1 = expOpenTag.indexIn(lineData, index2 + len);
+                    index2 = expCloseTag.indexIn(lineData, index2 + len);
+               }
             }
         }
-
         number++;
     }
 }
