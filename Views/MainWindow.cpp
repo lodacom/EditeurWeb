@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)//,completer(0)
     setupWorkSpaceDock();
     setupFileMenu();
     setupHelpMenu();
-    //setupEditor();
     setupColoration();
 
     setCentralWidget(editor);
@@ -116,36 +115,3 @@ void MainWindow::setupWorkSpaceDock()
     dockContents->setLayout(dockLayout);
     QObject::connect(treeView, SIGNAL(fileOpened(QString)), this, SLOT(openFile(QString)));
 }
-
-
-/*QStringListModel* MainWindow::updateListVar()
-{
-    QStringList list_var;
-    PhpDico *essai=new PhpDico(editor->document());
-    list_var=essai->searchInFile();
-    return new QStringListModel(list_var,completer);
-}
-
-QAbstractItemModel *MainWindow::modelFromFile(const QString& fileName)
-{
-    QFile file(fileName);
-    if (!file.open(QFile::ReadOnly))
-        return new QStringListModel(completer);
-
-#ifndef QT_NO_CURSOR
-    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-#endif
-    QStringList words;
-
-    while (!file.atEnd())
-    {
-        QByteArray line = file.readLine();
-        if (!line.isEmpty())
-            words << line.trimmed();
-    }
-
-#ifndef QT_NO_CURSOR
-    QApplication::restoreOverrideCursor();
-#endif
-    return new QStringListModel(words, completer);
-}*/

@@ -34,12 +34,13 @@ public slots:
     void openFile(const QString &path = QString());
     void selectWorkSpace();
 private:
-    //void setupEditor();
     void setupFileMenu();
     void setupHelpMenu();
     void setupColoration();
     void setupWorkSpaceDock();
     //void setupHtmlDock();
+
+
     CentralEditor *editor;
 
     QMenu *menuColoration;
