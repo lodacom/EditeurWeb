@@ -1,44 +1,32 @@
+#ifndef COMPLETION_H
+#define COMPLETION_H
+
 #include <QTextEdit>
-#include <QString>
-#include <QAbstractItemModel>
-#include <QFile>
-#include <QStringListModel>
-#include <string>
-#include <QApplication>
-#include <QCompleter>
-#include <QKeyEvent>
-#include <QAbstractItemView>
-#include <QScrollBar>
-#include <QtGui>
+//#include <Views/CentralEditor.h>
+
 QT_BEGIN_NAMESPACE
 class QCompleter;
 QT_END_NAMESPACE
 
-#ifndef COMPLETION_H
-#define COMPLETION_H
-
-class CompleterController
+class CompleterController: public QTextEdit
 {
-
+ Q_OBJECT
 
 public:
-    CompleterController();
+    CompleterController(QWidget *parent = 0);
     ~CompleterController();
 
-    void setCompleter(QCompleter *c);
-    QCompleter *completer() const;
-/*
-protected:
-    void keyPressEvent(QKeyEvent *e);
-    void focusInEvent(QFocusEvent *e);
+    //void setCompleter(QCompleter *c);
+    //QCompleter *completer() const;
+    //void keyPressEvent(QKeyEvent *e);
+
+    //void focusInEvent(QFocusEvent *e);
 
 private slots:
-    void insertCompletion(const QString &completion);
+    //void insertCompletion(const QString &completion);
 
 private:
-    QString textUnderCursor() const;
-*/
-private:
+   // QString textUnderCursor() const;
     QCompleter *completion_text;
 };
 
