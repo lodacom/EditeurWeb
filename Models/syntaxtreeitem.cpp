@@ -1,4 +1,4 @@
-#include "syntaxtreeitem.h"
+#include "SyntaxTreeItem.h"
 
 #include <QStringList>
 

@@ -21,8 +21,8 @@ HEADERS += \
     Views/CentralEditor.h \
     Controllers/CompleterController.h \
     Views/HtmlTreeWidget.h \
-    Models/syntaxtreeitem.h \
-    Models/syntaxtree.h
+    Models/SyntaxTreeItem.h \
+    Models/SyntaxTree.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -46,8 +46,8 @@ SOURCES += \
     Views/CentralEditor.cpp \
     Controllers/CompleterController.cpp \
     Views/HtmlTreeWidget.cpp \
-    Models/syntaxtreeitem.cpp \
-    Models/syntaxtree.cpp
+    Models/SyntaxTreeItem.cpp \
+    Models/SyntaxTree.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \
