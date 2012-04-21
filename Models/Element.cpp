@@ -83,7 +83,7 @@ void Element::dropElement(int i){
     if(i){;}
 }
 int Element::newFile(string fileName, string content){
-    if(fileName.empty()){;}
+    if(fileName.empty() && content.empty()){;}
     return -1;
 }
 int Element::newFolder(string folderName){

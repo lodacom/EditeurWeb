@@ -9,7 +9,7 @@ WorkSpace::~WorkSpace(){
     projects.clear();
 }
 void WorkSpace::clear(){
-    for (int i = 0; i < projects.size(); i++){
+    for (size_t i = 0; i < projects.size(); i++){
         projects[i].clear();
     }
     delete qItem;

@@ -1,7 +1,8 @@
 #include "WorkSpaceTreeController.h"
 
 WorkSpaceTreeController::WorkSpaceTreeController(){
-    qItemModel = new QStandardItemModel();
+    qItemModel = NULL;
+    workSpace = NULL;
 }
 
 WorkSpaceTreeController::~WorkSpaceTreeController(){
@@ -19,16 +20,23 @@ void WorkSpaceTreeController::setWorkSpace(string path){
     size_t lastSlashPos = path.find_last_of('/');
     parentPath = path.substr(0, lastSlashPos);
     name = path.substr(lastSlashPos + 1, path.size());
+    if(workSpace != NULL){
+        //workSpace->clear();
+        delete workSpace;
+        delete qItemModel;
+    }
     workSpace = new WorkSpace(name, parentPath);
+    qItemModel = new QStandardItemModel();
     workSpace->scan();
     workSpace->sort();
     QStandardItem *wsItem = workSpace->getQItem();
-    qItemModel->clear();
+    //qItemModel->clear();
     for (int i = 0; i < wsItem->rowCount(); i++){
         qItemModel->appendRow(wsItem->takeChild(i));
     }
     qItemModel->setHeaderData(0, Qt::Horizontal, "Projects", Qt::DisplayRole);
-    wsItem->~QStandardItem();
+    emit newWorkSpace();
+    delete wsItem;
 }
 
 QStandardItemModel* WorkSpaceTreeController::getQItemModel(){
@@ -150,4 +158,5 @@ int WorkSpaceTreeController::renameFile(const QModelIndex &index, string newName
     }
     return ok;
 }
+
 

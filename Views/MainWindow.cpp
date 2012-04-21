@@ -62,8 +62,8 @@ void MainWindow::setupFileMenu()
     QMenu *fileMenu = new QMenu(tr("&File"), this);
     menuBar()->addMenu(fileMenu);
 
-    fileMenu->addAction(tr("&New"), this, SLOT(newFile()),
-                        QKeySequence::New);
+    /*fileMenu->addAction(tr("&New"), this, SLOT(newFile()),
+                        QKeySequence::New);*/
     fileMenu->addAction(tr("&New Project"), treeView, SLOT(newProject()));
     fileMenu->addAction(tr("&Open..."), this, SLOT(openFile()),
                         QKeySequence::Open);

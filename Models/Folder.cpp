@@ -11,10 +11,10 @@ Folder::~Folder(){
     folders.clear();
 }
 void Folder::clear(){
-    for (int i = 0; i < files.size(); i++){
+    for (size_t i = 0; i < files.size(); i++){
         files[i].clear();
     }
-    for (int i = 0; i < folders.size(); i++){
+    for (size_t i = 0; i < folders.size(); i++){
         folders[i].clear();
     }
     delete qItem;
