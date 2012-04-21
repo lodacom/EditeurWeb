@@ -13,7 +13,7 @@ public:
     virtual int getType();
 private:
     //Attributs
-    string extension;//Extension du fichier
+
 };
 
 #endif // FILE_H

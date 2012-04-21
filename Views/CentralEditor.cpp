@@ -9,22 +9,34 @@
 #include <QScrollBar>
 #include <QStringListModel>
 
-CentralEditor::CentralEditor(QWidget *parent):QTextEdit(parent),completion_text(0)
+CentralEditor::CentralEditor(QWidget *parent, string filePath):QTextEdit(parent),completion_text(0)
 {
     completion_text = new QCompleter(this);
-
+    this->filePath = filePath;
     setupEditor();
 }
 
 void CentralEditor::setupEditor()
 {
     QFont font;
+    string extension = Tools::getExtension(filePath);
     font.setFamily("Courier");
     font.setFixedPitch(true);
     font.setPointSize(10);
-
     this->setFont(font);
 
+   if (extension == "php"){
+    colorationPHP();
+   }
+   else if(extension == "html" || extension == "htm"){
+   colorationHTML();
+   }
+   else if(extension == "css"){
+        colorationCSS();
+   }
+   else if(extension == "js"){
+        colorationJavaScript();
+   }
 }
 
 /*Partie complétion*/

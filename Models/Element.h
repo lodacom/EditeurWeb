@@ -15,6 +15,7 @@
 #include <QIcon>
 #include <fstream>
 #include <fcntl.h>
+#include "../Tools/Tools.h"
 #define ELEMENT_TYPE 0
 #define FILE_TYPE 1
 #define FOLDER_TYPE 2
@@ -61,11 +62,11 @@ public:
     virtual void setQItemName(string newName);
     virtual string getContent();
     virtual void setContent(string newContent);
+    virtual void clear();
 protected:
     //Attributs
     string parentPath;//Chemin du dossier parent
     string name;//Nom de l'élément
-    Element *parent;
     QStandardItem *qItem;
 };
 

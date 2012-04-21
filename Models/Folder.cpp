@@ -3,10 +3,22 @@
 Folder::Folder(string name, string parentPath):Element(name, parentPath){
     folders = vector<Folder>();
     files = vector<File>();
-    qItem->setIcon(QIcon("Pics/Folder-icon.png"));
+    qItem->setIcon(*Tools::projectIcon);
 }
 
-Folder::~Folder(){}
+Folder::~Folder(){
+    files.clear();
+    folders.clear();
+}
+void Folder::clear(){
+    for (int i = 0; i < files.size(); i++){
+        files[i].clear();
+    }
+    for (int i = 0; i < folders.size(); i++){
+        folders[i].clear();
+    }
+    delete qItem;
+}
 
 bool Folder::isEmpty(){
     if(files.empty() && folders.empty())
@@ -51,7 +63,7 @@ void Folder::scan(){
     struct dirent* readFile;
     string sPath;
     char *cPath, *temp = NULL;
-    size_t cPathSize;
+    size_t cPathSize, tempSize = 512;
     struct stat infosFichier;
     //Bloc de conversion string vers char* pour la compatibilité avec les appels systeme
     sPath = this->getPath();
@@ -66,9 +78,9 @@ void Folder::scan(){
     else{
 	Folder newFolder;
 	File newFile;
+        temp = (char*)malloc(tempSize * sizeof(char));
         while((readFile = readdir(currentDirectory)) != NULL){//Parcours des fichiers du répertoire
-	    //Bloc de création du chemin du fichier parcourru
-            temp = (char*)malloc(strlen(cPath) + sizeof(readFile->d_name) + 1);
+            //Bloc de création du chemin du fichier parcouru
 	    strcpy(temp, cPath);
 	    strcat(temp, "/");
             strcat(temp, readFile->d_name);
@@ -91,9 +103,10 @@ void Folder::scan(){
 	}
     }
     //libération de l'espace mémoire
-    delete [] cPath;
+
     delete readFile;
-    delete temp;
+    delete[] cPath;
+    free(temp);
     closedir(currentDirectory);
 }
 

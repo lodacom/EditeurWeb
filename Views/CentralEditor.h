@@ -6,7 +6,7 @@
 #include <QAbstractItemModel>
 #include <QTextEdit>
 #include <QFile>
-
+#include <string>
 QT_BEGIN_NAMESPACE
 class QCompleter;
 QT_END_NAMESPACE
@@ -17,6 +17,8 @@ QT_END_NAMESPACE
 #include "Controllers/Highlighting/HtmlHighlighter.h"
 #include "Controllers/Highlighting/JavaScriptHighlighter.h"
 #include "Controllers/Highlighting/PhpHighlighter.h"
+#include "Tools/Tools.h"
+using namespace std;
 #ifndef CENTRALEDITOR_H
 #define CENTRALEDITOR_H
 
@@ -25,7 +27,7 @@ class CentralEditor:public QTextEdit
     Q_OBJECT
 
 public:
-    CentralEditor(QWidget *parent = 0);
+    CentralEditor(QWidget *parent = 0, string filePath = "");
     void setupEditor();
     void setCompleter(QCompleter *c);
     QCompleter *completer() const;
@@ -45,7 +47,7 @@ private:
     //CompleterController *completerController;
     QCompleter *completion_text;
     QString textUnderCursor() const;
-
+    string filePath;
     Highlighter *highlighter;
     QAbstractItemModel *modelFromFile(const QString& fileName);
 

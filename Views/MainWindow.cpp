@@ -3,13 +3,13 @@
 
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)//,completer(0)
 {
-    editor=new CentralEditor(parent);
+    editorTab = new EditorTab();
     setupWorkSpaceDock();
     setupFileMenu();
     setupHelpMenu();
     setupColoration();
 
-    setCentralWidget(editor);
+    setCentralWidget(editorTab);
     QMainWindow::setWindowTitle(tr("WebShacke"));
 
     QDockWidget *dock = new QDockWidget("Html", this);
@@ -28,24 +28,24 @@ void MainWindow::about()
                 tr("<p> Ok </p>"));
 }
 
-void MainWindow::newFile()
-{
-    editor->clear();
-}
 
 void MainWindow::openFile(const QString &path)
 {
-    QString fileName = path;
-
-    if (fileName.isNull())
-        fileName = QFileDialog::getOpenFileName(this,
+    QString filePath = path;
+    CentralEditor *editor;
+    if (filePath.isNull())
+        filePath = QFileDialog::getOpenFileName(this,
             tr("Open File"), "", "C++ Files (*.cpp *.h)");
 
-    if (!fileName.isEmpty())
+    if (!filePath.isEmpty())
     {
-        QFile file(fileName);
-        if (file.open(QFile::ReadOnly | QFile::Text))
+        QFile file(filePath);
+        if (file.open(QFile::ReadOnly | QFile::Text)){
+            editor = new CentralEditor(this, filePath.toStdString());
             editor->setPlainText(file.readAll());
+            int index = editorTab->addTab(editor, Tools::getQName(filePath));
+            editorTab->setCurrentIndex(index);
+        }
     }
 }
 
@@ -96,11 +96,12 @@ void MainWindow::setupColoration()
      menuColoration->addAction(actionHTML);
      menuColoration->addAction(actionJavaScript);
      menuColoration->addAction(actionPHP);
-
+     /*
      QObject::connect(actionCSS, SIGNAL(triggered()),editor, SLOT(colorationCSS()));
      QObject::connect(actionPHP, SIGNAL(triggered()),editor, SLOT(colorationPHP()));
      QObject::connect(actionJavaScript, SIGNAL(triggered()),editor, SLOT(colorationJavaScript()));
      QObject::connect(actionHTML, SIGNAL(triggered()),editor, SLOT(colorationHTML()));
+     */
 }
 
 void MainWindow::setupWorkSpaceDock()

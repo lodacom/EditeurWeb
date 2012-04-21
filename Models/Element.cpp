@@ -3,11 +3,15 @@
 Element::Element(string name, string parentPath){
     this->name = name;
     this->parentPath = parentPath;
-    this->parent = parent;
     this->qItem = new QStandardItem(QString(name.c_str()));
 }
 
-Element::~Element(){}
+Element::~Element(){
+
+}
+void Element::clear(){
+    delete qItem;
+}
 
 string Element::getContent(){
     string content="";

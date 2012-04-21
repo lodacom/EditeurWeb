@@ -3,23 +3,25 @@ File::File(string name, string parentPath):Element(name, parentPath){
     string extension;
     extension = getExtension();
     if(extension == "php"){
-        qItem->setIcon(QIcon("Pics/File-PHP-icon.png"));
+        qItem->setIcon(*Tools::phpIcon);
     }
     else if(extension == "html"){
-        qItem->setIcon(QIcon("Pics/File-HTML-icon.png"));
+        qItem->setIcon(*Tools::htmlIcon);
     }
     else if(extension == "js"){
-        qItem->setIcon(QIcon("Pics/File-JS-icon.png"));
+        qItem->setIcon(*Tools::jsIcon);
     }
     else if(extension == "css"){
-        qItem->setIcon(QIcon("Pics/File-CSS-icon.png"));
+        qItem->setIcon(*Tools::cssIcon);
     }
     else{
-        qItem->setIcon(QIcon("Pics/File-icon.png"));
+        qItem->setIcon(*Tools::fileIcon);
     }
 }
 
-File::~File(){}
+File::~File(){
+
+}
 
 string File::getExtension(){
         if (name.find('.') == (size_t) -1){

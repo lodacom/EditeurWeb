@@ -13,7 +13,7 @@
 #include "../Controllers/WorkSpaceTreeController.h"
 #include "HtmlTreeWidget.h"
 #include "WorkSpaceTree.h"
-
+#include "EditorTab.h"
 QT_BEGIN_NAMESPACE
 class QTextEdit;
 class QTreeWidgetItem;
@@ -30,7 +30,6 @@ public:
 
 public slots:
     void about();
-    void newFile();
     void openFile(const QString &path = QString());
     void selectWorkSpace();
 private:
@@ -41,7 +40,7 @@ private:
     //void setupHtmlDock();
 
 
-    CentralEditor *editor;
+    EditorTab *editorTab;
 
     QMenu *menuColoration;
     WorkSpaceTree *treeView;

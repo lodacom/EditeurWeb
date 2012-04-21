@@ -6,8 +6,15 @@ WorkSpace::WorkSpace(string name, string parentPath):Element(name, parentPath){
 }
 
 WorkSpace::~WorkSpace(){
-
+    projects.clear();
 }
+void WorkSpace::clear(){
+    for (int i = 0; i < projects.size(); i++){
+        projects[i].clear();
+    }
+    delete qItem;
+}
+
 void WorkSpace::addProject(Project *project){
     projects.push_back(*project);
 }
@@ -33,11 +40,12 @@ void WorkSpace::scan(){
                 FILE* projectFile = NULL;
                 char* folderPath = NULL;
                 char* proPath = NULL;
-
+                size_t folderPathSize = 512;
+                folderPath = (char*)malloc(folderPathSize * sizeof(char));
                 while ((readFile = readdir(workSpaceDir)) != NULL){//On parcourt les éléments du workspace
                         if(strcmp(readFile->d_name, ".") && strcmp(readFile->d_name, "..")){//On évite . et ..
 				//Bloc de création du path de l'élément
-                                folderPath = (char*)malloc(strlen(wPath) + sizeof(readFile->d_name) + 2);
+
 				strcpy(folderPath, wPath);
 				strcat(folderPath, "/");
                                 strcat(folderPath, readFile->d_name);
@@ -65,12 +73,12 @@ void WorkSpace::scan(){
                 if (projectFile){
                     fclose(projectFile);
                 }
-		delete [] folderPath;
-		delete [] proPath;
+                free(folderPath);
+                free(proPath);
 	}
         closedir(workSpaceDir);
         delete readFile;
-	delete wPath;
+        delete[] wPath;
 }
 
 void WorkSpace::sort(){
