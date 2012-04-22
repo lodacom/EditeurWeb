@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QtGui>
-#include <QStringListModel>
+#include <QApplication>
 
 #include "../Controllers/Highlighting/JavaScriptHighlighter.h"
 #include "../Controllers/Highlighting/HtmlHighlighter.h"
@@ -13,8 +13,10 @@
 #include "../Controllers/WorkSpaceTreeController.h"
 #include "HtmlTreeWidget.h"
 #include "WorkSpaceTree.h"
-#include "EditorTab.h"
+
 QT_BEGIN_NAMESPACE
+class QAction;
+class QMenu;
 class QTextEdit;
 class QTreeWidgetItem;
 class QWebView;
@@ -27,24 +29,89 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = 0);
+    MainWindow(const QString &fileName);
 
 public slots:
+    void open();
+    void save();
+    void saveAs();
+    void cut();
+    void copy();
+    void paste();
+    void undo();
+    void redo();
+    void selectAll();
+    void updateWindowMenu();
+    void updateMenus();
+    CentralEditor *createMdiChild();
+    void documentWasModified();
+    void switchLayoutDirection();
+    void setActiveSubWindow(QWidget *window);
     void about();
-    void openFile(const QString &path = QString());
+    void newFile();
+    //void openFile(const QString &path = QString());
     void selectWorkSpace();
+
+protected:
+    void closeEvent(QCloseEvent *event);
+
 private:
-    void setupFileMenu();
-    void setupHelpMenu();
-    void setupColoration();
+    void init();
+    //void setupColoration();
     void setupWorkSpaceDock();
     //void setupHtmlDock();
 
+    void createActions();
+    void createMenus();
+    void createToolBars();
+    void createStatusBar();
+    void readSettings();
+    void createVboxlayout();
+    void writeSettings();
 
-    EditorTab *editorTab;
+    CentralEditor *activeMdiChild();
+    QMdiSubWindow *findMdiChild(const QString &fileName);
 
-    QMenu *menuColoration;
+    QString strippedName(const QString &fullFileName);
     WorkSpaceTree *treeView;
     HtmlTreeWidget *htmlTreeWidget;
+
+    QMdiArea *zoneCentrale;
+    QSignalMapper *windowMapper;
+
+    QMenu *menuColoration;
+    QMenu *windowMenu;
+    QMenu *fileMenu;
+    QMenu *editMenu;
+    QMenu *helpMenu;
+
+    QToolBar *fileToolBar;
+    QToolBar *editToolBar;
+
+    QAction *actionHTML;
+    QAction *actionJavaScript;
+    QAction *actionPHP;
+    QAction *actionCSS;
+    QAction *newAct;
+    QAction *openAct;
+    QAction *saveAct;
+    QAction *saveAsAct;
+    QAction *closeAct;
+    QAction *closeAllAct;
+    QAction *tileAct;
+    QAction *cascadeAct;
+    QAction *nextAct;
+    QAction *previousAct;
+    QAction *exitAct;
+    QAction *cutAct;
+    QAction *copyAct;
+    QAction *pasteAct;
+    QAction *undoAct;
+    QAction *redoAct;
+    QAction *selectallAct;
+    QAction *separatorAct;
+    QAction *aboutAct;
+    QAction *aboutQtAct;
 };
 
 #endif

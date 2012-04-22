@@ -1,4 +1,5 @@
 #include "CentralEditor.h"
+#include <QtGui>
 #include <QCompleter>
 #include <QKeyEvent>
 #include <QAbstractItemView>
@@ -9,34 +10,25 @@
 #include <QScrollBar>
 #include <QStringListModel>
 
-CentralEditor::CentralEditor(QWidget *parent, string filePath):QTextEdit(parent),completion_text(0)
+CentralEditor::CentralEditor(QWidget *parent):QTextEdit(parent),completion_text(0)
 {
     completion_text = new QCompleter(this);
-    this->filePath = filePath;
+
+    setAttribute(Qt::WA_DeleteOnClose);
+    isUntitled = true;
+
     setupEditor();
 }
 
 void CentralEditor::setupEditor()
 {
     QFont font;
-    string extension = Tools::getExtension(filePath);
     font.setFamily("Courier");
     font.setFixedPitch(true);
     font.setPointSize(10);
+
     this->setFont(font);
 
-   if (extension == "php"){
-    colorationPHP();
-   }
-   else if(extension == "html" || extension == "htm"){
-   colorationHTML();
-   }
-   else if(extension == "css"){
-        colorationCSS();
-   }
-   else if(extension == "js"){
-        colorationJavaScript();
-   }
 }
 
 /*Partie complétion*/
@@ -220,3 +212,137 @@ void CentralEditor::colorationPHP()
      this->setCompleter(completion_text);
 }
 /*...............................................................................................................*/
+/*Partie gestion sauvegarde, création... pour les fichiers*/
+void CentralEditor::newFile()
+{
+    static int sequenceNumber = 1;
+
+    isUntitled = true;
+    curFile = tr("document%1.txt").arg(sequenceNumber++);
+    setWindowTitle(curFile + "[*]");
+
+    connect(document(), SIGNAL(contentsChanged()),
+            this, SLOT(documentWasModified()));
+}
+
+bool CentralEditor::loadFile(const QString &fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, tr("MDI"),
+                             tr("Cannot read file %1:\n%2.")
+                             .arg(fileName)
+                             .arg(file.errorString()));
+        return false;
+    }
+
+    QTextStream in(&file);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    setPlainText(in.readAll());
+    QApplication::restoreOverrideCursor();
+
+    setCurrentFile(fileName);
+
+    connect(document(), SIGNAL(contentsChanged()),
+            this, SLOT(documentWasModified()));
+
+    return true;
+}
+
+bool CentralEditor::save()
+{
+    if (isUntitled)
+    {
+        return saveAs();
+    }
+    else
+    {
+        return saveFile(curFile);
+    }
+}
+
+bool CentralEditor::saveAs()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
+                                                    curFile);
+    if (fileName.isEmpty())
+        return false;
+
+    return saveFile(fileName);
+}
+
+bool CentralEditor::saveFile(const QString &fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QFile::WriteOnly | QFile::Text))
+    {
+        QMessageBox::warning(this, tr("MDI"),
+                             tr("Cannot write file %1:\n%2.")
+                             .arg(fileName)
+                             .arg(file.errorString()));
+        return false;
+    }
+
+    QTextStream out(&file);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    out << toPlainText();
+    QApplication::restoreOverrideCursor();
+
+    setCurrentFile(fileName);
+    return true;
+}
+
+QString CentralEditor::userFriendlyCurrentFile()
+{
+    return strippedName(curFile);
+}
+
+void CentralEditor::closeEvent(QCloseEvent *event)
+{
+    if (maybeSave())
+    {
+        event->accept();
+    }
+    else
+    {
+        event->ignore();
+    }
+}
+
+void CentralEditor::documentWasModified()
+{
+    setWindowModified(document()->isModified());
+}
+
+bool CentralEditor::maybeSave()
+{
+    if (document()->isModified())
+    {
+        QMessageBox::StandardButton ret;
+        ret = QMessageBox::warning(this, tr("MDI"),
+                     tr("'%1' has been modified.\n"
+                        "Do you want to save your changes?")
+                     .arg(userFriendlyCurrentFile()),
+                     QMessageBox::Save | QMessageBox::Discard
+                     | QMessageBox::Cancel);
+        if (ret == QMessageBox::Save)
+            return save();
+        else if (ret == QMessageBox::Cancel)
+            return false;
+    }
+    return true;
+}
+
+void CentralEditor::setCurrentFile(const QString &fileName)
+{
+    curFile = QFileInfo(fileName).canonicalFilePath();
+    isUntitled = false;
+    document()->setModified(false);
+    setWindowModified(false);
+    setWindowTitle(userFriendlyCurrentFile() + "[*]");
+}
+
+QString CentralEditor::strippedName(const QString &fullFileName)
+{
+    return QFileInfo(fullFileName).fileName();
+}
