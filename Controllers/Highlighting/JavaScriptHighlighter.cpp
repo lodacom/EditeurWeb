@@ -1,9 +1,3 @@
-/*
- * Auteur : Abdelhamid
- * Description : configuration des formats, chaque type de mot reconnaissable
- * aura son propre format (format mot-clé, format commentaire, ...).
- */
-
 #include "JavaScriptHighlighter.h"
 
 JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent) : Highlighter(parent)

@@ -1,14 +1,19 @@
-/*
- * Auteur : Abdelhamid
- * Description : liste des mots reconnaissables du Html,
- * utilisable pour colorer et auto-compléter le code.
- */
-
+/*!
+* \file HtmlData.h
+* \brief déclaration de la classe de données du html.
+* \author Abdelhamid
+* \version 0.1
+*/
 #ifndef Html_h
 #define Html_h
 
 #include <QRegExp>
 
+/*!
+* \class HtmlData
+* \brief Liste d'attributs statiques référençant les mots clés
+* du langage html sous forme d'expressions régulières.
+*/
 class HtmlData
 {
     public:

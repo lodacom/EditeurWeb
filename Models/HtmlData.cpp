@@ -1,9 +1,3 @@
-/*
- * Auteur : Abdelhamid
- * Description : liste des mots reconnaissables du Html,
- * utilisable pour colorer et auto-compléter le code.
- */
-
 #include "HtmlData.h"
 
 QRegExp HtmlData::fileExtensionRegex("*.html|*.htm|*.xhtml|*.xslt");

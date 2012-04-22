@@ -2,8 +2,8 @@
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomNode>
 
-#include "syntaxtree.h"
-#include "syntaxtreeitem.h"
+#include "SyntaxTree.h"
+#include "SyntaxTreeItem.h"
 #include "HtmlData.h"
 
 //! [0]

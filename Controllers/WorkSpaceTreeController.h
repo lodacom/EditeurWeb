@@ -4,7 +4,8 @@
 #include <list>
 #include <pthread.h>
 #include "../Models/WorkSpace.h"
-class WorkSpaceTreeController{
+class WorkSpaceTreeController: public QObject{
+Q_OBJECT
 
 public:
     WorkSpaceTreeController();
@@ -22,6 +23,8 @@ public:
     virtual int renameFile(const QModelIndex &index, string newName);
     virtual string getContentFromIndex(const QModelIndex &index);
 //    virtual int pasteInFolder(const QModelIndex& index, string fileName, string content);
+signals:
+    void newWorkSpace();
 private:
     virtual list<int>* indexToList(const QModelIndex& index);
     QStandardItemModel *qItemModel;

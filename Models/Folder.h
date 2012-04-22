@@ -28,6 +28,7 @@ public:
     virtual int findFolderPosition(string folderName);
     virtual int renameElement(int elementPosition, string newName);
     virtual File getFileByPosition(int position);
+    virtual void clear();
 
 protected:
     //Attributs

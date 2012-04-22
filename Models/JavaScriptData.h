@@ -1,14 +1,20 @@
-/*
- * Auteur : Abdelhamid
- * Description : liste des mots reconnaissables du JavaScript,
- * utilisable pour colorer et auto-compléter le code.
- */
+/*!
+* \file JavaScriptData.h
+* \brief déclaration de la classe de données du JavaScript.
+* \author Abdelhamid
+* \version 0.1
+*/
 
 #ifndef JavaScriptData_h
 #define JavaScriptData_h
 
 #include <QRegExp>
 
+/*!
+* \class JavaScriptData
+* \brief Liste d'attributs statiques référençant les mots clés
+* du langage JavaScript sous forme d'expressions régulières.
+*/
 class JavaScriptData
 {
     public:

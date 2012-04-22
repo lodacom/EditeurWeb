@@ -22,7 +22,9 @@ HEADERS += \
     Controllers/CompleterController.h \
     Views/HtmlTreeWidget.h \
     Models/syntaxtreeitem.h \
-    Models/syntaxtree.h
+    Models/syntaxtree.h \
+    Tools/Tools.h \
+    Views/EditorTab.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -47,7 +49,9 @@ SOURCES += \
     Controllers/CompleterController.cpp \
     Views/HtmlTreeWidget.cpp \
     Models/syntaxtreeitem.cpp \
-    Models/syntaxtree.cpp
+    Models/syntaxtree.cpp \
+    Tools/Tools.cpp \
+    Views/EditorTab.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \
@@ -55,7 +59,23 @@ OTHER_FILES += \
     Resources/PHP.txt \
     Resources/JavaScript.txt \
     Resources/HTML.txt \
-    Resources/CSS.txt
+    Resources/CSS.txt \
+    Pics/Save.png \
+    Pics/Project-icon.png \
+    Pics/File-PHP-icon.png \
+    Pics/File-JS-icon.png \
+    Pics/File-HTML-icon.png \
+    Pics/File-CSS-icon.png \
+    Pics/Cut.png \
+    Pics/App-icon.png \
+    Pics/Paste.png \
+    Pics/Open.png \
+    Pics/save.png \
+    Pics/paste.png \
+    Pics/open.png \
+    Pics/new.png \
+    Pics/cut.png \
+    Pics/copy.png
 
 RESOURCES += \
     completion.qrc \

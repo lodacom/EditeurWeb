@@ -35,6 +35,7 @@ public slots:
     virtual void pasteFileFromPos();
     virtual void cutFileFromPos();
     virtual void renameElementFromPos();
+    virtual void setWSModel();
     //virtual void rightClickMenu(const QPoint& pos);
 
 private:

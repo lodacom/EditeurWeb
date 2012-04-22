@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     MainWindow window;
     QApplication::setWindowIcon(QIcon("Pics/App-icon.png"));
     window.showMaximized();
-
+    Tools::init();
     /* Provisoire, test de l'arborescence. Signé : Abdel */
     /*Q_INIT_RESOURCE(examples);
     QFile file(":/Examples/jocrisse.html");

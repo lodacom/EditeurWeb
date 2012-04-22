@@ -17,6 +17,7 @@ WorkSpaceTree::WorkSpaceTree(){
     this->setAcceptDrops(true);
     //
     setContextMenuPolicy(Qt::CustomContextMenu);
+    QObject::connect(wsController, SIGNAL(newWorkSpace()), this, SLOT(setWSModel()));
     QObject::connect(this, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(getFilePath(const QModelIndex &)));
 }
 
@@ -165,4 +166,9 @@ void WorkSpaceTree::getFilePath(const QModelIndex &index){
 
 void WorkSpaceTree::deleteFileFromPos(){
     wsController->deleteFile(clickedIndex);
+}
+
+void WorkSpaceTree::setWSModel(){
+    model = wsController->getQItemModel();
+    this->setModel(model);
 }

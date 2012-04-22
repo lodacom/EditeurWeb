@@ -1,11 +1,17 @@
-#include <QWidget>
+/*#include <QWidget>
 #include <QStringListModel>
 #include <QCompleter>
 #include <QFile>
-#include <QMenu>
-#include <QApplication>
+#include <QApplication>*/
+#include <QAbstractItemModel>
+#include <QTextEdit>
+#include <QFile>
 
-#include "Controllers/CompleterController.h"
+QT_BEGIN_NAMESPACE
+class QCompleter;
+QT_END_NAMESPACE
+
+//#include "Controllers/CompleterController.h"
 #include "Controllers/Highlighting/Highlighter.h"
 #include "Controllers/Highlighting/CSSHighlighter.h"
 #include "Controllers/Highlighting/HtmlHighlighter.h"
@@ -21,18 +27,44 @@ class CentralEditor:public QTextEdit
 public:
     CentralEditor(QWidget *parent = 0);
     void setupEditor();
+    void setCompleter(QCompleter *c);
+    QCompleter *completer() const;
+
+    void newFile();
+    bool loadFile(const QString &fileName);
+    bool save();
+    bool saveAs();
+    bool saveFile(const QString &fileName);
+    QString userFriendlyCurrentFile();
+    QString currentFile() { return curFile; }
 
 public slots:
     void colorationCSS();
     void colorationHTML();
     void colorationJavaScript();
     void colorationPHP();
+    void insertCompletion(const QString& completion);
+    void documentWasModified();
+
+protected:
+    void keyPressEvent(QKeyEvent *e);
+    void focusInEvent(QFocusEvent *e);
+     void closeEvent(QCloseEvent *event);
 
 private:
-    //QStringListModel* updateListVar();
-    CompleterController *completerController;
+    //CompleterController *completerController;
+    QCompleter *completion_text;
+    QString textUnderCursor() const;
+
     Highlighter *highlighter;
-    //QAbstractItemModel *modelFromFile(const QString& fileName);
+    QAbstractItemModel *modelFromFile(const QString& fileName);
+
+    bool maybeSave();
+    void setCurrentFile(const QString &fileName);
+    QString strippedName(const QString &fullFileName);
+
+    QString curFile;
+    bool isUntitled;
 };
 
 #endif // CENTRALEDITOR_H

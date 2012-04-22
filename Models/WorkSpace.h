@@ -20,6 +20,7 @@ public:
     virtual int findProjectPosition(string projectName);
     virtual int newProject(string projectName);
     virtual int renameElement(int elementPosition, string newName);
+    virtual void clear();
 private:
     //Attributs
     vector<Project> projects;//Vecteur de projets

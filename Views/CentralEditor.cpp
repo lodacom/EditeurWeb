@@ -1,9 +1,21 @@
 #include "CentralEditor.h"
-//#include "Models/PhpDico.h"
+#include <QtGui>
+#include <QCompleter>
+#include <QKeyEvent>
+#include <QAbstractItemView>
+#include <QtDebug>
+#include <QApplication>
+#include <QModelIndex>
+#include <QAbstractItemModel>
+#include <QScrollBar>
+#include <QStringListModel>
 
-CentralEditor::CentralEditor(QWidget *parent):QTextEdit(parent)
+CentralEditor::CentralEditor(QWidget *parent):QTextEdit(parent),completion_text(0)
 {
-    completerController = new CompleterController();
+    completion_text = new QCompleter(this);
+
+    setAttribute(Qt::WA_DeleteOnClose);
+    isUntitled = true;
 
     setupEditor();
 }
@@ -19,21 +31,13 @@ void CentralEditor::setupEditor()
 
 }
 
-/*Partie coloration et complétion*/
+/*Partie complétion*/
 /*...............................................................................................................*/
-/*QStringListModel* CentralEditor::updateListVar()
-{
-    QStringList list_var;
-    PhpDico *essai=new PhpDico(editor->document());
-    list_var=essai->searchInFile();
-    return new QStringListModel(list_var,completer);
-}
-*/
-/*QAbstractItemModel *CentralEditor::modelFromFile(const QString& fileName)
+QAbstractItemModel *CentralEditor::modelFromFile(const QString& fileName)
 {
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly))
-        return new QStringListModel(completer);
+        return new QStringListModel(completion_text);
 
 #ifndef QT_NO_CURSOR
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -50,43 +54,295 @@ void CentralEditor::setupEditor()
 #ifndef QT_NO_CURSOR
     QApplication::restoreOverrideCursor();
 #endif
-    return new QStringListModel(words, completer);
+    return new QStringListModel(words, completion_text);
 }
-*/
+
+QCompleter *CentralEditor::completer() const
+{
+    return completion_text;//on retourne tous les mots affiliés à ceux qu'on a trouvé
+}
+
+void CentralEditor::insertCompletion(const QString& completion)
+{
+
+   if (completion_text->widget() != this)
+        return;
+    QTextCursor tc= textCursor();
+    int extra = completion.length() - completion_text->completionPrefix().length();
+    tc.movePosition(QTextCursor::Left);
+    tc.movePosition(QTextCursor::EndOfWord);//on met le curseur à la fin du mot complété
+    tc.insertText(completion.right(extra));//complétion (rajout du reste du mot choisi)à droite
+    setTextCursor(tc);//mise en place de la suivie du curseur
+}
+
+QString CentralEditor::textUnderCursor() const
+{
+    QTextCursor tc= textCursor();
+    tc.select(QTextCursor::WordUnderCursor);//on sélectionne le mot que l'utilisateur a choisi
+    return tc.selectedText();//on renvoie le mot choisi par l'utilisateur
+}
+
+void CentralEditor::setCompleter(QCompleter *p_completer)
+{
+    if (completion_text)
+        QObject::disconnect(completion_text, 0,this, 0);//on déconnecte l'auto-compléteur de la fenêtre
+
+    completion_text = p_completer;
+
+    if (!completion_text)
+        return;
+
+    completion_text->setWidget(this);//on met en place la completion
+    completion_text->setCompletionMode(QCompleter::PopupCompletion);//mode de complétion
+    completion_text->setCaseSensitivity(Qt::CaseInsensitive);//non prise en compte de la casse (majuscule, minuscule)
+    QObject::connect(completion_text, SIGNAL(activated(QString)),this, SLOT(insertCompletion(QString)));
+   /* on connecte le compléteur à la fenêtre principale
+      la complétion s'active sur lactivation du clavier
+      et on fait l'action insertCompletion*/
+
+}
+
+void CentralEditor::focusInEvent(QFocusEvent *e)
+{
+    if (completion_text)//on regarde si la complétion est lancée
+        completion_text->setWidget(this);
+    QTextEdit::focusInEvent(e);
+}
+
+void CentralEditor::keyPressEvent(QKeyEvent *e)
+{
+    if (completion_text && completion_text->popup()->isVisible())
+    {
+        //Les clés suivantes sont suivies par le compléteur
+       switch (e->key())
+       {
+       case Qt::Key_Enter:
+       case Qt::Key_Return:
+       case Qt::Key_Escape:
+       case Qt::Key_Tab:
+       case Qt::Key_Backtab:
+            e->ignore();
+            return; // on laisse le compléteur avec son comportement par défaut
+       default:
+           break;
+       }
+    }
+
+    bool isShortcut = ((e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_E); // CTRL+E
+    if (!completion_text || !isShortcut) // do not process the shortcut when we have a completer
+        QTextEdit::keyPressEvent(e);
+
+    const bool ctrlOrShift = e->modifiers() & (Qt::ControlModifier | Qt::ShiftModifier);
+    if (!completion_text || (ctrlOrShift && e->text().isEmpty()))
+        return;
+
+    static QString eow("~!@#$%^&*()_+{}|:\"<>?,./;'[]\\-="); // end of word ??
+    bool hasModifier = (e->modifiers() != Qt::NoModifier) && !ctrlOrShift;
+    QString completionPrefix = textUnderCursor();
+
+    if (!isShortcut && (hasModifier || e->text().isEmpty()|| completionPrefix.length() < 1
+                      || eow.contains(e->text().right(1))))
+    {
+        completion_text->popup()->hide();
+        return;
+    }
+
+    if (completionPrefix != completion_text->completionPrefix())
+    {
+        completion_text->setCompletionPrefix(completionPrefix);
+        completion_text->popup()->setCurrentIndex(completion_text->completionModel()->index(0, 0));
+    }
+
+    /*Ci-dessous on met en place le rectangle avec srcoll bar qui apparaitra
+      *lors de la complétion. On calcule sa lageur avec le plus long mot trouvé
+      * et sa hauteur avec le nombre de mots trouvés*/
+    QRect cr = cursorRect();
+    cr.setWidth(completion_text->popup()->sizeHintForColumn(0)
+                + completion_text->popup()->verticalScrollBar()->sizeHint().width());
+    completion_text->complete(cr); // popup it up!
+}
+
+/*Partie coloration et utilisation du compléteur*/
+/*...............................................................................................................*/
 void CentralEditor::colorationCSS()
 {
     highlighter = new CSSHighlighter(this->document());
-    /*completer->setModelSorting(QCompleter::UnsortedModel);
-    completer->setCaseSensitivity(Qt::CaseInsensitive);
-    completer->setWrapAround(false);
-    completer->setModel(modelFromFile(":/Resources/CSS.txt"));*/
+
+    completion_text->setModelSorting(QCompleter::UnsortedModel);
+    completion_text->setCaseSensitivity(Qt::CaseInsensitive);
+    completion_text->setWrapAround(false);
+    completion_text->setModel(modelFromFile(":/Resources/CSS.txt"));
+
+    this->setCompleter(completion_text);
 }
 
 void CentralEditor::colorationHTML()
 {
      highlighter = new HtmlHighlighter(this->document());
-     /*completer->setModelSorting(QCompleter::UnsortedModel);
-     completer->setCaseSensitivity(Qt::CaseInsensitive);
-     completer->setWrapAround(false);
-     completer->setModel(modelFromFile(":/Resources/HTML.txt"));*/
+
+     completion_text->setModelSorting(QCompleter::UnsortedModel);
+     completion_text->setCaseSensitivity(Qt::CaseInsensitive);
+     completion_text->setWrapAround(false);
+     completion_text->setModel(modelFromFile(":/Resources/HTML.txt"));
+
+     this->setCompleter(completion_text);
 }
 
 void CentralEditor::colorationJavaScript()
 {
      highlighter = new JavaScriptHighlighter(this->document());
-     /*completer->setModelSorting(QCompleter::UnsortedModel);
-     completer->setCaseSensitivity(Qt::CaseInsensitive);
-     completer->setWrapAround(false);
-     completer->setModel(modelFromFile(":/Resources/JavaScript.txt"));*/
+
+     completion_text->setModelSorting(QCompleter::UnsortedModel);
+     completion_text->setCaseSensitivity(Qt::CaseInsensitive);
+     completion_text->setWrapAround(false);
+     completion_text->setModel(modelFromFile(":/Resources/JavaScript.txt"));
+
+     this->setCompleter(completion_text);
 }
 
 void CentralEditor::colorationPHP()
 {
      highlighter = new PhpHighlighter(this->document());
 
-     /*completer->setModelSorting(QCompleter::UnsortedModel);
-     completer->setCaseSensitivity(Qt::CaseInsensitive);
-     completer->setWrapAround(false);
-     completer->setModel(modelFromFile(":/Resources/PHP.txt"));*/
+     completion_text->setModelSorting(QCompleter::UnsortedModel);
+     completion_text->setCaseSensitivity(Qt::CaseInsensitive);
+     completion_text->setWrapAround(false);
+     completion_text->setModel(modelFromFile(":/Resources/PHP.txt"));
+
+     this->setCompleter(completion_text);
 }
 /*...............................................................................................................*/
+/*Partie gestion sauvegarde, création... pour les fichiers*/
+void CentralEditor::newFile()
+{
+    static int sequenceNumber = 1;
+
+    isUntitled = true;
+    curFile = tr("document%1.txt").arg(sequenceNumber++);
+    setWindowTitle(curFile + "[*]");
+
+    connect(document(), SIGNAL(contentsChanged()),
+            this, SLOT(documentWasModified()));
+}
+
+bool CentralEditor::loadFile(const QString &fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, tr("MDI"),
+                             tr("Cannot read file %1:\n%2.")
+                             .arg(fileName)
+                             .arg(file.errorString()));
+        return false;
+    }
+
+    QTextStream in(&file);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    setPlainText(in.readAll());
+    QApplication::restoreOverrideCursor();
+
+    setCurrentFile(fileName);
+
+    connect(document(), SIGNAL(contentsChanged()),
+            this, SLOT(documentWasModified()));
+
+    return true;
+}
+
+bool CentralEditor::save()
+{
+    if (isUntitled)
+    {
+        return saveAs();
+    }
+    else
+    {
+        return saveFile(curFile);
+    }
+}
+
+bool CentralEditor::saveAs()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
+                                                    curFile);
+    if (fileName.isEmpty())
+        return false;
+
+    return saveFile(fileName);
+}
+
+bool CentralEditor::saveFile(const QString &fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QFile::WriteOnly | QFile::Text))
+    {
+        QMessageBox::warning(this, tr("MDI"),
+                             tr("Cannot write file %1:\n%2.")
+                             .arg(fileName)
+                             .arg(file.errorString()));
+        return false;
+    }
+
+    QTextStream out(&file);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    out << toPlainText();
+    QApplication::restoreOverrideCursor();
+
+    setCurrentFile(fileName);
+    return true;
+}
+
+QString CentralEditor::userFriendlyCurrentFile()
+{
+    return strippedName(curFile);
+}
+
+void CentralEditor::closeEvent(QCloseEvent *event)
+{
+    if (maybeSave())
+    {
+        event->accept();
+    }
+    else
+    {
+        event->ignore();
+    }
+}
+
+void CentralEditor::documentWasModified()
+{
+    setWindowModified(document()->isModified());
+}
+
+bool CentralEditor::maybeSave()
+{
+    if (document()->isModified())
+    {
+        QMessageBox::StandardButton ret;
+        ret = QMessageBox::warning(this, tr("MDI"),
+                     tr("'%1' has been modified.\n"
+                        "Do you want to save your changes?")
+                     .arg(userFriendlyCurrentFile()),
+                     QMessageBox::Save | QMessageBox::Discard
+                     | QMessageBox::Cancel);
+        if (ret == QMessageBox::Save)
+            return save();
+        else if (ret == QMessageBox::Cancel)
+            return false;
+    }
+    return true;
+}
+
+void CentralEditor::setCurrentFile(const QString &fileName)
+{
+    curFile = QFileInfo(fileName).canonicalFilePath();
+    isUntitled = false;
+    document()->setModified(false);
+    setWindowModified(false);
+    setWindowTitle(userFriendlyCurrentFile() + "[*]");
+}
+
+QString CentralEditor::strippedName(const QString &fullFileName)
+{
+    return QFileInfo(fullFileName).fileName();
+}
