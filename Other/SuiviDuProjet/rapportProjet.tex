@@ -1,6 +1,6 @@
 \documentclass[a4paper, 12pt]{report}
 
-\title{Editeur web}
+\title{Éditeur web}
 \author{Pierre Burc, Olivier Duplouy, Hamza Erraji, Issame Amal, Mickaël Berger, Joachim Divet, Zaydane Sadiki & Abdelhamid Belarbi}
 
 %% Pour des marges plus équitables.
@@ -11,13 +11,12 @@
 \usepackage{graphicx}
 %% Pour la police de caractères.
 \usepackage{fontspec}
-%%\setmainfont{Delicious-Roman}
+\setmainfont{Delicious-Roman}
 %% Pour faire le glossaire.
 \usepackage{glossaries}
 \makeglossaries
-%% Après première compilation écrire ligne suivante dans un terminal:
-%% miktex-makeindex -s rapportStageAbdel.ist -t rapportStageAbdel.glg -o rapportStageAbdel.gls rapportStageAbdel.glo
-%% re-compiler ensuite.
+%% Pour les notes de bas de page.
+\usepackage{fmtcount}
 \begin{document}
 	%% Glossaire
 	\newglossaryentry{UML}
@@ -40,27 +39,46 @@
 		informatique à l'origine d'un dysfonctionnement},
 		plural=bogues
 	}
-	
-	\newglossaryentry{auto-complétion}
-	{	
-		name=auto-complétion,
-		description={L'auto-complétion est une fonctionnalité consistant à compléter automatiquement le mot que l'utilisateur est en train décrire}
-	}
-	
-	\newglossaryentry{workspace}
+		
+	\newglossaryentry{Qt}
 	{
-		name=workspace,
-		description={Le workspace est un dossier regroupant l'ensemble des projets créés par l'utilisateur}
+		name=Qt,
+		description={Qt est un framework orienté objet et développé en C++. Il offre des composants d'interface graphique (widgets),
+		d'accès aux données, de connexions réseaux, de gestion des fils d'exécution, d'analyse XML, etc}
 	}
-	
-	\newglossaryentry{coloration syntaxique}
+
+	\newglossaryentry{gestionnaire de version}
 	{
-		name=coloration syntaxique
-		description={La coloration syntaxique est une fonctionnalité permettant de colorer les mots clés du fichier en cours de lecture en se basant sur son extension}
+		name=gestionnaire de version,
+		description={La gestion de versions consiste à maintenir l'ensemble des versions d'un ou plusieurs fichiers (généralement en texte).
+		Essentiellement utilisée dans le domaine de la création de logiciels, elle concerne surtout la gestion des codes source}
+	}
+
+	\newglossaryentry{Git}
+	{
+		name=Git,
+		description={Git est un logiciel de gestion de versions décentralisé. 
+		C'est un logiciel libre créé par Linus Torvalds, le créateur du noyau Linux, et distribué selon les termes de la licence 
+		publique générale GNU version 2}
+	}
+
+	\newglossaryentry{WYSIWYG}
+	{
+		name=WYSIWYG,
+		description={Un WYSIWYG est une interface utilisateur qui permet de composer visuellement le résultat voulu, typiquement 
+		pour un logiciel de mise en page, un traitement de texte ou d’image. 
+		C'est une interface « intuitive » : l’utilisateur voit directement à l’écran à quoi ressemblera le résultat final}
 	}
 	
+	\newglossaryentry{autocomplétion}
+	{
+		name=autocomplétion,
+		description={l'autocomplétion, est une fonctionnalité informatique permettant à l'utilisateur de limiter la quantité d'informations 
+		qu'il saisit avec son clavier, en se voyant proposer un complément qui pourrait convenir à la chaîne de caractères qu'il a commencé à taper}
+	}
+
 	\begin{titlepage}
-		\center{\includegraphics[width=5cm]{images/logoUM2.png}}	\\ 
+		\center{\includegraphics[width=5cm]{images/logoUM2.png}}\\ 
 		~\\
 		~\\
 		~\\
@@ -94,9 +112,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{chapter}*{Remerciements}
-	Nous tenons à remercier tout particulièrement M. Michel Meynard, notre tuteur de projet qui nous a guidés et épaulés tout au long de la réalisation de ce projet. 
+	Nous tenons à remercier tout particulièrement M. Michel Meynard, notre tuteur de projet qui nous a guidés et épaulés tout au long de
+	ces quelques mois de travail, égrénant ça et là différents conseils utiles à souhait. \\
 
-	Bien entendu nous n'oublions pas de remercier chaleureusement toute l'équipe pédagogique de l'UM2 qui nous a apporté son soutien.
+	Bien entendu nous n'oublions pas de remercier chaleureusement toute l'équipe pédagogique de l'UM2 qui nous a apporté son soutien.\\
+
+	Et il va sans dire que tous les membres du groupe se remercient les uns les autres.
 	\end{chapter} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,31 +128,29 @@
 	\begin{chapter}*{Introduction}
 	\addcontentsline{toc}{chapter}{Introduction}
 
-		Au début du mois de Février, il nous a été demandé de réaliser un projet ayant pour but de mettre en place une application permettant
-	d'utiliser un éditeur multi-fichiers effectuant différentes actions sur des fichiers relatif à un site web.\\
-	Ce dernier consiste à créer, modifier, sauvergarder... des fichiers contenant les langages JavaScript, HTML, CSS, PHP via une interface se
-	rapprochant des IDEs présents sur le marché. Celle-ci aura un rôle primordial, car elle devra apporter à l'utilisateur une aide précieuse grâce
-	à des fonctionnalités intuitives, comme par exemple l'auto-complétion.\\
-	A l'occasion de ce projet, un groupe de huit personnes a été formé pour répondre à la capacité de travail demandée. Nous devions donc nous 
-	répartir les tâches entre chaque membre voir créer des sous-groupes permettant de cloisonner chaque brique essentielle de l'application 
-	(interface,système,coloration/complétion). De plus, une période de trois mois nous a été accordée pour réaliser cet IDE.\\
-	Afin de ne pas gaspiller du temps à déterminer par où commencer et de quelle façon aborder le sujet, nous avions des réunions régulières avec 
-	notre tuteur M.Meynard, pour nous guider dans notre réflexion.\\
-	A travers ce compte-rendu nous essaierons de rendre compte des étapes qui nous ont conduits à élaborer cette application en essayant de répondre 
-	le plus fidèlement possible au problème posé.\\ 
+	% 	Au début du mois de Février, il nous a été demandé de réaliser un projet ayant pour but de mettre en place une application permettant
+	% d'utiliser un éditeur multi-fichiers effectuant différentes actions sur des fichiers relatif à un site web.\\
+	% Ce dernier consiste à créer, modifier, sauvergarder... des fichiers contenant les langages JavaScript, HTML, CSS, PHP via une interface se
+	% rapprochant des IDEs présents sur le marché. Celle-ci aura un rôle primordial, car elle devra apporter à l'utilisateur une aide précieuse grâce
+	% à des fonctionnalités intuitives, comme par exemple l'autocomplétion.\\
+	% A l'occasion de ce projet, un groupe de huit personnes a été formé pour répondre à la capacité de travail demandée. Nous devions donc nous 
+	% répartir les tâches entre chaque membre voir créer des sous-groupes permettant de cloisonner chaque brique essentielle de l'application 
+	% (interface,système,coloration/complétion). De plus, une période de trois mois nous a été accordée pour réaliser cet IDE.\\
+	% Afin de ne pas gaspiller du temps à déterminer par où commencer et de quelle façon aborder le sujet, nous avions des réunions régulières avec 
+	% notre tuteur M.Meynard, pour nous guider dans notre réflexion.\\
+	% A travers ce compte-rendu nous essaierons de rendre compte des étapes qui nous ont conduits à élaborer cette application en essayant de répondre 
+	% le plus fidèlement possible au problème posé.\\ 
 
-	\newpage
-%% Introduction de Abdelhamid.
 	C'est par une froide journée d'hiver que nous nous réunîmes pour la première fois à l'université de Montpellier. 
-	Huit, tous étudiants préposés au projet numéro 23 nous attendons à notre table l'arrivée de notre tuteur M. Meynard. 
-	Ce dernier se présente, nous salue et prononce ce discours mémorable qui restera gravé à jamais dans les mémoires, du moins cette année.\\
+	Huit, tous étudiants préposés au projet numéro vingt-trois nous attendons à notre table l'arrivée de notre tuteur M. Meynard. 
+	Ce dernier se présente, nous salue et prononce ce discours mémorable qui restera gravé à dans nos mémoires.\\
 	\begin{quotation}
 		``Dans le cadre de développement de sites Web, on souhaiterait utiliser un éditeur multi-fichiers permettant de réaliser différentes actions sur
 		des fichiers relatifs à un site: édition de fichiers Html, Php, JavaScript et Css.
 
 		Il serait également appréciable que cet éditeur proposât un mode de visualisation du site dans un navigateur et un mode arborescence.
 
-		On pourrait aussi avoir de l'\gls{auto-complétion}, de la coloration syntaxique, un accès aux manuels des langages cités précédemment et pourquoi
+		On pourrait aussi avoir de l'\gls{autocomplétion}, de la coloration syntaxique, un accès aux manuels des langages cités précédemment et pourquoi
 		pas une validation Html.\,''
 	\end{quotation}
 
@@ -145,39 +164,38 @@
 		Enfin, nous implémenterons l'application insolents et sûrs de nous.	Qu'en dites-vous ?''
 	\end{quotation}
 
-	Nous n'en dîmes que du bien. En effet, l'idée loin d'être incroyablement novatrice avait l'avantage d'être logique et cohérente.
+	Nous n'en dîmes que du bien. En effet, l'idée loin d'être incroyablement novatrice avait l'avantage d'être logique et cohérente.\\
+
+
+	C'est ainsi que démarra le projet \emph{Éditeur web} décrit dans ce document, entrons donc sans plus attendre dans le vif du sujet.
 	
 	\end{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{part}{Analyse}
 		\begin{chapter}{Cahier des charges}
-		Pour nous donner une idée du rôle que devra jouer notre éditeur web, une liste des principales fonctionnalités nous a été fournie,
-		présentée ci-dessous:\\
-				\begin{itemize}
-					\item Édition des fichiers JavaScript, Php, Css et Html;
-					\item Un système multi-onglets permettant de naviguer rapidement entre plusieurs fichiers d'un même projet;
-					\item Possibilité de visualiser le site sous forme d'arborescence;
-					\item Auto-complétion et coloration syntaxique;
-					\item Auto-indentation;
-					\item Accès en un clic au manuel Php/Html/Css/JavaScript;
-					\item Validation Html;
-					\item Visualisation du site dans un navigateur;
-					\item Squelette de site préexistant.
-				\end{itemize}
-		
+			Voici une liste exhaustive des fonctionnalités prescrites par M. Meynard:
+			\begin{itemize}
+				\item Édition des fichiers JavaScript, Php, Css et Html;
+				\item Un système multi-onglets permettant de naviguer rapidement entre plusieurs fichiers d'un même projet;
+				\item Possibilité de visualiser le site sous forme d'arborescence;
+				\item Mode \gls{autocomplétion} et coloration syntaxique;
+				\item Mode auto-indentation;
+				\item Accès en un clic au manuel Php/Html/Css/JavaScript;
+				\item Validation Html;
+				\item Visualisation du site dans un navigateur;
+				\item Squelette de site préexistant.
+			\end{itemize}~\\
 
-		 %%C'est pas un peu trop technique par hasard ?		
-		Après avoir pris connaissance du cahier des charges initial, nous avons décidé de rajouter quelques spécifications sur certaines 
-		fonctionnalités. Concernant la visualisation du site web, 2 possibilités s'offraient à nous. La première était de réserver une fenêtre à 
-		l'intérieur de l'application destinée à afficher en temps réel le site web, après chaque modification.
-		Nous avons opté pour la seconde solution, qui met à disposition de l'utilisateur un bouton permettant de visualiser le site à 
-		travers l'ouverture d'un naviguateur.\\
-		Une contrainte a également été ajoutée pour la coloration syntaxique, car nous avons décidé d'obliger l'utilisateur à enregistrer le 
-		fichier dés sa création, de manière à récupérer l'extension du fichier pour déterminer le langage utilisé.\\
-		
-			~\\
+			La liste d'exigences ci dessus se résume en une besoins graphiques, il nous fallait donc ``deviner'' ce qui se déroule en interne 
+			dans le programme. Malgré les différents avis données par M. Meynard, il était difficile pour la majorité des membres de
+			comprendre comment fonctionnait un tel programme.\\
+
+			Après plusieurs colloques, discussions, palabres et réunions, il fut décidé que le meilleur moyen de se rendre compte de ce que
+			représentait un tel cahier des charges en terme de produit fini était d'étudier les différents éditeurs existants offrants ce 
+			genre de fonctionnalités.
 		\end{chapter}
+
 		\begin{chapter}{Étude de projets existants}
 		\begin{section}{Espresso}
 				\begin{figure}[h]
@@ -198,8 +216,11 @@
 						\caption{Aptana}
 					\end{center}
 				\end{figure}~\\
-				Cet éditeur propose un ensemble de fonctionnalités nombreuses et variées. Beaucoup plus fourni que Espresso, il propose des fonctionnalités complexes dans divers langages : déboguage, déploiement automatique, gestionnaire de version inclus, terminal intégré et moult autres outils.
-				Pour nous c'est un bon modèle à suivre en évitant tout de même de tomber dans le piège du sur-nombre d'options qui importuneraientt l'utilisateur. 
+				Cet éditeur propose un ensemble de fonctionnalités nombreuses et variées. 
+				Beaucoup plus fourni que Espresso, il propose des fonctionnalités complexes dans divers langages : 
+				déboguage, déploiement automatique, gestionnaire de version inclus, terminal intégré et moult autres outils.
+				Pour nous c'est un bon modèle à suivre en évitant tout de même de tomber dans le piège du sur-nombre d'options 
+				qui importuneraient l'utilisateur. 
 			\end{section}
 			~\\
 			\begin{section}{Dreamweaver}
@@ -210,49 +231,83 @@
 					\end{center}
 				\end{figure}~\\
 				Dreamweaver est une référence en la matière. Il réunit les atouts des deux éditeurs sus-cités en joignant l'utile à l'agréable.
-				Il possède en outre un mode dit WYSIWYG. Derrière ce sigle barbare se cache la possibilité intéressante de dessiner l'interface d'un site web.
-				Nous concernant, nous pourrons proposer à l'utilisateur de visualiser le site sur lequel il travaille.
+				Il possède en outre un mode dit \gls{WYSIWYG} permettant de dessiner l'interface d'un site web.
 			\end{section}
 			~\\
+
+
+			\begin{section}{Bilan comparatif}
+				Le tableau \ref{comparatif}, donne la distributions de quelques fonctionnalités parmi les logiciels cités précédemment. Il est
+				inutile de mettre dans ce tableau des fonctionnalités telles que la coloration ou l'édition de fichier, car il est évident que des
+				lesdits logiciels possèdent ce genre de spécificités.\\
+
+				%% Ajout d'une petite note de bas de page.
+				\addtocounter{footnote}{1}
+				\footnotetext[\value{footnote}]{À noter que l'auto-indentation dans le tableau \ref{comparatif} concerne la capacité de 
+				formater tout un fichier et non pas d'ajouter une tabulation après saut de ligne.}
+				\begin{table}[h]
+				\caption{\label{comparatif} Fonctionnalités spéciales dans les éditeurs étudiés}
+					\begin{tabular}{|c||c|c|c|c|c|} % c signifie center, le texte de chaque colonne sera donc centré.
+					  \hline
+					  Éditeur & onglets & autocomplétion & auto-indentation$^{\decimal{footnote}}$ & validation Html & documentations \\
+					  \hline
+
+					  Espresso & oui & oui & non & non & non \\
+					  Aptana & oui & oui & non & oui & oui \\
+					  Dreamweaver & oui & oui & oui & oui & non \\
+					  \hline
+					\end{tabular}
+				\end{table}
+
+				Ainsi, il ressort du tableau \ref{comparatif} qu'aucun des outils étudiés ne possède toutes les spécificités de notre programme.
+				Il faudra donc, si nous voulons de l'inspiration, naviguer d'un éditeur à l'autre selon que nous voulons implémenter telle ou
+				telle fonctionnalité.\\
+
+
+				Maintenant que l'objectif est discernable et que le groupe a une idée générale du logiciel à produire, il est temps de
+				penser à choisir les outils à utiliser.
+			\end{section}
 		\end{chapter}
 		\begin{chapter}{Choix des outils}
-			Avant de nous lancer dans la réalisation de l'application, nous avons du choisir les outils les plus adaptés avec lesquels 
-			nous avons conçus et programmer. Dans un premier temps, le langage de programmation devait être absolument choisit. 
-			Nous avons pensé au C++ pour plusieurs raisons. D'une part, nous l'avons utilisé durant cette année et est portable, 
-			donc un langage maîtrisé par les huit membres du groupe et utilisable sur n'importe quel système d'exploitation sans conflits.
-			D'autre part, nous pouvons trouver très facilement beaucoup de documentation à son sujet, et il est également adapté à la 
-			réalisation de logiciels. %%%%%%%%%% METTRE IMAGE C++ %%%%%%%%%%
+			Il est des choix qui influent sur l'ensemble d'un projet et le choix des outils est de ceux là.
+			Nous nous devions de faire un choix judicieux compte tenu de différents critères, à savoir la taille de l'équipe (huit personnes),
+			l'ampleur du projet, le temps imparti et autres menus détails.\\
+
+
+			La modélisation formelle des spécifications du programme nécessite un langage adapté à ce genre de besoin. C'est donc presque
+			sans discussion que nous prîmes l'évidente décision d'utiliser le langage UML pour ce faire.
+			Les diagrammes seront dessinés grâce à une application web nommée yUML (cf. sitographie, p.\pageref{sitographie}).\\
+
+
+			Concernant le langage de programmation principal, nous choisîmes C++. Ce choix est motivé par deux raisons, d'une part nous apprenons
+			actuellement ce langage en cours, d'autre part, il s'agit d'un langage stable, documenté et qu'il fait bon d'avoir dans sa besace.
+			C'est ainsi que M. Meynard nous proposé le framework \gls{Qt}. Un peu austère de prime abord, presque effrayant, il s'avéra finalement très
+			sympathique grâce notamment à une syntaxe lisible et à une documentation bien feuillue.\\
+
+
+			Pour travailler en équipe sur un projet de ce genre il est utile voire indispensable de disposer d'un outil de synchronisation et
+			de partage. Notre choix s'est porté sur le gestionnaire de version \gls{Git}. Ceci sans raison particulière car ses semblables offrent
+			des fonctionnalités similaires.\\
+
+
+			Bien que les huit membres de notre groupe furent géographiquement proches à vol d'oiseau, aucun d'entre nous ne possédait l'étonnante
+			capacité de se déplacer dans les airs. Par conséquent, hormis les outils sus-cités il fallut quelques outils auxiliaires de communication.
 			\\
-			Par la suite, nous avons du adopter un IDE permettant de programmer avec le C++. 
-			Notre tuteur nous a orienté vers le framework QT Creator, intégrant de multiples bibliothèques utiles pour le projet. 
-			De plus, QT offre la possibilité de réaliser des interfaces graphiques grâce à QT Designer, simplifiant grandement la programmation par
-			la présence de fonctionnalités déjà toutes faites.%%%%%%%%%% METTRE IMAGE QT %%%%%%%%%%
-			\\
-			Travaillant en groupe de huit, un gestionnaire de versions était indispensable pour partager les différents travaux effectués
-			par chacun des membres. Nous avons donc choisis le gestionnaire de versions GIT, avec une prise en main accessible à tous.
-			 %%%%%%%%%% METTRE IMAGE GIT %%%%%%%%%%
-			\\
-			A côté de la programmation pure, il fallait bien sur pouvoir communiquer entre nous de manière rapide à distance. 
-			N'habitant pas tous à Montpellier, il a fallu opter pour une solution collaborative. 
-			Le web nous offrant cette possiblité, nous avons sélectionné deux sites:
+			Nous utilisâmes donc des outils web tels que:
 			\begin{description}
 				\item[MicroMobs.com:] Pour les discussions professionnelles;
-				\item[Facebook:] Pour les annonces, les dates de réunions,etc...;
+				\item[Facebook.com:] Pour les annonces importantes, les messages, les dates de réunions, etc.
 			\end{description}~\\
-			Enfin, pour la conception et la modélisation des différentes structures à implémenter, nous avons utilisé le site YUML.me
-			permettant de concevoir et générer des diagrammes UML. %%%%%%%% METTRE IMAGE YUML %%%%%%%%% 
-			De plus, TeamGantt.com nous a été utile pour établir le diagramme de Gantt, et ainsi planifier les différentes 
-			étapes du projet et séparer le groupe en plusieurs sous-groupes et savoir approximativement combien de temps nous prendrait chaque tâche.
-			\\
 
+			Citons aussi TeamGantt.com, une application qui permet de dessiner un (très joli) diagramme de Gantt en ligne.
 		\end{chapter}
 		\begin{chapter}{Organisation}
 		\begin{section}{Diagramme de Gantt}
 			Le projet se déroulant sur quatre mois, il a fallu faire un planning qui s'étale sur ledit laps de temps.
-			Voici toutes les étapes du projet inscrites sur un diagramme de Gantt.
+			Voici toutes les étapes du projet inscrites sur un \gls{diagramme de Gantt}.
 				\begin{figure}[h]
 					\begin{center}
-						\includegraphics[width=17cm]{DiagrammeGantt.png}
+						\includegraphics[width=17cm]{images/DiagrammeGantt.png}
 						\caption{Diagramme de Gantt}
 					\end{center}
 				\end{figure}~\\
@@ -263,7 +318,45 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{part}{Conception}
 		\begin{chapter}{Décomposition en sous systèmes}
-		
+			Le programme se découpe grossièrement en trois sous-systèmes complémentaires comme sur le diagramme \ref{dess}.
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=17cm]{images/DecompositionSousSystemes.jpg}
+					\caption{Décomposition en sous systèmes}
+					\label{dess}
+				\end{center}
+			\end{figure}~\\
+			Le système de gestion des fichiers est un système très important de l'application et c'est pourquoi il est requis
+			par le système de gestion des projets.\\
+			Le système de gestion du code est vue comme une extension aux fichiers. En effet, il serait possible d'éditer un
+			site web sans gérer la coloration, l'indentation et toutes les fonctionnalités qui rendent un éditeur de code si agréable à utiliser.
+			\begin{section}{Gestion des projets}
+				Le sous-système de gestion des projets est un élément important de l'application, en ce sens qu'il permet à l'utilisateur
+				de bien s'organiser de manière simple et efficace.\\
+				Un projet est concrètement représenté par un dossier sur la machine de l'utilisateur. Partant de cette idée, notre système
+				de gestion de projet sera implémenté en utilisant les normes et références communément admises en termes de création,
+				modification et destruction de dossiers.\\~\\
+				L'unique caractéristique d'un projet est que l'on pourra trouver à la racine un fichier spécial résumant les paramètres utilisateur,
+				les caractéristiques du projet, et autres informations diverses.\\
+				Relativement à un projet, l'application fournit les fonctionnalités décrites dans le diagramme \ref{ssgp}
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=13cm]{images/gestionProjets.jpg}
+						\caption{Sous système de gestion des projets}
+						\label{ssgp}
+					\end{center}
+				\end{figure}~\\
+			\end{section}
+			\newpage
+			\begin{section}{Gestion des fichiers}
+				\begin{figure}[ht]
+				\label{ssgf}
+					\begin{center}
+						\includegraphics[width=13cm]{images/gestionFichiers.jpg}
+						\caption{Sous système de gestion des fichiers}
+					\end{center}
+				\end{figure}~\\
+			\end{section}
 		\end{chapter}
 		\begin{chapter}{Cas d'utilisations}
 		
@@ -282,7 +375,11 @@
 			Là on parle des réunions, pourquoi pas mettre un extrait de journal.
 		\end{chapter}
 		\begin{chapter}{Implémentation}
-			Ici on aborde les problèmes de la documentation, de nouvelles bibliothèques, de mettre en place nos algorithmes "en vrai", ... 
+			\begin{section}{Noyau}
+			\end{section}
+			\begin{section}{Interface}
+			\end{section}
+			Ici on aborde les problèmes de la documentation, de nouvelles bibliothèques, de mettre en place nos algorithmes ``en vrai'', ... 
 		\end{chapter}
 		\begin{chapter}{Résultat}
 			On va essayer de caser des trucs ici.
@@ -308,12 +405,27 @@
 	%% Sitographie
 	\renewcommand\bibname{Sitographie}%% Changement du titre de bibliographie en sitographie.
 	\begin{thebibliography}{2}
-		\bibitem{wikipedia}
-		Wikipédia : http://fr.wikipedia.org/wiki\\
+		\label{sitographie}
+		\bibitem{Wikipedia}
+		Wikipédia: www.wikipedia.org \\
 		L'encyclopédie en ligne de laquelle j'ai tiré certaines définitions présentes dans le glossaire.
 		~\\
 		\bibitem{yUML}
-		yUML : www.yuml.me \\
+		yUML: www.yuml.me \\
 		Ce site permet de générer à la volée des diagrammes \gls{UML}, extrêmement utile lorsqu'il s'agit de travail de groupe.
+		~\\
+		\bibitem{Micromobs}
+		Micromobs: www.micromobs.com \\
+		Le site de discussion de groupe au principe intéressant: il vaut mieux une interface dédiée aux discussions plutôt
+		qu'une boîte e-mail encombrée et mal organisée.
+		~\\
+		\bibitem{TeamGantt}
+		TeamGantt: www.teamgantt.com \\
+		Création en ligne de diagrammes de Gantt beaux et lisibles.
+		~\\
+		\bibitem{Facebook}
+		Facebook: www.facebook.com \\
+		Le réseau social que l'on ne présente plus, il nous a permis d'échanger des messages moins techniques que sur Micromobs
+		et de nous organiser grâce à différents évènements.
 	\end{thebibliography}
 \end{document}
