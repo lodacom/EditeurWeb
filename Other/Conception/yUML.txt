@@ -1,6 +1,5 @@
 # Décomposition en sous-systèmes.
-[Utilisateur]-(Gestion de projets)
-[Utilisateur]-(Gestion de fichiers)
+(Gestion de projets)>(Gestion de fichiers)
 (Gestion de fichiers)<(Gestion du code)
 
 # Système de gestion de fichiers.
