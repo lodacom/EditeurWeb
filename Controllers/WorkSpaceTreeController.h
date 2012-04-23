@@ -1,9 +1,20 @@
+/*!
+  *\file WorkSpaceTreeController.h
+  *\brief Fichier d'en-tête de la classe WorkSpaceTreeController
+  *\authors Berger Divet
+  */
+
 #ifndef WORKSPACETREECONTROLLER_H
 #define WORKSPACETREECONTROLLER_H
 #include <QStandardItemModel>
 #include <list>
 #include <pthread.h>
 #include "../Models/WorkSpace.h"
+
+/*!
+  *\class WorkSpaceTreeController
+  *\brief Controller agissant sur la vue et le modèle de l'arborescence d'espace de travail de l'utilisateur
+  */
 class WorkSpaceTreeController: public QObject{
 Q_OBJECT
 

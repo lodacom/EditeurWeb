@@ -1,7 +1,19 @@
+/*!
+  *\file WorkSpace.h
+  *\brief Fichier d'en-tête de la classe WorkSpaceTree
+  *\authors Berger Divet
+  */
+
 #ifndef WORKSPACE_H
 #define WORKSPACE_H
 #include "Element.h"
 #include "Project.h"
+
+/*!
+  *\class WorkSpace
+  *\brief Représente l'espace de travail de l'utilisateur, elle stocke les projets en cours de développement
+  *dans un vecteur
+  */
 class WorkSpace : public virtual Element {
 public:
     //Constructeur Destructeur

@@ -1,3 +1,9 @@
+/*!
+  *\file WorkSpaceTree.h
+  *\brief Fichier d'en-tête de la classe WorkSpaceTree
+  *\authors Berger Divet
+  */
+
 #ifndef WORKSPACETREE_H
 #define WORKSPACETREE_H
 #include <QTreeView>
@@ -13,6 +19,10 @@
 #define CUT_ID 2
 #define NIL_ID 0
 
+/*!
+  *\class WorkSpaceTree
+  *\brief Vue associée à l'arborescence d'espace de travail de l'utilisateur
+  */
 class WorkSpaceTree : public QTreeView {
 
     Q_OBJECT
@@ -39,12 +49,12 @@ public slots:
     //virtual void rightClickMenu(const QPoint& pos);
 
 private:
+    void setupMenus();
     QStandardItemModel *model;
     WorkSpaceTreeController *wsController;
     QMenu *fileMenu;
     QMenu *folderMenu;
     QModelIndex clickedIndex;
-    void setupMenus();
     bool workSpaceEtablished;
     int selectionStatus; //Trois valeurs possibles
     QModelIndex indexFileToCopy;
