@@ -1,6 +1,6 @@
 /*!
  * \file MainWindow.h
- * \authors Olivier Mickael Joachim
+ * \authors Olivier Mickael Joachim Hamza
  * \version 0.2
  */
 #ifndef MAINWINDOW_H
@@ -121,33 +121,79 @@ public slots:
      */
     void switchLayoutDirection();
 
-
+    /*!
+     * \brief Rend actif l'onglet si il ne l'est pas.
+     * \param window:On passe en paramètre la fenêtre à activer.
+     */
     void setActiveSubWindow(QWidget *window);
+
+    /*!
+     * \brief Renseigne à propos du programme.
+     */
     void about();
+
+    /*!
+     * \brief Crée un nouveau fichier en déclenchant la création
+     * d'un nouveau fils et en le montrant à l'utilisateur.
+     */
     void newFile();
     //void openFile(const QString &path = QString());
     void selectWorkSpace();
 
 protected:
+    /*!
+     * \brief Donne ce qui il y a à faire lors de la fermeture
+     * de la fenêtre principale.
+     * param: event récupère l'évènement de fermeture de la part
+     * de l'utilisateur.
+     */
     void closeEvent(QCloseEvent *event);
 
 private:
+    /*!
+     * \brief Initialise tout ce qu'il va y avoir à l'interieur
+     * de la fenêtre principale.
+     */
     void init();
     void setupWorkSpaceDock();
     //void setupHtmlDock();
 
+    /*!
+     * \brief Crée toutes les actions dont à besoin l'utilisateur
+     * pour effectuer des opérations sur l'interface.
+     */
     void createActions();
+
+    /*!
+     * \brief Crée toute la barre de menu
+     */
     void createMenus();
+
+    /*!
+     * \brief Crée toute la barre d'outils (plus rapide
+     * pour l'utilisateur et plus agréable, images supplémentaires).
+     */
     void createToolBars();
     void createStatusBar();
     void readSettings();
     void createVboxlayout();
     void writeSettings();
 
+    /*!
+     * \brief Permet de connaître quel est l'onglet qui est actif dans
+     * fenêtre.
+     * \return L'onglet actif. Sinon rien s'il n'y a aucun onglet présent.
+     */
     CentralEditor *activeMdiChild();
+
+    /*!
+     * \brief Permet de chercher une fenêtre/un onglet par son nom
+     * \return La sous-fenêtre correspondante à se nom. Sinon rien
+     * si aucune sous-fenêtre ne correspond.
+     */
     QMdiSubWindow *findMdiChild(const QString &fileName);
 
-    QString strippedName(const QString &fullFileName);
+    //QString strippedName(const QString &fullFileName);
     WorkSpaceTree *treeView;
     HtmlTreeWidget *htmlTreeWidget;
 
