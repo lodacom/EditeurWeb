@@ -1,6 +1,6 @@
 /*!
 * \file CentralEditor.h
-* \author Olivier
+* \authors Olivier Mickael Joachim
 * \version 0.2
 */
 #include <QAbstractItemModel>
