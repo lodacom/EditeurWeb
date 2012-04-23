@@ -8,11 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)//,completer(0)
     //setCurrentFile("hello");
 }
 
-MainWindow::MainWindow(const QString &fileName)
+/*MainWindow::MainWindow(const QString &fileName)
 {
     init();
     //loadFile(fileName);
-}
+}*/
 
 void MainWindow::init()
 {
