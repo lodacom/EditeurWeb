@@ -1,3 +1,10 @@
+/*!
+* \file CompleterController.h
+* \brief Fichier concernant l'auto-complétion
+* \author Olivier
+* \version 0.1
+*/
+
 #ifndef COMPLETION_H
 #define COMPLETION_H
 
@@ -7,6 +14,12 @@
 QT_BEGIN_NAMESPACE
 class QCompleter;
 QT_END_NAMESPACE
+
+/*!
+* \class CompleterController
+* \brief Contient uniquement le constructeur et le destructeur
+* de l'auto-compléteur
+*/
 
 class CompleterController: public QTextEdit
 {

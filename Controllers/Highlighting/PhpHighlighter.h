@@ -1,3 +1,10 @@
+/*!
+* \file PhpHighlighter.h
+* \brief déclaration de la classe PHP pour la coloration
+* \author Pierre
+* \version 0.1
+*/
+
 #ifndef PhpHighlighter_h
 #define PhpHighlighter_h
 
@@ -11,11 +18,22 @@ QT_BEGIN_NAMESPACE
 class QTextDocument;
 QT_END_NAMESPACE
 
+/*!
+* \class PhpHighlighter
+* \brief Hérite des méthodes de la classe Highlighter,
+* classe de paramétrage pour spécialiser la coloration du PHP
+*/
+
 class PhpHighlighter : public Highlighter
 {
     Q_OBJECT
 
 public:
+    /*!
+    * \brief Constructeur
+    * Création d'un colorateur syntaxique pour le PHP.
+    * \param parent : le document textuel concerné par la coloration.
+    */
     PhpHighlighter(QTextDocument *parent = 0);
 
 private:
