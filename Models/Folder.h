@@ -1,7 +1,19 @@
+/*!
+  *\file Folder.h
+  *\brief Fichier d'en-tête de la classe Folder
+  *\authors Berger Divet
+  */
+
 #ifndef FOLDER_H
 #define FOLDER_H
 #include "Element.h"
 #include "File.h"
+
+/*!
+  *\class Folder
+  *\brief Représente chaque dossier de l'arborescence d'espace de travail de l'utilisateur,
+  * elle stocke les fichiers et dossiers qui la composent dans des vecteurs
+  */
 class Folder: public virtual Element{
 
 public:

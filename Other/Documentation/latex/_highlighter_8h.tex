@@ -1,0 +1,42 @@
+\hypertarget{_highlighter_8h}{
+\section{EditeurWeb/Controllers/Highlighting/Highlighter.h File Reference}
+\label{_highlighter_8h}\index{EditeurWeb/Controllers/Highlighting/Highlighter.h@{EditeurWeb/Controllers/Highlighting/Highlighter.h}}
+}
+
+
+déclaration de la classe mère de coloration.  
+
+
+{\ttfamily \#include $<$QSyntaxHighlighter$>$}\par
+{\ttfamily \#include $<$QTextCharFormat$>$}\par
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_highlighting_rule}{HighlightingRule}
+\begin{DoxyCompactList}\small\item\em une simple paire d'un motif et d'un format. L'objectif est de pouvoir enregistrer pour chaque patron (sous forme d'expression régulière) un format à appliquer. \item\end{DoxyCompactList}\item 
+struct \hyperlink{struct_multiline_highlighting_rule}{MultilineHighlightingRule}
+\begin{DoxyCompactList}\small\item\em un motif de début, un motif de fin, un format à appliquer à toutes les lignes entre ces motifs et un code d'état. Utile pour les commentaires multilignes par exemple. \item\end{DoxyCompactList}\item 
+class \hyperlink{class_highlighter}{Highlighter}
+\begin{DoxyCompactList}\small\item\em On travaille avec des formats, chaque type de mot reconnaissable aura son propre format (format mot-\/clé, format commentaire, ...) \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{_highlighter_8h_af93d7c80faa6ebd086460cde2d5dd27e}{
+\#define {\bfseries DEFAULT\_\-STATE}~0}
+\label{_highlighter_8h_af93d7c80faa6ebd086460cde2d5dd27e}
+
+\item 
+\hypertarget{_highlighter_8h_a62409343b96a572b92d9da484748fc85}{
+\#define {\bfseries IN\_\-COMMENT\_\-STATE}~1}
+\label{_highlighter_8h_a62409343b96a572b92d9da484748fc85}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+déclaration de la classe mère de coloration. \begin{DoxyAuthor}{Author}
+Abdelhamid 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.1 
+\end{DoxyVersion}

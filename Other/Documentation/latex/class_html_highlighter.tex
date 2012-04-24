@@ -1,0 +1,84 @@
+\hypertarget{class_html_highlighter}{
+\section{HtmlHighlighter Class Reference}
+\label{class_html_highlighter}\index{HtmlHighlighter@{HtmlHighlighter}}
+}
+
+
+Classe de coloration du langage Html. Le JavaScript inclus et le Css inclus sont pris en charges par les classes \hyperlink{class_java_script_highlighter}{JavaScriptHighlighter} et CssHighlighter.  
+
+
+
+
+{\ttfamily \#include $<$HtmlHighlighter.h$>$}
+
+Inheritance diagram for HtmlHighlighter:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_html_highlighter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_html_highlighter_a817159b963470dfdded5f141f70886a6}{HtmlHighlighter} (QTextDocument $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructeur Création d'un colorateur syntaxique pour le Html. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_html_highlighter_a81dd80f71c7644f84cdaaab76d8dbf3d}{highlightBlock} (const QString \&text)
+\begin{DoxyCompactList}\small\item\em Coloration d'un bloc de texte. Il est nécessaire de redéfinir cette méthode héritée de la classe \hyperlink{class_highlighter}{Highlighter} pour prendre en charge le JavaScript ou Css éventuellement inclus. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe de coloration du langage Html. Le JavaScript inclus et le Css inclus sont pris en charges par les classes \hyperlink{class_java_script_highlighter}{JavaScriptHighlighter} et CssHighlighter. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_html_highlighter_a817159b963470dfdded5f141f70886a6}{
+\index{HtmlHighlighter@{HtmlHighlighter}!HtmlHighlighter@{HtmlHighlighter}}
+\index{HtmlHighlighter@{HtmlHighlighter}!HtmlHighlighter@{HtmlHighlighter}}
+\subsubsection[{HtmlHighlighter}]{\setlength{\rightskip}{0pt plus 5cm}HtmlHighlighter::HtmlHighlighter (
+\begin{DoxyParamCaption}
+\item[{QTextDocument $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{class_html_highlighter_a817159b963470dfdded5f141f70886a6}
+
+
+Constructeur Création d'un colorateur syntaxique pour le Html. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & : le document textuel concerné par la coloration. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_html_highlighter_a81dd80f71c7644f84cdaaab76d8dbf3d}{
+\index{HtmlHighlighter@{HtmlHighlighter}!highlightBlock@{highlightBlock}}
+\index{highlightBlock@{highlightBlock}!HtmlHighlighter@{HtmlHighlighter}}
+\subsubsection[{highlightBlock}]{\setlength{\rightskip}{0pt plus 5cm}void HtmlHighlighter::highlightBlock (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{class_html_highlighter_a81dd80f71c7644f84cdaaab76d8dbf3d}
+
+
+Coloration d'un bloc de texte. Il est nécessaire de redéfinir cette méthode héritée de la classe \hyperlink{class_highlighter}{Highlighter} pour prendre en charge le JavaScript ou Css éventuellement inclus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & : le bloc de texte à formatter. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_highlighter_ad07c7fd55d2ce2c675bca607b9370488}{Highlighter}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+EditeurWeb/Controllers/Highlighting/\hyperlink{_html_highlighter_8h}{HtmlHighlighter.h}\item 
+EditeurWeb/Controllers/Highlighting/HtmlHighlighter.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,196 @@
+\hypertarget{class_work_space}{
+\section{WorkSpace Class Reference}
+\label{class_work_space}\index{WorkSpace@{WorkSpace}}
+}
+
+
+Représente l'espace de travail de l'utilisateur, elle stocke les projets en cours de développement dans un vecteur.  
+
+
+
+
+{\ttfamily \#include $<$WorkSpace.h$>$}
+
+Inheritance diagram for WorkSpace:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_work_space}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_work_space_a1661fe19f2b3923b069e4a6d38ca1d08}{
+{\bfseries WorkSpace} (string name=\char`\"{}\char`\"{}, string parentPath=\char`\"{}\char`\"{})}
+\label{class_work_space_a1661fe19f2b3923b069e4a6d38ca1d08}
+
+\item 
+\hypertarget{class_work_space_a6ebbbb6649935f8da3eb15027b4d84e0}{
+virtual void {\bfseries addProject} (\hyperlink{class_project}{Project} $\ast$project)}
+\label{class_work_space_a6ebbbb6649935f8da3eb15027b4d84e0}
+
+\item 
+\hypertarget{class_work_space_a00269f301468948ffbd2572f5a9621f0}{
+virtual void {\bfseries scan} ()}
+\label{class_work_space_a00269f301468948ffbd2572f5a9621f0}
+
+\item 
+virtual void \hyperlink{class_work_space_a37e6167ee95031e9d0391dcbc7d669cf}{output} (int prof)
+\begin{DoxyCompactList}\small\item\em Méthode fournissant un affichage console, utilisée pour le déboggage de l'application. \item\end{DoxyCompactList}\item 
+\hypertarget{class_work_space_a825876cbe7e04e21b8b0e0fbfa5247af}{
+virtual QStandardItem $\ast$ {\bfseries getQItem} ()}
+\label{class_work_space_a825876cbe7e04e21b8b0e0fbfa5247af}
+
+\item 
+virtual \hyperlink{class_element}{Element} $\ast$ \hyperlink{class_work_space_a4326db6270096edb30d8e42e390424d4}{getElement} (list$<$ int $>$ $\ast$accessList)
+\begin{DoxyCompactList}\small\item\em Accesseur donnant l'élément courant à partir d'une liste d'entiers correspondant aux index des éléments de l'arborescence d'espace de travail de l'utilisateur. \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{class_work_space_a15067a1630061db9f73168ef81ea0dff}{getType} ()
+\begin{DoxyCompactList}\small\item\em Méthode permettant de savoir si l'élément est un \hyperlink{class_file}{File}, un \hyperlink{class_folder}{Folder}, un \hyperlink{class_project}{Project} ou un \hyperlink{class_work_space}{WorkSpace}. \item\end{DoxyCompactList}\item 
+\hypertarget{class_work_space_a2ec0e9fa5802767f3c8bfccb3d48ce8a}{
+virtual void \hyperlink{class_work_space_a2ec0e9fa5802767f3c8bfccb3d48ce8a}{deleteElement} ()}
+\label{class_work_space_a2ec0e9fa5802767f3c8bfccb3d48ce8a}
+
+\begin{DoxyCompactList}\small\item\em Méthode effaçant le fichier physique correspondant à l'élément, ainsi que l'objet this lui-\/même. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_work_space_a3941dc541517b3f94a732c45559987da}{dropElement} (int position)
+\item 
+\hypertarget{class_work_space_a5aa3a61e755803e138eb8f4eac8f9e26}{
+virtual void \hyperlink{class_work_space_a5aa3a61e755803e138eb8f4eac8f9e26}{sort} ()}
+\label{class_work_space_a5aa3a61e755803e138eb8f4eac8f9e26}
+
+\begin{DoxyCompactList}\small\item\em Fonction de tri. \item\end{DoxyCompactList}\item 
+\hypertarget{class_work_space_aebbdefef57cb12bfbbbb5a00d4c04559}{
+virtual int {\bfseries findProjectPosition} (string projectName)}
+\label{class_work_space_aebbdefef57cb12bfbbbb5a00d4c04559}
+
+\item 
+\hypertarget{class_work_space_ac2fd9acbcc5e3c6fc1de10a752df9031}{
+virtual int {\bfseries newProject} (string projectName)}
+\label{class_work_space_ac2fd9acbcc5e3c6fc1de10a752df9031}
+
+\item 
+virtual int \hyperlink{class_work_space_a5282679131836d3f59acbb8bc5fe6abe}{renameElement} (int elementPosition, string newName)
+\item 
+\hypertarget{class_work_space_a22bd32344f9ff26347ee9b7546c4b3e0}{
+virtual void {\bfseries clear} ()}
+\label{class_work_space_a22bd32344f9ff26347ee9b7546c4b3e0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Représente l'espace de travail de l'utilisateur, elle stocke les projets en cours de développement dans un vecteur. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_work_space_a3941dc541517b3f94a732c45559987da}{
+\index{WorkSpace@{WorkSpace}!dropElement@{dropElement}}
+\index{dropElement@{dropElement}!WorkSpace@{WorkSpace}}
+\subsubsection[{dropElement}]{\setlength{\rightskip}{0pt plus 5cm}void WorkSpace::dropElement (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_work_space_a3941dc541517b3f94a732c45559987da}
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_element_ad43315969bc33b67d181c4cd170b0ad5}{Element}.
+
+\hypertarget{class_work_space_a4326db6270096edb30d8e42e390424d4}{
+\index{WorkSpace@{WorkSpace}!getElement@{getElement}}
+\index{getElement@{getElement}!WorkSpace@{WorkSpace}}
+\subsubsection[{getElement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Element} $\ast$ WorkSpace::getElement (
+\begin{DoxyParamCaption}
+\item[{list$<$ int $>$ $\ast$}]{accessList}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_work_space_a4326db6270096edb30d8e42e390424d4}
+
+
+Accesseur donnant l'élément courant à partir d'une liste d'entiers correspondant aux index des éléments de l'arborescence d'espace de travail de l'utilisateur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em accessList} & : La liste des indices de l'arborescence \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un pointeur vers l'élément this 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_element_a582b08ede581fddd1ffbb4ede68896a6}{Element}.
+
+\hypertarget{class_work_space_a15067a1630061db9f73168ef81ea0dff}{
+\index{WorkSpace@{WorkSpace}!getType@{getType}}
+\index{getType@{getType}!WorkSpace@{WorkSpace}}
+\subsubsection[{getType}]{\setlength{\rightskip}{0pt plus 5cm}int WorkSpace::getType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_work_space_a15067a1630061db9f73168ef81ea0dff}
+
+
+Méthode permettant de savoir si l'élément est un \hyperlink{class_file}{File}, un \hyperlink{class_folder}{Folder}, un \hyperlink{class_project}{Project} ou un \hyperlink{class_work_space}{WorkSpace}. 
+
+\begin{DoxyReturn}{Returns}
+Une constante correspondant au type de l'élément instancié 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_element_a8bd9315dc4eb7b59f47410347375bf0e}{Element}.
+
+\hypertarget{class_work_space_a37e6167ee95031e9d0391dcbc7d669cf}{
+\index{WorkSpace@{WorkSpace}!output@{output}}
+\index{output@{output}!WorkSpace@{WorkSpace}}
+\subsubsection[{output}]{\setlength{\rightskip}{0pt plus 5cm}void WorkSpace::output (
+\begin{DoxyParamCaption}
+\item[{int}]{prof}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_work_space_a37e6167ee95031e9d0391dcbc7d669cf}
+
+
+Méthode fournissant un affichage console, utilisée pour le déboggage de l'application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prof} & : Profondeur de l'affichage console \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_element_a4df80942062589e32af1c9a90a08583d}{Element}.
+
+\hypertarget{class_work_space_a5282679131836d3f59acbb8bc5fe6abe}{
+\index{WorkSpace@{WorkSpace}!renameElement@{renameElement}}
+\index{renameElement@{renameElement}!WorkSpace@{WorkSpace}}
+\subsubsection[{renameElement}]{\setlength{\rightskip}{0pt plus 5cm}int WorkSpace::renameElement (
+\begin{DoxyParamCaption}
+\item[{int}]{elementPosition, }
+\item[{string}]{newName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_work_space_a5282679131836d3f59acbb8bc5fe6abe}
+
+\begin{DoxyParams}{Parameters}
+{\em $\backslash$param} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_element_a3662859ed7a939aa07b31b92b3e7e817}{Element}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+EditeurWeb/Models/\hyperlink{_work_space_8h}{WorkSpace.h}\item 
+EditeurWeb/Models/WorkSpace.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,503 @@
+\hypertarget{class_element}{
+\section{Element Class Reference}
+\label{class_element}\index{Element@{Element}}
+}
+
+
+Regroupe l'ensemble des méthodes, attributs et constantes qui sont communs à tous les \char`\"{}fils\char`\"{} \hyperlink{class_folder}{Folder}, \hyperlink{class_file}{File} et \hyperlink{class_project}{Project}.  
+
+
+
+
+{\ttfamily \#include $<$Element.h$>$}
+
+Inheritance diagram for Element:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_element}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_element_a30fb38cc718fb273c63d0c235d7f7e8e}{Element} (string name=\char`\"{}\char`\"{}, string parentPath=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \hyperlink{class_element}{Element}. \item\end{DoxyCompactList}\item 
+\hypertarget{class_element_a13d54ba9c08b6bec651402f1c2bb002c}{
+virtual \hyperlink{class_element_a13d54ba9c08b6bec651402f1c2bb002c}{$\sim$Element} ()}
+\label{class_element_a13d54ba9c08b6bec651402f1c2bb002c}
+
+\begin{DoxyCompactList}\small\item\em Destructeur de la classe \hyperlink{class_element}{Element}. \item\end{DoxyCompactList}\item 
+virtual string \hyperlink{class_element_a27a65299407f69ef9d4ae0525039c151}{getName} ()
+\begin{DoxyCompactList}\small\item\em Accesseur donnant le nom de l'élément. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_element_ac32d5701b8eb276aa176eeb73ac650b2}{setName} (string name)
+\begin{DoxyCompactList}\small\item\em Accesseur permettant de modifier le nom de l'élément. \item\end{DoxyCompactList}\item 
+virtual string \hyperlink{class_element_ae69c61bab74ebca485225e8d3a1fff95}{getParentPath} ()
+\begin{DoxyCompactList}\small\item\em Accesseur donnant le chemin du dossier parent de l'élément. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_element_a4f9a0fe4b81444822fb709bd1c063d52}{setParentPath} (string parentPath)
+\begin{DoxyCompactList}\small\item\em Accesseur permettant de modifier le chemin du dossier parent de l'élément. \item\end{DoxyCompactList}\item 
+virtual QStandardItem $\ast$ \hyperlink{class_element_a86dd6112e04340382cbe9e8d761a1de1}{getQItem} (int i=0)
+\item 
+virtual string \hyperlink{class_element_a299a6beb0d110b931e4cadbb193f80cd}{getPath} ()
+\begin{DoxyCompactList}\small\item\em Méthode permettant d'obtenir le chemin de l'élément grâce au chemin du parent et au nom de l'élément. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_element_a4df80942062589e32af1c9a90a08583d}{output} (int prof)
+\begin{DoxyCompactList}\small\item\em Méthode fournissant un affichage console, utilisée pour le déboggage de l'application. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{class_element}{Element} $\ast$ \hyperlink{class_element_a582b08ede581fddd1ffbb4ede68896a6}{getElement} (list$<$ int $>$ $\ast$accessList)
+\begin{DoxyCompactList}\small\item\em Accesseur donnant l'élément courant à partir d'une liste d'entiers correspondant aux index des éléments de l'arborescence d'espace de travail de l'utilisateur. \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{class_element_a8bd9315dc4eb7b59f47410347375bf0e}{getType} ()
+\begin{DoxyCompactList}\small\item\em Méthode permettant de savoir si l'élément est un \hyperlink{class_file}{File}, un \hyperlink{class_folder}{Folder}, un \hyperlink{class_project}{Project} ou un \hyperlink{class_work_space}{WorkSpace}. \item\end{DoxyCompactList}\item 
+\hypertarget{class_element_a51b482e58e5d6bb8bc16b5ffe120cea4}{
+virtual void \hyperlink{class_element_a51b482e58e5d6bb8bc16b5ffe120cea4}{deleteElement} ()}
+\label{class_element_a51b482e58e5d6bb8bc16b5ffe120cea4}
+
+\begin{DoxyCompactList}\small\item\em Méthode effaçant le fichier physique correspondant à l'élément, ainsi que l'objet this lui-\/même. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_element_ad43315969bc33b67d181c4cd170b0ad5}{dropElement} (int i)
+\item 
+virtual int \hyperlink{class_element_a8c395a5e83fd3700b837c2a3370fbfa1}{newFile} (string fileName, string content=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Méthode créant un fichier physique, avec ou sans contenu, correspondant à l'élément this. \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{class_element_ac55b55d91825094b3493c61af32f225a}{newFolder} (string fileName)
+\begin{DoxyCompactList}\small\item\em Méthode créant un dossier physique correspondant à l'élément this (dans le cas ou cet élément est de type dossier) \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{class_element_aa7bdd2e0ea4620e4e0c32831765bea38}{renameFile} (string newName)
+\begin{DoxyCompactList}\small\item\em Méthode renommant le fichier physique correspondant à l'élément this. \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{class_element_a3662859ed7a939aa07b31b92b3e7e817}{renameElement} (int elementPosition, string newName)
+\item 
+\hypertarget{class_element_a0f7bd30a3cc6ccc7bf322f53f70c519e}{
+virtual void \hyperlink{class_element_a0f7bd30a3cc6ccc7bf322f53f70c519e}{sort} ()}
+\label{class_element_a0f7bd30a3cc6ccc7bf322f53f70c519e}
+
+\begin{DoxyCompactList}\small\item\em Fonction de tri. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_element_abe8962e32d89e253547b86838bb92af6}{setQItemName} (string newName)
+\item 
+virtual string \hyperlink{class_element_a3ae72125050877dcf627b15469ea6ea4}{getContent} ()
+\begin{DoxyCompactList}\small\item\em Accesseur donnant le contenu du fichier physique correspondant à l'élément this. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{class_element_af26ef4f390c0b0e22c6fd86ff7be0117}{setContent} (string newContent)
+\begin{DoxyCompactList}\small\item\em Accesseur permettant une modification du contenu du fichier physique associé à l'élément this. \item\end{DoxyCompactList}\item 
+\hypertarget{class_element_a7ce83303f60b5f5b3d85e70ca58923fc}{
+virtual void {\bfseries clear} ()}
+\label{class_element_a7ce83303f60b5f5b3d85e70ca58923fc}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_element_a4203ec7d3254a849810ba3fe8e957d4c}{
+string {\bfseries parentPath}}
+\label{class_element_a4203ec7d3254a849810ba3fe8e957d4c}
+
+\item 
+\hypertarget{class_element_a63e156c168905a24437098bfff0e5366}{
+string {\bfseries name}}
+\label{class_element_a63e156c168905a24437098bfff0e5366}
+
+\item 
+\hypertarget{class_element_a61a74ff1823b489f1219905f0a695f11}{
+QStandardItem $\ast$ {\bfseries qItem}}
+\label{class_element_a61a74ff1823b489f1219905f0a695f11}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_element_a461630dd9aef376c1247acb8ee150f1d}{operator$<$} (const \hyperlink{class_element}{Element} \&lElem, const \hyperlink{class_element}{Element} \&rElem)
+\begin{DoxyCompactList}\small\item\em Définition d'un nouvel opérateur de comparaison entre éléments. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Regroupe l'ensemble des méthodes, attributs et constantes qui sont communs à tous les \char`\"{}fils\char`\"{} \hyperlink{class_folder}{Folder}, \hyperlink{class_file}{File} et \hyperlink{class_project}{Project}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_element_a30fb38cc718fb273c63d0c235d7f7e8e}{
+\index{Element@{Element}!Element@{Element}}
+\index{Element@{Element}!Element@{Element}}
+\subsubsection[{Element}]{\setlength{\rightskip}{0pt plus 5cm}Element::Element (
+\begin{DoxyParamCaption}
+\item[{string}]{name = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{string}]{parentPath = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}
+\label{class_element_a30fb38cc718fb273c63d0c235d7f7e8e}
+
+
+Constructeur de la classe \hyperlink{class_element}{Element}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & : Nom de l'élément construit \\
+\hline
+{\em parentPath} & : Chemin du parent de l'élément construit \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_element_ad43315969bc33b67d181c4cd170b0ad5}{
+\index{Element@{Element}!dropElement@{dropElement}}
+\index{dropElement@{dropElement}!Element@{Element}}
+\subsubsection[{dropElement}]{\setlength{\rightskip}{0pt plus 5cm}void Element::dropElement (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_ad43315969bc33b67d181c4cd170b0ad5}
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_folder_af3c7544c132e1773eb050fb1a5ba8072}{Folder}, and \hyperlink{class_work_space_a3941dc541517b3f94a732c45559987da}{WorkSpace}.
+
+\hypertarget{class_element_a3ae72125050877dcf627b15469ea6ea4}{
+\index{Element@{Element}!getContent@{getContent}}
+\index{getContent@{getContent}!Element@{Element}}
+\subsubsection[{getContent}]{\setlength{\rightskip}{0pt plus 5cm}string Element::getContent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a3ae72125050877dcf627b15469ea6ea4}
+
+
+Accesseur donnant le contenu du fichier physique correspondant à l'élément this. 
+
+\begin{DoxyReturn}{Returns}
+Une string correspondant au contenu du fichier physique associé à l'élément this 
+\end{DoxyReturn}
+\hypertarget{class_element_a582b08ede581fddd1ffbb4ede68896a6}{
+\index{Element@{Element}!getElement@{getElement}}
+\index{getElement@{getElement}!Element@{Element}}
+\subsubsection[{getElement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Element} $\ast$ Element::getElement (
+\begin{DoxyParamCaption}
+\item[{list$<$ int $>$ $\ast$}]{accessList}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a582b08ede581fddd1ffbb4ede68896a6}
+
+
+Accesseur donnant l'élément courant à partir d'une liste d'entiers correspondant aux index des éléments de l'arborescence d'espace de travail de l'utilisateur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em accessList} & : La liste des indices de l'arborescence \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un pointeur vers l'élément this 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_folder_a8912d9c5225d5d9149b6f26cd590a840}{Folder}, and \hyperlink{class_work_space_a4326db6270096edb30d8e42e390424d4}{WorkSpace}.
+
+\hypertarget{class_element_a27a65299407f69ef9d4ae0525039c151}{
+\index{Element@{Element}!getName@{getName}}
+\index{getName@{getName}!Element@{Element}}
+\subsubsection[{getName}]{\setlength{\rightskip}{0pt plus 5cm}string Element::getName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a27a65299407f69ef9d4ae0525039c151}
+
+
+Accesseur donnant le nom de l'élément. 
+
+\begin{DoxyReturn}{Returns}
+Une string contenant le nom de l'élément this 
+\end{DoxyReturn}
+\hypertarget{class_element_ae69c61bab74ebca485225e8d3a1fff95}{
+\index{Element@{Element}!getParentPath@{getParentPath}}
+\index{getParentPath@{getParentPath}!Element@{Element}}
+\subsubsection[{getParentPath}]{\setlength{\rightskip}{0pt plus 5cm}string Element::getParentPath (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_ae69c61bab74ebca485225e8d3a1fff95}
+
+
+Accesseur donnant le chemin du dossier parent de l'élément. 
+
+\begin{DoxyReturn}{Returns}
+Une string contenant le chemin du dossier parent de l'élément this 
+\end{DoxyReturn}
+\hypertarget{class_element_a299a6beb0d110b931e4cadbb193f80cd}{
+\index{Element@{Element}!getPath@{getPath}}
+\index{getPath@{getPath}!Element@{Element}}
+\subsubsection[{getPath}]{\setlength{\rightskip}{0pt plus 5cm}string Element::getPath (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a299a6beb0d110b931e4cadbb193f80cd}
+
+
+Méthode permettant d'obtenir le chemin de l'élément grâce au chemin du parent et au nom de l'élément. 
+
+\begin{DoxyReturn}{Returns}
+Le chemin vers l'élément this 
+\end{DoxyReturn}
+\hypertarget{class_element_a86dd6112e04340382cbe9e8d761a1de1}{
+\index{Element@{Element}!getQItem@{getQItem}}
+\index{getQItem@{getQItem}!Element@{Element}}
+\subsubsection[{getQItem}]{\setlength{\rightskip}{0pt plus 5cm}QStandardItem $\ast$ Element::getQItem (
+\begin{DoxyParamCaption}
+\item[{int}]{i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a86dd6112e04340382cbe9e8d761a1de1}
+
+\begin{DoxyParams}{Parameters}
+{\em $\backslash$return} & \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_folder_a71c34c87b7e558e833d5ce850a506f97}{Folder}.
+
+\hypertarget{class_element_a8bd9315dc4eb7b59f47410347375bf0e}{
+\index{Element@{Element}!getType@{getType}}
+\index{getType@{getType}!Element@{Element}}
+\subsubsection[{getType}]{\setlength{\rightskip}{0pt plus 5cm}int Element::getType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a8bd9315dc4eb7b59f47410347375bf0e}
+
+
+Méthode permettant de savoir si l'élément est un \hyperlink{class_file}{File}, un \hyperlink{class_folder}{Folder}, un \hyperlink{class_project}{Project} ou un \hyperlink{class_work_space}{WorkSpace}. 
+
+\begin{DoxyReturn}{Returns}
+Une constante correspondant au type de l'élément instancié 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_file_a43d0e1af3412f6b04b0fde9af3cef442}{File}, \hyperlink{class_folder_ac032a805ab49927a9b0a97453a2ae5d5}{Folder}, \hyperlink{class_project_ab9adc05a12220fbdec7822bdcd15389b}{Project}, and \hyperlink{class_work_space_a15067a1630061db9f73168ef81ea0dff}{WorkSpace}.
+
+\hypertarget{class_element_a8c395a5e83fd3700b837c2a3370fbfa1}{
+\index{Element@{Element}!newFile@{newFile}}
+\index{newFile@{newFile}!Element@{Element}}
+\subsubsection[{newFile}]{\setlength{\rightskip}{0pt plus 5cm}int Element::newFile (
+\begin{DoxyParamCaption}
+\item[{string}]{fileName, }
+\item[{string}]{content = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a8c395a5e83fd3700b837c2a3370fbfa1}
+
+
+Méthode créant un fichier physique, avec ou sans contenu, correspondant à l'élément this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fileName} & : Le nom du fichier qui sera créé \\
+\hline
+{\em content} & : Contenu éventuel du fichier créé \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier positif ou nul dans le cas d'une création sans problèmes, un entier négatif correspondant à une erreur sinon 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_folder_aeebb3b1a62077b9fdb5cd0c30b709358}{Folder}.
+
+\hypertarget{class_element_ac55b55d91825094b3493c61af32f225a}{
+\index{Element@{Element}!newFolder@{newFolder}}
+\index{newFolder@{newFolder}!Element@{Element}}
+\subsubsection[{newFolder}]{\setlength{\rightskip}{0pt plus 5cm}int Element::newFolder (
+\begin{DoxyParamCaption}
+\item[{string}]{fileName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_ac55b55d91825094b3493c61af32f225a}
+
+
+Méthode créant un dossier physique correspondant à l'élément this (dans le cas ou cet élément est de type dossier) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fileName} & : Le nom du dossier créé \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier positif ou nul dans le cas d'une création sans problèmes, un entier négatif correspondant à une erreur sinon 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_folder_aa32cbc33e9819ff11e6d9561da77a216}{Folder}.
+
+\hypertarget{class_element_a4df80942062589e32af1c9a90a08583d}{
+\index{Element@{Element}!output@{output}}
+\index{output@{output}!Element@{Element}}
+\subsubsection[{output}]{\setlength{\rightskip}{0pt plus 5cm}void Element::output (
+\begin{DoxyParamCaption}
+\item[{int}]{prof}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a4df80942062589e32af1c9a90a08583d}
+
+
+Méthode fournissant un affichage console, utilisée pour le déboggage de l'application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prof} & : Profondeur de l'affichage console \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_folder_af86ff443dfb2e8ad93daf847f23e1c0c}{Folder}, and \hyperlink{class_work_space_a37e6167ee95031e9d0391dcbc7d669cf}{WorkSpace}.
+
+\hypertarget{class_element_a3662859ed7a939aa07b31b92b3e7e817}{
+\index{Element@{Element}!renameElement@{renameElement}}
+\index{renameElement@{renameElement}!Element@{Element}}
+\subsubsection[{renameElement}]{\setlength{\rightskip}{0pt plus 5cm}int Element::renameElement (
+\begin{DoxyParamCaption}
+\item[{int}]{elementPosition, }
+\item[{string}]{newName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a3662859ed7a939aa07b31b92b3e7e817}
+
+\begin{DoxyParams}{Parameters}
+{\em $\backslash$param} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_folder_a5ed32bc216e9419d4f25bb2ff267c0f8}{Folder}, and \hyperlink{class_work_space_a5282679131836d3f59acbb8bc5fe6abe}{WorkSpace}.
+
+\hypertarget{class_element_aa7bdd2e0ea4620e4e0c32831765bea38}{
+\index{Element@{Element}!renameFile@{renameFile}}
+\index{renameFile@{renameFile}!Element@{Element}}
+\subsubsection[{renameFile}]{\setlength{\rightskip}{0pt plus 5cm}int Element::renameFile (
+\begin{DoxyParamCaption}
+\item[{string}]{newName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_aa7bdd2e0ea4620e4e0c32831765bea38}
+
+
+Méthode renommant le fichier physique correspondant à l'élément this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newName} & : Le nouveau nom du fichier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier positif ou nul dans le cas d'un renommage sans problèmes, un entier négatif correspondant à une erreur sinon 
+\end{DoxyReturn}
+\hypertarget{class_element_af26ef4f390c0b0e22c6fd86ff7be0117}{
+\index{Element@{Element}!setContent@{setContent}}
+\index{setContent@{setContent}!Element@{Element}}
+\subsubsection[{setContent}]{\setlength{\rightskip}{0pt plus 5cm}void Element::setContent (
+\begin{DoxyParamCaption}
+\item[{string}]{newContent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_af26ef4f390c0b0e22c6fd86ff7be0117}
+
+
+Accesseur permettant une modification du contenu du fichier physique associé à l'élément this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newContent} & : Le nouveau contenu du fichier associé à l'élément this \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_element_ac32d5701b8eb276aa176eeb73ac650b2}{
+\index{Element@{Element}!setName@{setName}}
+\index{setName@{setName}!Element@{Element}}
+\subsubsection[{setName}]{\setlength{\rightskip}{0pt plus 5cm}void Element::setName (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_ac32d5701b8eb276aa176eeb73ac650b2}
+
+
+Accesseur permettant de modifier le nom de l'élément. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & : Le nouveau nom à donner à l'élément this \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_folder_a2c3e281ae41dd82feb354c1456bee923}{Folder}.
+
+\hypertarget{class_element_a4f9a0fe4b81444822fb709bd1c063d52}{
+\index{Element@{Element}!setParentPath@{setParentPath}}
+\index{setParentPath@{setParentPath}!Element@{Element}}
+\subsubsection[{setParentPath}]{\setlength{\rightskip}{0pt plus 5cm}void Element::setParentPath (
+\begin{DoxyParamCaption}
+\item[{string}]{parentPath}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_a4f9a0fe4b81444822fb709bd1c063d52}
+
+
+Accesseur permettant de modifier le chemin du dossier parent de l'élément. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parentPath} & : Le nouveau chemin vers le parent de l'élément this \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_folder_a41839442b7ea5a33f06c2afa7980a974}{Folder}.
+
+\hypertarget{class_element_abe8962e32d89e253547b86838bb92af6}{
+\index{Element@{Element}!setQItemName@{setQItemName}}
+\index{setQItemName@{setQItemName}!Element@{Element}}
+\subsubsection[{setQItemName}]{\setlength{\rightskip}{0pt plus 5cm}void Element::setQItemName (
+\begin{DoxyParamCaption}
+\item[{string}]{newName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_element_abe8962e32d89e253547b86838bb92af6}
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_element_a461630dd9aef376c1247acb8ee150f1d}{
+\index{Element@{Element}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Element@{Element}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Element} \&}]{lElem, }
+\item[{const {\bf Element} \&}]{rElem}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{class_element_a461630dd9aef376c1247acb8ee150f1d}
+
+
+Définition d'un nouvel opérateur de comparaison entre éléments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lElem} & : Élément à gauche de l'opérateur \\
+\hline
+{\em rElem} & : Élément à droite de l'opérateur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si lElem est considéré inférieur (au sens alphabétique) à rElem, false sinon 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+EditeurWeb/Models/\hyperlink{_element_8h}{Element.h}\item 
+EditeurWeb/Models/Element.cpp\end{DoxyCompactItemize}
