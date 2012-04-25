@@ -6,7 +6,8 @@
 #include <QAbstractItemModel>
 #include <QTextEdit>
 #include <QFile>
-
+#include <string>
+using namespace std;
 QT_BEGIN_NAMESPACE
 class QCompleter;
 QT_END_NAMESPACE
@@ -17,6 +18,8 @@ QT_END_NAMESPACE
 #include "Controllers/Highlighting/HtmlHighlighter.h"
 #include "Controllers/Highlighting/JavaScriptHighlighter.h"
 #include "Controllers/Highlighting/PhpHighlighter.h"
+#include "Tools/Tools.h"
+
 #ifndef CENTRALEDITOR_H
 #define CENTRALEDITOR_H
 
@@ -37,7 +40,7 @@ public:
      * ci-dessus.
      * \param parent: l'onglet concerné par les fonctionnalités
      */
-    CentralEditor(QWidget *parent = 0);
+    CentralEditor(QWidget *parent = 0, string filePath = "");
 
     /*!
      * \brief Mise en place des propriétés de l'éditeur.
@@ -196,7 +199,7 @@ private:
      * \return On retourne le nom du fichier
      */
     QString strippedName(const QString &fullFileName);
-
+    string filePath;
     QString curFile;
     bool isUntitled;
 };

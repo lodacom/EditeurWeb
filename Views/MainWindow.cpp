@@ -23,7 +23,7 @@ void MainWindow::init()
     zoneCentrale = new QMdiArea;
     zoneCentrale->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     zoneCentrale->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-
+    zoneCentrale->setViewMode(QMdiArea::TabbedView);
     setCentralWidget(zoneCentrale);
     connect(zoneCentrale, SIGNAL(subWindowActivated(QMdiSubWindow*)),
             this, SLOT(updateMenus()));
@@ -57,17 +57,17 @@ void MainWindow::init()
 
 void MainWindow::createActions()
 {
-    newAct = new QAction(QIcon(":/Pics/new.png"), tr("&New"), this);
+    newAct = new QAction(QIcon("Pics/new.png"), tr("&New"), this);
     newAct->setShortcuts(QKeySequence::New);
     newAct->setStatusTip(tr("Create a new file"));
     connect(newAct, SIGNAL(triggered()), this, SLOT(newFile()));
 
-    openAct = new QAction(QIcon(":/Pics/open.png"), tr("&Open..."), this);
+    openAct = new QAction(QIcon("Pics/open.png"), tr("&Open..."), this);
     openAct->setShortcuts(QKeySequence::Open);
     openAct->setStatusTip(tr("Open an existing file"));
     connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
 
-    saveAct = new QAction(QIcon(":/Pics/save.png"), tr("&Save"), this);
+    saveAct = new QAction(QIcon("Pics/save.png"), tr("&Save"), this);
     saveAct->setShortcuts(QKeySequence::Save);
     saveAct->setStatusTip(tr("Save the document to disk"));
     connect(saveAct, SIGNAL(triggered()), this, SLOT(save()));
@@ -114,21 +114,21 @@ void MainWindow::createActions()
     exitAct = new QAction(tr("E&xit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
     exitAct->setStatusTip(tr("Exit the application"));
-    connect(exitAct, SIGNAL(triggered()), qApp, SLOT(closeAllWindows()));
+    connect(exitAct, SIGNAL(triggered()), qApp, SLOT(quit()));
 
-    cutAct = new QAction(QIcon(":/Pics/cut.png"), tr("Cu&t"), this);
+    cutAct = new QAction(QIcon("Pics/cut.png"), tr("Cu&t"), this);
     cutAct->setShortcuts(QKeySequence::Cut);
     cutAct->setStatusTip(tr("Cut the current selection's contents to the "
                             "clipboard"));
     connect(cutAct, SIGNAL(triggered()),this, SLOT(cut()));
 
-    copyAct = new QAction(QIcon(":/Pics/copy.png"), tr("&Copy"), this);
+    copyAct = new QAction(QIcon("Pics/copy.png"), tr("&Copy"), this);
     copyAct->setShortcuts(QKeySequence::Copy);
     copyAct->setStatusTip(tr("Copy the current selection's contents to the "
                              "clipboard"));
     connect(copyAct, SIGNAL(triggered()),this, SLOT(copy()));
 
-    pasteAct = new QAction(QIcon(":/Pics/paste.png"), tr("&Paste"), this);
+    pasteAct = new QAction(QIcon("Pics/paste.png"), tr("&Paste"), this);
     pasteAct->setShortcuts(QKeySequence::Paste);
     pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
                               "selection"));
@@ -176,8 +176,10 @@ void MainWindow::createMenus()
     fileMenu->addAction(saveAsAct);
     fileMenu->addSeparator();
     QAction *action = fileMenu->addAction(tr("Switch layout direction"));
-    connect(action, SIGNAL(triggered()), this, SLOT(switchLayoutDirection()));
 
+    connect(action, SIGNAL(triggered()), this, SLOT(switchLayoutDirection()));
+    fileMenu->addAction(tr("&New Project"), treeView, SLOT(newProject()));
+    fileMenu->addAction(tr("&Select WorkSpace"), this, SLOT(selectWorkSpace()));
     fileMenu->addAction(exitAct);
 
     editMenu = menuBar()->addMenu(tr("&Edit"));
@@ -263,12 +265,13 @@ void MainWindow::about()
 
 void MainWindow::newFile()
 {
-    CentralEditor *child = createMdiChild();
+    CentralEditor *child = new CentralEditor();
+    createMdiChild(child);
     child->newFile();
     child->show();
 }
 
-/*void MainWindow::openFile(const QString &path)
+void MainWindow::openFile(const QString &path)
 {
     QString fileName = path;
 
@@ -278,11 +281,25 @@ void MainWindow::newFile()
 
     if (!fileName.isEmpty())
     {
-        QFile file(fileName);
-        if (file.open(QFile::ReadOnly | QFile::Text))
-            editor->setPlainText(file.readAll());
+        QMdiSubWindow *existing = findMdiChild(fileName);
+        if (existing)
+        {
+            zoneCentrale->setActiveSubWindow(existing);
+            return;
+        }
+        CentralEditor *child = new CentralEditor(this, fileName.toStdString());
+        createMdiChild(child);
+        if (child->loadFile(fileName))
+        {
+            statusBar()->showMessage(tr("File loaded"), 2000);
+            child->show();
+        }
+        else
+        {
+            child->close();
+        }
     }
-}*/
+}
 
 void MainWindow::open()
 {
@@ -297,7 +314,8 @@ void MainWindow::open()
             return;
         }
 
-        CentralEditor *child = createMdiChild();
+        CentralEditor *child = new CentralEditor(0, fileName.toStdString());
+        createMdiChild(child);
         if (child->loadFile(fileName))
         {
             statusBar()->showMessage(tr("File loaded"), 2000);
@@ -423,9 +441,8 @@ void MainWindow::updateWindowMenu()
     }
 }
 
-CentralEditor *MainWindow::createMdiChild()
+void MainWindow::createMdiChild(CentralEditor *child)
 {
-    CentralEditor *child = new CentralEditor;
     zoneCentrale->addSubWindow(child);
 
     connect(child, SIGNAL(copyAvailable(bool)),
@@ -440,8 +457,6 @@ CentralEditor *MainWindow::createMdiChild()
             child, SLOT(colorationPHP()));
     connect(actionCSS, SIGNAL(triggered()),
             child, SLOT(colorationCSS()));
-
-    return child;
 }
 
 CentralEditor *MainWindow::activeMdiChild()
@@ -499,3 +514,4 @@ void MainWindow::setupWorkSpaceDock()
     dockContents->setLayout(dockLayout);
     QObject::connect(treeView, SIGNAL(fileOpened(QString)), this, SLOT(openFile(QString)));
 }
+

@@ -16,6 +16,7 @@
 #include "../Controllers/Highlighting/PhpHighlighter.h"
 #include "CentralEditor.h"
 #include "../Controllers/WorkSpaceTreeController.h"
+#include "EditorTab.h"
 #include "HtmlTreeWidget.h"
 #include "WorkSpaceTree.h"
 
@@ -108,8 +109,7 @@ public slots:
      * de l'interface.
      * \return Un onglet de type CentralEditor.
      */
-    CentralEditor *createMdiChild();
-
+    void createMdiChild(CentralEditor *child);
     /*!
      * \brief Met à "vrai" la fenêtre qui a été modifiée et indique
      * ainsi que le document concerné l'est également
@@ -137,7 +137,7 @@ public slots:
      * d'un nouveau fils et en le montrant à l'utilisateur.
      */
     void newFile();
-    //void openFile(const QString &path = QString());
+    void openFile(const QString &path = QString());
     void selectWorkSpace();
 
 protected:

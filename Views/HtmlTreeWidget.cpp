@@ -11,6 +11,7 @@ HtmlTreeWidget::HtmlTreeWidget(QWidget *parent) :
     ui->setupUi(this);
     ui->webView->setUrl(QUrl("file:///users/Abdelhamid/Downloads/p.html"));
     ui->webView->setZoomFactor(0.3);
+    this->setMaximumWidth(400);
 }
 
 void HtmlTreeWidget::setUrl(const QUrl &url)
