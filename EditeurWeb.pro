@@ -24,7 +24,9 @@ HEADERS += \
     Models/SyntaxTreeItem.h \
     Models/SyntaxTree.h \
     Tools/Tools.h \
-    Views/EditorTab.h
+    Views/EditorTab.h \
+    Models/HtmlIndenter.h \
+    Controllers/IndenterController.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -51,7 +53,9 @@ SOURCES += \
     Models/SyntaxTreeItem.cpp \
     Models/SyntaxTree.cpp \
     Tools/Tools.cpp \
-    Views/EditorTab.cpp
+    Views/EditorTab.cpp \
+    Models/HtmlIndenter.cpp \
+    Controllers/IndenterController.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \

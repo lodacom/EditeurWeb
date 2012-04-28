@@ -7,6 +7,7 @@
 #include <QTextEdit>
 #include <QFile>
 #include <string>
+#include <QCursor>
 using namespace std;
 QT_BEGIN_NAMESPACE
 class QCompleter;
@@ -19,6 +20,7 @@ QT_END_NAMESPACE
 #include "Controllers/Highlighting/JavaScriptHighlighter.h"
 #include "Controllers/Highlighting/PhpHighlighter.h"
 #include "Tools/Tools.h"
+#include "Controllers/IndenterController.h"
 
 #ifndef CENTRALEDITOR_H
 #define CENTRALEDITOR_H
@@ -40,7 +42,7 @@ public:
      * ci-dessus.
      * \param parent: l'onglet concerné par les fonctionnalités
      */
-    CentralEditor(QWidget *parent = 0, string filePath = "");
+    CentralEditor(QWidget *parent = 0, string filePath = "", IndenterController *indentController = 0);
 
     /*!
      * \brief Mise en place des propriétés de l'éditeur.
@@ -102,6 +104,7 @@ public:
     QString userFriendlyCurrentFile();
 
     QString currentFile() { return curFile; }
+    QString currentLine();
 
 public slots:
     /*!
@@ -146,7 +149,7 @@ public slots:
      * \brief Permet de savoir si un fichier a été modifié.
      */
     void documentWasModified();
-
+    void indentCheck();
 protected:
     /*!
      * \brief Permet d'afficher au fur et à mesure de la frappe de
@@ -199,9 +202,18 @@ private:
      * \return On retourne le nom du fichier
      */
     QString strippedName(const QString &fullFileName);
+    int countTab();
     string filePath;
     QString curFile;
     bool isUntitled;
+    bool newLine;
+    bool addTabs;
+    bool newTab;
+    int tabNumber;
+    IndenterController *indentController;
+
+private slots:
+    void indent();
 };
 
 #endif // CENTRALEDITOR_H

@@ -30,7 +30,7 @@ void MainWindow::init()
     windowMapper = new QSignalMapper(this);
     connect(windowMapper, SIGNAL(mapped(QWidget*)),
             this, SLOT(setActiveSubWindow(QWidget*)));
-
+    indenterController = new IndenterController();
     setupWorkSpaceDock();
     //setupColoration();
     createActions();
@@ -265,7 +265,7 @@ void MainWindow::about()
 
 void MainWindow::newFile()
 {
-    CentralEditor *child = new CentralEditor();
+    CentralEditor *child = new CentralEditor(this, "", indenterController);
     createMdiChild(child);
     child->newFile();
     child->show();
@@ -287,7 +287,7 @@ void MainWindow::openFile(const QString &path)
             zoneCentrale->setActiveSubWindow(existing);
             return;
         }
-        CentralEditor *child = new CentralEditor(this, fileName.toStdString());
+        CentralEditor *child = new CentralEditor(this, fileName.toStdString(), indenterController);
         createMdiChild(child);
         if (child->loadFile(fileName))
         {
@@ -314,7 +314,7 @@ void MainWindow::open()
             return;
         }
 
-        CentralEditor *child = new CentralEditor(0, fileName.toStdString());
+        CentralEditor *child = new CentralEditor(0, fileName.toStdString(), indenterController);
         createMdiChild(child);
         if (child->loadFile(fileName))
         {

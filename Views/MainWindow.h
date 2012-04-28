@@ -19,7 +19,7 @@
 #include "EditorTab.h"
 #include "HtmlTreeWidget.h"
 #include "WorkSpaceTree.h"
-
+#include "Controllers/IndenterController.h"
 QT_BEGIN_NAMESPACE
 class QAction;
 class QMenu;
@@ -196,7 +196,7 @@ private:
     //QString strippedName(const QString &fullFileName);
     WorkSpaceTree *treeView;
     HtmlTreeWidget *htmlTreeWidget;
-
+    IndenterController *indenterController;
     QMdiArea *zoneCentrale;
     QSignalMapper *windowMapper;
 

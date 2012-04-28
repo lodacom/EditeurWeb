@@ -9,12 +9,19 @@
 #include <QAbstractItemModel>
 #include <QScrollBar>
 #include <QStringListModel>
+#include <iostream>
 
-CentralEditor::CentralEditor(QWidget *parent, string filePath):QTextEdit(parent),completion_text(0)
+using namespace std;
+CentralEditor::CentralEditor(QWidget *parent, string filePath, IndenterController *indentController):QTextEdit(parent),completion_text(0)
 {
     completion_text = new QCompleter(this);
     this->filePath = filePath;
+    this->indentController = indentController;
+    addTabs = false;
+    newTab = false;
+    this->setTabStopWidth(20);
     setupEditor();
+    QObject::connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(indent()));
 }
 
 void CentralEditor::setupEditor()
@@ -120,6 +127,12 @@ void CentralEditor::focusInEvent(QFocusEvent *e)
 
 void CentralEditor::keyPressEvent(QKeyEvent *e)
 {
+    if(e->key() == Qt::Key_Return){
+        addTabs = true;
+        indentCheck();
+
+    }
+
     if (completion_text && completion_text->popup()->isVisible())
     {
         //Les clés suivantes sont suivies par le compléteur
@@ -169,6 +182,7 @@ void CentralEditor::keyPressEvent(QKeyEvent *e)
     cr.setWidth(completion_text->popup()->sizeHintForColumn(0)
                 + completion_text->popup()->verticalScrollBar()->sizeHint().width());
     completion_text->complete(cr); // popup it up!
+
 }
 
 /*Partie coloration et utilisation du compléteur*/
@@ -354,4 +368,56 @@ void CentralEditor::setCurrentFile(const QString &fileName)
 QString CentralEditor::strippedName(const QString &fullFileName)
 {
     return QFileInfo(fullFileName).fileName();
+}
+
+QString CentralEditor::currentLine(){
+    QTextCursor cursor = textCursor();
+    return cursor.block().text().trimmed();
+}
+
+void CentralEditor::indentCheck(){
+    QTextCursor cursor = textCursor();
+    int indentResult = indentController->indentDetermin(currentLine());
+    switch(indentResult){
+    case 1:
+        newTab = true;
+        break;
+    case -1:
+            cursor.movePosition(QTextCursor::StartOfBlock);
+            cursor.deleteChar();
+            cursor.movePosition(QTextCursor::EndOfBlock);
+            this->setTextCursor(cursor);
+            break;
+
+    default:
+        break;
+    }
+}
+
+void CentralEditor::indent(){
+    if(addTabs){
+        addTabs = false;
+        QTextCursor cursor = textCursor();
+        QString tab = QString('\t');
+        int tabNumb = countTab();
+        if(newTab){
+            tabNumb++;
+            newTab = false;
+        }
+        for (int i = 0; i < tabNumb; i++){
+            cursor.insertText(tab);
+        }
+        this->setTextCursor(cursor);
+
+    }
+}
+
+int CentralEditor::countTab(){
+    QTextCursor cursor = textCursor();
+    cursor.movePosition(QTextCursor::PreviousBlock);
+    int i = 0;
+    while(cursor.block().text().at(i) == '\t'){
+        i++;
+    }
+    return i;
 }
