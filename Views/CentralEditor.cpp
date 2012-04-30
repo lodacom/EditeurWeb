@@ -127,7 +127,7 @@ void CentralEditor::focusInEvent(QFocusEvent *e)
 
 void CentralEditor::keyPressEvent(QKeyEvent *e)
 {
-    if(e->key() == Qt::Key_Return){
+    if(e->key() == Qt::Key_Return && !completion_text->popup()->isVisible()){
         indentCheck();
     }
 
