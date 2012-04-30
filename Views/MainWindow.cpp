@@ -3,20 +3,13 @@
 
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent)//,completer(0)
 {
-   // editor=new CentralEditor(parent);
     init();
-    //setCurrentFile("hello");
 }
 
-/*MainWindow::MainWindow(const QString &fileName)
-{
-    init();
-    //loadFile(fileName);
-}*/
 
 void MainWindow::init()
 {
-    setAttribute(Qt::WA_DeleteOnClose);
+    //setAttribute(Qt::WA_DeleteOnClose);
 
     //isUntitled = true;
 
@@ -114,7 +107,8 @@ void MainWindow::createActions()
     exitAct = new QAction(tr("E&xit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
     exitAct->setStatusTip(tr("Exit the application"));
-    connect(exitAct, SIGNAL(triggered()), qApp, SLOT(quit()));
+
+    connect(exitAct, SIGNAL(triggered()), qApp, SLOT(closeAllWindows()));
 
     cutAct = new QAction(QIcon("Pics/cut.png"), tr("Cu&t"), this);
     cutAct->setShortcuts(QKeySequence::Cut);
