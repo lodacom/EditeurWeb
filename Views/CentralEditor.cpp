@@ -128,9 +128,7 @@ void CentralEditor::focusInEvent(QFocusEvent *e)
 void CentralEditor::keyPressEvent(QKeyEvent *e)
 {
     if(e->key() == Qt::Key_Return){
-        addTabs = true;
         indentCheck();
-
     }
 
     if (completion_text && completion_text->popup()->isVisible())
@@ -375,23 +373,44 @@ QString CentralEditor::currentLine(){
     return cursor.block().text().trimmed();
 }
 
+QString CentralEditor::previousLine(){
+    QTextCursor cursor = textCursor();
+    cursor.movePosition(QTextCursor::PreviousBlock);
+    return cursor.block().text().trimmed();
+}
+
 void CentralEditor::indentCheck(){
     QTextCursor cursor = textCursor();
     int indentResult = indentController->indentDetermin(currentLine());
+    int previousLineTabNb;
+    int currentLineTabNb;
     switch(indentResult){
     case 1:
         newTab = true;
         break;
     case -1:
-            cursor.movePosition(QTextCursor::StartOfBlock);
-            cursor.deleteChar();
-            cursor.movePosition(QTextCursor::EndOfBlock);
-            this->setTextCursor(cursor);
-            break;
-
+        previousLineTabNb = countPreviousLineTab();
+        currentLineTabNb = countCurrentLineTab();
+        if(previousLineTabNb < currentLineTabNb){
+                cursor.movePosition(QTextCursor::StartOfBlock);
+                for (int i = 0; i < currentLineTabNb - previousLineTabNb; i++)
+                    cursor.deleteChar();
+                cursor.movePosition(QTextCursor::EndOfBlock);
+                this->setTextCursor(cursor);
+        }
+        else if(previousLineTabNb == currentLineTabNb){
+            if(indentController->indentDetermin(previousLine()) == -1){
+                cursor.movePosition(QTextCursor::StartOfBlock);
+                cursor.deleteChar();
+                cursor.movePosition(QTextCursor::EndOfBlock);
+                this->setTextCursor(cursor);
+            }
+        }
+        break;
     default:
         break;
     }
+    addTabs = true;
 }
 
 void CentralEditor::indent(){
@@ -399,7 +418,7 @@ void CentralEditor::indent(){
         addTabs = false;
         QTextCursor cursor = textCursor();
         QString tab = QString('\t');
-        int tabNumb = countTab();
+        int tabNumb = countPreviousLineTab();
         if(newTab){
             tabNumb++;
             newTab = false;
@@ -408,13 +427,20 @@ void CentralEditor::indent(){
             cursor.insertText(tab);
         }
         this->setTextCursor(cursor);
-
     }
 }
 
-int CentralEditor::countTab(){
+int CentralEditor::countPreviousLineTab(){
     QTextCursor cursor = textCursor();
     cursor.movePosition(QTextCursor::PreviousBlock);
+    int i = 0;
+    while(cursor.block().text().at(i) == '\t'){
+        i++;
+    }
+    return i;
+}
+int CentralEditor::countCurrentLineTab(){
+    QTextCursor cursor = textCursor();
     int i = 0;
     while(cursor.block().text().at(i) == '\t'){
         i++;

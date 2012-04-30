@@ -105,7 +105,7 @@ public:
 
     QString currentFile() { return curFile; }
     QString currentLine();
-
+    QString previousLine();
 public slots:
     /*!
      * \brief Permet de colorer en prenant en compte le langage CSS
@@ -202,7 +202,8 @@ private:
      * \return On retourne le nom du fichier
      */
     QString strippedName(const QString &fullFileName);
-    int countTab();
+    int countPreviousLineTab();
+    int countCurrentLineTab();
     string filePath;
     QString curFile;
     bool isUntitled;
