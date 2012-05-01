@@ -454,10 +454,12 @@ void CentralEditor::checkLanguage(){
     bool cont = true;
     if(line.contains("<?php")){
         indentController->setLanguage(PHP_LANGUAGE);
+        colorationPHP();
         cont = false;
     }
     else if(line.contains("<")){
         indentController->setLanguage(HTML_LANGUAGE);
+        colorationHTML();
         cont = false;
     }
     else{
@@ -473,10 +475,12 @@ void CentralEditor::checkLanguage(){
     while(cont){
         if(line.contains("<?php")){
             indentController->setLanguage(PHP_LANGUAGE);
+            colorationPHP();
             cont = false;
         }
         else if(line.contains("<") || line.contains("?>")){
             indentController->setLanguage(HTML_LANGUAGE);
+            colorationHTML();
             cont = false;
         }
         else{
