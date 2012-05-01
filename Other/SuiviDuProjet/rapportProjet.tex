@@ -345,9 +345,17 @@
 			\begin{section}{Gestion des projets}
 				Le sous-système de gestion des projets est un élément important de l'application, en ce sens qu'il permet à l'utilisateur
 				de bien s'organiser de manière simple et efficace.\\
+				À la manière de beaucoup de logiciels connus, il sera nécessaire à l'utilisateur de sélectionner un Espace de Travail,
+				regroupant un ensemble de projets. Cette petite obligation n'est que très peu contraignante et favorise l'organisation, 
+				sans pour autant l'imposer réellement à l'utilisateur puisque l'emplacement de cet espace de travail est donné par l'utilisateur.\\
 				Un projet est concrètement représenté par un dossier sur la machine de l'utilisateur. Partant de cette idée, notre système
 				de gestion de projet sera implémenté en utilisant les normes et références communément admises en termes de création,
 				modification et destruction de dossiers.\\~\\
+				Comme exposé ci-dessous, l'utilisateur doit pouvoir effectuer les actions classiques relatives à un projet, à savoir création, 
+				modification, suppression, ouverture et fermeture, mais il peut également, comme stipulé dans le cahier des charges, 
+				créer un nouveau projet basé sur un squelette de site pré-existant.\\
+				Ce dernier cas de figure, non obligatoire, permet à un utilisateur d'avoir un aperçu de ce que peut être un projet de 
+				site internet en développement sous notre application.\\
 				L'unique caractéristique d'un projet est que l'on pourra trouver à la racine un fichier spécial résumant les paramètres utilisateur,
 				les caractéristiques du projet, et autres informations diverses.\\
 				Relativement à un projet, l'application fournit les fonctionnalités décrites dans le diagramme \ref{marchandise}
@@ -358,23 +366,40 @@
 						\label{marchandise}
 					\end{center}
 				\end{figure}~\\
-			\end{section}
+				À noter que cette méthode d'utilisation de l'application nous a principalement été inspirée
+				par des logiciels que nous utilisons tous en cours et chez nous, comme Eclipse par exemple.\\
+				À ces actions d'ordre "général" s'ajoutent quelques actions propres à la modélisation physique des projets dans notre application,
+				qui sont exposées dans le diagramme \ref{ucgp}
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[height=7cm]{images/modificationProjet.jpg}
+						\caption{Use-Case modification de projets}
+						\label{ucgp}
+					\end{center}
+				\end{figure}~\\
 
+				Ainsi comme exposé dans ce diagramme, l'utilisateur pourra créer autant de fichiers et de dossiers qu'il le souhaite dans 
+				sont projet, lui permettant ainsi de pouvoir organiser son travail comme il le souhaite, plutôt que devoir se plier à un 
+				mode d'organisation imposé par l'application.\\
+				Toutefois, ces actions d'apparences basiques sont signes d'un travail important à venir puisqu'elles constituent des libertés
+				supplémentaires	accordées à l'utilisateur.\\
+			\end{section}
 			\newpage
 			\begin{section}{Gestion des fichiers}
-				Le diagramme \ref{carabine} détaille le contenu du système de gestion des fichiers. Notez l'incroyable similitude entre ce
-				dernier et le système de gestion des projets décrits précédemment.\\
-				Plusieurs raisons expliquent notre choix. Primo, les procédures d'entrée et sortie restent les mêmes
-				(création, lecture, écriture, ...), secundo, la sémantique est similaire et facilite le travail autant au programmeur
-				qu'à l'utilisateur final qui suivront les mêmes étapes pour travailler sur un fichier ou un projet.\\
-
-
-				La présence d'une 
+			
+				Le sous-système de gestion des fichiers constitue également une partie importante et consistante de notre projet, il fait
+				d'ailleurs parti d'un des trois axes principaux que nous avons défini afin de pouvoir diviser notre groupe de 8 personnes en sous
+				groupes à effectifs réduits.\\
+				Comme pour les projets, l'application doit permettre d'effectuer des actions basiques en terme de manipulation de fichiers :
+				création, ouverture, etc...\\
+				L'application jouera cependant un rôle particulier au niveau de l'édition d'un fichier, puisque c'est à ce niveau qu'interviendront
+				les moyens de coloration, d'indentation et d'auto-complétion du code, représenté par l'action de "gestion du code" dans le 
+				diagramme \ref{ssgf} \\
 				\begin{figure}[ht]
 					\begin{center}
 						\includegraphics[width=13cm]{images/gestionFichiers.jpg}
 						\caption{Sous système de gestion des fichiers}
-						\label{carabine}
+						\label{ssgf}
 					\end{center}
 				\end{figure}~\\
 			\end{section}
@@ -423,8 +448,18 @@
 			\begin{section}
 			\end{section}
 		\end{chapter}
-		\begin{chapter}{Diagrammes d'états-transitions}
-			Pas sûr on verra si on à le temps.
+		\begin{chapter}{Premiers pas vers la programmation}
+			\begin{section}{Partage du travail et homogénéisation}
+				Quelques mots sur le partage du boulot, comme on a fait, comment c'est difficile de diviser, qu'est-ce que ça apporte, blablabla
+				On ajoute quelques phrases pour dire qu'on a du se mettre d'accord pour des conventions de nommage (minuscule en début de variable
+				et fonctions, majuscules pour classes, etc...), pour le fait qu'on code en anglais, etc etc
+				Il faut aussi faire croire que c'est à ce moment là qu'on a choisi comment documenter notre code, meme si c'est pas vrai.
+			\end
+			\begin{section}{Organisation du code : Le modèle MVC}
+				Avant de réellement commencer la programmation, il nous a fallu parler de la façon dont nous allions organiser notre code.
+				Plutôt que d'opter pour une organisation basique se contentant de dossiers "Classes", "Packages", etc... Nous avons choisi de 
+				nous tourner vers une organisation dite "Modèle-Vue-Controleur", actuellement très utilisée en programmation.
+			\end{section}
 		\end{chapter}
 	\end{part}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
