@@ -3,6 +3,8 @@
 #include <QObject>
 #include <QLine>
 #include "Models/HtmlIndenter.h"
+#include "Models/PhpIndenter.h"
+#define UNKNOWN_LANGUAGE -1
 #define HTML_LANGUAGE 0
 #define CSS_LANGUAGE 1
 #define JS_LANGUAGE 2
@@ -13,10 +15,11 @@ Q_OBJECT
 public:
     IndenterController();
     virtual ~IndenterController();
-    virtual int indentDetermin(QString previousLine);
-    //virtual int languageCheck();
+    virtual int indentDetermin(QString line);
+    virtual void setLanguage(int language);
 private:
     HtmlIndenter *htmlIndenter;
+    PhpIndenter *phpIndenter;
     int currentLanguage;
 
 

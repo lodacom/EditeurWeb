@@ -21,6 +21,7 @@ CentralEditor::CentralEditor(QWidget *parent, string filePath, IndenterControlle
     newTab = false;
     this->setTabStopWidth(20);
     setupEditor();
+    QObject::connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(checkLanguage()));
     QObject::connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(indent()));
 }
 
@@ -446,4 +447,47 @@ int CentralEditor::countCurrentLineTab(){
         i++;
     }
     return i;
+}
+void CentralEditor::checkLanguage(){
+    QTextCursor cursor = textCursor();
+    QString line = cursor.block().text().trimmed();
+    bool cont = true;
+    if(line.contains("<?php")){
+        indentController->setLanguage(PHP_LANGUAGE);
+        cont = false;
+    }
+    else if(line.contains("<")){
+        indentController->setLanguage(HTML_LANGUAGE);
+        cont = false;
+    }
+    else{
+        if(cursor.blockNumber() != 0){
+            cursor.movePosition(QTextCursor::PreviousBlock);
+            line = cursor.block().text().trimmed();
+        }
+        else{
+            cont = false;
+            indentController->setLanguage(UNKNOWN_LANGUAGE);
+        }
+    }
+    while(cont){
+        if(line.contains("<?php")){
+            indentController->setLanguage(PHP_LANGUAGE);
+            cont = false;
+        }
+        else if(line.contains("<") || line.contains("?>")){
+            indentController->setLanguage(HTML_LANGUAGE);
+            cont = false;
+        }
+        else{
+            if(cursor.blockNumber() != 0){
+                cursor.movePosition(QTextCursor::PreviousBlock);
+                line = cursor.block().text().trimmed();
+            }
+            else{
+                cont = false;
+                indentController->setLanguage(UNKNOWN_LANGUAGE);
+            }
+        }
+    }
 }

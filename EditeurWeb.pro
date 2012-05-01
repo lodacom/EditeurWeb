@@ -26,7 +26,9 @@ HEADERS += \
     Tools/Tools.h \
     Views/EditorTab.h \
     Models/HtmlIndenter.h \
-    Controllers/IndenterController.h
+    Controllers/IndenterController.h \
+    Models/AccoladeLanguageIndenter.h \
+    Models/PhpIndenter.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -55,7 +57,9 @@ SOURCES += \
     Tools/Tools.cpp \
     Views/EditorTab.cpp \
     Models/HtmlIndenter.cpp \
-    Controllers/IndenterController.cpp
+    Controllers/IndenterController.cpp \
+    Models/AccoladeLanguageIndenter.cpp \
+    Models/PhpIndenter.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \

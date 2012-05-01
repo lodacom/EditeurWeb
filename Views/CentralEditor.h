@@ -150,6 +150,7 @@ public slots:
      */
     void documentWasModified();
     void indentCheck();
+    void checkLanguage();
 protected:
     /*!
      * \brief Permet d'afficher au fur et à mesure de la frappe de
@@ -204,6 +205,7 @@ private:
     QString strippedName(const QString &fullFileName);
     int countPreviousLineTab();
     int countCurrentLineTab();
+
     string filePath;
     QString curFile;
     bool isUntitled;
