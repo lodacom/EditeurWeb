@@ -13,7 +13,7 @@
 \usepackage{fontspec}
 \setmainfont{Delicious-Roman}
 %% Pour faire le glossaire.
-\usepackage{glossaries}
+\usepackage[xindy]{glossaries}
 \makeglossaries
 %% Pour les notes de bas de page.
 \usepackage{fmtcount}
@@ -21,42 +21,42 @@
 	%% Glossaire
 	\newglossaryentry{UML}
 	{
-		name=UML,
+		name={UML},
 		description={Unified Modeling Language, langage de modélisation graphique à base de pictogrammes}
 	}
 
 	\newglossaryentry{diagramme de Gantt}
 	{
-		name=Diagramme de Gantt,
+		name={diagramme de Gantt},
 		description={Le diagramme de Gantt est un outil utilisé en ordonnancement et gestion de projet et permettant de visualiser dans le temps
 		les diverses tâches liées composant un projet. Il permet de représenter graphiquement l'avancement du projet}
 	}
 	
 	\newglossaryentry{bogue}
 	{
-		name=Bogue,
+		name={bogue},
 		description={En informatique, un bug (de l’anglais bug, « insecte ») ou bogue est un défaut de conception d'un programme
 		informatique à l'origine d'un dysfonctionnement},
-		plural=bogues
+		plural={bogues}
 	}
 		
 	\newglossaryentry{Qt}
 	{
-		name=Qt,
+		name={Qt},
 		description={Qt est un framework orienté objet et développé en C++. Il offre des composants d'interface graphique (widgets),
 		d'accès aux données, de connexions réseaux, de gestion des fils d'exécution, d'analyse XML, etc}
 	}
 
 	\newglossaryentry{gestionnaire de version}
 	{
-		name=Gestionnaire de version,
+		name={gestionnaire de version},
 		description={La gestion de versions consiste à maintenir l'ensemble des versions d'un ou plusieurs fichiers (généralement en texte).
 		Essentiellement utilisée dans le domaine de la création de logiciels, elle concerne surtout la gestion des codes source}
 	}
 
 	\newglossaryentry{Git}
 	{
-		name=Git,
+		name={Git},
 		description={Git est un logiciel de gestion de versions décentralisé. 
 		C'est un logiciel libre créé par Linus Torvalds, le créateur du noyau Linux, et distribué selon les termes de la licence 
 		publique générale GNU version 2}
@@ -64,7 +64,7 @@
 
 	\newglossaryentry{WYSIWYG}
 	{
-		name=WYSIWYG,
+		name={WYSIWYG},
 		description={Un WYSIWYG est une interface utilisateur qui permet de composer visuellement le résultat voulu, typiquement 
 		pour un logiciel de mise en page, un traitement de texte ou d’image. 
 		C'est une interface « intuitive » : l’utilisateur voit directement à l’écran à quoi ressemblera le résultat final}
@@ -72,9 +72,18 @@
 	
 	\newglossaryentry{autocomplétion}
 	{
-		name=Autocomplétion,
+		name={autocomplétion},
 		description={l'autocomplétion, est une fonctionnalité informatique permettant à l'utilisateur de limiter la quantité d'informations 
 		qu'il saisit avec son clavier, en se voyant proposer un complément qui pourrait convenir à la chaîne de caractères qu'il a commencé à taper}
+	}
+
+	\newglossaryentry{expression régulière}
+	{
+		name={expression régulière},
+		description={Une expression rationnelle ou expression régulière est en informatique une chaîne de caractères que l’on appelle parfois un motif
+		et qui décrit un ensemble de chaînes de caractères possibles selon une syntaxe précise.
+		Les expressions rationnelles sont issues des théories mathématiques des langages formels},
+		plural={expressions régulières}
 	}
 
 	\begin{titlepage}
@@ -123,6 +132,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%% Table des matières.
 	\tableofcontents
+	%% Table des figures
+	\listoffigures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{chapter}*{Introduction}
@@ -355,7 +366,10 @@
 				dernier et le système de gestion des projets décrits précédemment.\\
 				Plusieurs raisons expliquent notre choix. Primo, les procédures d'entrée et sortie restent les mêmes
 				(création, lecture, écriture, ...), secundo, la sémantique est similaire et facilite le travail autant au programmeur
-				qu'à l'utilisateur final qui suivront les mêmes étapes pour travailler sur un fichier ou un projet.
+				qu'à l'utilisateur final qui suivront les mêmes étapes pour travailler sur un fichier ou un projet.\\
+
+
+				La présence d'une 
 				\begin{figure}[ht]
 					\begin{center}
 						\includegraphics[width=13cm]{images/gestionFichiers.jpg}
@@ -367,7 +381,7 @@
 
 			\begin{section}{Gestion du code}
 				Derrière ce nom quelque peu singulier se cache un concept fort simple, la gestion du code consiste à indenter, colorer,
-				visualiser et sublimer le code source présent dans un fichier.
+				visualiser et sublimer le code source présent dans un fichier. Le diagramme \ref{saphir} parle de lui même.
 				\begin{figure}[ht]
 					\begin{center}
 						\includegraphics[width=13cm]{images/gestionCode.jpg}
@@ -377,11 +391,37 @@
 				\end{figure}~\\
 			\end{section}
 		\end{chapter}
-		\begin{chapter}{Cas d'utilisations}
-		
-		\end{chapter}
 		\begin{chapter}{Diagrammes des classes}
-		
+			\begin{section}{Coloration}
+				La conception de la partie « coloration syntaxique » de notre application a requis l'introduction de plusieurs classes différentes.
+				Premièrement des classes dites de données, suffixées du mot anglais \emph{data}, qui contiennent les différents mots clés relatifs
+				à chaque langage sous forme d'\glspl{expression régulière}.\\
+				Dans le diagramme \ref{blouson}, nous donnons en exemple une seule classe \emph{HtmlData}, car les autres sont similaires,
+				aux particularités du langage près.
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=3cm]{images/classesColorationData.jpg}
+						\caption{Classe de données pour le langage Html}
+						\label{blouson}
+					\end{center}
+				\end{figure}~\\
+				De la même manière, on trouve les classes \emph{CssData, PhpData et JavaScriptData}.\\
+
+
+				Une autre part de la coloration est l'utilisation concrète des classes décrites précédemment. Sur le diagramme \ref{bicyclette} sont
+				représentées toutes les classes qui permettent la coloration à l'écran. Elles héritent d'une superclasse
+				\emph{Highlighter} qui factorise la méthode \emph{highlightBlock()}, celle-ci, comme son nom l'indique, colore le texte bloc
+				par bloc en fonction des règles données dans les classes \emph{Data}.
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=14cm]{images/classesColoration.jpg}
+						\caption{Classes de coloration}
+						\label{bicyclette}
+					\end{center}
+				\end{figure}~\\
+			\end{section}
+			\begin{section}
+			\end{section}
 		\end{chapter}
 		\begin{chapter}{Diagrammes d'états-transitions}
 			Pas sûr on verra si on à le temps.
@@ -416,9 +456,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%% Glossaire
 	\renewcommand\glossaryname{Glossaire}
+	\renewcommand{\glsnamefont}[1]{\makefirstuc{#1}} % Majuscules.
 	\printglossaries
-	%% Table des figures
-	\listoffigures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%% Sitographie

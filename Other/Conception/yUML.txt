@@ -35,3 +35,11 @@
 [Utilisateur]-(Suppression fichier du projet)
 
 # Diagramme de classes.
+# Coloration.
+[Highlighter|rules|highlightBlock()]^[HtmlHighlighter]
+[Highlighter]^[CssHighlighter]
+[Highlighter]^[JavaScriptHighlighter]
+[Highlighter]^[PhpHighlighter]
+
+# Et d'autre part.
+[HtmlData|numberRegex;quotationRegex;commentRegex;...]

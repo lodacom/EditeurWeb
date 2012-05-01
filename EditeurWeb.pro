@@ -21,8 +21,6 @@ HEADERS += \
     Views/CentralEditor.h \
     Controllers/CompleterController.h \
     Views/HtmlTreeWidget.h \
-    Models/SyntaxTreeItem.h \
-    Models/SyntaxTree.h \
     Tools/Tools.h \
     Views/EditorTab.h \
     Models/HtmlIndenter.h \
@@ -52,8 +50,6 @@ SOURCES += \
     Views/CentralEditor.cpp \
     Controllers/CompleterController.cpp \
     Views/HtmlTreeWidget.cpp \
-    Models/SyntaxTreeItem.cpp \
-    Models/SyntaxTree.cpp \
     Tools/Tools.cpp \
     Views/EditorTab.cpp \
     Models/HtmlIndenter.cpp \
