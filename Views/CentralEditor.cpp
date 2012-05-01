@@ -129,7 +129,13 @@ void CentralEditor::focusInEvent(QFocusEvent *e)
 void CentralEditor::keyPressEvent(QKeyEvent *e)
 {
     if(e->key() == Qt::Key_Return && !completion_text->popup()->isVisible()){
-        indentCheck();
+        QTextCursor cursor = textCursor();
+        int i = cursor.positionInBlock();
+        while(cursor.block().text().at(i) == '\t' || cursor.block().text().at(i) == ' '){
+            i++;
+        }
+        if(i == cursor.block().text().size())
+            indentCheck();
     }
 
     if (completion_text && completion_text->popup()->isVisible())
@@ -400,12 +406,12 @@ void CentralEditor::indentCheck(){
                 this->setTextCursor(cursor);
         }
         else if(previousLineTabNb == currentLineTabNb){
-            if(indentController->indentDetermin(previousLine()) == -1){
+            //if(indentController->indentDetermin(previousLine()) == -1){
                 cursor.movePosition(QTextCursor::StartOfBlock);
                 cursor.deleteChar();
                 cursor.movePosition(QTextCursor::EndOfBlock);
                 this->setTextCursor(cursor);
-            }
+            //}
         }
         break;
     default:
@@ -473,7 +479,7 @@ void CentralEditor::checkLanguage(){
         }
     }
     while(cont){
-        if(line.contains("<?php")){
+        if(line.contains("<?php") && !line.contains("?>")){
             indentController->setLanguage(PHP_LANGUAGE);
             colorationPHP();
             cont = false;
