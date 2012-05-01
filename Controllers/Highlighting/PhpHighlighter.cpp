@@ -13,10 +13,8 @@ PhpHighlighter::PhpHighlighter(QTextDocument *parent) : Highlighter(parent)
     keywordFormat.setFontWeight(QFont::Bold);
     addRule(PhpData::keywordRegex, keywordFormat);
 
-
-    // Pour les déclarations de variable
-
-    idFormat.setForeground(Qt::gray);
+    // Pour les déclarations de variable.
+    idFormat.setForeground(Qt::darkRed);
     idFormat.setFontWeight(QFont::Bold);
     addRule(PhpData::idRegex, idFormat);
 
@@ -27,15 +25,15 @@ PhpHighlighter::PhpHighlighter(QTextDocument *parent) : Highlighter(parent)
 
     // Les nombres.
     numberFormat.setFontWeight(QFont::Bold);
-    numberFormat.setForeground(Qt::darkBlue);
+    numberFormat.setForeground(Qt::darkYellow);
     addRule(PhpData::numberRegex, numberFormat);
 
     // Commentaire sur une seule ligne.
-    singleLineCommentFormat.setForeground(Qt::red);
+    singleLineCommentFormat.setForeground(Qt::gray);
     addRule(PhpData::singleLineCommentRegex, singleLineCommentFormat);
 
     // Commentaires multilignes.
-    multilineCommentFormat.setForeground(Qt::darkRed);
+    multilineCommentFormat.setForeground(Qt::gray);
     addMultilineRule(PhpData::multilineCommentStartRegex,
                      PhpData::multilineCommentEndRegex,
                      multilineCommentFormat,
@@ -46,7 +44,7 @@ PhpHighlighter::PhpHighlighter(QTextDocument *parent) : Highlighter(parent)
     addRule(PhpData::quotationRegex, quotationFormat);
 
     // Les déclarations de fonction
-    functionFormat.setForeground(Qt::darkGreen);
+    functionFormat.setForeground(Qt::blue);
     addRule(PhpData::functionRegex, functionFormat);
 
     // Coloration balise php
