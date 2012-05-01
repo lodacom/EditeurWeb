@@ -27,14 +27,14 @@
 
 	\newglossaryentry{diagramme de Gantt}
 	{
-		name=diagramme de Gantt,
+		name=Diagramme de Gantt,
 		description={Le diagramme de Gantt est un outil utilisé en ordonnancement et gestion de projet et permettant de visualiser dans le temps
 		les diverses tâches liées composant un projet. Il permet de représenter graphiquement l'avancement du projet}
 	}
 	
 	\newglossaryentry{bogue}
 	{
-		name=bogue,
+		name=Bogue,
 		description={En informatique, un bug (de l’anglais bug, « insecte ») ou bogue est un défaut de conception d'un programme
 		informatique à l'origine d'un dysfonctionnement},
 		plural=bogues
@@ -49,7 +49,7 @@
 
 	\newglossaryentry{gestionnaire de version}
 	{
-		name=gestionnaire de version,
+		name=Gestionnaire de version,
 		description={La gestion de versions consiste à maintenir l'ensemble des versions d'un ou plusieurs fichiers (généralement en texte).
 		Essentiellement utilisée dans le domaine de la création de logiciels, elle concerne surtout la gestion des codes source}
 	}
@@ -72,7 +72,7 @@
 	
 	\newglossaryentry{autocomplétion}
 	{
-		name=autocomplétion,
+		name=Autocomplétion,
 		description={l'autocomplétion, est une fonctionnalité informatique permettant à l'utilisateur de limiter la quantité d'informations 
 		qu'il saisit avec son clavier, en se voyant proposer un complément qui pourrait convenir à la chaîne de caractères qu'il a commencé à taper}
 	}
@@ -143,7 +143,7 @@
 
 	C'est par une froide journée d'hiver que nous nous réunîmes pour la première fois à l'université de Montpellier. 
 	Huit, tous étudiants préposés au projet numéro vingt-trois nous attendons à notre table l'arrivée de notre tuteur M. Meynard. 
-	Ce dernier se présente, nous salue et prononce ce discours mémorable qui restera gravé à dans nos mémoires.\\
+	Ce dernier se présente, nous salue et prononce ce discours mémorable qui restera gravé dans nos mémoires.\\
 	\begin{quotation}
 		``Dans le cadre de développement de sites Web, on souhaiterait utiliser un éditeur multi-fichiers permettant de réaliser différentes actions sur
 		des fichiers relatifs à un site: édition de fichiers Html, Php, JavaScript et Css.
@@ -318,18 +318,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{part}{Conception}
 		\begin{chapter}{Décomposition en sous systèmes}
-			Le programme se découpe grossièrement en trois sous-systèmes complémentaires comme sur le diagramme \ref{dess}.
+			Le programme se découpe grossièrement en trois sous-systèmes complémentaires comme sur le diagramme \ref{poulpe}.
 			\begin{figure}[h]
 				\begin{center}
 					\includegraphics[width=17cm]{images/DecompositionSousSystemes.jpg}
 					\caption{Décomposition en sous systèmes}
-					\label{dess}
+					\label{poulpe}
 				\end{center}
 			\end{figure}~\\
 			Le système de gestion des fichiers est un système très important de l'application et c'est pourquoi il est requis
 			par le système de gestion des projets.\\
 			Le système de gestion du code est vue comme une extension aux fichiers. En effet, il serait possible d'éditer un
 			site web sans gérer la coloration, l'indentation et toutes les fonctionnalités qui rendent un éditeur de code si agréable à utiliser.
+			
 			\begin{section}{Gestion des projets}
 				Le sous-système de gestion des projets est un élément important de l'application, en ce sens qu'il permet à l'utilisateur
 				de bien s'organiser de manière simple et efficace.\\
@@ -338,22 +339,40 @@
 				modification et destruction de dossiers.\\~\\
 				L'unique caractéristique d'un projet est que l'on pourra trouver à la racine un fichier spécial résumant les paramètres utilisateur,
 				les caractéristiques du projet, et autres informations diverses.\\
-				Relativement à un projet, l'application fournit les fonctionnalités décrites dans le diagramme \ref{ssgp}
+				Relativement à un projet, l'application fournit les fonctionnalités décrites dans le diagramme \ref{marchandise}
 				\begin{figure}[ht]
 					\begin{center}
 						\includegraphics[width=13cm]{images/gestionProjets.jpg}
 						\caption{Sous système de gestion des projets}
-						\label{ssgp}
+						\label{marchandise}
 					\end{center}
 				\end{figure}~\\
 			\end{section}
+
 			\newpage
 			\begin{section}{Gestion des fichiers}
+				Le diagramme \ref{carabine} détaille le contenu du système de gestion des fichiers. Notez l'incroyable similitude entre ce
+				dernier et le système de gestion des projets décrits précédemment.\\
+				Plusieurs raisons expliquent notre choix. Primo, les procédures d'entrée et sortie restent les mêmes
+				(création, lecture, écriture, ...), secundo, la sémantique est similaire et facilite le travail autant au programmeur
+				qu'à l'utilisateur final qui suivront les mêmes étapes pour travailler sur un fichier ou un projet.
 				\begin{figure}[ht]
-				\label{ssgf}
 					\begin{center}
 						\includegraphics[width=13cm]{images/gestionFichiers.jpg}
 						\caption{Sous système de gestion des fichiers}
+						\label{carabine}
+					\end{center}
+				\end{figure}~\\
+			\end{section}
+
+			\begin{section}{Gestion du code}
+				Derrière ce nom quelque peu singulier se cache un concept fort simple, la gestion du code consiste à indenter, colorer,
+				visualiser et sublimer le code source présent dans un fichier.
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=13cm]{images/gestionCode.jpg}
+						\caption{Sous système de gestion du code}
+						\label{saphir}
 					\end{center}
 				\end{figure}~\\
 			\end{section}

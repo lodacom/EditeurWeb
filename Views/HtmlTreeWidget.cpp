@@ -9,7 +9,7 @@ HtmlTreeWidget::HtmlTreeWidget(QWidget *parent) :
     ui(new Ui::HtmlTreeWidget)
 {
     ui->setupUi(this);
-    ui->webView->setUrl(QUrl("file:///users/Abdelhamid/Downloads/p.html"));
+    ui->webView->setUrl(QUrl("http://www.google.com"));
     ui->webView->setZoomFactor(0.3);
     this->setMaximumWidth(400);
 }

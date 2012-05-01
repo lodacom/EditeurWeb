@@ -1,8 +1,7 @@
 /*!
 * \file Highlighter.h
-* \brief déclaration de la classe mère de coloration.
+* \brief Déclaration de la classe mère de coloration.
 * \author Abdelhamid
-* \version 0.1
 */
 
 #ifndef Highlighter_h
@@ -20,7 +19,7 @@ QT_END_NAMESPACE
 
 /*!
 * \struct HighlightingRule
-* \brief une simple paire d'un motif et d'un format.
+* \brief Une simple paire d'un motif et d'un format.
 * L'objectif est de pouvoir enregistrer pour chaque patron (sous forme
 * d'expression régulière) un format à appliquer.
 */
@@ -32,7 +31,7 @@ struct HighlightingRule
 
 /*!
 * \struct MultilineHighlightingRule
-* \brief un motif de début, un motif de fin, un format à
+* \brief Un motif de début, un motif de fin, un format à
 * appliquer à toutes les lignes entre ces motifs et un code d'état.
 * Utile pour les commentaires multilignes par exemple.
 */
@@ -79,13 +78,13 @@ public:
 
     /*!
     * \brief Accesseur en lecture sur les règles de coloration simples.
-    * \return un vecteur contenant les règles de coloration simples.
+    * \return Un vecteur contenant les règles de coloration simples.
     */
     QVector<HighlightingRule> getHighlightingRules();
 
     /*!
     * \brief Accesseur en écriture sur les règles de coloration simples.
-    * \param  hr : les nouvelles règles de coloration à appliquer.
+    * \param hr : les nouvelles règles de coloration à appliquer.
     */
     void setHighlightingRules(QVector<HighlightingRule>);
 
@@ -101,7 +100,7 @@ protected:
     * C'est la méthode la plus importante de cette classe, elle est héritée
     * de QSyntaxHighlighter et est appelée automatiquement si besoin est.
     * Elle définit le comportement du colorateur syntaxique.
-    * \param  text : le bloc de texte à formatter.
+    * \param  text : le bloc de texte à formater.
     */
     void highlightBlock(const QString &text);
 

@@ -60,7 +60,7 @@ protected:
     * \brief Coloration d'un bloc de texte.
     * Il est nécessaire de redéfinir cette méthode héritée de la classe Highlighter
     * pour prendre en charge le JavaScript ou Css éventuellement inclus.
-    * \param text : le bloc de texte à formatter.
+    * \param text : le bloc de texte à formater.
     */
     void highlightBlock(const QString &text);
 

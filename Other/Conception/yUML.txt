@@ -8,11 +8,10 @@
 [Utilisateur]-(Edition fichier)
 [Utilisateur]-(Fermeture fichier)
 [Utilisateur]-(Suppression fichier)
-(Edition fichier)>(Gestion du code)
+(Edition fichier)<(Gestion du code)
 
 # Système de gestion du code.
 [Utilisateur]-(Modification code)
-(Modification code)<(É)
 (Modification code)<(Coloration)
 (Modification code)<(Indentation)
 (Modification code)<(Auto complétion)
@@ -35,11 +34,4 @@
 [Utilisateur]-(Ajout fichier au projet)
 [Utilisateur]-(Suppression fichier du projet)
 
-# Diagramme de classe
-[note: Vous aurez compris que l'analyseur syntaxique ne contiendra pas de façon si clair telles ou telles fonctions mais fera en sorte de reproduire ou d'enclenché le phénomène de "coloration" ou encore "d'indentation" (ce ne seront pas des fonctions au premier sens du terme informatique). 
-Vous aurez remarqué également la présence des classes "fichier" ou autre "édition" qui là encore ne sont pas vraiment des classes ]
-[Interface]uses-.->[Analyseur Syntaxique|indentation();auto-complétion();coloration();arborescence()]
-[fichier||ouvrir();enregistrer();enregistrer-sous()]^[Interface]
-[édition|copier();coller();annuler();rétablir();supprimer();tout sélectionner()]^[Interface]
-[affichage|mode de coloration();]^[Interface]
-[aide|validation W3C();]^[Interface]
+# Diagramme de classes.
