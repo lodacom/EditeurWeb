@@ -445,8 +445,6 @@
 					\end{center}
 				\end{figure}~\\
 			\end{section}
-			\begin{section}
-			\end{section}
 		\end{chapter}
 		\begin{chapter}{Premiers pas vers la programmation}
 			\begin{section}{Partage du travail et homogénéisation}
@@ -454,7 +452,7 @@
 				On ajoute quelques phrases pour dire qu'on a du se mettre d'accord pour des conventions de nommage (minuscule en début de variable
 				et fonctions, majuscules pour classes, etc...), pour le fait qu'on code en anglais, etc etc
 				Il faut aussi faire croire que c'est à ce moment là qu'on a choisi comment documenter notre code, meme si c'est pas vrai.
-			\end
+			\end{section}
 			\begin{section}{Organisation du code : Le modèle MVC}
 				Avant de réellement commencer la programmation, il nous a fallu parler de la façon dont nous allions organiser notre code.
 				Plutôt que d'opter pour une organisation basique se contentant de dossiers "Classes", "Packages", etc... Nous avons choisi de 
@@ -465,17 +463,17 @@
 				\begin{itemize}
 					\item Le Modèle : Il représente tous les aspects du "comportement" de l'application, c'est-à-dire le traitement des données
 					et toutes les interactions avec une éventuelle base de données, c'est lui-même qui décrit toutes les données et qui 
-					définit comment l'application va accéder et intéragir avec ces dernières.;
+					définit comment l'application va accéder et intéragir avec ces dernières.
 					\item La Vue : Elle est l'interface sur laquelle va agir l'utilisateur, c'est elle qui se charge de présenter les données
 					renvoyées par le modèle, de les afficher, et éventuellement de donner la possibilité à l'utilisateur d'interagir sur 
 					ces dernières, mais la vue n'effectue aucun traitement, son "travail" ne consiste qu'en la présentation des données, 
 					en aucun cas elle ne doit effectuer de traitement direct sur des données. Dans certains environnements, elle est écrite 
-					grâce à des langages de présentation uniquement (comme html/css), ce qui permet de la limiter à sa fonction première.;
+					grâce à des langages de présentation uniquement (comme html/css), ce qui permet de la limiter à sa fonction première.
 					\item Le Contrôleur : Il est "l'agent" de réponse à un utilisateur. Généralement, lui non plus n'effectue pas de traitement,
 					mais se charge d'analyser chaque requête de l'utilisateur, chacune de ses interactions avec la vue, et il fera appel
 					au modèle et à la vue qui conviennent à chacune de ces requêtes. Le contrôleur est un peu l'interprète de l'utilisateur,
 					c'est lui qui va comprendre qui concerne la requête souhaitée, appeler le modèle correspondant, et renvoyer une vue
-					liée à la demande.;
+					liée à la demande.
 				\end{itemize}
 				La programmation MVC sui dont le schéma suivant : \\
 				Lorsque l'utilisateur effectue une requête, elle est analysée par le contrôleur. Ce dernier fait appel au modèle correspondant à
