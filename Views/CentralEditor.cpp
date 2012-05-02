@@ -375,6 +375,8 @@ QString CentralEditor::strippedName(const QString &fullFileName)
     return QFileInfo(fullFileName).fileName();
 }
 
+//.............................................................................................................................
+// Partie Indentation
 QString CentralEditor::currentLine(){
     QTextCursor cursor = textCursor();
     return cursor.block().text().trimmed();
@@ -463,6 +465,16 @@ void CentralEditor::checkLanguage(){
         colorationPHP();
         cont = false;
     }
+    else if(line.contains("<script")){
+        indentController->setLanguage(JS_LANGUAGE);
+        colorationJavaScript();
+        cont = false;
+    }
+    else if(line.contains("<style")){
+        indentController->setLanguage(CSS_LANGUAGE);
+        colorationCSS();
+        cont = false;
+    }
     else if(line.contains("<")){
         indentController->setLanguage(HTML_LANGUAGE);
         colorationHTML();
@@ -484,7 +496,17 @@ void CentralEditor::checkLanguage(){
             colorationPHP();
             cont = false;
         }
-        else if(line.contains("<") || line.contains("?>")){
+        else if(line.contains("<script") && !line.contains("</script>")){
+            indentController->setLanguage(JS_LANGUAGE);
+            colorationJavaScript();
+            cont = false;
+        }
+        else if(line.contains("<style") && !line.contains("</style>")){
+            indentController->setLanguage(CSS_LANGUAGE);
+            colorationCSS();
+            cont = false;
+        }
+        else if((line.contains("<") || line.contains("/>"))){
             indentController->setLanguage(HTML_LANGUAGE);
             colorationHTML();
             cont = false;
