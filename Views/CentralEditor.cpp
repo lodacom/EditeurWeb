@@ -129,7 +129,13 @@ void CentralEditor::focusInEvent(QFocusEvent *e)
 void CentralEditor::keyPressEvent(QKeyEvent *e)
 {
     if(e->key() == Qt::Key_Return && !completion_text->popup()->isVisible()){
-        indentCheck();
+        QTextCursor cursor = textCursor();
+        int i = cursor.positionInBlock();
+        while(cursor.block().text().at(i) == '\t' || cursor.block().text().at(i) == ' '){
+            i++;
+        }
+        if(i == cursor.block().text().size())
+            indentCheck();
     }
 
     if (completion_text && completion_text->popup()->isVisible())
@@ -369,6 +375,8 @@ QString CentralEditor::strippedName(const QString &fullFileName)
     return QFileInfo(fullFileName).fileName();
 }
 
+//.............................................................................................................................
+// Partie Indentation
 QString CentralEditor::currentLine(){
     QTextCursor cursor = textCursor();
     return cursor.block().text().trimmed();
@@ -400,12 +408,12 @@ void CentralEditor::indentCheck(){
                 this->setTextCursor(cursor);
         }
         else if(previousLineTabNb == currentLineTabNb){
-            if(indentController->indentDetermin(previousLine()) == -1){
+            //if(indentController->indentDetermin(previousLine()) == -1){
                 cursor.movePosition(QTextCursor::StartOfBlock);
                 cursor.deleteChar();
                 cursor.movePosition(QTextCursor::EndOfBlock);
                 this->setTextCursor(cursor);
-            }
+            //}
         }
         break;
     default:
@@ -457,6 +465,16 @@ void CentralEditor::checkLanguage(){
         colorationPHP();
         cont = false;
     }
+    else if(line.contains("<script")){
+        indentController->setLanguage(JS_LANGUAGE);
+        colorationJavaScript();
+        cont = false;
+    }
+    else if(line.contains("<style")){
+        indentController->setLanguage(CSS_LANGUAGE);
+        colorationCSS();
+        cont = false;
+    }
     else if(line.contains("<")){
         indentController->setLanguage(HTML_LANGUAGE);
         colorationHTML();
@@ -473,12 +491,22 @@ void CentralEditor::checkLanguage(){
         }
     }
     while(cont){
-        if(line.contains("<?php")){
+        if(line.contains("<?php") && !line.contains("?>")){
             indentController->setLanguage(PHP_LANGUAGE);
             colorationPHP();
             cont = false;
         }
-        else if(line.contains("<") || line.contains("?>")){
+        else if(line.contains("<script") && !line.contains("</script>")){
+            indentController->setLanguage(JS_LANGUAGE);
+            colorationJavaScript();
+            cont = false;
+        }
+        else if(line.contains("<style") && !line.contains("</style>")){
+            indentController->setLanguage(CSS_LANGUAGE);
+            colorationCSS();
+            cont = false;
+        }
+        else if((line.contains("<") || line.contains("/>"))){
             indentController->setLanguage(HTML_LANGUAGE);
             colorationHTML();
             cont = false;

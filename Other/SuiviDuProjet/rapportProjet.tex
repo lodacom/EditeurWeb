@@ -11,7 +11,7 @@
 \usepackage{graphicx}
 %% Pour la police de caractères.
 \usepackage{fontspec}
-\setmainfont{Delicious-Roman}
+%%\setmainfont{Delicious-Roman}
 %% Pour faire le glossaire.
 \usepackage[xindy]{glossaries}
 \makeglossaries
@@ -332,7 +332,7 @@
 			Le programme se découpe grossièrement en trois sous-systèmes complémentaires comme sur le diagramme \ref{poulpe}.
 			\begin{figure}[h]
 				\begin{center}
-					\includegraphics[width=17cm]{images/DecompositionSousSystemes.jpg}
+					\includegraphics[width=17cm]{images/decompositionSousSystemes.jpg}
 					\caption{Décomposition en sous systèmes}
 					\label{poulpe}
 				\end{center}
@@ -345,29 +345,61 @@
 			\begin{section}{Gestion des projets}
 				Le sous-système de gestion des projets est un élément important de l'application, en ce sens qu'il permet à l'utilisateur
 				de bien s'organiser de manière simple et efficace.\\
+
+
+				À la manière de beaucoup de logiciels connus, il sera nécessaire à l'utilisateur de sélectionner un espace de travail,
+				regroupant un ensemble de projets. Cette petite obligation n'est que très peu contraignante et favorise l'organisation, 
+				sans pour autant l'imposer réellement à l'utilisateur puisque l'emplacement de cet espace de travail est donné par l'utilisateur.\\
+
+
 				Un projet est concrètement représenté par un dossier sur la machine de l'utilisateur. Partant de cette idée, notre système
 				de gestion de projet sera implémenté en utilisant les normes et références communément admises en termes de création,
-				modification et destruction de dossiers.\\~\\
+				modification et destruction de dossiers.\\
+
+
+				L'utilisateur doit pouvoir effectuer les actions classiques relatives à un projet, à savoir création, 
+				modification, suppression, ouverture et fermeture, il peut également comme stipulé dans le cahier des charges, 
+				créer un nouveau projet basé sur un squelette de site pré-existant.\\
+				Ce dernier cas de figure, non obligatoire, permet à un utilisateur d'avoir un aperçu de ce que peut être un projet de 
+				site internet en développement sous notre application.\\
 				L'unique caractéristique d'un projet est que l'on pourra trouver à la racine un fichier spécial résumant les paramètres utilisateur,
 				les caractéristiques du projet, et autres informations diverses.\\
-				Relativement à un projet, l'application fournit les fonctionnalités décrites dans le diagramme \ref{marchandise}
+				En résumé, concernant les projets, l'application fournit les fonctionnalités décrites dans le diagramme \ref{marchandise}.
 				\begin{figure}[ht]
 					\begin{center}
-						\includegraphics[width=13cm]{images/gestionProjets.jpg}
+						\includegraphics[width=12cm]{images/gestionProjets.jpg}
 						\caption{Sous système de gestion des projets}
 						\label{marchandise}
 					\end{center}
 				\end{figure}~\\
-			\end{section}
+				À noter que cette méthode d'utilisation de l'application nous a principalement été inspirée
+				par des logiciels que nous utilisons tous en cours et chez nous, comme Eclipse par exemple.\\
+				À ces actions d'ordre « général » s'ajoutent quelques actions propres à la modélisation physique des projets dans notre application,
+				qui sont exposées dans le diagramme \ref{ucgp}
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[height=8cm]{images/modificationProjet.jpg}
+						\caption{Use-Case modification de projets}
+						\label{ucgp}
+					\end{center}
+				\end{figure}~\\
 
-			\newpage
+				Ainsi comme exposé dans ce diagramme, l'utilisateur pourra créer autant de fichiers et de dossiers qu'il le désire dans 
+				sont projet, lui permettant ainsi de pouvoir organiser son travail comme il le souhaite, plutôt que devoir se plier à un 
+				mode d'organisation imposé par l'application.\\
+				Toutefois, ces actions d'apparences basiques sont signes d'un travail important à venir puisqu'elles constituent des libertés
+				supplémentaires	accordées à l'utilisateur.\\
+			\end{section}
 			\begin{section}{Gestion des fichiers}
 				Le diagramme \ref{carabine} détaille le contenu du système de gestion des fichiers. Notez l'incroyable similitude entre ce
 				dernier et le système de gestion des projets décrits précédemment.\\
-				Plusieurs raisons expliquent notre choix. Primo, les procédures d'entrée et sortie restent les mêmes
-				(création, lecture, écriture, ...), secundo, la sémantique est similaire et facilite le travail autant au programmeur
-				qu'à l'utilisateur final qui suivront les mêmes étapes pour travailler sur un fichier ou un projet.\\
+				En effet, comme pour les projets, l'application doit permettre d'effectuer des actions basiques en terme de manipulation de fichiers:
+				création, ouverture, etc.\\
 
+
+				L'application jouera cependant un rôle particulier au niveau de l'édition d'un fichier puisque c'est à ce niveau qu'interviendront
+				les fonctions de coloration, d'indentation et d'auto-complétion du code, représentées par le système de « gestion du code » dans le 
+				diagramme \ref{saphir}. \\
 				\begin{figure}[ht]
 					\begin{center}
 						\includegraphics[width=13cm]{images/gestionFichiers.jpg}
@@ -418,17 +450,106 @@
 					\end{center}
 				\end{figure}~\\
 			\end{section}
-			\begin{section}
-			\end{section}
 		\end{chapter}
-		\begin{chapter}{Diagrammes d'états-transitions}
-			Pas sûr on verra si on à le temps.
+		\begin{chapter}{Premiers pas vers la programmation}
+			\begin{section}{Partage du travail et homogénéisation}
+				Dès le début du projet, nous avons été dans l'obligation de nous répartir le travail afin de progresser le plus vite possible.
+				Nous avons demandé quelques conseils auprès de M. Meynard qui nous a aidé à déterminer les grandes parties qui pouvaient 
+				être séparées. Trois parties ont été révélées ex nihilo:\\
+				\begin{itemize}
+					\item Une première partie concernant l'interface (fenêtres, navigation, barre de menu, ...)
+					\item une deuxième concernant l'implémentation de la gestion de fichiers (création d'espace de travail, de projets,
+					enregistrements de fichiers, ...)
+					\item Enfin, la mise en place des fonctionnalités telles que la coloration, l'auto-completion et l'auto-indentation
+					constituait également une brique importante du projet.
+				\end{itemize}
+				La constitution de trois groupes a donc été nécessaire. Chacun formé selon les 
+				affinités et le niveau de chacun. Il en a résulté la répartition suivante:\\
+				\begin{itemize}
+					\item Groupe \emph{interface}:
+						\begin{itemize}
+							\item Hamza;
+							\item Issam;
+							\item Zaydane.
+						\end{itemize}
+				\end{itemize}
+				\begin{itemize}
+					\item Groupe \emph{système}:
+					\begin{itemize}
+						\item Mickael;
+						\item Joachim.
+					\end{itemize}
+				\end{itemize}
+				\begin{itemize}
+					\item Groupe \emph{fonctionnalités}:
+					\begin{itemize}
+						\item Pierre;
+						\item Olivier;
+						\item Abdelhamid.
+					\end{itemize}
+				\end{itemize}
+				Bien entendu, ces groupes n'étant pas cloisonés, chaque membres a pu participer à d'autres modules pour débloquer certaines
+				situations afin de permettre une constante avancée dans la réalisation.\\
+				Par la suite, une convention d'écriture a du être édictée pour instaurer une certaine cohérence au sein du code.
+				Premièrement, le nommage des classes, fonctions et variables ont été écrites en anglais. 
+				Ensuite, pour une meilleure lisibilité et compréhension, l'ensemble des variables et fonctions débutent par une minuscule tandis
+				que les classes prennent une majuscule, tout comme les fichiers et dossiers constituant le projet.
+				Cependant, le style d'indentation n'a pas été "normalisé". C'est également durant la mise en place des conventions de
+				nommage que nous avons décidé d'utiliser Doxygen, logiciel permettant de générer au fur et à mesure la documentation des classes
+				et fonctions du programme.\\
+				En parallèle de ces règles, un modèle dit "MVC" a été adopté par le groupe.\\
+			\end{section}
+			\begin{section}{Organisation du code : Le modèle MVC}
+				Avant de réellement commencer la programmation, il nous a fallu parler de la façon dont nous allions organiser notre code.
+				Plutôt que d'opter pour une organisation basique se contentant de dossiers "Classes", "Packages", etc... Nous avons choisi de 
+				nous tourner vers une organisation dite "MVC" (Modèle-Vue-Contrôleur, ou Model-View-Controller en anglais), actuellement très 
+				utilisée en programmation, et tout particulièrement optimisée pour l'utilisation de frameworks, étant donné que la plupart de 
+				ces "boîtes à outils" sont développées dans l'optique d'être utilisées de cette façon.\\
+				Le MVC est donc un modèle de programmation qui repose sur la séparation du code produit en trois grandes catégories.\\
+				\begin{itemize}
+					\item Le Modèle : Il représente tous les aspects du "comportement" de l'application, c'est-à-dire le traitement des données
+					et toutes les interactions avec une éventuelle base de données, c'est lui-même qui décrit toutes les données et qui 
+					définit comment l'application va accéder et intéragir avec ces dernières.
+					\item La Vue : Elle est l'interface sur laquelle va agir l'utilisateur, c'est elle qui se charge de présenter les données
+					renvoyées par le modèle, de les afficher, et éventuellement de donner la possibilité à l'utilisateur d'interagir sur 
+					ces dernières, mais la vue n'effectue aucun traitement, son "travail" ne consiste qu'en la présentation des données, 
+					en aucun cas elle ne doit effectuer de traitement direct sur des données. Dans certains environnements, elle est écrite 
+					grâce à des langages de présentation uniquement (comme html/css), ce qui permet de la limiter à sa fonction première.
+					\item Le Contrôleur : Il est "l'agent" de réponse à un utilisateur. Généralement, lui non plus n'effectue pas de traitement,
+					mais se charge d'analyser chaque requête de l'utilisateur, chacune de ses interactions avec la vue, et il fera appel
+					au modèle et à la vue qui conviennent à chacune de ces requêtes. Le contrôleur est un peu l'interprète de l'utilisateur,
+					c'est lui qui va comprendre qui concerne la requête souhaitée, appeler le modèle correspondant, et renvoyer une vue
+					liée à la demande.
+				\end{itemize}
+				La programmation MVC sui dont le schéma suivant : \\
+				Lorsque l'utilisateur effectue une requête, elle est analysée par le contrôleur. Ce dernier fait appel au modèle correspondant à
+				cette requête, et, si le modèle ne s'en charge pas lui-même, le contrôleur modifie la vue en conséquence.\\
+				De cette manière, la programmation d'une application se voit très structurée, et donc facile à entretenir, à maintenir et à mettre
+				à jour.
+
+			\end{section}
 		\end{chapter}
 	\end{part}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{part}{L'oeuvre}
 		\begin{chapter}{Travail de groupe}
+		Pour faire part des avancements de chaque groupe, des réunions régulières ont été organisées. 
+		Celles-ci prenaient place aux créneaux horaires prévus dans notre emploi du temps. 
+		Chaque groupe faisait un bilan de ce qu'il avait fait durant la semaine pour savoir ce qu'il restait à faire, et ainsi prendre des décisions.
+		Si un problème survenait, ou si un choix important devait être pris, chacun	émettait son avis sur la question.
+		Les fins de séance se concluaient donc par les sélections des meilleures propositions et éventuellement par	une nouvelle répartition 
+		des tâches.\\
+		Malheureusement, un groupe de huit personnes pouvant difficilement se réunir toujours aux memes horaires, 
+		souvent du aux différents emplois du temps ou encore à cause des distances nous séparant, le compte rendu était publié sur Facebook 
+		afin que chaque membre puisse connaitre la suite des évènements. 
+		De cette manière, l'information étant véhiculée à l'ensemble du groupe, aucun d'entre nous n'était lésé.\\
+		Afin de retenir les points essentiels émis durant les débats, un journal de bord a vu le jour dans le but de faire des récapitulatifs 
+		et de vérifier dans les futurs rendez-vous si toutes les préconisations avaient été faites et respectées. 
+		Voici un court extrait de ce journal reflétant notre réflexion.
+		
+		%%%%% Mickael si tu peux mettre un extrait de journal, merci d'avance ^^ %%%%%
+					
 			Là on parle des réunions, pourquoi pas mettre un extrait de journal.
 		\end{chapter}
 		\begin{chapter}{Implémentation}
@@ -483,5 +604,9 @@
 		Facebook: www.facebook.com \\
 		Le réseau social que l'on ne présente plus, il nous a permis d'échanger des messages moins techniques que sur Micromobs
 		et de nous organiser grâce à différents évènements.
+		~\\
+		\bibitem{Prezi}
+		Prezi: www.prezi.com \\
+		Un générateur de présentation en ligne nouvelle génération.
 	\end{thebibliography}
 \end{document}

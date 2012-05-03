@@ -1,7 +1,6 @@
 #include <QApplication>
 
 #include "Views/MainWindow.h"
-#include "Models/SyntaxTree.h"
 
 int main(int argc, char *argv[])
 {

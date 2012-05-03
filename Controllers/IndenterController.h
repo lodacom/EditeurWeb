@@ -4,6 +4,8 @@
 #include <QLine>
 #include "Models/HtmlIndenter.h"
 #include "Models/PhpIndenter.h"
+#include "Models/JavaScriptIndenter.h"
+#include "Models/CssIndenter.h"
 #define UNKNOWN_LANGUAGE -1
 #define HTML_LANGUAGE 0
 #define CSS_LANGUAGE 1
@@ -20,6 +22,8 @@ public:
 private:
     HtmlIndenter *htmlIndenter;
     PhpIndenter *phpIndenter;
+    JavaScriptIndenter *javascriptIndenter;
+    CssIndenter *cssIndenter;
     int currentLanguage;
 
 
