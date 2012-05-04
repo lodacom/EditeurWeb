@@ -26,7 +26,9 @@ HEADERS += \
     Models/HtmlIndenter.h \
     Controllers/IndenterController.h \
     Models/AccoladeLanguageIndenter.h \
-    Models/PhpIndenter.h
+    Models/PhpIndenter.h \
+    Models/JavaScriptIndenter.h \
+    Models/CssIndenter.h
 
 SOURCES += \
     Models/HtmlData.cpp \
@@ -55,7 +57,9 @@ SOURCES += \
     Models/HtmlIndenter.cpp \
     Controllers/IndenterController.cpp \
     Models/AccoladeLanguageIndenter.cpp \
-    Models/PhpIndenter.cpp
+    Models/PhpIndenter.cpp \
+    Models/JavaScriptIndenter.cpp \
+    Models/CssIndenter.cpp
 
 OTHER_FILES += \
     Pics/Folder-icon.png \
