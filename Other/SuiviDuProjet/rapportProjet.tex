@@ -90,6 +90,47 @@
 		plural={expressions régulières}
 	}
 
+	\newglossaryentry{MVC}
+	{
+		name={MVC},
+		description={Le modèle-vue-contrôleur (en abrégé MVC, de l'anglais Model-View-Controller) est un patron d'architecture et une méthode de conception qui organise l'interface homme-machine (IHM) d'une application logicielle (voir chap. 7)},
+		plural={expressions régulières}
+	}
+
+	\newglossaryentry{Html}
+	{
+		name={Html},
+		description={L’Hypertext Markup Language, généralement abrégé Html, est le format de données conçu pour représenter les pages Web. C’est un langage de balisage qui permet d’écrire de l’hypertexte, d’où son nom}
+	}
+
+	\newglossaryentry{Php}
+	{
+		name={Php},
+		description={Le Php : Hypertext Preprocessor, plus connu sous son sigle Php, est un langage de scripts libre principalement utilisé pour
+		produire des pages Web dynamiques}
+	}
+
+	\newglossaryentry{JavaScript}
+	{
+		name={JavaScript},
+		description={JavaScript est un langage de programmation de scripts principalement utilisé dans les pages web interactives}
+	}
+
+	\newglossaryentry{Css}
+	{
+		name={Css},
+		description={Css (Cascading Style Sheets: feuilles de style en cascade) est un langage informatique qui sert à décrire la présentation
+		des documents Html et XML}
+	}
+
+	\newglossaryentry{Doxygen}
+	{
+		name={Doxygen},
+		description={Doxygen est un logiciel informatique libre permettant de créer de la documentation à partir du code source d'un programme.
+		Pour cela, il tient compte de la grammaire du langage dans lequel est écrit le code source, ainsi que des commentaires s'ils sont écrits
+		dans un format particulier}
+	}
+
 	\begin{titlepage}
 		\center{\includegraphics[width=5cm]{images/logoUM2.png}}\\ 
 		~\\
@@ -115,7 +156,7 @@
 				      Mickaël Berger, Joachim Divet,\\
 				      Zaydane Sadiki et Abdelhamid Belarbi}\\
 			\vspace{1,5cm}
-			{\large Sous la direction de:} \\
+			{\large Sous la direction de :} \\
 			~\\
 			{\LARGE Michel Meynard} \\
 			\vspace{2.5cm}
@@ -148,7 +189,7 @@
 	Ce dernier se présente, nous salue et prononce ce discours mémorable qui restera gravé dans nos mémoires.\\
 	\begin{quotation}
 		« Dans le cadre de développement de sites Web, on souhaiterait utiliser un éditeur multi-fichiers permettant de réaliser 
-		différentes actions sur	des fichiers relatifs à un site: édition de fichiers Html, Php, JavaScript et Css.\\
+		différentes actions sur	des fichiers relatifs à un site : édition de fichiers Html, Php, JavaScript et Css.\\
 
 		Il serait également appréciable que cet éditeur proposât un mode de visualisation du site dans un navigateur et un mode arborescence.\\
 
@@ -159,7 +200,7 @@
 	Après ce laïus prononcé d'une traite M. Meynard disparut soudain, nous laissant là, le regard vide.\\
 
 
-	Néanmoins, nous nous remîmes assez vite de notre ahurissement et un sage parmi nous s'écria soudain:
+	Néanmoins, nous nous remîmes assez vite de notre ahurissement et un sage parmi nous s'écria soudain :
 	\begin{quotation}
 		« Nous commencerons par étudier quelques éditeurs existants sur le marché pour nous faire une idée. Ensuite nous concevrons
 		le programme avec le langage UML en nous organisant pour la réalisation.
@@ -176,16 +217,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{part}{Analyse}
 		\begin{chapter}{Cahier des charges}
-			Voici une liste exhaustive des fonctionnalités prescrites par M. Meynard:
+			Voici une liste exhaustive des fonctionnalités prescrites par M. Meynard :
 			\begin{itemize}
-				\item Édition des fichiers JavaScript, Php, Css et Html;
-				\item Un système multi-onglets permettant de naviguer rapidement entre plusieurs fichiers d'un même projet;
-				\item Possibilité de visualiser le site sous forme d'arborescence;
-				\item Mode \gls{autocomplétion} et coloration syntaxique;
-				\item Mode auto-indentation;
-				\item Accès en un clic au manuel Php/Html/Css/JavaScript;
-				\item Validation Html;
-				\item Visualisation du site dans un navigateur;
+				\item Édition des fichiers JavaScript, Php, Css et Html ;
+				\item Un système multi-onglets permettant de naviguer rapidement entre plusieurs fichiers d'un même projet ;
+				\item Possibilité de visualiser le site sous forme d'arborescence ;
+				\item Mode \gls{autocomplétion} et coloration syntaxique ;
+				\item Mode auto-indentation ;
+				\item Accès en un clic au manuel Php/Html/Css/JavaScript ;
+				\item Validation Html ;
+				\item Visualisation du site dans un navigateur ;
 				\item Squelette de site préexistant.
 			\end{itemize}~\\
 
@@ -295,10 +336,10 @@
 			Bien que les huit membres de notre groupe furent géographiquement proches à vol d'oiseau, aucun d'entre nous ne possédait l'étonnante
 			capacité de se déplacer dans les airs. Par conséquent, hormis les outils sus-cités il fallut quelques outils auxiliaires de communication.
 			\\
-			Nous utilisâmes donc des outils web tels que:
+			Nous utilisâmes donc des outils web tels que :
 			\begin{description}
-				\item[MicroMobs.com:] Pour les discussions professionnelles;
-				\item[Facebook.com:] Pour les annonces importantes, les messages, les dates de réunions, etc.
+				\item[MicroMobs.com :] Pour les discussions professionnelles ;
+				\item[Facebook.com :] Pour les annonces importantes, les messages, les dates de réunions, etc.
 			\end{description}~\\
 
 			Citons aussi TeamGantt.com, une application qui permet de dessiner un (très joli) diagramme de Gantt en ligne.
@@ -384,7 +425,7 @@
 			\begin{section}{Gestion des fichiers}
 				Le diagramme \ref{carabine} détaille le contenu du système de gestion des fichiers. Notez l'incroyable similitude entre ce
 				dernier et le système de gestion des projets décrits précédemment.\\
-				En effet, comme pour les projets, l'application doit permettre d'effectuer des actions basiques en terme de manipulation de fichiers:
+				En effet, comme pour les projets, l'application doit permettre d'effectuer des actions basiques en terme de manipulation de fichiers :
 				création, ouverture, etc.\\
 
 
@@ -421,7 +462,7 @@
 				aux particularités du langage près.
 				\begin{figure}[ht]
 					\begin{center}
-						\includegraphics[width=3cm]{images/classesColorationData.jpg}
+						\includegraphics[width=4cm]{images/classesColorationData.jpg}
 						\caption{Classe de données pour le langage Html}
 						\label{blouson}
 					\end{center}
@@ -450,7 +491,7 @@
 				donner naissance (après quelques essais) au diagramme \ref{arbo}. \\
 				\begin{figure}[ht]
 					\begin{center}
-						\includegraphics[height=19cm]{images/diagrammeArborescence.png}
+						\includegraphics[height=17cm]{images/diagrammeArborescence.png}
 						\caption{Classes du système de fichiers}
 						\label{arbo}
 					\end{center}
@@ -470,33 +511,39 @@
 			\begin{section}{Classes graphiques}
 			\end{section}
 		\end{chapter}
-		\begin{chapter}{Organisation du code : Le modèle MVC}
-			Avant de réellement commencer la programmation, il nous a fallu parler de la façon dont nous allions organiser notre code.
-			Plutôt que d'opter pour une organisation basique se contentant de dossiers "Classes", "Packages", etc... Nous avons choisi de 
-			nous tourner vers une organisation dite "MVC" (Modèle-Vue-Contrôleur, ou Model-View-Controller en anglais), actuellement très 
-			utilisée en programmation, et tout particulièrement optimisée pour l'utilisation de frameworks, étant donné que la plupart de 
-			ces "boîtes à outils" sont développées dans l'optique d'être utilisées de cette façon.\\
-			Le MVC est donc un modèle de programmation qui repose sur la séparation du code produit en trois grandes catégories.\\
-			\begin{itemize}
-				\item Le Modèle : Il représente tous les aspects du "comportement" de l'application, c'est-à-dire le traitement des données
+		\begin{chapter}{Organisation du code : le modèle MVC}
+
+			Avant de réellement commencer la programmation (partie suivante), il nous a fallu parler de la façon dont nous allions organiser
+			notre code. \gls{Qt} est conçu pour gérer des projets organisés selon le modèle \gls{MVC}, il était donc logique de se pencher
+			sur la question. D'autant plus que ce patron de conception est actuellement très prisé dans le monde de la programmation.\\
+
+
+			Le \gls{MVC} est donc un modèle de programmation qui repose sur la séparation du code produit en trois grandes catégories
+			représentées sur le schéma \ref{sinistre}.\\
+			\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=9cm]{images/mvc.png}
+						\caption{Les trois catégories du MVC}
+						\label{sinistre}
+					\end{center}
+				\end{figure}~\\
+
+
+			\begin{description}
+				\item[Le modèle :] représente tous les aspects du comportement de l'application, c'est-à-dire le traitement des données
 				et toutes les interactions avec une éventuelle base de données, c'est lui-même qui décrit toutes les données et qui 
 				définit comment l'application va accéder et intéragir avec ces dernières.
-				\item La Vue : Elle est l'interface sur laquelle va agir l'utilisateur, c'est elle qui se charge de présenter les données
+				\item[La vue :] l'interface sur laquelle va agir l'utilisateur, c'est elle qui se charge de présenter les données
 				renvoyées par le modèle, de les afficher, et éventuellement de donner la possibilité à l'utilisateur d'interagir sur 
-				ces dernières, mais la vue n'effectue aucun traitement, son "travail" ne consiste qu'en la présentation des données, 
+				ces dernières, mais la vue n'effectue aucun traitement, son travail ne consiste qu'en la présentation des données, 
 				en aucun cas elle ne doit effectuer de traitement direct sur des données. Dans certains environnements, elle est écrite 
-				grâce à des langages de présentation uniquement (comme html/css), ce qui permet de la limiter à sa fonction première.
-				\item Le Contrôleur : Il est "l'agent" de réponse à un utilisateur. Généralement, lui non plus n'effectue pas de traitement,
+				grâce à des langages de présentation uniquement (comme \gls{Html} et \gls{Css}), ce qui permet de la limiter à sa fonction première.
+				\item[Le contrôleur :] Il est l'agent de réponse à un utilisateur. Généralement, lui non plus n'effectue pas de traitement,
 				mais se charge d'analyser chaque requête de l'utilisateur, chacune de ses interactions avec la vue, et il fera appel
 				au modèle et à la vue qui conviennent à chacune de ces requêtes. Le contrôleur est un peu l'interprète de l'utilisateur,
 				c'est lui qui va comprendre qui concerne la requête souhaitée, appeler le modèle correspondant, et renvoyer une vue
 				liée à la demande.
-			\end{itemize}
-			La programmation MVC sui dont le schéma suivant : \\
-			Lorsque l'utilisateur effectue une requête, elle est analysée par le contrôleur. Ce dernier fait appel au modèle correspondant à
-			cette requête, et, si le modèle ne s'en charge pas lui-même, le contrôleur modifie la vue en conséquence.\\
-			De cette manière, la programmation d'une application se voit très structurée, et donc facile à entretenir, à maintenir et à mettre
-			à jour.
+			\end{description}
 
 		\end{chapter}
 	\end{part}
@@ -504,77 +551,75 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{part}{L'oeuvre}
 		\begin{chapter}{Travail de groupe}
-			\begin{section}{Partage du travail et homogénéisation}
-				Dès le début du projet, nous avons été dans l'obligation de nous répartir le travail afin de progresser le plus vite possible.
-				Nous avons demandé quelques conseils auprès de M. Meynard qui nous a aidé à déterminer les grandes parties qui pouvaient 
-				être séparées. Trois parties ont été révélées ex nihilo:\\
+			\begin{section}{Répartition des tâches}
+				C'est une fois la conception terminée que se fit sentir le besoin de distinguer différentes parties dans le projet. Ceci afin de
+				marcher fermement dans un sens bien définit au lieu de nous aventurer au hasard.
+				Nous sollicitâmes donc quelques conseils auprès de M. Meynard qui nous aida donc à déterminer les grandes parties qui pouvaient 
+				être séparées. C'est ainsi que virent le jour trois orientations :\\
+				\begin{description}
+					\item[Interface :] tout ce qui se voit à l'écran tels fenêtres, onglets, menus et autres.
+					\item[Système :] fonctionnalités qui touchent au système de fichier comme la gestion des fichiers ou d'un espace de travail.
+					\item[Fonctions :] fonctionnalités de gestion du code comme le sont la coloration, l'indentation ou l'\gls{autocomplétion}
+				\end{description}
+
+
+				Il est judicieux lorsqu'un projet est fractionné comme l'est le nôtre, de constituer autant de groupes que de parts de travail.\\
+				En vertu de ce principe, nous décidâmes de constituer trois groupes constitués comme suit :\\
+
 				\begin{itemize}
-					\item Une première partie concernant l'interface (fenêtres, navigation, barre de menu, ...)
-					\item une deuxième concernant l'implémentation de la gestion de fichiers (création d'espace de travail, de projets,
-					enregistrements de fichiers, ...)
-					\item Enfin, la mise en place des fonctionnalités telles que la coloration, l'auto-completion et l'auto-indentation
-					constituait également une brique importante du projet.
-				\end{itemize}
-				La constitution de trois groupes a donc été nécessaire. Chacun formé selon les 
-				affinités et le niveau de chacun. Il en a résulté la répartition suivante:\\
-				\begin{itemize}
-					\item Groupe \emph{interface}:
-						\begin{itemize}
-							\item Hamza;
-							\item Issam;
-							\item Zaydane.
-						\end{itemize}
-				\end{itemize}
-				\begin{itemize}
-					\item Groupe \emph{système}:
-					\begin{itemize}
-						\item Mickael;
-						\item Joachim.
-					\end{itemize}
-				\end{itemize}
-				\begin{itemize}
-					\item Groupe \emph{fonctionnalités}:
-					\begin{itemize}
-						\item Pierre;
-						\item Olivier;
-						\item Abdelhamid.
-					\end{itemize}
-				\end{itemize}
-				Bien entendu, ces groupes n'étant pas cloisonés, chaque membres a pu participer à d'autres modules pour débloquer certaines
-				situations afin de permettre une constante avancée dans la réalisation.\\
-				Par la suite, une convention d'écriture a du être édictée pour instaurer une certaine cohérence au sein du code.
-				Premièrement, le nommage des classes, fonctions et variables ont été écrites en anglais. 
-				Ensuite, pour une meilleure lisibilité et compréhension, l'ensemble des variables et fonctions débutent par une minuscule tandis
-				que les classes prennent une majuscule, tout comme les fichiers et dossiers constituant le projet.
-				Cependant, le style d'indentation n'a pas été "normalisé". C'est également durant la mise en place des conventions de
-				nommage que nous avons décidé d'utiliser Doxygen, logiciel permettant de générer au fur et à mesure la documentation des classes
-				et fonctions du programme.\\
-				En parallèle de ces règles, un modèle dit "MVC" a été adopté par le groupe.\\
+					\item Groupe \emph{interface} : Hamza, Issame et Zaydane ;
+					\item Groupe \emph{système} : Mickael et Joachim ;
+					\item Groupe \emph{fonctionnalités} : Pierre, Olivier et Abdelhamid.
+				\end{itemize}~\\
+
+				Il est arrivé bien des fois qu'un groupe rencontre un problème ardu ne pouvant être surmonté sans aide extérieure.
+				Heureusement pour lui, les deux autres étaient là pour lui prêter main forte. Ainsi fûrent maintenues tout au long de notre travail
+				une grande cohérence et une grande adéquation relativement à l'évolution des différentes parties.\\
+
+
+				Néanmoins, les membres du groupe étant d'horizons estudiantins différents (comprenez par là qu'ils ne besognent pas pareillement),
+				il s'avéra nécessaire d'édicter différentes normes quant aux méthodes de travail à adopter.
+
 			\end{section}
-		Pour faire part des avancements de chaque groupe, des réunions régulières ont été organisées. 
-		Celles-ci prenaient place aux créneaux horaires prévus dans notre emploi du temps. 
-		Chaque groupe faisait un bilan de ce qu'il avait fait durant la semaine pour savoir ce qu'il restait à faire, et ainsi prendre des décisions.
-		Si un problème survenait, ou si un choix important devait être pris, chacun	émettait son avis sur la question.
-		Les fins de séance se concluaient donc par les sélections des meilleures propositions et éventuellement par	une nouvelle répartition 
-		des tâches.\\
-		Malheureusement, un groupe de huit personnes pouvant difficilement se réunir toujours aux memes horaires, 
-		souvent du aux différents emplois du temps ou encore à cause des distances nous séparant, le compte rendu était publié sur Facebook 
-		afin que chaque membre puisse connaitre la suite des évènements. 
-		De cette manière, l'information étant véhiculée à l'ensemble du groupe, aucun d'entre nous n'était lésé.\\
-		Afin de retenir les points essentiels émis durant les débats, un journal de bord a vu le jour dans le but de faire des récapitulatifs 
-		et de vérifier dans les futurs rendez-vous si toutes les préconisations avaient été faites et respectées. 
-		Voici un court extrait de ce journal reflétant notre réflexion.
-		
-		%%%%% Mickael si tu peux mettre un extrait de journal, merci d'avance ^^ %%%%%
-		%%%%% Je m'en occupe vous inquietez pas, mais c'est le genre de choses que le prof aura pas besoin de commenter, je préfère avancer sur le reste
-		%%%%% et faire ça à la fin %%%%
-			Là on parle des réunions, pourquoi pas mettre un extrait de journal.
-			
+			\begin{section}{Conventions techniques}
+				Voici une liste des conventions prises pour la programmation, les commentaires du code source et le nommage des fichiers.
+				%% Petite note de bas de page.
+				\addtocounter{footnote}{1}
+				\footnotetext[\value{footnote}]{Le nom de fonction désigne aussi les méthodes.}
+				\begin{itemize}
+					\item Les noms de classes, structures, fonctions$^{\decimal{footnote}}$, variables et constantes seront donnés en anglais.
+					\item Les noms de fonctions et variables commencent par une minuscule (une minuscule en anglais bien sûr).
+					\item Les noms de classes et structures commencent par une majuscule.
+					\item Les noms de constantes s'écrivent avec uniquement des majuscules et des tirets bas (le fameux trait du 8).
+					\item Les noms de fichiers qui déclarent et définissent une classe (.h et .cpp) portent le même nom que la classe, avec la
+					majuscule.
+					\item Les noms de fichiers normaux commencent par une minuscule (p.ex. main.cpp).
+					\item L'indentation est laissée libre (accolade en fin de ligne ou en ligne suivante) pour n'embarrasser personne et ne pas
+					créer de controverse.
+					\item Toute classe, fonction ou structure sera bien commentée en utilisant la notation \gls{Doxygen}.
+					\item Dans une moindre mesure, il sera possible de commenter les variables et constantes importantes avec la même notation.
+				\end{itemize}~\\
+
+				Bien que les règles citées ci-dessus soient des conventions communément admises (dans le monde C++ du moins), il valait mieux
+				bien les préciser de manière à éviter toute mauvaise surprise.
+			\end{section}
+			\begin{section}{Les réunions hebdomadaires}
+				Le grand chamane de l'UM2 a prévu dans notre emploi du temps un créneau d'une heure trente le lundi et le mardi intitulé « Projet ».
+				Étant par nature opportunistes, nous tînmes nos conseils de projet précisément durant ces créneaux.\\
+
+
+				Une réunion de projet se déroule toujours de la même manière. Chacun des trois groupes résume le travail effectué durant la semaine,
+				fait part de ses problèmes éventuels et donne la liste des choses prévues pour la semaine d'après.
+				S'ensuit une séance de remue-méninges pour discuter, critiquer, approuver ou réprouver ce qui vient d'être présenté.
+				Parfois, des discussions moins techniques venaient nourrir le débat, relatives par exemple à l'organisation de ce document.\\
+
+				Il existe un rapport de chacune de ces réunions.
+
+					%% Mickael rentre en scène.
+
+			\end{section}
 		\end{chapter}
 		\begin{chapter}{Implémentation}
-			L'analyse conceptuelle étant quelque chose d'extrêmement long à mener à terme, nous avons pris la décision (avec les encouragements de 
-			notre enseignant) de nous contenter des quelques schémas présentés ci-dessus, et de commencer à programmer, par peur de subir un 
-			manque de temps considérable.
 			\begin{section}{Système}
 			\end{section}
 			\begin{section}{Noyau}
@@ -610,34 +655,34 @@
 	\begin{thebibliography}{2}
 		\label{sitographie}
 		\bibitem{Github}
-		Github: www.github.com \\
+		Github : www.github.com \\
 		Le site spécialisé dans la gestion de dépôts \gls{Git}. Possède une interface très pratique pour gérer les groupes, les projets,
 		les fichiers et plus encore.
 		~\\
 		\bibitem{Wikipedia}
-		Wikipédia: www.wikipedia.org \\
+		Wikipédia : www.wikipedia.org \\
 		L'encyclopédie en ligne de laquelle j'ai tiré certaines définitions présentes dans le glossaire.
 		~\\
 		\bibitem{yUML}
-		yUML: www.yuml.me \\
+		yUML : www.yuml.me \\
 		Ce site permet de générer à la volée des diagrammes \gls{UML}, extrêmement utile lorsqu'il s'agit de travail de groupe.
 		~\\
 		\bibitem{Micromobs}
-		Micromobs: www.micromobs.com \\
-		Le site de discussion de groupe au principe intéressant: il vaut mieux une interface dédiée aux discussions plutôt
+		Micromobs : www.micromobs.com \\
+		Le site de discussion de groupe au principe intéressant : il vaut mieux une interface dédiée aux discussions plutôt
 		qu'une boîte e-mail encombrée et mal organisée.
 		~\\
 		\bibitem{TeamGantt}
-		TeamGantt: www.teamgantt.com \\
+		TeamGantt : www.teamgantt.com \\
 		Création en ligne de diagrammes de Gantt beaux et lisibles.
 		~\\
 		\bibitem{Facebook}
-		Facebook: www.facebook.com \\
+		Facebook : www.facebook.com \\
 		Le réseau social que l'on ne présente plus, il nous a permis d'échanger des messages moins techniques que sur Micromobs
 		et de nous organiser grâce à différents évènements.
 		~\\
 		\bibitem{Prezi}
-		Prezi: www.prezi.com \\
+		Prezi : www.prezi.com \\
 		Un générateur de présentation en ligne nouvelle génération.
 	\end{thebibliography}
 \end{document}
