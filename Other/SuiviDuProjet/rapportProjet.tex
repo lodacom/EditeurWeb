@@ -450,6 +450,28 @@
 					\end{center}
 				\end{figure}~\\
 			\end{section}
+			\begin{section}{Système de Fichiers}
+				La réflexion autour de l'organisation des fichiers gérés par l'application fût longue, bien que quelque peu avancée par les
+				diagrammes de cas d'utilisation que nous avons créés.\\
+				En effet, ces derniers nous donnaient un premier aperçu de l'approche à adopter pour traîter le sujet, mais nous laissaient quand
+				même beaucoup de choix quant au schéma de fichiers à adopter. Notre application suivant bien sûr un développement orienté objet, 
+				nous avons desuite eu l'idée de traîter dossiers, projets et espaces de travails comme des instances de classes, pour finalement 
+				donner naissance (après quelques essais) au diagramme \ref{arbo} \\
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=14cm]{images/diagrammeArborescence.png}
+						\caption{Classes du système de fichiers}
+						\label{arbo}
+					\end{center}
+				\end{figure}~\\
+				Avant d'éditer ce diagramme, nous nous étions mis d'accord, pour des raisons évidentes, sur une factorisation importante de 
+				notre code. Ainsi, la classe Élément regroupe tous les attributs, constantes et méthodes communs à tous les types d'items 
+				traités par l'application.\\
+				À la manière d'un dossier, un Projet pourra être composé de fichiers et de dossiers, mais aura des méthodes qui lui sont propres,
+				telles qu'une suppression de son contenu. Le WorkSpace lui ne sera pas traîté comme un dossier mais plutôt comme un élément
+				particulier ne contenant que des projets.\\
+				Pour le reste, les classes Folder et File parlent d'elles-mêmes.
+			\end{section}
 		\end{chapter}
 		\begin{chapter}{Premiers pas vers la programmation}
 			\begin{section}{Partage du travail et homogénéisation}
@@ -549,10 +571,15 @@
 		Voici un court extrait de ce journal reflétant notre réflexion.
 		
 		%%%%% Mickael si tu peux mettre un extrait de journal, merci d'avance ^^ %%%%%
-					
+		%%%%% Je m'en occupe vous inquietez pas, mais c'est le genre de choses que le prof aura pas besoin de commenter, je préfère avancer sur le reste
+		%%%%% et faire ça à la fin %%%%
 			Là on parle des réunions, pourquoi pas mettre un extrait de journal.
+			
 		\end{chapter}
 		\begin{chapter}{Implémentation}
+			\begin{section}{Système}
+				
+			\end{section}
 			\begin{section}{Noyau}
 			\end{section}
 			\begin{section}{Interface}
