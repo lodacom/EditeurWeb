@@ -628,8 +628,46 @@
 			\end{section}
 		\end{chapter}
 		\begin{chapter}{Résultat}
+		Voici le moment de réaliser un premier bilan après ces 3 mois de travail. Les résultats obtenus en comparaison avec le cahier des charges 
+		initial est très satisfaisant. Le logiciel auquel nous somme parvenus, nommé "WebShake", offre une très grande partie des fonctionnalités 
+		demandées. Afin de toutes les lister, une présentation du fonctionnement du logiciel s'impose.\\
+		L'interface graphique met à disposition de l'utilisateur une incontournable barre des menus offrant les mêmes possibilités que n'importe quel IDE.
+		Ensuite, la partie centrale a été divisée en trois fenêtres. Celle de gauche permet de visualiser sous forme d'arborescence l'ensemble des fichiers
+	    et dossiers contenus par un projet, ce denier étant lui-même placé dans le Workspace, créé à la première utilisation du logiciel.
+		Cette arborescence est gérée par l'ensemble des fonctionnalités implémentées par le " Groupe Système",
+		qui offrent de nombreuses possibilités, comme par exemple déplacer des fichiers au sein du projet, et même les copier/coller. 
+		La fenêtre centrale est consacrée à l'édition des fichiers PHP, CSS, HTML et JavaScript. Le système multi-onglets mis en place permet 
+		de naviguer très simplement entre tous les fichiers en cours d'utilisation. C'est également ici que les fonctions du "Groupe Fonctionnalités"
+		prennent effet. Une fois les documents enregistrés, la coloration syntaxique s'applique en fonction de l'extension détectée, 
+		tout comme l'auto-complétion contextuelle, qui propose à l'utilisateur l'ensemble des mots-clés, toujours en fonction du langage 
+		utilisé. Enfin, un système d'auto-indentation relativement simpliste mais efficace s'est ajouté en toute fin de projet. 
+		Pour la dernière fenêtre, située à droite, il a été décidé de la diviser en deux pour offrir deux interfaces très intéressantes pour l'utilisateur.
+		La première est une petite fenêtre permettant de visualiser rapidement ce que produit le code écrit sur un naviguateur internet.
+		La seconde présente le fichier actuel ( l'onglet actif), sous forme d'arborescence "simplifiée". Cette partie n'a pas pu être développée
+		comme nous le souhaitions car la réalisation d'un parser nécessitait une masse de travail comparable à la réalisation complète du logiciel.
+		Nous avons donc opté pour une version simplifiée, qui néanmoins fonctionne correctement.\\
+		L'ensemble du groupe est donc satisfait du travail réalisé, avec un produit final qui est dans l'ensemble fidèle au cahier des charges initial,
+	    malgré l'absence de quelques fonctionnalités à cause d'un cruel manque de temps.
 		\end{chapter}
 		\begin{chapter}{Discussion}
+		Pour arriver à un tel résultat, nous avons été confronté à de nombreux problèmes durant toute la période de développement.
+        Certains d'entre eux étaient liés à une question de conception, dans le sens où le groupe n'arrivait pas à se décider si tel ou tel algorithme
+        appartenait au Modèle ou au Contrôleur. Bien entendu, ce genre de difficulté ne persistait pas très longtemps et était vite résolu.
+        Cependant, d'autres problèmes bien plus complexes sont apparus au fur et à mesure de l'avancement du projet. Par exemple, le "Groupe Système"
+        a été confronté à une fuite mémoire, qui, sur un projet contenant de nombreux fichiers, pouvait ralentir considérablement le temps
+        d'exécution du programme. Des heures de tests et de modifications ont été nécessaires pour arriver à solutionner ce petit dysfonctionnement.
+        Malheureusement, des problèmes encore plus compliqués ont été décelés. En témoigne la notion de parser, cité précédemment. En effet, nous nous
+        sommes rendus compte après de nombreuses recherches que la réalisation d'un parser digne de ce nom n'aurait pas été possible
+        en un si court laps de temps. C'est donc pour cela que l'ensemble du groupe a essayé de contourner le problème en réalisant un "pseudo parser",
+        détaillé précédemment. L'auto-indentation a du subir le même sort.\\
+        Malheureusement, il n'a pas été possible de trouver une alternative à chaque fois. La validation HTML n'a pu être implémenté par manque de temps.
+        L'idée aurait été de mettre en relation l'application avec le site web www.w3.org pour scanner automatiquement nos fichiers et indiquer les erreurs
+        existantes. Mais avec un tel projet, nous avons du sélectionner avec soin les fonctionnalités les plus représentatives d'un éditeur web, 
+        au détriment de certaines demandant un temps phénoménal.\\
+        En somme, "WebShake" est un produit abouti, mais perfectible à plusieurs points de vu. L'interface graphique pourrait être plus épurée et présenter
+        quelques fonctionnalités en plus. Un parser pourrait être inséré et le système d'auto-indentation amélioré. Néanmoins, l'état actuel du produit 
+        n'interfère en aucun cas pour son bon fonctionnement. L'essentiel est fait et les petits bogues susbistants sont loin d'être insolubles. Nous 
+        pouvons donc être fiers des tâches réalisées, tout en sachant que la perfection n'a pas été atteinte.
 		\end{chapter}
 	\end{part}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
