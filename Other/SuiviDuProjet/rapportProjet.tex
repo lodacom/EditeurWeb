@@ -11,7 +11,7 @@
 \usepackage{graphicx}
 %% Pour la police de caractères.
 \usepackage{fontspec}
-%%\setmainfont{Delicious-Roman}
+\setmainfont{Delicious-Roman}
 %% Pour faire le glossaire.
 \usepackage[xindy]{glossaries}
 \makeglossaries
@@ -19,8 +19,10 @@
 \usepackage{fmtcount}
 %% Pour pouvoir écrire du code.
 \usepackage{minted}
+\usemintedstyle{tango}
 \definecolor{bg}{rgb}{0.95,0.95,0.95} %% Pour le background du code.
 \renewcommand{\theFancyVerbLine}{\sffamily \textcolor[rgb]{0.5,0.5,1.0}{\scriptsize \oldstylenums{\arabic{FancyVerbLine}}}}
+\newminted{cpp}{linenos=true,bgcolor=bg,frame=lines}
 \begin{document}
 	%% Glossaire
 	\newglossaryentry{UML}
@@ -47,7 +49,7 @@
 	\newglossaryentry{Qt}
 	{
 		name={Qt},
-		description={Qt est un framework orienté objet et développé en C++. Il offre des composants d'interface graphique (widgets),
+		description={C'est un framework orienté objet et développé en C++. Il offre des composants d'interface graphique (widgets),
 		d'accès aux données, de connexions réseaux, de gestion des fils d'exécution, d'analyse XML, etc}
 	}
 
@@ -61,7 +63,7 @@
 	\newglossaryentry{Git}
 	{
 		name={Git},
-		description={Git est un logiciel de gestion de versions décentralisé. 
+		description={Un logiciel de gestion de versions décentralisé. 
 		C'est un logiciel libre créé par Linus Torvalds, le créateur du noyau Linux, et distribué selon les termes de la licence 
 		publique générale GNU version 2}
 	}
@@ -119,7 +121,7 @@
 	\newglossaryentry{Css}
 	{
 		name={Css},
-		description={Css (Cascading Style Sheets: feuilles de style en cascade) est un langage informatique qui sert à décrire la présentation
+		description={(Cascading Style Sheets: feuilles de style en cascade) est un langage informatique qui sert à décrire la présentation
 		des documents Html et XML}
 	}
 
@@ -189,12 +191,12 @@
 	Ce dernier se présente, nous salue et prononce ce discours mémorable qui restera gravé dans nos mémoires.\\
 	\begin{quotation}
 		« Dans le cadre de développement de sites Web, on souhaiterait utiliser un éditeur multi-fichiers permettant de réaliser 
-		différentes actions sur	des fichiers relatifs à un site : édition de fichiers Html, Php, JavaScript et Css.\\
+		différentes actions sur	des fichiers relatifs à un site : édition de fichiers \gls{Html}, \gls{Php}, \gls{JavaScript} et \gls{Css}.\\
 
 		Il serait également appréciable que cet éditeur proposât un mode de visualisation du site dans un navigateur et un mode arborescence.\\
 
 		Et tant que nous y sommes, mettons de l'\gls{autocomplétion}, de la coloration syntaxique, un accès aux manuels
-		des langages cités précédemment et une validation Html. ».
+		des langages cités précédemment et une validation \gls{Html}. ».
 	\end{quotation}
 
 	Après ce laïus prononcé d'une traite M. Meynard disparut soudain, nous laissant là, le regard vide.\\
@@ -219,13 +221,13 @@
 		\begin{chapter}{Cahier des charges}
 			Voici une liste exhaustive des fonctionnalités prescrites par M. Meynard :
 			\begin{itemize}
-				\item Édition des fichiers JavaScript, Php, Css et Html ;
+				\item Édition des fichiers \gls{JavaScript}, \gls{Php}, \gls{Css} et \gls{Html} ;
 				\item Un système multi-onglets permettant de naviguer rapidement entre plusieurs fichiers d'un même projet ;
 				\item Possibilité de visualiser le site sous forme d'arborescence ;
 				\item Mode \gls{autocomplétion} et coloration syntaxique ;
 				\item Mode auto-indentation ;
-				\item Accès en un clic au manuel Php/Html/Css/JavaScript ;
-				\item Validation Html ;
+				\item Accès en un clic au manuel \gls{Php}/\gls{Html}/\gls{Css}/\gls{JavaScript} ;
+				\item Validation \gls{Html} ;
 				\item Visualisation du site dans un navigateur ;
 				\item Squelette de site préexistant.
 			\end{itemize}~\\
@@ -292,7 +294,7 @@
 				\caption{\label{comparatif} Fonctionnalités spéciales dans les éditeurs étudiés}
 					\begin{tabular}{|c||c|c|c|c|c|} % c signifie center, le texte de chaque colonne sera donc centré.
 					  \hline
-					  Éditeur & onglets & autocomplétion & auto-indentation$^{\decimal{footnote}}$ & validation Html & documentations \\
+					  Éditeur & onglets & autocomplétion & auto-indentation$^{\decimal{footnote}}$ & validation \gls{Html} & documentations \\
 					  \hline
 
 					  Espresso & oui & oui & non & non & non \\
@@ -506,7 +508,7 @@
 			\end{section}
 			\begin{section}{Indentation}
 			\end{section}
-			\begin{section}{Autocomplétion}
+			\begin{section}{\Gls{autocomplétion}}
 			\end{section}
 			\begin{section}{Classes graphiques}
 			\end{section}
@@ -620,6 +622,20 @@
 			\end{section}
 		\end{chapter}
 		\begin{chapter}{Implémentation}
+			\begin{section}{Arborescence du projet}
+				Le projet est organisé comme sur l'arborescence \ref{dindon}. On dispose à la racine du projet de trois sous-dossiers correspondants
+				aux trois éléments du \gls{MVC}.
+
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=7cm]{images/arborescenceProjet.png}
+					\caption{Arborescence de projet}
+					\label{dindon}
+				\end{center}
+			\end{figure}~\\
+
+
+			\end{section}
 			\begin{section}{Système}
 			\end{section}
 			\begin{section}{Noyau}
@@ -641,6 +657,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{chapter}*{Annexe technique}
 	\addcontentsline{toc}{chapter}{Annexe technique}
+	\begin{section}{À propos de Qt}
+		Travailler avec \gls{Qt}, c'est travailler avec un immense ensemble de classes diverses et variées. 
+		Il y a des classes graphiques, des classes pour le XML, des classes pour le son, des classes pour tout ce qu'une application classique
+		peut nécessiter pour fonctionner.\\
+
+		Cet état des choses peut sembler idéal de prime abord, amenant rapidement à des énoncés tels que « Facile, il suffit de prendre telle classe
+		et de l'utiliser. » ou bien « Ah beh je vais employer cette classe elle fait ça très bien. ». Néanmoins, prendre l'habitude de ce genre de 
+		discours conduit à la paresse du programmeur qui fournira une application avec des fonctionnalités réduites,
+		limitées par la classe de \gls{Qt}.\\
+
+		De plus, construire soit même une ensemble de classe en dehors de \gls{Qt} est très difficile. Au vu du grand nombre de classe qui
+		accomplissent telle ou telle tâche, on se sent obligé de les utiliser. D'autant plus que la documentation nous y encourage, transformant de
+		de fait \gls{Qt} en élément du langage.\\
+
+		\noindent
+		Par exemple, au lieu d'écrire ce code : 
+		\begin{center}
+		\begin{cppcode}
+std::string avertissement = "Holà ! cavalier, vous voyagez sans selle !";
+		\end{cppcode}
+		\end{center}
+		Il est conseillé d'écrire : 
+		\begin{center}
+		\begin{cppcode}
+QString avertissement = "Holà ! cavalier, vous voyagez sans selle !";
+		\end{cppcode}
+		\end{center}
+	\end{section}
 	\end{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -684,5 +728,9 @@
 		\bibitem{Prezi}
 		Prezi : www.prezi.com \\
 		Un générateur de présentation en ligne nouvelle génération.
+		~\\
+		\bibitem{Qt Reference Documentation}
+		Qt Reference Documentation : www.doc.qt.nokia.com \\
+		La documentation Qt, là où nous avons tout appris.		
 	\end{thebibliography}
 \end{document}
