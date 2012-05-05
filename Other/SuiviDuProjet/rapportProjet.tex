@@ -17,6 +17,10 @@
 \makeglossaries
 %% Pour les notes de bas de page.
 \usepackage{fmtcount}
+%% Pour pouvoir écrire du code.
+\usepackage{minted}
+\definecolor{bg}{rgb}{0.95,0.95,0.95} %% Pour le background du code.
+\renewcommand{\theFancyVerbLine}{\sffamily \textcolor[rgb]{0.5,0.5,1.0}{\scriptsize \oldstylenums{\arabic{FancyVerbLine}}}}
 \begin{document}
 	%% Glossaire
 	\newglossaryentry{UML}
@@ -138,19 +142,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{chapter}*{Introduction}
 	\addcontentsline{toc}{chapter}{Introduction}
-
-	% 	Au début du mois de Février, il nous a été demandé de réaliser un projet ayant pour but de mettre en place une application permettant
-	% d'utiliser un éditeur multi-fichiers effectuant différentes actions sur des fichiers relatif à un site web.\\
-	% Ce dernier consiste à créer, modifier, sauvergarder... des fichiers contenant les langages JavaScript, HTML, CSS, PHP via une interface se
-	% rapprochant des IDEs présents sur le marché. Celle-ci aura un rôle primordial, car elle devra apporter à l'utilisateur une aide précieuse grâce
-	% à des fonctionnalités intuitives, comme par exemple l'autocomplétion.\\
-	% A l'occasion de ce projet, un groupe de huit personnes a été formé pour répondre à la capacité de travail demandée. Nous devions donc nous 
-	% répartir les tâches entre chaque membre voir créer des sous-groupes permettant de cloisonner chaque brique essentielle de l'application 
-	% (interface,système,coloration/complétion). De plus, une période de trois mois nous a été accordée pour réaliser cet IDE.\\
-	% Afin de ne pas gaspiller du temps à déterminer par où commencer et de quelle façon aborder le sujet, nous avions des réunions régulières avec 
-	% notre tuteur M.Meynard, pour nous guider dans notre réflexion.\\
-	% A travers ce compte-rendu nous essaierons de rendre compte des étapes qui nous ont conduits à élaborer cette application en essayant de répondre 
-	% le plus fidèlement possible au problème posé.\\ 
 
 	C'est par une froide journée d'hiver que nous nous réunîmes pour la première fois à l'université de Montpellier. 
 	Huit, tous étudiants préposés au projet numéro vingt-trois nous attendons à notre table l'arrivée de notre tuteur M. Meynard. 
@@ -338,7 +329,7 @@
 				\end{center}
 			\end{figure}~\\
 			Le système de gestion des fichiers est un système très important de l'application et c'est pourquoi il est requis
-			par le système de gestion des projets.\\
+			par le système de gestion des projets (flèche \emph{include}).\\
 			Le système de gestion du code est vue comme une extension aux fichiers. En effet, il serait possible d'éditer un
 			site web sans gérer la coloration, l'indentation et toutes les fonctionnalités qui rendent un éditeur de code si agréable à utiliser.
 			
@@ -450,12 +441,12 @@
 					\end{center}
 				\end{figure}~\\
 			\end{section}
-			\begin{section}{Système de Fichiers}
+			\begin{section}{Système de fichiers}
 				La réflexion autour de l'organisation des fichiers gérés par l'application fût longue, bien que quelque peu avancée par les
-				diagrammes de cas d'utilisation que nous avons créés.\\
-				En effet, ces derniers nous donnaient un premier aperçu de l'approche à adopter pour traîter le sujet, mais nous laissaient quand
+				diagrammes de cas d'utilisation que nous avions créés.\\
+				En effet, ces derniers nous donnaient un premier aperçu de l'approche à adopter pour traiter le sujet mais nous laissaient quand
 				même beaucoup de choix quant au schéma de fichiers à adopter. Notre application suivant bien sûr un développement orienté objet, 
-				nous avons desuite eu l'idée de traîter dossiers, projets et espaces de travails comme des instances de classes, pour finalement 
+				nous avons desuite eu l'idée de traiter dossiers, projets et espaces de travails comme des instances de classes, pour finalement 
 				donner naissance (après quelques essais) au diagramme \ref{arbo}. \\
 				\begin{figure}[ht]
 					\begin{center}
@@ -472,8 +463,47 @@
 				particulier ne contenant que des projets.\\
 				Pour le reste, les classes Folder et File parlent d'elles-mêmes.
 			\end{section}
+			\begin{section}{Indentation}
+			\end{section}
+			\begin{section}{Autocomplétion}
+			\end{section}
+			\begin{section}{Classes graphiques}
+			\end{section}
 		\end{chapter}
-		\begin{chapter}{Premiers pas vers la programmation}
+		\begin{chapter}{Organisation du code : Le modèle MVC}
+			Avant de réellement commencer la programmation, il nous a fallu parler de la façon dont nous allions organiser notre code.
+			Plutôt que d'opter pour une organisation basique se contentant de dossiers "Classes", "Packages", etc... Nous avons choisi de 
+			nous tourner vers une organisation dite "MVC" (Modèle-Vue-Contrôleur, ou Model-View-Controller en anglais), actuellement très 
+			utilisée en programmation, et tout particulièrement optimisée pour l'utilisation de frameworks, étant donné que la plupart de 
+			ces "boîtes à outils" sont développées dans l'optique d'être utilisées de cette façon.\\
+			Le MVC est donc un modèle de programmation qui repose sur la séparation du code produit en trois grandes catégories.\\
+			\begin{itemize}
+				\item Le Modèle : Il représente tous les aspects du "comportement" de l'application, c'est-à-dire le traitement des données
+				et toutes les interactions avec une éventuelle base de données, c'est lui-même qui décrit toutes les données et qui 
+				définit comment l'application va accéder et intéragir avec ces dernières.
+				\item La Vue : Elle est l'interface sur laquelle va agir l'utilisateur, c'est elle qui se charge de présenter les données
+				renvoyées par le modèle, de les afficher, et éventuellement de donner la possibilité à l'utilisateur d'interagir sur 
+				ces dernières, mais la vue n'effectue aucun traitement, son "travail" ne consiste qu'en la présentation des données, 
+				en aucun cas elle ne doit effectuer de traitement direct sur des données. Dans certains environnements, elle est écrite 
+				grâce à des langages de présentation uniquement (comme html/css), ce qui permet de la limiter à sa fonction première.
+				\item Le Contrôleur : Il est "l'agent" de réponse à un utilisateur. Généralement, lui non plus n'effectue pas de traitement,
+				mais se charge d'analyser chaque requête de l'utilisateur, chacune de ses interactions avec la vue, et il fera appel
+				au modèle et à la vue qui conviennent à chacune de ces requêtes. Le contrôleur est un peu l'interprète de l'utilisateur,
+				c'est lui qui va comprendre qui concerne la requête souhaitée, appeler le modèle correspondant, et renvoyer une vue
+				liée à la demande.
+			\end{itemize}
+			La programmation MVC sui dont le schéma suivant : \\
+			Lorsque l'utilisateur effectue une requête, elle est analysée par le contrôleur. Ce dernier fait appel au modèle correspondant à
+			cette requête, et, si le modèle ne s'en charge pas lui-même, le contrôleur modifie la vue en conséquence.\\
+			De cette manière, la programmation d'une application se voit très structurée, et donc facile à entretenir, à maintenir et à mettre
+			à jour.
+
+		\end{chapter}
+	\end{part}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{part}{L'oeuvre}
+		\begin{chapter}{Travail de groupe}
 			\begin{section}{Partage du travail et homogénéisation}
 				Dès le début du projet, nous avons été dans l'obligation de nous répartir le travail afin de progresser le plus vite possible.
 				Nous avons demandé quelques conseils auprès de M. Meynard qui nous a aidé à déterminer les grandes parties qui pouvaient 
@@ -521,41 +551,6 @@
 				et fonctions du programme.\\
 				En parallèle de ces règles, un modèle dit "MVC" a été adopté par le groupe.\\
 			\end{section}
-			\begin{section}{Organisation du code : Le modèle MVC}
-				Avant de réellement commencer la programmation, il nous a fallu parler de la façon dont nous allions organiser notre code.
-				Plutôt que d'opter pour une organisation basique se contentant de dossiers "Classes", "Packages", etc... Nous avons choisi de 
-				nous tourner vers une organisation dite "MVC" (Modèle-Vue-Contrôleur, ou Model-View-Controller en anglais), actuellement très 
-				utilisée en programmation, et tout particulièrement optimisée pour l'utilisation de frameworks, étant donné que la plupart de 
-				ces "boîtes à outils" sont développées dans l'optique d'être utilisées de cette façon.\\
-				Le MVC est donc un modèle de programmation qui repose sur la séparation du code produit en trois grandes catégories.\\
-				\begin{itemize}
-					\item Le Modèle : Il représente tous les aspects du "comportement" de l'application, c'est-à-dire le traitement des données
-					et toutes les interactions avec une éventuelle base de données, c'est lui-même qui décrit toutes les données et qui 
-					définit comment l'application va accéder et intéragir avec ces dernières.
-					\item La Vue : Elle est l'interface sur laquelle va agir l'utilisateur, c'est elle qui se charge de présenter les données
-					renvoyées par le modèle, de les afficher, et éventuellement de donner la possibilité à l'utilisateur d'interagir sur 
-					ces dernières, mais la vue n'effectue aucun traitement, son "travail" ne consiste qu'en la présentation des données, 
-					en aucun cas elle ne doit effectuer de traitement direct sur des données. Dans certains environnements, elle est écrite 
-					grâce à des langages de présentation uniquement (comme html/css), ce qui permet de la limiter à sa fonction première.
-					\item Le Contrôleur : Il est "l'agent" de réponse à un utilisateur. Généralement, lui non plus n'effectue pas de traitement,
-					mais se charge d'analyser chaque requête de l'utilisateur, chacune de ses interactions avec la vue, et il fera appel
-					au modèle et à la vue qui conviennent à chacune de ces requêtes. Le contrôleur est un peu l'interprète de l'utilisateur,
-					c'est lui qui va comprendre qui concerne la requête souhaitée, appeler le modèle correspondant, et renvoyer une vue
-					liée à la demande.
-				\end{itemize}
-				La programmation MVC sui dont le schéma suivant : \\
-				Lorsque l'utilisateur effectue une requête, elle est analysée par le contrôleur. Ce dernier fait appel au modèle correspondant à
-				cette requête, et, si le modèle ne s'en charge pas lui-même, le contrôleur modifie la vue en conséquence.\\
-				De cette manière, la programmation d'une application se voit très structurée, et donc facile à entretenir, à maintenir et à mettre
-				à jour.
-
-			\end{section}
-		\end{chapter}
-	\end{part}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\begin{part}{L'oeuvre}
-		\begin{chapter}{Travail de groupe}
 		Pour faire part des avancements de chaque groupe, des réunions régulières ont été organisées. 
 		Celles-ci prenaient place aux créneaux horaires prévus dans notre emploi du temps. 
 		Chaque groupe faisait un bilan de ce qu'il avait fait durant la semaine pour savoir ce qu'il restait à faire, et ainsi prendre des décisions.
@@ -578,25 +573,26 @@
 		\end{chapter}
 		\begin{chapter}{Implémentation}
 			\begin{section}{Système}
-				
 			\end{section}
 			\begin{section}{Noyau}
 			\end{section}
 			\begin{section}{Interface}
 			\end{section}
-			Ici on aborde les problèmes de la documentation, de nouvelles bibliothèques, de mettre en place nos algorithmes ``en vrai'', ... 
 		\end{chapter}
 		\begin{chapter}{Résultat}
-			On va essayer de caser des trucs ici.
 		\end{chapter}
 		\begin{chapter}{Discussion}
-			Critique (positive) du résultat, le cahier des charges est-il respecté ? améliorations possibles, erreurs qu'on à pu faire.
 		\end{chapter}
 	\end{part}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{chapter}*{Conclusion}
-		Oué on s'est bien marré et tout et tout.lol!!!!
+	\addcontentsline{toc}{chapter}{Conclusion}
+	\end{chapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{chapter}*{Annexe technique}
+	\addcontentsline{toc}{chapter}{Annexe technique}
 	\end{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -610,6 +606,11 @@
 	\renewcommand\bibname{Sitographie}%% Changement du titre de bibliographie en sitographie.
 	\begin{thebibliography}{2}
 		\label{sitographie}
+		\bibitem{Github}
+		Github: www.github.com \\
+		Le site spécialisé dans la gestion de dépôts \gls{Git}. Possède une interface très pratique pour gérer les groupes, les projets,
+		les fichiers et plus encore.
+		~\\
 		\bibitem{Wikipedia}
 		Wikipédia: www.wikipedia.org \\
 		L'encyclopédie en ligne de laquelle j'ai tiré certaines définitions présentes dans le glossaire.

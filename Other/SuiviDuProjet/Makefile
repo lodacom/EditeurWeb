@@ -6,10 +6,10 @@ TEX = xelatex
 
 
 $(latexfile).pdf : $(latexfile).tex
-	xelatex $(latexfile).tex
+	xelatex --shell-escape $(latexfile).tex
 	makeglossaries $(latexfile).glo
-	xelatex $(latexfile).tex
-	xelatex $(latexfile).tex
+	xelatex --shell-escape $(latexfile).tex
+	xelatex --shell-escape $(latexfile).tex
 
 clean:
 	rm  -f *.glo *.xdy *.pyg *.aux *.glg *.gls *.lof *.toc *.ist
