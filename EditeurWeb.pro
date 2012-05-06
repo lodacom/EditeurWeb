@@ -19,7 +19,6 @@ HEADERS += \
     Models/Element.h \
     Controllers/WorkSpaceTreeController.h \
     Views/CentralEditor.h \
-    Controllers/CompleterController.h \
     Tools/Tools.h \
     Views/EditorTab.h \
     Models/HtmlIndenter.h \
@@ -49,7 +48,6 @@ SOURCES += \
     Controllers/Highlighting/Highlighter.cpp \
     Controllers/Highlighting/CSSHighlighter.cpp \
     Views/CentralEditor.cpp \
-    Controllers/CompleterController.cpp \
     Tools/Tools.cpp \
     Views/EditorTab.cpp \
     Models/HtmlIndenter.cpp \
