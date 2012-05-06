@@ -620,7 +620,23 @@
 			\end{section}
 		\end{chapter}
 		\begin{chapter}{Implémentation}
+			L'analyse conceptuelle étant quelque chose d'extrêmement long à mener à terme, nous avons pris la décision (avec les encouragements de 
+			notre enseignant) de nous contenter des quelques schémas présentés ci-dessus, et de commencer à programmer, par peur de subir un 
+			manque de temps considérable.
 			\begin{section}{Système}
+				À ce stade là nous avions donc une idée relativement fixe non seulement de l'organisation des fichiers servant au développement
+				de cet aspect de l'application, mais également de ce qu'allait donner visuellement notre travail, à savoir une arborescence de 
+				fichiers sur la gauche de la fenêtre principale, à la manière d'un Eclipse ou d'un QT Creator, et l'envie de commencer à programmer
+				se faisait plus que jamais ressentir, mais quelques petits détails restaient encore à régler.\\
+				En effet, l'utilisation de \emph{Qt} ainsi que de l'architecture MVC nous contraint à d'abord nous documenter sur ce que ce 
+				framework proposait pour répondre à nos attentes. Et la réponse ne se fit pas attendre longtemps puisque le \emph{QDirModel} 
+				apparaissait comme correspondant parfaitemement, étant donné qu'il s'agit d'un modèle de données spécialement conçu pour être
+				peuplé par une arborescence de fichiers, à partir du seul chemin vers la racine de cette arborescence.\\
+				Mais cette solution s'est rapidement montrée insuffisante pour ce que nous avons prévu, notamment à cause du fichier de 
+				configuration de nos projets. Notre idée étant de remplir l'arborescence d'espace de travail de l'utilisateur uniquement par des
+				projets, qui, comme expliqué plus haut, sont des dossiers contenant un fichier de configuration nommé ".pro" à leur racine (dont 
+				nous exposerons l'utilité plus tard), et ledit \emph{QDirModel} ne permet pas de filtrer la population du modèle selon un quelconque
+				paramètre.
 			\end{section}
 			\begin{section}{Noyau}
 			\end{section}
