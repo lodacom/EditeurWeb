@@ -681,6 +681,28 @@
 				projets, qui, comme expliqué plus haut, sont des dossiers contenant un fichier de configuration nommé \emph{.pro} à leur racine (dont 
 				nous exposerons l'utilité plus tard), et ledit \emph{QDirModel} ne permet pas de filtrer la population du modèle selon un quelconque
 				paramètre.
+				Nous avons donc pris la décision de créer nous mêmes une fonction remplissant notre modèle de données (selon le type de l'élément à 
+				parcourir, i-e WorkSpace, Project ou Folder), nous permettant donc, non seulement de filtrer le remplissage des modèles, mais également
+				d'effectuer certaines actions directement lors du parcours (récursif) de l'arborescence d'espace de travail, comme l'attribution 
+				de noms aux éléments trouvés, l'instanciation d'objets correspondant aux éléments (File, Folder, Project), etc...
+				Ces fonctions (nommées scan dans les classes), consistent en des parcours récursifs de l'arborescence WorkSpace. Outre quelques 
+				initialisations de structures (Dirent, Dir, stat, ...) et variables nécessaires au parcours, ainsi que des conversions des chemins
+				de fichiers de type string vers le type char* (pour correspondrent aux signatures de certaines fonction de C++), elles commencent
+				par tester que l'ouverture du dossier choisi comme racine de l'espace de travail s'est bien déroulée, affichant une erreur si ce 
+				n'est pas le cas.\\
+				Si l'ouverture ne pose pas de problèmes, la ligne folderPath = (char*)malloc(folderPathSize * sizeof(char)); alloue la mémoire
+				nécessaire au nom du dossier à parcourir. Cette ligne d'apparence ordinaire, vue maintes et maintes fois dans les applications,
+				mérite d'être soulignée puisqu'elle fait partie de celles qui ont engendré des problèmes de fuites mémoires, longs et pénibles
+				à résoudre, dont nous parlerons plus tard.\\
+				L'intérêt de créer notre propre fonction de scan commence d'ailleurs par cette instruction, puisque chaque élément de l'arborescence
+				qui sera ajouté au modèle se voit instancié et affecté d'un attribut "path", une chaine de caractère permettant de stocker le chemin
+				(relatif à la racine de l'arborescence) du fichier qu'il représente.
+				S'ensuit un léger jeux de concaténations, pour, dans le cas du scan de l'espace de travail, créer le chemin d'un éventuel fichier
+				de configuration ".pro", qui s'il est trouvé engendrera l'ajout à un vecteur de projets du dossier directement parent dudit fichier.
+				Dans ce cas de figure, le scan du projet ajouté est alors lancé, et celui-ci va alors ajouter tous les fichiers et dossiers qu'il 
+				contient à ses vecteurs respectifs \emph{file} et \emph{folders}.\\
+				Ces fonctions, %% je finirai en rentrant du taff
+
 			\end{section}
 			\begin{section}{Noyau}
 			\end{section}
