@@ -509,11 +509,15 @@
 			\begin{section}{Indentation}
 			\end{section}
 			\begin{section}{\Gls{autocomplétion}}
-			Lors de la conception de la partie "auto-complétion", nous avons cru possible la création d'une classe dédiée à cette fonctionnalité et ainsi lier celle-ci à notre fenêtre. Effectivement dans la plupart des exemples que nous avons relevés, deux classes étaient présentes. L'une pour le contrôle du curseur de l'utilisateur  et ainsi déclencher l'auto-complétion, et l'autre pour permettre la visualisation du résultat de cette dernière (et ainsi donner des propositions à l'utilisateur).\\
+			Lors de la conception de la partie autocomplétion, nous avons cru possible la création d'une classe dédiée à cette fonctionnalité et ainsi lier celle-ci à notre fenêtre. Effectivement dans la plupart des exemples que nous avons relevés, deux classes étaient présentes. L'une pour le contrôle du curseur de l'utilisateur  et ainsi déclencher l'auto-complétion, et l'autre pour permettre la visualisation du résultat de cette dernière (et ainsi donner des propositions à l'utilisateur).\\
 			Mais après constatation il a fallu rassembler la classe anciennement appelée CompleterController et la classe CentralEditor.\\ Nous allons décrire à travers un diagramme de classe comment la fonctionnalité a été conçue.
-\includegraphics[width=14cm]
-{images/classesAutoCompletion.jpg}
-	\caption{Classe CentralEditor concernant l'auto-complétion}
+					\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=12cm]{images/classesAutoCompletion.jpg}
+						\caption{Classe CentralEditor}
+						\label{orangina}
+					\end{center}
+				\end{figure}~\\
 	Décrivons succinctement et de manière général ce que va permettre cette fonctionnalité. Nous reviendrons bien plus en détail sur chaque fonction dans la partie réservée à cet effet.\\
 	En mettant en place cette propriété, l'utilisateur pourra obtenir des propositions de complétion du mot qu'il est entrain de tapé. Plus précisément l'utilisateur recevra une liste de propositions dans laquelle il pourra choisir et ainsi compléter le reste du mot.\\
 	Pour compléter ce mot quatre dictionnaires de données (ou ressources) ont été mis en place. Ces ressources sous forme texte (sans langage de programmation spéciale) contiennent tous les mots clés des quatre langages que nous avions à traiter. Ils seront donc chargés à chaque fois que l'on en aura besoin.\\  
@@ -753,17 +757,21 @@
 			\begin{center}
 			\begin{cppcode}
 std::string avertissement = "Holà ! cavalier, vous voyagez sans selle !";
+std::vector<int> v;
 			\end{cppcode}
 			\end{center}
 			Il est conseillé d'écrire : 
 			\begin{center}
 			\begin{cppcode}
 QString avertissement = "Holà ! cavalier, vous voyagez sans selle !";
+QVector<int> v;
 			\end{cppcode}
 			\end{center}~\\
 
 			Il est donc presque impossible, si l'on suit cette philosophie, de créer une classe que l'on va utiliser dans un projet \gls{Qt} et 
 			ensuite récupérer dans un autre projet sans faire de modification.\\
+
+			Au contraire, à qui sait bien l'utiliser \gls{Qt} est une véritable merveille.
 
 
 
