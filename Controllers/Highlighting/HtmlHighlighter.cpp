@@ -4,12 +4,11 @@ HtmlHighlighter::HtmlHighlighter(QTextDocument *parent) : Highlighter(parent)
 {
     // Les nombres.
     numberFormat.setFontWeight(QFont::Bold);
-    numberFormat.setForeground(Qt::darkBlue);
+    numberFormat.setForeground(Qt::black);
     addRule(HtmlData::numberRegex, numberFormat);
 
     // Les balises.
-    tagsFormat.setForeground(Qt::lightGray);
-    tagsFormat.setFontWeight(QFont::Bold);
+    tagsFormat.setForeground(Qt::blue);
 
     addRule(HtmlData::tagOpenBeginRegex, tagsFormat);
     addRule(HtmlData::tagOpenEndRegex, tagsFormat);
@@ -21,12 +20,11 @@ HtmlHighlighter::HtmlHighlighter(QTextDocument *parent) : Highlighter(parent)
     addRule(HtmlData::styleTagCloseRegex, tagsFormat);
 
     // Les attributs d'une balise.
-    tagAttributeFormat.setForeground(Qt::darkMagenta);
-    tagAttributeFormat.setFontWeight(QFont::Bold);
+    tagAttributeFormat.setForeground(Qt::red);
     addRule(HtmlData::tagAttributeRegex, tagAttributeFormat);
 
     // Les mots spéciaux (p.ex. &nbsp;).
-    specialCharFormat.setForeground(Qt::darkBlue);
+    specialCharFormat.setForeground(Qt::darkCyan);
     specialCharFormat.setFontWeight(QFont::Bold);
     addRule(HtmlData::specialCharRegex, specialCharFormat);
 
