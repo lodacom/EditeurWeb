@@ -509,34 +509,47 @@
 			\begin{section}{Indentation}
 			\end{section}
 			\begin{section}{\Gls{autocomplétion}}
-			Lors de la conception de la partie autocomplétion, nous avons cru possible la création d'une classe dédiée à cette fonctionnalité et ainsi lier celle-ci à notre fenêtre. Effectivement dans la plupart des exemples que nous avons relevés, deux classes étaient présentes. L'une pour le contrôle du curseur de l'utilisateur  et ainsi déclencher l'auto-complétion, et l'autre pour permettre la visualisation du résultat de cette dernière (et ainsi donner des propositions à l'utilisateur).\\
-			Mais après constatation il a fallu rassembler la classe anciennement appelée CompleterController et la classe CentralEditor.\\ Nous allons décrire à travers un diagramme de classe comment la fonctionnalité a été conçue.
-					\begin{figure}[ht]
+
+				L'autocomplétion, est une fonctionnalité informatique permettant à l'utilisateur de limiter la quantité d'informations qu'il
+				saisit avec son clavier, en se voyant proposer un complément qui pourrait convenir à la chaîne de caractères qu'il a
+				commencé à taper.\\
+				Dans le	domaine de la programmation où il est souvent besoin de répeter les mêmes instructions et d'écrire les mêmes mots clés,
+				cette fonctionnalité est presque vitale.\\
+
+
+				Il n'existe pas à proprement parler de classe dédiée à l'\gls{autocomplétion} dans notre application.
+				En effet, nous intégrâmes directement cette fonctionnalité dans la classe \emph{CentralEditor} par soucis d'optimisation
+				et de simplicité.\\
+
+				Différents facteurs entrent en ligne de compte lorsque l'on souhaite parler d'\gls{autocomplétion} :
+				\begin{itemize}
+					\item l'emplacement du curseur de rédaction ;
+					\item le contexte du fichier, c'est-à-dire le(s) langage(s) utilisé(s) dans ce fichier ;
+					\item le côté graphique, la visualisation ;
+					\item le choix de l'utilisateur d'activer ou de désactiver tel ou tel langage.
+				\end{itemize}~\\
+
+				Le diagramme \ref{orangina} représente la classe \emph{CentralEditor} limitée aux attributs et méthodes concernant
+				l'\gls{autocomplétion} :
+				\begin{figure}[ht]
 					\begin{center}
-						\includegraphics[width=12cm]{images/classesAutoCompletion.jpg}
+						\includegraphics[width=6cm]{images/classesAutoCompletion.jpg}
 						\caption{Classe CentralEditor}
 						\label{orangina}
 					\end{center}
 				\end{figure}~\\
-	Décrivons succinctement et de manière général ce que va permettre cette fonctionnalité. Nous reviendrons bien plus en détail sur chaque fonction dans la partie réservée à cet effet.\\
-	En mettant en place cette propriété, l'utilisateur pourra obtenir des propositions de complétion du mot qu'il est entrain de tapé. Plus précisément l'utilisateur recevra une liste de propositions dans laquelle il pourra choisir et ainsi compléter le reste du mot.\\
-	Pour compléter ce mot quatre dictionnaires de données (ou ressources) ont été mis en place. Ces ressources sous forme texte (sans langage de programmation spéciale) contiennent tous les mots clés des quatre langages que nous avions à traiter. Ils seront donc chargés à chaque fois que l'on en aura besoin.\\  
-	%%Partie du dessous à descendre dans la partie Noyau plus précisément sous section auto-complétion%%
-	Avant d'éclaircir les mécanismes qui permettent de mettre en place la fonctionnalité d'auto-complétion, présentons quand, et à quelle condition celle-ci est appelée.\\
-	Trois possibilités se présentent à l'utilisateur:\\
-	\begin{itemize}
-		\item L'auto-complétion est lancée par ce dernier (en cliquant dans le menu).\\
-		\item L'auto-complétion est déclenchée automatiquement par la reconnaissance de l'extension du fichier (.css, .php, .js, .html).\\
-		\item L'auto-complétion est enclenchée grâce à la connaissance du positionnement du curseur. C'est à dire que s'il se trouve dans un bloc php par exemple. L'auto-complétion du langage sera automatiquement provoquée.\\
-		\end{itemize}
-		Expliquons maintenant en détail le comportement de l'auto-complétion.\\
-		 A chaque déclenchement du compléteur, quelque soit le langage pris en compte. Le chargement du dictionnaire de données contenant tous les mots clés du langage concerné est lancé grâce à l'appel de la fonction "modelFromFile". On attribuera donc cette liste de mot clés au compléteur que l'on instancie dans la fonction "setCompleter".\\
-		 Par la suite le compléteur sera connecté à l'onglet actif que l'utilisateur est entrain d'utiliser avec la fonction "insertCompletion". Ainsi à chaque fois que ce dernier activera une touche du clavier, la fonction "keyPressEvent" sera automatiquement appelée et se servira de la fonction "textUnderCursor" pour proposer au fur et à mesure de l'écriture de l'utilisateur les mots possibles contenus dans le dictionnaire de données du langages.\\
-		 L'utilisateur pourra choisir le mot qu'il veut compléter, soit en cliquant dans la liste qu'il  lui est présenté, soit en navigant grâce aux flèches et en confirmant son choix en tapant sur "Entrer".Le mot sera ainsi complété.\\
-		 Rentrons encore plus en avant dans notre éclaircissement. Vous vous demandez peut-être comment est construit la liste et son apparition sous forme de rectangle avec scroll.\\
-		 Concernant la construction de la liste, on va chercher dans la ressource chargée tous les mots commençant par celui du début écrit par l'utilisateur. Ainsi si vous êtes en php et que vous avez commencé à taper les lettres "de", le compléteur vous proposera les mots "declare" et "default".\\ 
-		 Maintenant pour édifier le rectangle avec scroll, nous avons besoin de la classe QRect (fournie par Qt). Il faut indiquer que pour la largeur celui-ci prenne en compte seulement la taille du plus long mot présent dans la liste des mots possibles, et pour la hauteur le nombre de mots présents dans la liste. Le scroll se mettra automatiquement en place si celui-ci est utile.\\
-				\end{section}
+
+				Nous décrirons ici le comportement général des ces méthodes sans entrer dans le détail de chacune d'entre elle,
+				ce qui sera fait au chapitre 9.\\
+
+				L'utilisateur commence à taper un mot \emph{m}, l'application ouvre un dictionnaire de donnée correspondant au langage actuel et 
+				charge une liste des mots préfixés par \emph{m}. Une fois cette liste construite, elle est affichée à l'utilisateur qui choisit de
+				selectionner un mot proposé ou alors de continuer à taper son texte.\\
+
+				Quant aux dictionnaires sus-cités, ils sont au nombre de quatre et contiennent les mots clés de chacun des langages traités (à savoir
+				\gls{Html}, \gls{Css}, \gls{JavaScript}, \gls{Php}).
+
+			\end{section}
 			\begin{section}{Classes graphiques}
 			\end{section}
 		\end{chapter}
@@ -589,7 +602,7 @@
 					\item[Interface :] tout ce qui se voit à l'écran tels fenêtres, onglets, menus et autres.
 					\item[Système :] fonctionnalités qui touchent au système de fichier comme la gestion des fichiers ou d'un espace de travail.
 					\item[Fonctions :] fonctionnalités de gestion du code comme le sont la coloration, l'indentation ou l'\gls{autocomplétion}
-				\end{description}
+				\end{description}~\\
 
 
 				Il est judicieux lorsqu'un projet est fractionné comme l'est le nôtre, de constituer autant de groupes que de parts de travail.\\
@@ -651,15 +664,21 @@
 		\begin{chapter}{Implémentation}
 			\begin{section}{Arborescence du projet}
 				Le projet est organisé comme sur l'arborescence \ref{dindon}. On dispose à la racine du projet de trois sous-dossiers correspondants
-				aux trois éléments du \gls{MVC}.
+				aux trois éléments du \gls{MVC}. Chaque fichier source créé trouve sa place de manière évidente dans cette arborescence.\\
+				Par exemple, pour qui cherche le fichier \emph{WorkspaceTree.cpp}, il est manifeste que celui-ci se situe dans le dossier \emph{View}.
+				\\
+				De même que le fichier \emph{CSSData} qui décrit des données, sera dans le dossier \emph{Model}.\\
+				Cette distribution nous mis à l'abri de beaucoup de problèmes qui adviennent dans un travail de groupe, comme la suppression
+				accidentelle ou le sabotage du travail d'autrui.
 
-			\begin{figure}[h]
-				\begin{center}
-					\includegraphics[width=7cm]{images/arborescenceProjet.png}
-					\caption{Arborescence de projet}
-					\label{dindon}
-				\end{center}
-			\end{figure}~\\
+
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=7cm]{images/arborescenceProjet.png}
+						\caption{Arborescence de projet}
+						\label{dindon}
+					\end{center}
+				\end{figure}~\\
 
 			\end{section}
 
@@ -682,7 +701,24 @@
 				nous exposerons l'utilité plus tard), et ledit \emph{QDirModel} ne permet pas de filtrer la population du modèle selon un quelconque
 				paramètre.
 			\end{section}
-			\begin{section}{Noyau}
+			\begin{section}{Fonctionnalités}
+				\begin{subsection}{\Gls{autocomplétion}}
+				%%Partie du dessous à descendre dans la partie Noyau plus précisément sous section auto-complétion%%
+	Avant d'éclaircir les mécanismes qui permettent de mettre en place la fonctionnalité d'auto-complétion, présentons quand, et à quelle condition celle-ci est appelée.\\
+	Trois possibilités se présentent à l'utilisateur:\\
+	\begin{itemize}
+		\item L'auto-complétion est lancée par ce dernier (en cliquant dans le menu).\\
+		\item L'auto-complétion est déclenchée automatiquement par la reconnaissance de l'extension du fichier (.css, .php, .js, .html).\\
+		\item L'auto-complétion est enclenchée grâce à la connaissance du positionnement du curseur. C'est à dire que s'il se trouve dans un bloc php par exemple. L'auto-complétion du langage sera automatiquement provoquée.\\
+		\end{itemize}
+		Expliquons maintenant en détail le comportement de l'auto-complétion.\\
+		 A chaque déclenchement du compléteur, quelque soit le langage pris en compte. Le chargement du dictionnaire de données contenant tous les mots clés du langage concerné est lancé grâce à l'appel de la fonction "modelFromFile". On attribuera donc cette liste de mot clés au compléteur que l'on instancie dans la fonction "setCompleter".\\
+		 Par la suite le compléteur sera connecté à l'onglet actif que l'utilisateur est entrain d'utiliser avec la fonction "insertCompletion". Ainsi à chaque fois que ce dernier activera une touche du clavier, la fonction "keyPressEvent" sera automatiquement appelée et se servira de la fonction "textUnderCursor" pour proposer au fur et à mesure de l'écriture de l'utilisateur les mots possibles contenus dans le dictionnaire de données du langages.\\
+		 L'utilisateur pourra choisir le mot qu'il veut compléter, soit en cliquant dans la liste qu'il  lui est présenté, soit en navigant grâce aux flèches et en confirmant son choix en tapant sur "Entrer".Le mot sera ainsi complété.\\
+		 Rentrons encore plus en avant dans notre éclaircissement. Vous vous demandez peut-être comment est construit la liste et son apparition sous forme de rectangle avec scroll.\\
+		 Concernant la construction de la liste, on va chercher dans la ressource chargée tous les mots commençant par celui du début écrit par l'utilisateur. Ainsi si vous êtes en php et que vous avez commencé à taper les lettres "de", le compléteur vous proposera les mots "declare" et "default".\\ 
+		 Maintenant pour édifier le rectangle avec scroll, nous avons besoin de la classe QRect (fournie par Qt). Il faut indiquer que pour la largeur celui-ci prenne en compte seulement la taille du plus long mot présent dans la liste des mots possibles, et pour la hauteur le nombre de mots présents dans la liste. Le scroll se mettra automatiquement en place si celui-ci est utile.\\
+				\end{subsection}
 			\end{section}
 			\begin{section}{Interface}
 			\end{section}
@@ -771,7 +807,65 @@ QVector<int> v;
 			Il est donc presque impossible, si l'on suit cette philosophie, de créer une classe que l'on va utiliser dans un projet \gls{Qt} et 
 			ensuite récupérer dans un autre projet sans faire de modification.\\
 
-			Au contraire, à qui sait bien l'utiliser \gls{Qt} est une véritable merveille.
+			Au contraire, à qui sait bien l'utiliser \gls{Qt} est une véritable merveille.\\
+			Ci-après, le code de la classe JavaScriptHighligher qui regroupe les différents formats associés à des mots du langage.
+			Grâce à l'utilisation pertinente des classes \emph{QSyntaxHighlighter} (dont hérite la classe Highlighter) ou \emph{QRegex}, on peut
+			réduire un colorateur syntaxique complet à ces quelques lignes de code.\\
+
+			La méthode \emph{addRule} ajoute une nouvelle règle de coloration au colorateur tandis que le attributs dont le nom termine par
+			\emph{Format} sont de type \emph{QTextCharFormat}, une classe qui définit des règles de formatage de texte.
+			\begin{center}
+			\begin{cppcode}
+#include "JavaScriptHighlighter.h"
+
+JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
+: Highlighter(parent)
+{
+    // Les nombres.
+    numberFormat.setFontWeight(QFont::Bold);
+    numberFormat.setForeground(Qt::darkBlue);
+    addRule(JavaScriptData::numberRegex, numberFormat);
+
+    // Les méthodes et fonctions.
+    functionFormat.setFontWeight(QFont::Bold);
+    addRule(JavaScriptData::functionRegex, functionFormat);
+
+    // Les mots clé.
+    keywordFormat.setForeground(Qt::darkBlue);
+    keywordFormat.setFontWeight(QFont::Bold);
+    addRule(JavaScriptData::keywordRegex, keywordFormat);
+
+    // Les mots clé de déclaration.
+    keywordDeclarationFormat.setFontWeight(QFont::Bold);
+    keywordDeclarationFormat.setForeground(Qt::darkMagenta);
+    addRule(JavaScriptData::keywordDeclarationRegex, keywordDeclarationFormat);
+
+    // Les mots réservés.
+    keywordReservedFormat.setFontWeight(QFont::Bold);
+    keywordReservedFormat.setForeground(Qt::darkYellow);
+    addRule(JavaScriptData::keywordReservedRegex, keywordReservedFormat);
+
+    // Les fonctions internes de JavaScript.
+    builtInFormat.setForeground(Qt::darkYellow);
+    addRule(JavaScriptData::builtInRegex, builtInFormat);
+
+    // Commentaire sur une seule ligne.
+    singleLineCommentFormat.setForeground(Qt::red);
+    addRule(JavaScriptData::singleLineCommentRegex, singleLineCommentFormat);
+
+    // Les simples et doubles quotes.
+    quotationFormat.setForeground(Qt::darkGreen);
+    addRule(JavaScriptData::quotationRegex, quotationFormat);
+
+    // Commentaires multilignes.
+    multilineCommentFormat.setForeground(Qt::darkRed);
+    addMultilineRule(JavaScriptData::multilineCommentStartRegex,
+                     JavaScriptData::multilineCommentEndRegex,
+                     multilineCommentFormat,
+                     IN_COMMENT_STATE);
+}
+			\end{cppcode}
+			\end{center}~\\
 
 
 

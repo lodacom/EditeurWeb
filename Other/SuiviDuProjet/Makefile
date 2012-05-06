@@ -12,7 +12,7 @@ $(latexfile).pdf : $(latexfile).tex
 	xelatex --shell-escape $(latexfile).tex
 
 clean:
-	rm  -f *.glo *.xdy *.pyg *.aux *.glg *.gls *.lof *.toc *.ist
+	rm  -f *.glo *.xdy *.pyg *.aux *.glg *.gls *.lof *.toc *.ist $(latexfile).pdf
 
 look:
 	open $(latexfile).pdf
