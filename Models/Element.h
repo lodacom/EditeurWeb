@@ -91,9 +91,8 @@ public:
     virtual void setParentPath(string parentPath);
 
     /*!
-    * \brief
-    * \param
-    * \return
+    * \brief Accesseur permettant d'obtenir le QStandardItem d'un élément
+    * \param si i = 0, on retourne le qItem lié à tous les qItem des sous éléments. Si i = 1 on retourne uniquement le qItem.
     */
     virtual QStandardItem* getQItem(int i = 0);
 
@@ -130,8 +129,8 @@ public:
     virtual void deleteElement();
 
     /*!
-    * \brief
-    * \param
+    * \brief Méthode utilisé pour les éléments conteneurs (dossier, projet) qui applique la suppression récursive de l'élément à l'index i et de ses sous éléments
+    * \param i: i est l'index de l'élément à supprimer
     */
     virtual void dropElement(int i);
 
@@ -162,10 +161,10 @@ public:
     virtual int renameFile(string newName);
 
     /*!
-    * \brief
-    * \param
-    * \param
-    * \return
+    * \brief permet le rafraichissement du dossier en renommant l'élément se trouvant à elementPosition
+    * \param elementPosition: position de l'élément à renommer
+    * \param newName: nouveau nom de l'élément
+    * \return 0 si l'élément a été modifié correctement, autre sinon
     */
     virtual int renameElement(int elementPosition, string newName);
 
@@ -175,8 +174,8 @@ public:
     virtual void sort();
 
     /*!
-    * \brief
-    * \param
+    * \brief renomme le qItem de l'élément
+    * \param le nouveau nom du qItem
     */
     virtual void setQItemName(string newName);
 
@@ -193,7 +192,7 @@ public:
     virtual void setContent(string newContent);
 
     /*!
-    * \brief
+    * \brief Vide pour les éléments conteneurs (dossiers, projets) tous les sous éléments.
     */
     virtual void clear();
 
