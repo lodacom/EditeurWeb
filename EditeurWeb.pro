@@ -83,4 +83,4 @@ OTHER_FILES += \
 
 RESOURCES += \
     completion.qrc \
-    examples.qrc
+    icons.qrc \

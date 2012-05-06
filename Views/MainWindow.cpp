@@ -40,17 +40,18 @@ void MainWindow::init()
 
 void MainWindow::createActions()
 {
-    newAct = new QAction(QIcon("Pics/new.png"), tr("&New"), this);
+    Q_INIT_RESOURCE(icons);
+    newAct = new QAction(QIcon(":/Pics/new.png"), tr("&New"), this);
     newAct->setShortcuts(QKeySequence::New);
     newAct->setStatusTip(tr("Create a new file"));
     connect(newAct, SIGNAL(triggered()), this, SLOT(newFile()));
 
-    openAct = new QAction(QIcon("Pics/open.png"), tr("&Open..."), this);
+    openAct = new QAction(QIcon(":/Pics/open.png"), tr("&Open..."), this);
     openAct->setShortcuts(QKeySequence::Open);
     openAct->setStatusTip(tr("Open an existing file"));
     connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
 
-    saveAct = new QAction(QIcon("Pics/save.png"), tr("&Save"), this);
+    saveAct = new QAction(QIcon(":/Pics/save.png"), tr("&Save"), this);
     saveAct->setShortcuts(QKeySequence::Save);
     saveAct->setStatusTip(tr("Save the document to disk"));
     connect(saveAct, SIGNAL(triggered()), this, SLOT(save()));
@@ -100,19 +101,19 @@ void MainWindow::createActions()
 
     connect(exitAct, SIGNAL(triggered()), qApp, SLOT(closeAllWindows()));
 
-    cutAct = new QAction(QIcon("Pics/cut.png"), tr("Cu&t"), this);
+    cutAct = new QAction(QIcon(":/Pics/cut.png"), tr("Cu&t"), this);
     cutAct->setShortcuts(QKeySequence::Cut);
     cutAct->setStatusTip(tr("Cut the current selection's contents to the "
                             "clipboard"));
     connect(cutAct, SIGNAL(triggered()),this, SLOT(cut()));
 
-    copyAct = new QAction(QIcon("Pics/copy.png"), tr("&Copy"), this);
+    copyAct = new QAction(QIcon(":/Pics/copy.png"), tr("&Copy"), this);
     copyAct->setShortcuts(QKeySequence::Copy);
     copyAct->setStatusTip(tr("Copy the current selection's contents to the "
                              "clipboard"));
     connect(copyAct, SIGNAL(triggered()),this, SLOT(copy()));
 
-    pasteAct = new QAction(QIcon("Pics/paste.png"), tr("&Paste"), this);
+    pasteAct = new QAction(QIcon(":/Pics/paste.png"), tr("&Paste"), this);
     pasteAct->setShortcuts(QKeySequence::Paste);
     pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
                               "selection"));

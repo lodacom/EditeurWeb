@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Pics/App-icon.png</file>
+        <file>Pics/copy.png</file>
+        <file>Pics/cut.png</file>
+        <file>Pics/File-CSS-icon.png</file>
+        <file>Pics/File-HTML-icon.png</file>
+        <file>Pics/File-icon.png</file>
+        <file>Pics/File-JS-icon.png</file>
+        <file>Pics/File-PHP-icon.png</file>
+        <file>Pics/Folder-icon.png</file>
+        <file>Pics/new.png</file>
+        <file>Pics/open.png</file>
+        <file>Pics/paste.png</file>
+        <file>Pics/Project-icon.png</file>
+        <file>Pics/save.png</file>
+    </qresource>
+</RCC>
