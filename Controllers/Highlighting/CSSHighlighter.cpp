@@ -21,6 +21,11 @@ CSSHighlighter::CSSHighlighter(QTextDocument *parent) : Highlighter(parent)
 
     addRule(CSSData::idRegex,idFormat);
 
+    // Les simples et doubles quotes
+
+    quotationFormat.setForeground(Qt::darkYellow);
+    addRule(CSSData::quotationRegex,quotationFormat);
+
     //Les nombres
     numberFormat.setFontWeight(QFont::Bold);
     numberFormat.setForeground(Qt::black);
