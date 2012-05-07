@@ -15,6 +15,7 @@ class CSSData
         static QRegExp quotationRegex;
         static QRegExp multilineCommentStartRegex;
         static QRegExp multilineCommentEndRegex;
+        static QRegExp colorRegex;
 };
 
 

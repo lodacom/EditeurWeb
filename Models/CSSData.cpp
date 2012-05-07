@@ -9,3 +9,4 @@ QRegExp CSSData::numberRegex("[0-9][0-9]*|[0-9][0-9]*\\.[0-9]+");
 QRegExp CSSData::quotationRegex("\".*\"|\'.*\'");
 QRegExp CSSData::multilineCommentStartRegex("/\\*");
 QRegExp CSSData::multilineCommentEndRegex("\\*/");
+QRegExp CSSData::colorRegex("#[a-fA-F0-9]{6}");
