@@ -133,6 +133,13 @@
 		dans un format particulier}
 	}
 
+	\newglossaryentry{parseur}
+	{
+		name={parseur},
+		description={L'analyse syntaxique consiste à mettre en évidence la structure d'un texte, généralement un programme informatique ou du texte
+		écrit dans une langue naturelle. Un analyseur syntaxique (parser, en anglais) est un programme informatique qui réalise cette tâche}
+	}
+
 	\begin{titlepage}
 		\center{\includegraphics[width=5cm]{images/logoUM2.png}}\\ 
 		~\\
@@ -325,9 +332,14 @@
 
 
 			Concernant le langage de programmation principal, nous choisîmes C++. Ce choix est motivé par deux raisons, d'une part nous apprenons
-			actuellement ce langage en cours, d'autre part, il s'agit d'un langage stable, documenté et qu'il fait bon d'avoir dans sa besace.
-			C'est ainsi que M. Meynard nous proposé le framework \gls{Qt}. Un peu austère de prime abord, presque effrayant, il s'avéra finalement très
+			actuellement ce langage en cours, d'autre part, il s'agit d'un langage stable, documenté et qu'il fait bon d'avoir dans sa besace.\\
+
+
+			Après cela M. Meynard nous proposa le framework \gls{Qt}. Un peu austère de prime abord, presque effrayant, il s'avéra finalement très
 			sympathique grâce notamment à une syntaxe lisible et à une documentation bien feuillue.\\
+
+			Pour générer une documentation de notre code source, nous fîmes le choix de \gls{Doxygen}, un outils spécialisé dans ce genre
+			de tâches.\\
 
 
 			Pour travailler en équipe sur un projet de ce genre il est utile voire indispensable de disposer d'un outil de synchronisation et
@@ -354,6 +366,7 @@
 					\begin{center}
 						\includegraphics[width=17cm]{images/DiagrammeGantt.png}
 						\caption{Diagramme de Gantt}
+						\label{flute}
 					\end{center}
 				\end{figure}~\\
 			\end{section}
@@ -458,7 +471,7 @@
 		\begin{chapter}{Diagrammes des classes}
 			\begin{section}{Coloration}
 				La conception de la partie « coloration syntaxique » de notre application a requis l'introduction de plusieurs classes différentes.
-				Premièrement des classes dites de données, suffixées du mot anglais \emph{data}, qui contiennent les différents mots clés relatifs
+				Tout d'abord des classes dites de données, suffixées du mot anglais \emph{Data}, qui contiennent les différents mots clés relatifs
 				à chaque langage sous forme d'\glspl{expression régulière}.\\
 				Dans le diagramme \ref{blouson}, nous donnons en exemple une seule classe \emph{HtmlData}, car les autres sont similaires,
 				aux particularités du langage près.
@@ -478,11 +491,17 @@
 				par bloc en fonction des règles données dans les classes \emph{Data}.
 				\begin{figure}[ht]
 					\begin{center}
-						\includegraphics[width=14cm]{images/classesColoration.jpg}
+						\includegraphics[width=15cm]{images/classesColoration.jpg}
 						\caption{Classes de coloration}
 						\label{bicyclette}
 					\end{center}
 				\end{figure}~\\
+
+				Le fonctionnement du module de coloration syntaxique est simple. Une classe est associée à un fichier (voir décomposition de
+				l'application, diagramme \ref{poulpe}) selon le code utilisé dans ce fichier. Le texte est analysé grâce aux
+				\glspl{expression régulière} des classes de données et les mots reconnus sont formatés dans l'observance des règles édictées dans
+				les classes du diagramme \ref{bicyclette}.\\
+				Une présentation plus détaillée se trouve dans l'annexe technique à la page \pageref{annexe}.
 			\end{section}
 			\begin{section}{Système de fichiers}
 				La réflexion autour de l'organisation des fichiers gérés par l'application fût longue, bien que quelque peu avancée par les
@@ -626,7 +645,7 @@
 			\begin{section}{Conventions techniques}
 				Voici une liste des conventions prises pour la programmation, les commentaires du code source et le nommage des fichiers.
 				%% Petite note de bas de page.
-				\addtocounter{footnote}{1}
+				\addtocounter{footnote}{2}
 				\footnotetext[\value{footnote}]{Le nom de fonction désigne aussi les méthodes.}
 				\begin{itemize}
 					\item Les noms de classes, structures, fonctions$^{\decimal{footnote}}$, variables et constantes seront donnés en anglais.
@@ -702,68 +721,131 @@
 				paramètre.
 			\end{section}
 			\begin{section}{Fonctionnalités}
+				\begin{subsection}{Coloration}
+				\end{subsection}
 				\begin{subsection}{\Gls{autocomplétion}}
-				%%Partie du dessous à descendre dans la partie Noyau plus précisément sous section auto-complétion%%
-	Avant d'éclaircir les mécanismes qui permettent de mettre en place la fonctionnalité d'auto-complétion, présentons quand, et à quelle condition celle-ci est appelée.\\
-	Trois possibilités se présentent à l'utilisateur:\\
-	\begin{itemize}
-		\item L'auto-complétion est lancée par ce dernier (en cliquant dans le menu).\\
-		\item L'auto-complétion est déclenchée automatiquement par la reconnaissance de l'extension du fichier (.css, .php, .js, .html).\\
-		\item L'auto-complétion est enclenchée grâce à la connaissance du positionnement du curseur. C'est à dire que s'il se trouve dans un bloc php par exemple. L'auto-complétion du langage sera automatiquement provoquée.\\
-		\end{itemize}
-		Expliquons maintenant en détail le comportement de l'auto-complétion.\\
-		 A chaque déclenchement du compléteur, quelque soit le langage pris en compte. Le chargement du dictionnaire de données contenant tous les mots clés du langage concerné est lancé grâce à l'appel de la fonction "modelFromFile". On attribuera donc cette liste de mot clés au compléteur que l'on instancie dans la fonction "setCompleter".\\
-		 Par la suite le compléteur sera connecté à l'onglet actif que l'utilisateur est entrain d'utiliser avec la fonction "insertCompletion". Ainsi à chaque fois que ce dernier activera une touche du clavier, la fonction "keyPressEvent" sera automatiquement appelée et se servira de la fonction "textUnderCursor" pour proposer au fur et à mesure de l'écriture de l'utilisateur les mots possibles contenus dans le dictionnaire de données du langages.\\
-		 L'utilisateur pourra choisir le mot qu'il veut compléter, soit en cliquant dans la liste qu'il  lui est présenté, soit en navigant grâce aux flèches et en confirmant son choix en tapant sur "Entrer".Le mot sera ainsi complété.\\
-		 Rentrons encore plus en avant dans notre éclaircissement. Vous vous demandez peut-être comment est construit la liste et son apparition sous forme de rectangle avec scroll.\\
-		 Concernant la construction de la liste, on va chercher dans la ressource chargée tous les mots commençant par celui du début écrit par l'utilisateur. Ainsi si vous êtes en php et que vous avez commencé à taper les lettres "de", le compléteur vous proposera les mots "declare" et "default".\\ 
-		 Maintenant pour édifier le rectangle avec scroll, nous avons besoin de la classe QRect (fournie par Qt). Il faut indiquer que pour la largeur celui-ci prenne en compte seulement la taille du plus long mot présent dans la liste des mots possibles, et pour la hauteur le nombre de mots présents dans la liste. Le scroll se mettra automatiquement en place si celui-ci est utile.\\
+					La mise en place du système d'autocomplétion n'a pas posé de problèmes principalement parce qu'il est inspiré d'un exemple de
+					la documentation.\\
+
+					%% Petite note de bas de page.
+					\addtocounter{footnote}{3}
+					\footnotetext[\value{footnote}]{le bloc désigne un morceau de code inclus dans un autre morceau de code.}
+					Le principal problème fut de gérer une \gls{autocomplétion} contextuelle de bloc$^{\decimal{footnote}}$
+					et force est de constater que la tâche n'est pas tout à fait achevée.\\
+					Pour réaliser une telle prestation, il est nécessaire que notre application puisse faire l'analyse
+					grammaticale du code source. Or aucun analyseur syntaxique (\gls{parseur}) n'est inclus dans le programme ce qui empêche
+					un fonctionnement optimal de cette fonctionnalité.\\
+
+
+					Néanmoins nous avons pu ruser et essayer de deviner le bloc courant en fonction des lignes qui précèdent celle où se
+					trouve le curseur. Par exemple, une ligne qui se trouve après une autre ligne qui contient l'expression \emph{<script>}
+					dans un code \gls{Html}, sera autocomplétée avec le dictionnaire du \gls{JavaScript}.\\
+					Cette stratégie trouve rapidement ses limites, par exemple si une balise fermante \emph{</script>} se trouve en début
+					de ligne.\\
+
+
+					La figure \ref{tabouret} représente le module d'\gls{autocomplétion} en pleine action dans le contexte du langage \gls{Php}.
+
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=6cm]{images/screenAutocmpl.png}
+							\caption{L'autocomplétion en pratique}
+							\label{tabouret}
+						\end{center}
+					\end{figure}~\\
 				\end{subsection}
 			\end{section}
 			\begin{section}{Interface}
 			\end{section}
 		\end{chapter}
 		\begin{chapter}{Résultat}
-		Voici le moment de réaliser un premier bilan après ces 3 mois de travail. Les résultats obtenus en comparaison avec le cahier des charges 
-		initial est très satisfaisant. Le logiciel auquel nous somme parvenus, nommé "WebShake", offre une très grande partie des fonctionnalités 
-		demandées. Afin de toutes les lister, une présentation du fonctionnement du logiciel s'impose.\\
-		L'interface graphique met à disposition de l'utilisateur une incontournable barre des menus offrant les mêmes possibilités que n'importe quel IDE.
-		Ensuite, la partie centrale a été divisée en trois fenêtres. Celle de gauche permet de visualiser sous forme d'arborescence l'ensemble des fichiers
-	    et dossiers contenus par un projet, ce denier étant lui-même placé dans le Workspace, créé à la première utilisation du logiciel.
-		Cette arborescence est gérée par l'ensemble des fonctionnalités implémentées par le " Groupe Système",
-		qui offrent de nombreuses possibilités, comme par exemple déplacer des fichiers au sein du projet, et même les copier/coller. 
-		La fenêtre centrale est consacrée à l'édition des fichiers PHP, CSS, HTML et JavaScript. Le système multi-onglets mis en place permet 
-		de naviguer très simplement entre tous les fichiers en cours d'utilisation. C'est également ici que les fonctions du "Groupe Fonctionnalités"
-		prennent effet. Une fois les documents enregistrés, la coloration syntaxique s'applique en fonction de l'extension détectée, 
-		tout comme l'auto-complétion contextuelle, qui propose à l'utilisateur l'ensemble des mots-clés, toujours en fonction du langage 
-		utilisé. Enfin, un système d'auto-indentation relativement simpliste mais efficace s'est ajouté en toute fin de projet. 
-		Pour la dernière fenêtre, située à droite, il a été décidé de la diviser en deux pour offrir deux interfaces très intéressantes pour l'utilisateur.
-		La première est une petite fenêtre permettant de visualiser rapidement ce que produit le code écrit sur un naviguateur internet.
-		La seconde présente le fichier actuel ( l'onglet actif), sous forme d'arborescence "simplifiée". Cette partie n'a pas pu être développée
-		comme nous le souhaitions car la réalisation d'un parser nécessitait une masse de travail comparable à la réalisation complète du logiciel.
-		Nous avons donc opté pour une version simplifiée, qui néanmoins fonctionne correctement.\\
-		L'ensemble du groupe est donc satisfait du travail réalisé, avec un produit final qui est dans l'ensemble fidèle au cahier des charges initial,
-	    malgré l'absence de quelques fonctionnalités à cause d'un cruel manque de temps.
+			Le meilleur moyen de faire le bilan de ces trois mois de travail est de comparer les résultats obtenus avec le cahier des charges initial.\\
+			Mais avant cela, jetons un regard sur le côté graphique de l'application.\\
+
+			Dès l'ouverture de l'application, l'utilisateur peut voir sur son écran là même chose que sur la figure \ref{mayonnaise}.
+
+			\begin{figure}[h]
+				\begin{center}
+					\includegraphics[width=15cm]{images/screenOpening.png}
+					\caption{L'écran à l'ouverture de l'application}
+					\label{mayonnaise}
+				\end{center}
+			\end{figure}~\\
+
+
+			On aperçoit différents éléments classiques comme la barre de menus par exemple et les trois inévitables boutons des coins de fenêtre qui sont fermer, réduire ou agrandir. Le bandeau d'actions donne à l'utilisateur le pouvoir d'ouvrir ou d'enregistrer, de copier ou de coller
+			à sa guise.\\
+
+
+			À gauche, se trouve un espace vide pour l'instant mais qui va bientôt accueillir l'arborescence du projet que l'utilisateur
+			s'apprête à créer ou à ouvrir, cet espace incarne le fameux \emph{workspace}, oeuvre du groupe \emph{système}.\\
+
+
+			La grande région grisâtre au centre de l'écran va recevoir un (ou plusieurs) éditeur de texte spécialisé dans l'un des langages
+			\gls{Html}, \gls{Css}, \gls{Php} ou \gls{JavaScript}. C'est ici que prennent forme les heures de dur labeur du groupe
+			\emph{fonctionnalités}.\\
+
+
+			Enfin, la partie de droite est une idée du groupe qui n'était pas dans le cahier des charges. Cet espace semblait vide, inerte et désolé.
+			Alors nous eûmes l'idée d'en faire un emplacement de visualisation. Entendez par là un emplacement dédié au programmeur, pour qu'il
+			voie en direct les effets de ce qu'il est en train d'écrire.\\
+			La partie haute est un aperçu sur navigateur du site en cours d'édition et la partie basse une arborescence de l'inclusion des
+			différents blocs de code.\\
+			Malheureusement cette fonctionnalité n'a pas abouti du fait notamment qu'il faut \gls{parseur} pour générer une arborescence.\\
+
+
+			Dans le tableau \ref{raisin}, sont rassemblées toutes les spécifications du cahier des charges (colonne de droite) et il est
+			précisé si notre application possède ou non ces propriétés.\\
+			\begin{center}
+			\begin{table}[h]
+			\caption{\label{raisin} Fonctionnalités spéciales dans les éditeurs étudiés}
+			\centering
+				\begin{tabular}{|c||c|} % c signifie center, le texte de chaque colonne sera donc centré.
+				  \hline
+				  Fonctionnalité & présente ? \\
+				  \hline
+				  Édition de fichiers dans quatre langages & oui \\
+				  Système multi-onglets & oui \\
+				  Arborescence du site & oui \\
+				  Autocomplétion & oui \\
+				  Coloration syntaxique & oui \\
+				  Indentation automatique & oui \\
+				  Accès aux manuels & non \\
+				  Validation \gls{Html} & non \\
+				  Visualisation du site & oui \\
+				  Squelette de site préexistant & non \\
+				  \hline
+				\end{tabular}
+			\end{table}
+			\end{center}
 		\end{chapter}
 		\begin{chapter}{Discussion}
-		Pour arriver à un tel résultat, nous avons été confronté à de nombreux problèmes durant toute la période de développement.
-        Certains d'entre eux étaient liés à une question de conception, dans le sens où le groupe n'arrivait pas à se décider si tel ou tel algorithme
-        appartenait au Modèle ou au Contrôleur. Bien entendu, ce genre de difficulté ne persistait pas très longtemps et était vite résolu.
-        Cependant, d'autres problèmes bien plus complexes sont apparus au fur et à mesure de l'avancement du projet. Par exemple, le "Groupe Système"
-        a été confronté à une fuite mémoire, qui, sur un projet contenant de nombreux fichiers, pouvait ralentir considérablement le temps
-        d'exécution du programme. Des heures de tests et de modifications ont été nécessaires pour arriver à solutionner ce petit dysfonctionnement.
-        Malheureusement, des problèmes encore plus compliqués ont été décelés. En témoigne la notion de parser, cité précédemment. En effet, nous nous
-        sommes rendus compte après de nombreuses recherches que la réalisation d'un parser digne de ce nom n'aurait pas été possible
-        en un si court laps de temps. C'est donc pour cela que l'ensemble du groupe a essayé de contourner le problème en réalisant un "pseudo parser",
-        détaillé précédemment. L'auto-indentation a du subir le même sort.\\
-        Malheureusement, il n'a pas été possible de trouver une alternative à chaque fois. La validation HTML n'a pu être implémenté par manque de temps.
-        L'idée aurait été de mettre en relation l'application avec le site web www.w3.org pour scanner automatiquement nos fichiers et indiquer les erreurs
-        existantes. Mais avec un tel projet, nous avons du sélectionner avec soin les fonctionnalités les plus représentatives d'un éditeur web, 
-        au détriment de certaines demandant un temps phénoménal.\\
-        En somme, "WebShake" est un produit abouti, mais perfectible à plusieurs points de vu. L'interface graphique pourrait être plus épurée et présenter
-        quelques fonctionnalités en plus. Un parser pourrait être inséré et le système d'auto-indentation amélioré. Néanmoins, l'état actuel du produit 
-        n'interfère en aucun cas pour son bon fonctionnement. L'essentiel est fait et les petits bogues susbistants sont loin d'être insolubles. Nous 
-        pouvons donc être fiers des tâches réalisées, tout en sachant que la perfection n'a pas été atteinte.
+
+			Comme on peut le constater sur le tableau précédent, le cahier des charges est presque complété. Il reste néanmoins l'accès aux manuels,
+			la validation \gls{Html} et des sites préfabriqués.\\
+			À notre décharge, nous pouvons arguer que ces fonctionnalités ne nous ont pas posé de problème technique mais plutôt organisationnel.
+			En effet, si l'on regarde le diagramme de Gantt de la page \pageref{flute}, on remarque que nous nous apprêtions à travailler jusqu'à la
+			fin du mois de mai ce qui nous aurait laissé le temps de terminer ces fonctionnalités très simples à mettre en place.
+
+
+			Pour arriver à un tel résultat, nous avons été confronté à de nombreux problèmes durant toute la période de développement.
+		    Certains d'entre eux étaient liés à une question de conception, dans le sens où le groupe n'arrivait pas à se décider si tel ou tel algorithme
+		    appartenait au Modèle ou au Contrôleur. Bien entendu, ce genre de difficulté ne persistait pas très longtemps et était vite résolu.
+		    Cependant, d'autres problèmes bien plus complexes sont apparus au fur et à mesure de l'avancement du projet. Par exemple, le "Groupe Système"
+		    a été confronté à une fuite mémoire, qui, sur un projet contenant de nombreux fichiers, pouvait ralentir considérablement le temps
+		    d'exécution du programme. Des heures de tests et de modifications ont été nécessaires pour arriver à solutionner ce petit dysfonctionnement.
+		    Malheureusement, des problèmes encore plus compliqués ont été décelés. En témoigne la notion de parser, cité précédemment. En effet, nous nous
+		    sommes rendus compte après de nombreuses recherches que la réalisation d'un parser digne de ce nom n'aurait pas été possible
+		    en un si court laps de temps. C'est donc pour cela que l'ensemble du groupe a essayé de contourner le problème en réalisant un "pseudo parser",
+		    détaillé précédemment. L'auto-indentation a du subir le même sort.\\
+		    Malheureusement, il n'a pas été possible de trouver une alternative à chaque fois. La validation HTML n'a pu être implémenté par manque de temps.
+		    L'idée aurait été de mettre en relation l'application avec le site web www.w3.org pour scanner automatiquement nos fichiers et indiquer les erreurs
+		    existantes. Mais avec un tel projet, nous avons du sélectionner avec soin les fonctionnalités les plus représentatives d'un éditeur web, 
+		    au détriment de certaines demandant un temps phénoménal.\\
+		    En somme, "WebShake" est un produit abouti, mais perfectible à plusieurs points de vu. L'interface graphique pourrait être plus épurée et présenter
+		    quelques fonctionnalités en plus. Un parser pourrait être inséré et le système d'auto-indentation amélioré. Néanmoins, l'état actuel du produit 
+		    n'interfère en aucun cas pour son bon fonctionnement. L'essentiel est fait et les petits bogues susbistants sont loin d'être insolubles. Nous 
+		    pouvons donc être fiers des tâches réalisées, tout en sachant que la perfection n'a pas été atteinte.
 		\end{chapter}
 	\end{part}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -774,6 +856,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{chapter}*{Annexe technique}
+	\label{annexe}
 	\addcontentsline{toc}{chapter}{Annexe technique}
 	\begin{section}{À propos de Qt}
 			Travailler avec \gls{Qt}, c'est travailler avec un immense ensemble de classes diverses et variées. 
@@ -867,8 +950,6 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
 			\end{cppcode}
 			\end{center}~\\
 
-
-
 	\end{section}
 	\end{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -916,6 +997,11 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
 		~\\
 		\bibitem{Qt Reference Documentation}
 		Qt Reference Documentation : www.doc.qt.nokia.com \\
-		La documentation Qt, là où nous avons tout appris.		
+		La documentation Qt, là où nous avons tout appris.	
+		~\\
+		\bibitem{Stackoverflow}
+		Stackoverflow : www.stackoverflow.com \\
+		Un forum où sont posés et résolus de nombreux problèmes de programmation. Les personnes qui répondent le font de manière
+		très professionnelle ce qui nous a beaucoup aidé.
 	\end{thebibliography}
 \end{document}
