@@ -2,11 +2,6 @@
 
 HtmlHighlighter::HtmlHighlighter(QTextDocument *parent) : Highlighter(parent)
 {
-    // Les nombres.
-    numberFormat.setFontWeight(QFont::Bold);
-    numberFormat.setForeground(Qt::black);
-    addRule(HtmlData::numberRegex, numberFormat);
-
     // Les balises.
     tagsFormat.setForeground(Qt::blue);
 
