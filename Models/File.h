@@ -16,9 +16,23 @@ class File: public virtual Element{
 
 public:
     //Constructeur Destructeur
+    /*!
+    * \brief Constructeur de la classe File
+    * \param name : Nom de l'élément construit
+    * \param parentPath : Chemin du parent de l'élément construit
+    */
     File(string name = "", string parentPath = "");
+
+    /*!
+    * \brief Destructeur de la classe File
+    */
     virtual ~File();
     //Accesseurs
+
+    /*!
+    * \brief Accesseur permettant d'obtenir l'extension du fichier
+    * \return Une string content l'extension du fichier
+    */
     virtual string getExtension();
     //Méthodes
     virtual int getType();
