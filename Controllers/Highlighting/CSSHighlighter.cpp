@@ -31,6 +31,10 @@ CSSHighlighter::CSSHighlighter(QTextDocument *parent) : Highlighter(parent)
     numberFormat.setForeground(Qt::black);
     addRule(CSSData::numberRegex,numberFormat);
 
+    // Les couleurs
+    colorFormat.setForeground(Qt::darkMagenta);
+    addRule(CSSData::colorRegex,colorFormat);
+
     // Commentaires multilignes.
     multilineCommentFormat.setForeground(Qt::darkGreen);
     addMultilineRule(CSSData::multilineCommentStartRegex,
