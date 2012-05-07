@@ -2,7 +2,6 @@
 
 QRegExp HtmlData::fileExtensionRegex("*.html|*.htm|*.xhtml|*.xslt");
 
-QRegExp HtmlData::numberRegex("[0-9][0-9]*\\.[0-9]+([eE][0-9]+)?[fd]?|0x[0-9a-fA-F]+|[0-9]+");
 QRegExp HtmlData::quotationRegex("\"[^\"]*\"|\'[^\']*\'");
 QRegExp HtmlData::specialCharRegex("&\\w+;");
 

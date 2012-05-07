@@ -21,7 +21,6 @@ class HtmlData
         static QRegExp fileExtensionRegex;
 
         // Pour le langage.
-        static QRegExp numberRegex;
         static QRegExp quotationRegex;
         static QRegExp specialCharRegex;
 
