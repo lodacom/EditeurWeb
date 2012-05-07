@@ -188,6 +188,8 @@
 	\tableofcontents
 	%% Table des figures
 	\listoffigures
+	%% Table des tables
+	\listoftables
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{chapter}*{Introduction}
@@ -455,10 +457,13 @@
 					\end{center}
 				\end{figure}~\\
 			\end{section}
-
+			\newpage %% Sinon c'est pas très esthétique.
 			\begin{section}{Gestion du code}
 				Derrière ce nom quelque peu singulier se cache un concept fort simple, la gestion du code consiste à indenter, colorer,
-				visualiser et sublimer le code source présent dans un fichier. Le diagramme \ref{saphir} parle de lui même.
+				visualiser et sublimer le code source présent dans un fichier tel que demandé dans le cahier des charges. Le diagramme \ref{saphir}
+				expose les différentes propriétés que doit posséder le système de gestion du code.\\
+				L'action étiquetée \emph{Modification du code} correspond à l'édition graphique du texte à l'écran. L'interface graphique
+				n'est pas un sous-système en soi du fait notamment qu'elle est incluse dans sous-système de gestion de code.\\
 				\begin{figure}[ht]
 					\begin{center}
 						\includegraphics[width=13cm]{images/gestionCode.jpg}
@@ -526,6 +531,10 @@
 				Pour le reste, les classes Folder et File parlent d'elles-mêmes.
 			\end{section}
 			\begin{section}{Indentation}
+			"                                   																	"
+			"                                   																	"
+			"                                   																	"
+			"                                   																	"
 			\end{section}
 			\begin{section}{\Gls{autocomplétion}}
 
@@ -570,6 +579,25 @@
 
 			\end{section}
 			\begin{section}{Classes graphiques}
+			Présentation des classes utilisées pour l’interface.
+
+CentralEditor :
+Permet d'obtenir un onglet au centre de l'interface. Cet onglet possède les fonctionnalités d'auto-
+Complétion et de coloration syntaxique en fonction du langage choisi.
+Elle permet aussi la création d'un onglet, le Lancement de la complétion, la création d'un nouveau
+Fichier avec un nom par défaut, charger un fichier ouvert et de sauvegarder le fichier courant.
+WorkSpaceTree :
+Permet la sélection d'un espace de travail et de le parcourir, ensuite afficher dans la partie gauche
+Tous les fichiers et les dossiers qu'il contient. Aussi on y trouve la possibilité de renommer,
+Supprimer, copier et de coller un fichier ainsi qu'un dossier et d'ajouter un nouveau fichier ou projet
+à partir du TreeView.
+EditorTab :
+C'est la partie droite de l'interface qui contient TreeWidget qui permet d'afficher l'arborescence du
+fichier ouvert, ainsi que WebView qui permet à son tour de visualiser la page HTML au fur et à
+mesure que la rédaction du code.
+MainWindow :
+Permet d’obtenir ou définir  la fenêtre principale de l'application  avec son menu, sa zone 
+d’édition des fichiers PHP, CSS, HTML, et JavaScript, son workspace  et son WebView.
 			\end{section}
 		\end{chapter}
 		\begin{chapter}{Organisation du code : le modèle MVC}
@@ -688,8 +716,7 @@
 				\\
 				De même que le fichier \emph{CSSData} qui décrit des données, sera dans le dossier \emph{Model}.\\
 				Cette distribution nous mis à l'abri de beaucoup de problèmes qui adviennent dans un travail de groupe, comme la suppression
-				accidentelle ou le sabotage du travail d'autrui.
-
+				accidentelle ou le sabotage du travail d'autrui.\\
 
 				\begin{figure}[h]
 					\begin{center}
@@ -719,26 +746,19 @@
 				projets, qui, comme expliqué plus haut, sont des dossiers contenant un fichier de configuration nommé \emph{.pro} à leur racine (dont 
 				nous exposerons l'utilité plus tard), et ledit \emph{QDirModel} ne permet pas de filtrer la population du modèle selon un quelconque
 				paramètre.
-				Nous avons donc pris la décision de créer nous mêmes une fonction remplissant notre modèle de données (selon le type de l'élément à 
-				parcourir, i-e WorkSpace, Project ou Folder), nous permettant donc, non seulement de filtrer le remplissage des modèles, mais également
-				d'effectuer certaines actions directement lors du parcours (récursif) de l'arborescence d'espace de travail, comme l'attribution 
-				de noms aux éléments trouvés, l'instanciation d'objets correspondant aux éléments (File, Folder, Project), etc...
-				Ces fonctions (nommées scan dans les classes), consistent en des parcours récursifs de l'arborescence WorkSpace. Outre quelques 
-				initialisations de structures (Dirent, Dir, stat, ...) et variables nécessaires au parcours, ainsi que des conversions des chemins
-				de fichiers de type string vers le type char* (pour correspondrent aux signatures de certaines fonction de C++), elles commencent
-				par tester que l'ouverture du dossier choisi comme racine de l'espace de travail s'est bien déroulée, affichant une erreur si ce 
-				n'est pas le cas.\\
-				Si l'ouverture ne pose pas de problèmes, la ligne folderPath = (char*)malloc(folderPathSize * sizeof(char)); alloue la mémoire
-				nécessaire au nom du dossier à parcourir. Cette ligne d'apparence ordinaire, vue maintes et maintes fois dans les applications,
-				mérite d'être soulignée puisqu'elle fait partie de celles qui ont engendré des problèmes de fuites mémoires, longs et pénibles
+
+				Nous avons donc pris la décision de créer nous mêmes une fonction remplissant notre modèle de données (selon le type de l'élément à parcourir, i-e WorkSpace, Project ou Folder), nous permettant donc, non seulement de filtrer le remplissage des modèles, mais également d'effectuer certaines actions directement lors du parcours (récursif) de l'arborescence d'espace de travail, comme l'attribution de noms aux éléments trouvés, l'instanciation d'objets correspondant aux éléments (File, Folder, Project), etc...
+
+				Ces fonctions (nommées scan dans les classes), consistent en des parcours récursifs de l'arborescence WorkSpace. Outre quelques initialisations de structures (Dirent, Dir, stat, ...) et variables nécessaires au parcours, ainsi que des conversions des chemins de fichiers de type string vers le type char* (pour correspondrent aux signatures de certaines fonction de C++), elles commencent par tester que l'ouverture du dossier choisi comme racine de l'espace de travail s'est bien déroulée, affichant une erreur si ce n'est pas le cas.\\
+				Si l'ouverture ne pose pas de problèmes, la ligne folderPath = (char*)malloc(folderPathSize * sizeof(char));
+				alloue la mémoirenécessaire au nom du dossier à parcourir. 
+				Cette ligne d'apparence ordinaire, vue maintes et maintes fois dans les applications, mérite d'être soulignée puisqu'elle fait partie de celles qui ont engendré des problèmes de fuites mémoires, longs et pénibles
 				à résoudre, dont nous parlerons plus tard.\\
-				L'intérêt de créer notre propre fonction de scan commence d'ailleurs par cette instruction, puisque chaque élément de l'arborescence
-				qui sera ajouté au modèle se voit instancié et affecté d'un attribut "path", une chaine de caractère permettant de stocker le chemin
-				(relatif à la racine de l'arborescence) du fichier qu'il représente.
-				S'ensuit un léger jeux de concaténations, pour, dans le cas du scan de l'espace de travail, créer le chemin d'un éventuel fichier
+				L'intérêt de créer notre propre fonction de scan commence d'ailleurs par cette instruction, puisque chaque élément de l'arborescence qui sera ajouté au modèle se voit instancié et affecté d'un attribut "path", une chaine de caractère permettant de stocker le chemin
+
+				(relatif à la racine de l'arborescence) du fichier qu'il représente.S'ensuit un léger jeux de concaténations, pour, dans le cas du scan de l'espace de travail, créer le chemin d'un éventuel fichier
 				de configuration ".pro", qui s'il est trouvé engendrera l'ajout à un vecteur de projets du dossier directement parent dudit fichier.
-				Dans ce cas de figure, le scan du projet ajouté est alors lancé, et celui-ci va alors ajouter tous les fichiers et dossiers qu'il 
-				contient à ses vecteurs respectifs \emph{file} et \emph{folders}.\\
+				Dans ce cas de figure, le scan du projet ajouté est alors lancé, et celui-ci va alors ajouter tous les fichiers et dossiers qu'il contient à ses vecteurs respectifs \emph{file} et \emph{folders}.\\
 				Ces fonctions, %% je finirai en rentrant du taff
 
 			\end{section}
@@ -746,6 +766,7 @@
 				\begin{subsection}{Coloration}
 				\end{subsection}
 				\begin{subsection}{\Gls{autocomplétion}}
+				\label{autocompl}
 					La mise en place du système d'autocomplétion n'a pas posé de problèmes principalement parce qu'il est inspiré d'un exemple de
 					la documentation.\\
 
@@ -818,7 +839,6 @@
 
 			Dans le tableau \ref{raisin}, sont rassemblées toutes les spécifications du cahier des charges (colonne de droite) et il est
 			précisé si notre application possède ou non ces propriétés.\\
-			\begin{center}
 			\begin{table}[h]
 			\caption{\label{raisin} Fonctionnalités spéciales dans les éditeurs étudiés}
 			\centering
@@ -838,42 +858,74 @@
 				  Squelette de site préexistant & non \\
 				  \hline
 				\end{tabular}
-			\end{table}
-			\end{center}
+			\end{table}~\\
+
+			Malgré le fait que le cahier des charges soit presque complété, il subsiste dans les parties achevés quelques \glspl{bogue} épars
+			dont nous discuterons dans le chapitre suivant.
 		\end{chapter}
 		\begin{chapter}{Discussion}
+			\begin{section}{Cahier des charges}
+				Comme on peut le constater sur le tableau précédent (\ref{raisin}), le cahier des charges est presque complété.
+				Il reste néanmoins l'accès aux manuels,	la validation \gls{Html} et des sites préfabriqués.\\
+				À notre décharge, nous pouvons arguer que ces fonctionnalités ne nous ont pas posé de problème technique mais plutôt organisationnel.
+				En effet, si l'on regarde le diagramme de Gantt de la page \pageref{flute}, on remarque que nous nous apprêtions à travailler
+				jusqu'à la fin du mois de mai ce qui nous aurait laissé le temps de terminer ces modules très simples à mettre en place.\\
 
-			Comme on peut le constater sur le tableau précédent, le cahier des charges est presque complété. Il reste néanmoins l'accès aux manuels,
-			la validation \gls{Html} et des sites préfabriqués.\\
-			À notre décharge, nous pouvons arguer que ces fonctionnalités ne nous ont pas posé de problème technique mais plutôt organisationnel.
-			En effet, si l'on regarde le diagramme de Gantt de la page \pageref{flute}, on remarque que nous nous apprêtions à travailler jusqu'à la
-			fin du mois de mai ce qui nous aurait laissé le temps de terminer ces fonctionnalités très simples à mettre en place.
+
+				Si l'on juge du point de vue quelque peu pragrmatique, on pourra constater quelques manques à l'application.
+				Citons une fois de plus le \gls{parseur} qui aurait dû être la base de l'application mais dont la réalisation demandait
+				un temps trop considérable au vu de	celui qui nous était imparti.\\
+				Fut donc réalisé, avec astuce et stratagème, un « pseudo-parseur » réalisant l'analyse syntaxique à la volée. Cette analyse ne génère
+				pas d'arborescence comme il se devrait et voilà le problème, c'est que celle-ci est indispensable au bon fonctionnement de certains
+				module comme l'\gls{autocomplétion} contextuelle (cf. page \pageref{autocompl}).\\
+			\end{section}
+
+			\begin{section}{Considération graphique}
+				L'application utilise les éléments graphiques du système dans lequel elle est utilisée. Elle n'est donc pas réellement personnalisée
+				et ne possède pas d'identité graphique propre (mis à part les icônes).\\
+				Ce manque de charisme, cette sobriété diraient certains, n'influent que très peu sur l'impact réel provoqué sur l'utilisateur.
+				Celui-ci étant un programmeur il est certainement habitué à d'horribles interfaces de programmation voire de ligne de commandes.\\
 
 
-			Pour arriver à un tel résultat, nous avons été confronté à de nombreux problèmes durant toute la période de développement.
-		    Certains d'entre eux étaient liés à une question de conception, dans le sens où le groupe n'arrivait pas à se décider si tel ou tel algorithme
-		    appartenait au Modèle ou au Contrôleur. Bien entendu, ce genre de difficulté ne persistait pas très longtemps et était vite résolu.
-		    Cependant, d'autres problèmes bien plus complexes sont apparus au fur et à mesure de l'avancement du projet. Par exemple, le "Groupe Système"
-		    a été confronté à une fuite mémoire, qui, sur un projet contenant de nombreux fichiers, pouvait ralentir considérablement le temps
-		    d'exécution du programme. Des heures de tests et de modifications ont été nécessaires pour arriver à solutionner ce petit dysfonctionnement.
-		    Malheureusement, des problèmes encore plus compliqués ont été décelés. En témoigne la notion de parser, cité précédemment. En effet, nous nous
-		    sommes rendus compte après de nombreuses recherches que la réalisation d'un parser digne de ce nom n'aurait pas été possible
-		    en un si court laps de temps. C'est donc pour cela que l'ensemble du groupe a essayé de contourner le problème en réalisant un "pseudo parser",
-		    détaillé précédemment. L'auto-indentation a du subir le même sort.\\
-		    Malheureusement, il n'a pas été possible de trouver une alternative à chaque fois. La validation HTML n'a pu être implémenté par manque de temps.
-		    L'idée aurait été de mettre en relation l'application avec le site web www.w3.org pour scanner automatiquement nos fichiers et indiquer les erreurs
-		    existantes. Mais avec un tel projet, nous avons du sélectionner avec soin les fonctionnalités les plus représentatives d'un éditeur web, 
-		    au détriment de certaines demandant un temps phénoménal.\\
-		    En somme, "WebShake" est un produit abouti, mais perfectible à plusieurs points de vu. L'interface graphique pourrait être plus épurée et présenter
-		    quelques fonctionnalités en plus. Un parser pourrait être inséré et le système d'auto-indentation amélioré. Néanmoins, l'état actuel du produit 
-		    n'interfère en aucun cas pour son bon fonctionnement. L'essentiel est fait et les petits bogues susbistants sont loin d'être insolubles. Nous 
-		    pouvons donc être fiers des tâches réalisées, tout en sachant que la perfection n'a pas été atteinte.
+				Aucune instruction ne nous ayant été donnée quant à la réalisation de cette interface, elle est entièrement de notre cru et
+				nous sommes satisfait du résultat.
+			\end{section}
+
+			\begin{section}{Aller plus loin}
+			\end{section}
 		\end{chapter}
 	\end{part}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{chapter}*{Conclusion}
 	\addcontentsline{toc}{chapter}{Conclusion}
+		Pour faire le bilan de ce projet, rien de tel que donner à chaque membre du groupe quelques lignes pour s'exprimer.
+
+		\begin{section}*{Pierre}
+		\end{section}
+
+		\begin{section}*{Olivier}
+		\end{section}
+
+		\begin{section}*{Hamza}
+		\end{section}
+
+		\begin{section}*{Issame}
+		\end{section}
+
+		\begin{section}*{Mickaël}
+		\end{section}
+
+		\begin{section}*{Joachim}
+		\end{section}
+
+		\begin{section}*{Zaydane}
+		\end{section}
+
+		\begin{section}*{Abdelhamid}
+		\end{section}
+
+		Ainsi s'achève ce document (en fait non, il y a encore une annexe après).\\
 	\end{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -972,6 +1024,12 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
 			\end{cppcode}
 			\end{center}~\\
 
+
+			Une autre particularité de \gls{Qt} est que le modèle-vue-contrôleur qu'il utilise n'est pas standard, en ce sens qu'il n'est composé
+			en réalité que du modèle et de la vue, le contrôleur étant fusionné à celle-ci.\\
+			Il advint donc souvent que le groupe soit partagé à propos d'un fichier, est-ce une vue ou un contrôleur ?\\
+			Citons l'exemple des classes de coloration syntaxiques (suffixées par \emph{Highlighter}) qui furent finalement classées parmi les
+			contrôleurs.
 	\end{section}
 	\end{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
