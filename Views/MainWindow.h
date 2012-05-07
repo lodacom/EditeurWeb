@@ -17,6 +17,7 @@
 #include "CentralEditor.h"
 #include "../Controllers/WorkSpaceTreeController.h"
 #include "EditorTab.h"
+#include "HtmlTreeWidget.h"
 #include "WorkSpaceTree.h"
 #include "Controllers/IndenterController.h"
 QT_BEGIN_NAMESPACE
@@ -194,6 +195,7 @@ private:
 
     //QString strippedName(const QString &fullFileName);
     WorkSpaceTree *treeView;
+    HtmlTreeWidget *htmlTreeWidget;
     IndenterController *indenterController;
     QMdiArea *zoneCentrale;
     QSignalMapper *windowMapper;

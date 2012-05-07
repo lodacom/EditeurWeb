@@ -19,6 +19,7 @@ HEADERS += \
     Models/Element.h \
     Controllers/WorkSpaceTreeController.h \
     Views/CentralEditor.h \
+    Views/HtmlTreeWidget.h \
     Tools/Tools.h \
     Views/EditorTab.h \
     Models/HtmlIndenter.h \
@@ -48,6 +49,7 @@ SOURCES += \
     Controllers/Highlighting/Highlighter.cpp \
     Controllers/Highlighting/CSSHighlighter.cpp \
     Views/CentralEditor.cpp \
+    Views/HtmlTreeWidget.cpp \
     Tools/Tools.cpp \
     Views/EditorTab.cpp \
     Models/HtmlIndenter.cpp \
@@ -84,3 +86,7 @@ OTHER_FILES += \
 RESOURCES += \
     completion.qrc \
     icons.qrc \
+
+
+FORMS += \
+    Views/htmltreewidget.ui

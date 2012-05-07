@@ -36,6 +36,16 @@ void MainWindow::init()
 
     QMainWindow::setWindowTitle(tr("WebShake"));
     setUnifiedTitleAndToolBarOnMac(true);
+
+
+    QDockWidget *dock = new QDockWidget("Html", this);
+    addDockWidget(Qt::RightDockWidgetArea, dock);
+    QWidget *dockContents = new QWidget;
+    dock->setWidget(dockContents);
+    this->htmlTreeWidget = new HtmlTreeWidget(this);
+    QVBoxLayout *dockLayout = new QVBoxLayout;
+    dockLayout->addWidget(htmlTreeWidget);
+    dockContents->setLayout(dockLayout);
 }
 
 void MainWindow::createActions()
