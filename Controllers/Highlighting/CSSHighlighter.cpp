@@ -5,6 +5,15 @@
 
 CSSHighlighter::CSSHighlighter(QTextDocument *parent) : Highlighter(parent)
 {
+    //Les nombres
+    numberFormat.setFontWeight(QFont::Bold);
+    numberFormat.setForeground(Qt::black);
+    addRule(CSSData::numberRegex,numberFormat);
+
+    // Unités
+    unitFormat.setForeground(Qt::darkRed);
+    addRule(CSSData::unitRegex,unitFormat);
+
     //Les mots clés.
     keywordFormat.setForeground(Qt::darkGray);
     keywordFormat.setFontWeight(QFont::Bold);
@@ -25,11 +34,6 @@ CSSHighlighter::CSSHighlighter(QTextDocument *parent) : Highlighter(parent)
 
     quotationFormat.setForeground(Qt::darkYellow);
     addRule(CSSData::quotationRegex,quotationFormat);
-
-    //Les nombres
-    numberFormat.setFontWeight(QFont::Bold);
-    numberFormat.setForeground(Qt::black);
-    addRule(CSSData::numberRegex,numberFormat);
 
     // Les couleurs
     colorFormat.setForeground(Qt::darkMagenta);

@@ -53,5 +53,6 @@ private:
     QTextCharFormat quotationFormat;
     QTextCharFormat colorFormat;
     QTextCharFormat multilineCommentFormat;
+    QTextCharFormat unitFormat;
 };
 #endif // CSSHIGHLIGHTER_H
