@@ -1013,6 +1013,17 @@ Finalement le temps d'ouverture de ce workspace est tombé à environ une second
 			\end{section}
 
 			\begin{section}{Aller plus loin}
+				L'application est perfectible à bien des égards, les fonctionnalités principales sont présentes mais nous pourrions tout aussi
+				bien ajouter :
+				\begin{itemize}
+					\item Une fonctionnalité de glisser déposer pour gérer les fichiers intuitivement dans le panneau gauche.
+					\item Différentes palettes de couleurs pour la coloration syntaxique.
+					\item Un \emph{WorkSpace} par défaut.
+					\item Un mode de formatage d'un fichier mal indenté.
+				\end{itemize}~\\
+
+				De même, il est possible d'ajouter des éléments graphiques pertinents, comme un panneau proposant la documentation du langage
+				actuellement utilisé.\\
 			\end{section}
 		\end{chapter}
 	\end{part}
@@ -1148,9 +1159,19 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
 
 			Une autre particularité de \gls{Qt} est que le modèle-vue-contrôleur qu'il utilise n'est pas standard, en ce sens qu'il n'est composé
 			en réalité que du modèle et de la vue, le contrôleur étant fusionné à celle-ci.\\
-			Il advint donc souvent que le groupe soit partagé à propos d'un fichier, est-ce une vue ou un contrôleur ?\\
+			Il advint donc souvent que le groupe soit partagé à propos d'un fichier, est-ce une vue ou un contrôleur ? \\
 			Citons l'exemple des classes de coloration syntaxiques (suffixées par \emph{Highlighter}) qui furent finalement classées parmi les
 			contrôleurs.
+	\end{section}
+
+	\begin{section}{Le problème du parseur}
+		Comme il a été dit plusieurs fois le long de ce document, un bon \gls{parseur} eut été utile pour simplifier le travail de programmation.
+		Nous ne demandions pourtant rien de plus qu'un petit \gls{parseur} qui prendrait en compte la grammaire la plus grossière de chaque langage
+		et en génèrerait une arborescence. Au lieu de cela, nous trouvâmes sur le web des outils mal adaptés, trop complexes, non documentés voire
+		non fonctionnels.\\
+
+		Pour remédier à celà, il eut fallu effectuer un travail plus poussé (et bien plus long) sur l'analyse du texte. Par exemple, créer un 
+		\gls{parseur} basique à l'aide des outils \gls{flex}/\gls{Bison}. Ce fut un moment notre idée, mais vite abandonnée par manque de temps.
 	\end{section}
 	\end{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
