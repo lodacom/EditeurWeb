@@ -3,26 +3,21 @@
 JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent) : Highlighter(parent)
 {
     // Les nombres.
-    numberFormat.setFontWeight(QFont::Bold);
     numberFormat.setForeground(Qt::darkBlue);
     addRule(JavaScriptData::numberRegex, numberFormat);
 
     // Les méthodes et fonctions.
-    functionFormat.setFontWeight(QFont::Bold);
     addRule(JavaScriptData::functionRegex, functionFormat);
 
     // Les mots clé.
-    keywordFormat.setForeground(Qt::darkBlue);
-    keywordFormat.setFontWeight(QFont::Bold);
+    keywordFormat.setForeground(Qt::darkMagenta);
     addRule(JavaScriptData::keywordRegex, keywordFormat);
 
     // Les mots clé de déclaration.
-    keywordDeclarationFormat.setFontWeight(QFont::Bold);
-    keywordDeclarationFormat.setForeground(Qt::darkMagenta);
+    keywordDeclarationFormat.setForeground(Qt::darkBlue);
     addRule(JavaScriptData::keywordDeclarationRegex, keywordDeclarationFormat);
 
     // Les mots réservés.
-    keywordReservedFormat.setFontWeight(QFont::Bold);
     keywordReservedFormat.setForeground(Qt::darkYellow);
     addRule(JavaScriptData::keywordReservedRegex, keywordReservedFormat);
 

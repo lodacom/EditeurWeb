@@ -6,29 +6,28 @@
 CSSHighlighter::CSSHighlighter(QTextDocument *parent) : Highlighter(parent)
 {
     //Les mots clés.
-    keywordFormat.setForeground(Qt::darkBlue);
+    keywordFormat.setForeground(Qt::darkGray);
     keywordFormat.setFontWeight(QFont::Bold);
     addRule(CSSData::keywordRegex,keywordFormat);
 
     //Les sous-classes
-    subclassFormat.setForeground(Qt::darkMagenta);
-    subclassFormat.setFontWeight(QFont::Bold);
+    subclassFormat.setForeground(Qt::red);
     addRule(CSSData::subclassRegex,subclassFormat);
 
     //Les id et class personnels
-    idFormat.setForeground(Qt::darkGray);
-    idclassFormat.setForeground(Qt::darkGreen);
+    idFormat.setForeground(Qt::blue);
+    idclassFormat.setForeground(Qt::darkCyan);
     addRule(CSSData::idclassRegex,idclassFormat);
 
     addRule(CSSData::idRegex,idFormat);
 
     //Les nombres
     numberFormat.setFontWeight(QFont::Bold);
-    numberFormat.setForeground(Qt::yellow);
+    numberFormat.setForeground(Qt::black);
     addRule(CSSData::numberRegex,numberFormat);
 
     // Commentaires multilignes.
-    multilineCommentFormat.setForeground(Qt::darkRed);
+    multilineCommentFormat.setForeground(Qt::darkGreen);
     addMultilineRule(CSSData::multilineCommentStartRegex,
                     CSSData::multilineCommentEndRegex,
                     multilineCommentFormat,
