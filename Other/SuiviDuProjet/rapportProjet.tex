@@ -823,6 +823,8 @@ En ce qui concerne le temps de chargement, nous nous sommes aperçus qu'à chaqu
 Nous avons donc choisi d'insérer dans la classe Tools qui contient un certain nombre d'éléments statiques, de charger toutes les icônes du projet une fois statiquement, et de lier ces icônes aux éléments.
 Finalement le temps d'ouverture de ce workspace est tombé à environ une seconde. Ce qui est nettement mieux.
 
+				Dans ce cas de figure, le scan du projet ajouté est lancé, et celui-ci va alors ajouter tous les fichiers et dossiers qu'il contient à ses vecteurs respectifs \emph{file} et \emph{folders}.\\
+				Le déclenchement de ces parcours se réalise à l'instant où l'utilisateur sélectionne l'espace de travail de son choix via le menu de l'application.
 
 			\end{section}
 			\begin{section}{Fonctionnalités}

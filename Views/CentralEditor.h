@@ -212,6 +212,7 @@ private:
     bool newLine;
     bool addTabs;
     bool newTab;
+    bool colorationLocked;
     int tabNumber;
     IndenterController *indentController;
 
