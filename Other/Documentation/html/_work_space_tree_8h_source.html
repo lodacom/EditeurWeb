@@ -102,47 +102,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030 <span class="keyword">public</span>:
 <a name="l00031"></a>00031     <span class="comment">//Constructeur, Destructeur</span>
-<a name="l00032"></a>00032     <a class="code" href="class_work_space_tree.html" title="Vue associée à l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;utilisateur.">WorkSpaceTree</a>();
-<a name="l00033"></a>00033     <span class="keyword">virtual</span> ~<a class="code" href="class_work_space_tree.html" title="Vue associée à l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;utilisateur.">WorkSpaceTree</a>();
-<a name="l00034"></a>00034     <span class="keyword">virtual</span> <span class="keywordtype">void</span> selectWorkSpace(<span class="keywordtype">string</span> path);
-<a name="l00035"></a>00035 signals:
-<a name="l00036"></a>00036     <span class="keywordtype">void</span> fileOpened(<span class="keyword">const</span> QString&amp; fileName);
-<a name="l00037"></a>00037 <span class="keyword">public</span> slots:
-<a name="l00038"></a>00038     <span class="keyword">virtual</span> <span class="keywordtype">void</span> getFilePath(<span class="keyword">const</span> QModelIndex&amp; index);
-<a name="l00039"></a>00039     <span class="keyword">virtual</span> <span class="keywordtype">void</span> deleteFileFromPos();
-<a name="l00040"></a>00040     <span class="keyword">virtual</span> <span class="keywordtype">void</span> openFileFromPos();
-<a name="l00041"></a>00041     <span class="keyword">virtual</span> <span class="keywordtype">void</span> copyFileFromPos();
-<a name="l00042"></a>00042     <span class="keyword">virtual</span> <span class="keywordtype">void</span> newFileFromPos();
-<a name="l00043"></a>00043     <span class="keyword">virtual</span> <span class="keywordtype">void</span> newFolderFromPos();
-<a name="l00044"></a>00044     <span class="keyword">virtual</span> <span class="keywordtype">void</span> newProject();
-<a name="l00045"></a>00045     <span class="keyword">virtual</span> <span class="keywordtype">void</span> pasteFileFromPos();
-<a name="l00046"></a>00046     <span class="keyword">virtual</span> <span class="keywordtype">void</span> cutFileFromPos();
-<a name="l00047"></a>00047     <span class="keyword">virtual</span> <span class="keywordtype">void</span> renameElementFromPos();
-<a name="l00048"></a>00048     <span class="keyword">virtual</span> <span class="keywordtype">void</span> setWSModel();
-<a name="l00049"></a>00049     <span class="comment">//virtual void rightClickMenu(const QPoint&amp; pos);</span>
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="keyword">private</span>:
-<a name="l00052"></a>00052     <span class="keywordtype">void</span> setupMenus();
-<a name="l00053"></a>00053     QStandardItemModel *model;
-<a name="l00054"></a>00054     <a class="code" href="class_work_space_tree_controller.html" title="Controller agissant sur la vue et le modèle de l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;ut...">WorkSpaceTreeController</a> *wsController;
-<a name="l00055"></a>00055     QMenu *fileMenu;
-<a name="l00056"></a>00056     QMenu *folderMenu;
-<a name="l00057"></a>00057     QModelIndex clickedIndex;
-<a name="l00058"></a>00058     <span class="keywordtype">bool</span> workSpaceEtablished;
-<a name="l00059"></a>00059     <span class="keywordtype">int</span> selectionStatus; <span class="comment">//Trois valeurs possibles</span>
-<a name="l00060"></a>00060     QModelIndex indexFileToCopy;
-<a name="l00061"></a>00061 <span class="keyword">protected</span>:
-<a name="l00062"></a>00062     <span class="keyword">virtual</span> <span class="keywordtype">void</span> mousePressEvent(QMouseEvent * e);
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 };
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="preprocessor">#endif // WORKSPACETREE_H</span>
+<a name="l00035"></a>00035 <span class="comment"></span>    <a class="code" href="class_work_space_tree.html#a1c784b6ccdb21c9adf2ce592e1ec194c" title="Constructeur de la classe WorkSpaceTree.">WorkSpaceTree</a>();
+<a name="l00039"></a>00039     <span class="keyword">virtual</span> <a class="code" href="class_work_space_tree.html#a76dd37f711f316f1bcab50fe3a220c06" title="Destructeur de la classe WorkSpaceTree.">~WorkSpaceTree</a>();
+<a name="l00044"></a>00044     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#ae7ee9354bd43ad1f54d42bd2db0c1adc" title="méthode de sélection du workspace">selectWorkSpace</a>(<span class="keywordtype">string</span> path);
+<a name="l00045"></a>00045 signals:
+<a name="l00049"></a>00049     <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#a3f5c1fe20a819be6b031e7584636c3cd" title="signal emis lorsque l&amp;#39;utilisateur à double cliqué sur un élément">fileOpened</a>(<span class="keyword">const</span> QString&amp; fileName);
+<a name="l00050"></a>00050 <span class="keyword">public</span> slots:
+<a name="l00055"></a>00055     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#a31f4265fe3947c73c01a9617fe851912" title="slot qui envoie ensuite un signal au mainWindow du fichier ouvert et de son chemin">getFilePath</a>(<span class="keyword">const</span> QModelIndex&amp; index);
+<a name="l00059"></a>00059     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#ae60d3bf98003f4373ade684acffc0238" title="slot qui détruit l&amp;#39;élément">deleteFileFromPos</a>();
+<a name="l00063"></a>00063     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#acd37973fe383b875a000d7948ff20b98" title="slot ouvre l&amp;#39;élément double cliqué">openFileFromPos</a>();
+<a name="l00067"></a>00067     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#ab19aaf49843abe29c25c5db67c2d0953" title="slot qui copie l&amp;#39;élément">copyFileFromPos</a>();
+<a name="l00071"></a>00071     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#abc891cf420bd366f4e61837587942dc8" title="slot qui crée un nouveau fichier dans le répertoire">newFileFromPos</a>();
+<a name="l00075"></a>00075     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#a793cad745bbe4e0bde2598f6035b774c" title="slot qui crée un nouveau répertoire dans le répertoire">newFolderFromPos</a>();
+<a name="l00079"></a>00079     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#ab5991e72f47f5a490b9f24649b8bbcbf" title="slot qui crée un nouveau projet dans le workspace">newProject</a>();
+<a name="l00083"></a>00083     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#a2366ecf5c2e1f041d55b7f5531eca9f3" title="slot qui colle un fichier">pasteFileFromPos</a>();
+<a name="l00087"></a>00087     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#afc5fb1d4d2cb0e6c61f1e99d945ba953" title="slot qui coupe un fichier">cutFileFromPos</a>();
+<a name="l00091"></a>00091     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#a806c62e116d7732f653135cf68e10e08" title="slot qui renomme un élément">renameElementFromPos</a>();
+<a name="l00095"></a>00095     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_work_space_tree.html#ae648af4715632227ab1c09be864de448" title="slot qui permet d&amp;#39;appliquer le modèle à la vue">setWSModel</a>();
+<a name="l00096"></a>00096     <span class="comment">//virtual void rightClickMenu(const QPoint&amp; pos);</span>
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="keyword">private</span>:
+<a name="l00099"></a>00099     <span class="keywordtype">void</span> setupMenus();
+<a name="l00100"></a>00100     QStandardItemModel *model;
+<a name="l00101"></a>00101     <a class="code" href="class_work_space_tree_controller.html" title="Controller agissant sur la vue et le modèle de l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;ut...">WorkSpaceTreeController</a> *wsController;
+<a name="l00102"></a>00102     QMenu *fileMenu;
+<a name="l00103"></a>00103     QMenu *folderMenu;
+<a name="l00104"></a>00104     QModelIndex clickedIndex;
+<a name="l00105"></a>00105     <span class="keywordtype">bool</span> workSpaceEtablished;
+<a name="l00106"></a>00106     <span class="keywordtype">int</span> selectionStatus; <span class="comment">//Trois valeurs possibles</span>
+<a name="l00107"></a>00107     QModelIndex indexFileToCopy;
+<a name="l00108"></a>00108 <span class="keyword">protected</span>:
+<a name="l00109"></a>00109     <span class="keyword">virtual</span> <span class="keywordtype">void</span> mousePressEvent(QMouseEvent * e);
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 };
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 <span class="preprocessor">#endif // WORKSPACETREE_H</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="_work_space_tree_8h.html">WorkSpaceTree.h</a>      </li>
-      <li class="footer">Generated on Tue Apr 24 2012 02:23:49 for WebShacke by&#160;
+      <li class="footer">Generated on Mon May 7 2012 15:27:36 for WebShacke by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

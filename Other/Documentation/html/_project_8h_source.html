@@ -87,24 +87,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00010"></a>00010 
 <a name="l00016"></a><a class="code" href="class_project.html">00016</a> <span class="keyword">class </span><a class="code" href="class_project.html" title="Représente les dossiers de l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;utilisateur qui sont l...">Project</a> : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="class_folder.html" title="Représente chaque dossier de l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;utilisateur, elle stocke les fichiers et dossiers qui la composent dans des vecteurs.">Folder</a>{
 <a name="l00017"></a>00017 <span class="keyword">public</span>:
-<a name="l00018"></a>00018     <span class="comment">//Constructeur Destructeur</span>
-<a name="l00019"></a>00019     <a class="code" href="class_project.html" title="Représente les dossiers de l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;utilisateur qui sont l...">Project</a>(<span class="keywordtype">string</span> name = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">string</span> parentPath = <span class="stringliteral">&quot;&quot;</span>);
-<a name="l00020"></a>00020     <span class="keyword">virtual</span> ~<a class="code" href="class_project.html" title="Représente les dossiers de l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;utilisateur qui sont l...">Project</a>();
-<a name="l00021"></a>00021     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_project.html#ab9adc05a12220fbdec7822bdcd15389b" title="Méthode permettant de savoir si l&amp;#39;élément est un File, un Folder, un Project ou un WorkSpace...">getType</a>();
-<a name="l00022"></a>00022     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_project.html#aae91a6737175147e6e21ba6c168dd010" title="Méthode effaçant le fichier physique correspondant à l&amp;#39;élément, ainsi que l&amp;#39;objet this lui-mê...">deleteElement</a>();
-<a name="l00023"></a>00023     <span class="comment">//Méthodes</span>
-<a name="l00024"></a>00024 <span class="keyword">private</span>:
-<a name="l00025"></a>00025     <span class="comment">//Attributs</span>
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 };
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029 <span class="preprocessor">#endif // PROJECT_H</span>
+<a name="l00023"></a>00023     <a class="code" href="class_project.html#ac8d6f563b529c54385b68ac93998b615" title="Constructeur de la classe Project.">Project</a>(<span class="keywordtype">string</span> name = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">string</span> parentPath = <span class="stringliteral">&quot;&quot;</span>);
+<a name="l00024"></a>00024 
+<a name="l00028"></a>00028     <span class="keyword">virtual</span> <a class="code" href="class_project.html#ad165d61b76ee86ee9c27fd987a2a7b9e" title="Destructeur de la classe Project.">~Project</a>();
+<a name="l00029"></a>00029     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_project.html#ab9adc05a12220fbdec7822bdcd15389b" title="Méthode permettant de savoir si l&amp;#39;élément est un File, un Folder, un Project ou un WorkSpace...">getType</a>();
+<a name="l00030"></a>00030     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_project.html#aae91a6737175147e6e21ba6c168dd010" title="Méthode effaçant le fichier physique correspondant à l&amp;#39;élément, ainsi que l&amp;#39;objet this lui-mê...">deleteElement</a>();
+<a name="l00031"></a>00031     <span class="comment">//Méthodes</span>
+<a name="l00032"></a>00032 <span class="keyword">private</span>:
+<a name="l00033"></a>00033     <span class="comment">//Attributs</span>
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 };
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 <span class="preprocessor">#endif // PROJECT_H</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="_project_8h.html">Project.h</a>      </li>
-      <li class="footer">Generated on Tue Apr 24 2012 02:23:49 for WebShacke by&#160;
+      <li class="footer">Generated on Mon May 7 2012 15:27:36 for WebShacke by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

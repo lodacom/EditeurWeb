@@ -123,6 +123,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a4f9a0fe4b81444822fb709bd1c063d52">setParentPath</a> (string parentPath)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesseur permettant de modifier le chemin du dossier parent de l'élément.  <a href="#a4f9a0fe4b81444822fb709bd1c063d52"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual QStandardItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a86dd6112e04340382cbe9e8d761a1de1">getQItem</a> (int i=0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesseur permettant d'obtenir le QStandardItem d'un élément.  <a href="#a86dd6112e04340382cbe9e8d761a1de1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a299a6beb0d110b931e4cadbb193f80cd">getPath</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode permettant d'obtenir le chemin de l'élément grâce au chemin du parent et au nom de l'élément.  <a href="#a299a6beb0d110b931e4cadbb193f80cd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a4df80942062589e32af1c9a90a08583d">output</a> (int prof)</td></tr>
@@ -135,6 +136,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a51b482e58e5d6bb8bc16b5ffe120cea4">deleteElement</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode effaçant le fichier physique correspondant à l'élément, ainsi que l'objet this lui-même. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#ad43315969bc33b67d181c4cd170b0ad5">dropElement</a> (int i)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode utilisé pour les éléments conteneurs (dossier, projet) qui applique la suppression récursive de l'élément à l'index i et de ses sous éléments.  <a href="#ad43315969bc33b67d181c4cd170b0ad5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a8c395a5e83fd3700b837c2a3370fbfa1">newFile</a> (string fileName, string content=&quot;&quot;)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode créant un fichier physique, avec ou sans contenu, correspondant à l'élément this.  <a href="#a8c395a5e83fd3700b837c2a3370fbfa1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#ac55b55d91825094b3493c61af32f225a">newFolder</a> (string fileName)</td></tr>
@@ -142,16 +144,19 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#aa7bdd2e0ea4620e4e0c32831765bea38">renameFile</a> (string newName)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode renommant le fichier physique correspondant à l'élément this.  <a href="#aa7bdd2e0ea4620e4e0c32831765bea38"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a3662859ed7a939aa07b31b92b3e7e817">renameElement</a> (int elementPosition, string newName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">permet le rafraichissement du dossier en renommant l'élément se trouvant à elementPosition  <a href="#a3662859ed7a939aa07b31b92b3e7e817"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f7bd30a3cc6ccc7bf322f53f70c519e"></a><!-- doxytag: member="Element::sort" ref="a0f7bd30a3cc6ccc7bf322f53f70c519e" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a0f7bd30a3cc6ccc7bf322f53f70c519e">sort</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de tri. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#abe8962e32d89e253547b86838bb92af6">setQItemName</a> (string newName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">renomme le qItem de l'élément  <a href="#abe8962e32d89e253547b86838bb92af6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a3ae72125050877dcf627b15469ea6ea4">getContent</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesseur donnant le contenu du fichier physique correspondant à l'élément this.  <a href="#a3ae72125050877dcf627b15469ea6ea4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#af26ef4f390c0b0e22c6fd86ff7be0117">setContent</a> (string newContent)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesseur permettant une modification du contenu du fichier physique associé à l'élément this.  <a href="#af26ef4f390c0b0e22c6fd86ff7be0117"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ce83303f60b5f5b3d85e70ca58923fc"></a><!-- doxytag: member="Element::clear" ref="a7ce83303f60b5f5b3d85e70ca58923fc" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element.html#a7ce83303f60b5f5b3d85e70ca58923fc">clear</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Vide pour les éléments conteneurs (dossiers, projets) tous les sous éléments. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4203ec7d3254a849810ba3fe8e957d4c"></a><!-- doxytag: member="Element::parentPath" ref="a4203ec7d3254a849810ba3fe8e957d4c" args="" -->
@@ -219,9 +224,11 @@ Friends</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Méthode utilisé pour les éléments conteneurs (dossier, projet) qui applique la suppression récursive de l'élément à l'index i et de ses sous éléments. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname"></td><td></td></tr>
+    <tr><td class="paramname">i,:</td><td>i est l'index de l'élément à supprimer </td></tr>
   </table>
   </dd>
 </dl>
@@ -348,12 +355,15 @@ Friends</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Accesseur permettant d'obtenir le QStandardItem d'un élément. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">\return</td><td></td></tr>
+    <tr><td class="paramname">si</td><td>i = 0, on retourne le qItem lié à tous les qItem des sous éléments. Si i = 1 on retourne uniquement le qItem. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Un pointeur sur le QStandardItem recherché </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_folder.html#a71c34c87b7e558e833d5ce850a506f97">Folder</a>.</p>
 
@@ -498,13 +508,16 @@ Friends</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>permet le rafraichissement du dossier en renommant l'élément se trouvant à elementPosition </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">\param</td><td></td></tr>
+    <tr><td class="paramname">elementPosition,:</td><td>position de l'élément à renommer </td></tr>
+    <tr><td class="paramname">newName,:</td><td>nouveau nom de l'élément </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd></dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>0 si l'élément a été modifié correctement, autre sinon </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_folder.html#a5ed32bc216e9419d4f25bb2ff267c0f8">Folder</a>, and <a class="el" href="class_work_space.html#a5282679131836d3f59acbb8bc5fe6abe">WorkSpace</a>.</p>
 
@@ -629,9 +642,11 @@ Friends</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>renomme le qItem de l'élément </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname"></td><td></td></tr>
+    <tr><td class="paramname">le</td><td>nouveau nom du qItem </td></tr>
   </table>
   </dd>
 </dl>
@@ -685,7 +700,7 @@ Friends</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_element.html">Element</a>      </li>
-      <li class="footer">Generated on Tue Apr 24 2012 02:23:50 for WebShacke by&#160;
+      <li class="footer">Generated on Mon May 7 2012 15:27:37 for WebShacke by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

@@ -18,15 +18,43 @@ class Folder: public virtual Element{
 
 public:
     //Constructeur Destructeur
+    /*!
+    * \brief Constructeur de la classe Folder
+    * \param name : Nom de l'élément construit
+    * \param parentPath : Chemin du parent de l'élément construit
+    */
     Folder(string name = "", string parentPath = "");
+
+    /*!
+    * \brief Destructeur de la classe Folder
+    */
     virtual ~Folder();
+
     //Méthodes
-    virtual void addFile(File *file);//Ajoute un fichier au repertoire
-    virtual void addFolder(Folder *folder);//Ajoute un dossier au repertoire
-    virtual bool isEmpty();//Retourne vrai si le repertoire est vide, faux sinon
-    virtual void scan();//Scanne les dossiers et fichiers du repertoire
-    virtual void output(int prof);//Fonction de debbugage
-    virtual void sort();//Fonction qui tri dans l'ordre alphabétique les dossiers et fichiers
+    /*!
+    * \brief Pour ajouter un fichier au répertoire représenté par this
+    * \param file : Pointeur sur l'objet isntance de File représentant le fichier
+    */
+    virtual void addFile(File *file);
+
+    /*!
+    * \brief Pour ajouter un Dossier au répertoire représenté par this
+    * \param folder : Pointeur sur l'objet instance de Folder représentant le dossier
+    */
+    virtual void addFolder(Folder *folder);
+
+    /*!
+    * \brief Pour tester si le répertoire repéré par l'objet this est vide
+    * \return True si le répertoire repéré par l'objet this est vide, False sinon
+    */
+    virtual bool isEmpty();
+
+    /*!
+    * \brief Fonction de scan des dossiers et fichiers contenus dans le répertoire repéré par l'objet this
+    */
+    virtual void scan();
+    virtual void output(int prof);
+    virtual void sort();
     virtual void setName(string name);
     virtual void setParentPath(string parentPath);
     virtual Element* getElement(list<int>* accessList);
@@ -36,9 +64,32 @@ public:
     virtual void dropElement(int position);
     virtual int newFile(string fileName, string content="");
     virtual int newFolder(string folderName);
+
+    /*!
+    * \brief Donne la position du fichier filename dans la liste représentant les éléments
+    * de la treeview
+    * \param fileName : chaine de caractère représentant le nom du fichier à trouver
+    * \return Un entier correspondant à la position du fichier fileName dans la liste d'entiers représentant la liste des
+    * positions des éléments de la treeview
+    */
     virtual int findFilePosition(string fileName);
+
+    /*!
+    * \brief Donne la position du dossier foldername dans la liste représentant les éléments
+    * de la treeview
+    * \param folderName : chaine de caractère représentant le nom du dossier à trouver
+    * \return Un entier correspondant à la position du dosser folderName dans la liste d'entiers représentant la liste des
+    * positions des éléments de la treeview
+    */
     virtual int findFolderPosition(string folderName);
     virtual int renameElement(int elementPosition, string newName);
+
+    /*!
+    * \brief Donne le fichier repéré dans la treeview à partir de sa position dans la liste des positions des éléments
+    * dans la treeview
+    * \param position : position du fichier dans la liste des positions des éléments de la treeview
+    * \return L'objet File correspondant au fichier recherché
+    */
     virtual File getFileByPosition(int position);
     virtual void clear();
 
