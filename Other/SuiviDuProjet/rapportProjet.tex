@@ -521,7 +521,7 @@
 				diagrammes de cas d'utilisation que nous avions créés.\\
 				En effet, ces derniers nous donnaient un premier aperçu de l'approche à adopter pour traiter le sujet mais nous laissaient quand
 				même beaucoup de choix quant au schéma de fichiers à adopter. Notre application suivant bien sûr un développement orienté objet, 
-				nous avons desuite eu l'idée de traiter dossiers, projets et espaces de travails comme des instances de classes, pour finalement 
+				nous avons eu l'idée de traiter dossiers, projets et espaces de travails comme des instances de classes, pour finalement 
 				donner naissance (après quelques essais) au diagramme \ref{arbo}. \\
 				\begin{figure}[ht]
 					\begin{center}
@@ -539,10 +539,24 @@
 				Pour le reste, les classes Folder et File parlent d'elles-mêmes.
 			\end{section}
 			\begin{section}{Indentation}
-			"                                   																	"
-			"                                   																	"
-			"                                   																	"
-			"                                   																	"
+				Nous avons définis avec M. Meynard l'indentation automatique comme étant la capacité qu'a le programme à ajouter (ou retrancher)
+				un caractère de tabulation avant une ligne. Nous résolûmes de la mettre en place comme sur le diagramme \ref{guitare}.
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[height=13cm]{images/classesIndentation.png}
+						\caption{Classes d'indentation}
+						\label{guitare}
+					\end{center}
+				\end{figure}~\\
+
+				La classe mère \emph{Indenter} est une classe abstraite qui regroupera les méthodes communes à tout indenteur qui se respecte.\\
+				Elle est spécialisée par la classe \emph{AccoladeLanguageIndenter} qui, comme son nom l'indique s'occupera de l'indentation des
+				langages dont les blocs sont délimités par des accolades, en l'occurence le \gls{Php}, le \gls{JavaScript} et le \gls{Css}.\\
+				Ces trois langages possèderont chacun une classe d'indentation spécialisée.\\
+
+				Quant à la classe associée au \gls{Html}, comme celui-ci est langage un peu particulier car il fonctionne par balises, elle
+				spécialisera directement la classe \emph{Indenter}.
+
 			\end{section}
 			\begin{section}{\Gls{autocomplétion}}
 
@@ -834,9 +848,8 @@ Finalement le temps d'ouverture de ce workspace est tombé à environ une second
 					ligne.
 					\begin{figure}[h]
 						\begin{center}
-							\includegraphics[width=6cm]{images/screenAutocmpl.png}
-							\caption{L'autocomplétion en pratique}
-							\label{tabouret}
+							\includegraphics[width=8cm]{images/screenColoration.png}
+							\caption{La coloration en action en pratique}
 						\end{center}
 					\end{figure}~\\					
 				\end{subsection}
@@ -869,6 +882,28 @@ Finalement le temps d'ouverture de ce workspace est tombé à environ une second
 							\includegraphics[width=6cm]{images/screenAutocmpl.png}
 							\caption{L'autocomplétion en pratique}
 							\label{tabouret}
+						\end{center}
+					\end{figure}~\\
+				\end{subsection}
+				\begin{subsection}{Indentation}
+					L'implémentation de ce module ne fut pas une mince affaire, car qui veut indenter un morceau de code passe 
+					de préférence par une arborescence représentative dudit code. Ce qui nécessite la mise en place d'un \gls{parseur}.\\
+					Après nous être renseignés, notamment auprès de M. Meynard, nous prîme la décision de créer un analyseur basique. 
+					Celui-ci se chargera de lire le code, d'en extraire des mots importants (avec des \glspl{expression régulière})
+					et de décider en fonction de deux paramètres le niveau d'indentation de la ligne courante.\\
+					Ces paramètres sont:
+					\begin{itemize}
+						\item La profondeur d'indentation de la ligne précédente ;
+						\item La présence ou non de caractère spéciaux dans la ligne précédente (par exemple l'accolade ouvrante) ;
+					\end{itemize}~\\
+
+					Dès lors la fonction d'indentation ne fut plus qu'une formalité si l'on néglige les quelques heures à traquer les erreurs
+					telles que balise ouvrante et fermante sur la même ligne par exemple.
+
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=6cm]{images/indentBien.png}
+							\caption{Un code bien indenté par l'application}
 						\end{center}
 					\end{figure}~\\
 				\end{subsection}
