@@ -10,4 +10,4 @@ QRegExp CSSData::quotationRegex("\".*\"|\'.*\'");
 QRegExp CSSData::multilineCommentStartRegex("/\\*");
 QRegExp CSSData::multilineCommentEndRegex("\\*/");
 QRegExp CSSData::colorRegex("#[a-fA-F0-9]{6}");
-QRegExp CSSData::unitRegex("px\\b|em\\b|ex\\b|\%\\b|pt\\b|pc\\b|mm\\b|in\\b|cm\\b");
+QRegExp CSSData::unitRegex("px\\b|em\\b|ex\\b|\%|pt\\b|pc\\b|mm\\b|in\\b|cm\\b");
