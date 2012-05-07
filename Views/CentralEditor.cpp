@@ -21,7 +21,9 @@ CentralEditor::CentralEditor(QWidget *parent, string filePath, IndenterControlle
     newTab = false;
     this->setTabStopWidth(20);
     setupEditor();
-    QObject::connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(checkLanguage()));
+    if (!colorationLocked){
+        QObject::connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(checkLanguage()));
+    }
     QObject::connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(indent()));
 }
 
@@ -35,16 +37,20 @@ void CentralEditor::setupEditor()
     this->setFont(font);
 
    if (extension == "php"){
-    colorationPHP();
+        colorationPHP();
+        colorationLocked = false;
    }
    else if(extension == "html" || extension == "htm"){
-   colorationHTML();
+        colorationHTML();
+        colorationLocked = false;
    }
    else if(extension == "css"){
         colorationCSS();
+        colorationLocked = true;
    }
    else if(extension == "js"){
         colorationJavaScript();
+        colorationLocked = true;
    }
 }
 
