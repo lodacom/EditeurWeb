@@ -29,9 +29,9 @@ void CentralEditor::setupEditor()
 {
     QFont font;
     string extension = Tools::getExtension(filePath);
-    font.setFamily("Courier");
+    font.setFamily("Helvetica");
     font.setFixedPitch(true);
-    font.setPointSize(10);
+    font.setPointSize(12);
     this->setFont(font);
 
    if (extension == "php"){
