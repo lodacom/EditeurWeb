@@ -15,8 +15,16 @@
   */
 class Project : public virtual Folder{
 public:
-    //Constructeur Destructeur
+    /*!
+    * \brief Constructeur de la classe Project
+    * \param name : Nom de l'élément construit
+    * \param parentPath : Chemin du parent de l'élément construit
+    */
     Project(string name = "", string parentPath = "");
+
+    /*!
+    * \brief Destructeur de la classe Project
+    */
     virtual ~Project();
     virtual int getType();
     virtual void deleteElement();

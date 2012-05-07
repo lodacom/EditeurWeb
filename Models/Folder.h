@@ -39,7 +39,7 @@ public:
 
     /*!
     * \brief Pour ajouter un Dossier au répertoire représenté par this
-    * \param file : Pointeur sur l'objet instance de Folder représentant le dossier
+    * \param folder : Pointeur sur l'objet instance de Folder représentant le dossier
     */
     virtual void addFolder(Folder *folder);
 
@@ -66,11 +66,30 @@ public:
     virtual int newFolder(string folderName);
 
     /*!
-    *
+    * \brief Donne la position du fichier filename dans la liste représentant les éléments
+    * de la treeview
+    * \param fileName : chaine de caractère représentant le nom du fichier à trouver
+    * \return Un entier correspondant à la position du fichier fileName dans la liste d'entiers représentant la liste des
+    * positions des éléments de la treeview
     */
     virtual int findFilePosition(string fileName);
+
+    /*!
+    * \brief Donne la position du dossier foldername dans la liste représentant les éléments
+    * de la treeview
+    * \param folderName : chaine de caractère représentant le nom du dossier à trouver
+    * \return Un entier correspondant à la position du dosser folderName dans la liste d'entiers représentant la liste des
+    * positions des éléments de la treeview
+    */
     virtual int findFolderPosition(string folderName);
     virtual int renameElement(int elementPosition, string newName);
+
+    /*!
+    * \brief Donne le fichier repéré dans la treeview à partir de sa position dans la liste des positions des éléments
+    * dans la treeview
+    * \param position : position du fichier dans la liste des positions des éléments de la treeview
+    * \return L'objet File correspondant au fichier recherché
+    */
     virtual File getFileByPosition(int position);
     virtual void clear();
 

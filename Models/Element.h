@@ -93,6 +93,7 @@ public:
     /*!
     * \brief Accesseur permettant d'obtenir le QStandardItem d'un élément
     * \param si i = 0, on retourne le qItem lié à tous les qItem des sous éléments. Si i = 1 on retourne uniquement le qItem.
+    * \return Un pointeur sur le QStandardItem recherché
     */
     virtual QStandardItem* getQItem(int i = 0);
 
