@@ -729,7 +729,7 @@
 
 				\begin{figure}[ht]
 					\begin{center}
-						\includegraphics[width=14cm]{images/journal.jpg}
+						\includegraphics[width=18cm]{images/journal.jpg}
 						\caption{Un extrait du journal de bord}
 						\label{jdb}
 					\end{center}
@@ -788,11 +788,55 @@
 				(relatif à la racine de l'arborescence) du fichier qu'il représente.S'ensuit un léger jeux de concaténations, pour, dans le cas du scan de l'espace de travail, créer le chemin d'un éventuel fichier
 				de configuration ".pro", qui s'il est trouvé engendrera l'ajout à un vecteur de projets du dossier directement parent dudit fichier.
 				Dans ce cas de figure, le scan du projet ajouté est alors lancé, et celui-ci va alors ajouter tous les fichiers et dossiers qu'il contient à ses vecteurs respectifs \emph{file} et \emph{folders}.\\
-				Ces fonctions, %% je finirai en rentrant du taff
+
+
+(À la suite de ma dernière phrases (Mickael))
+Une fois le workspace choisi, une vue sur l'arborescence des projets est disponible.
+A partir de cet arborescence l'utilisateur peut enfin interagir avec.
+Plusieurs intéractions sont disponibles avec les éléments de la vue.
+Le double clic entraîne l'ouverture du fichier ou l'ouverture/fermeture d'un dossier/projet.
+Le clic droit quand à lui ouvre un menu déroulant, dans lequel on retrouve les intéractions communes : déplacement, copie, renommage, ouverture, suppression, ajout de fichier, de dossier etc...
+
+Nous allons maintenant détailler comment ces intéractions sont gérées.
+Premièrement, lors de la sélection du workspace, on instancie un controleur de la classe WorkSpaceTreeController faisant la liaison entre le modèle et la vue. Ce controleur instancie également un objet de la classe WorkSpace. Lorsqu'une intéraction a lieu avec un élément, un index est donné à ce controleur, ainsi que la méthode à appliquer au modèle. L'index est un objet de classe QModelIndex donné par les classes de Qt c'est à partir de lui qu'on va récupérer l'élément visé dans le modèle. Le controleur s'occupe de transformer l'index en liste. Cette liste est donc le « chemin » pour trouver l'élément.
+Cette liste est donnée au workspace.
+Et récursivement l'algorithme suivant est appliquée :
+L'élément qui reçoit la liste, vérifie que la liste est de taille supérieure à 1.
+Si la taille est supérieure à 1 : l'élément retire le premier index de cette liste, et la donne à l'élément correspondant à l'index.
+Si la taille est égale à 1 : l'élément retire le dernier index et ordonne à l'élément correspondant à cet index d'éffectuer telle action.
+
+Chargement de l'image intéractions
+
+(Met ça à la suite je ferai une transition!)
+
+En supposant le fait, que des utilisateurs viendrait à utiliser notre application pour gérer un nombre important de sites web, nous avons étudié la réaction de notre logiciel face à un nombre important de fichiers.
+Pour cela, nous avons importé environ 16000 fichiers dans un workspace.
+Testé l'ouverture de celui-ci. Pour une telle base, le temps pour l'ouverture était de l'ordre de 6 à 7 secondes, sur un PC équipé d'un processeur i3.
+Mais le plus inquiétant n'était pas vraiment cette attente.
+En effet en étudiant l'occupation mémoire de l'application, nous nous sommes aperçus grâce à la commande top, qu'a chaque réouverture du même workspace, l'occupation en mémoire augmentait de 2 à 3% sur une mémoire d'un giga.
+Nous avons donc utilisé un outil conçu pour corriger ces fuites : Valgrind.
+L'analyse de notre logiciel avec cet outil nous a permis de trouver plusieurs mauvaises utilisations d'allocations et libérations mémoires.
+En effet nous nous sommes aperçus que des allocations mémoires se faisaient sur  un même objet dans une boucle, sans jamais libérer ce dernier.
+Valgrind nous a fait remarqué que sur certains objets, ou pointeurs, des confusions entre les libérateurs free, delete et delete[] étaient présentes, conduisant ainsi à une mauvaise libération de la mémoire.
+Finalement les fuites se sont fortement réduites passant à 0.1%. Malheureusement, certaines ne sont pas inhérente à notre code, Valgrind notant des fuites dans des appels de Qt. Nous ne sommes pas parvenus à atteindre le 0%.
+En ce qui concerne le temps de chargement, nous nous sommes aperçus qu'à chaque création d'un élément (fichier, dossier, projet etc...) une icône était créée pour ce dernier.
+Nous avons donc choisi d'insérer dans la classe Tools qui contient un certain nombre d'éléments statiques, de charger toutes les icônes du projet une fois statiquement, et de lier ces icônes aux éléments.
+Finalement le temps d'ouverture de ce workspace est tombé à environ une seconde. Ce qui est nettement mieux.
+
 
 			\end{section}
 			\begin{section}{Fonctionnalités}
 				\begin{subsection}{Coloration}
+					La coloration est un principe simple et rapide en mettre en oeuvre, ce fut la première fonctionnalité à être implémentée.\\
+					Le principal problème est de gérer une coloration sur plusieurs lignes étant donné que l'analyse du texte se fait ligne par
+					ligne.
+					\begin{figure}[h]
+						\begin{center}
+							\includegraphics[width=6cm]{images/screenAutocmpl.png}
+							\caption{L'autocomplétion en pratique}
+							\label{tabouret}
+						\end{center}
+					\end{figure}~\\					
 				\end{subsection}
 				\begin{subsection}{\Gls{autocomplétion}}
 				\label{autocompl}
@@ -832,39 +876,13 @@
 				Il fallait non seulement comprendre les concepts de programmation d'interface graphique mais en même temps mettre
 				en application lesdits concepts.\\
 
-				Nous rencontrâmes donc plusieurs problèmes de synchronisation car les différents membres du groupe 
+				Nous rencontrâmes donc plusieurs problèmes de synchronisation car les différents membres du groupe n'étaient pas toujours
+				d'accord sur des détails techniques.\\
 
+				Finalement, les trois personnes chargées de l'interface conçurent un modèle simple basé sur la stratégie de l'éparpillement.\\
+				Chaque élément de l'interface est séparé des autres dans une classe spécialisée avant d'être regroupés dans la \emph{MainWindow}.\\
 
-
-			Problèmes rencontrés : 
-	Par Hamza.
-	•	On a rencontré des difficultés à rassembler le travail qu’a fait 
-Chaque membre du groupe mais qui ont étaient réglées après plusieurs réunions et avec  l'aide du groupe chargé de la réalisation du système (Joakim et Mickael) qui nous a aidé à progresser
-Dans notre travail et aboutir aux contraintes de notre mission.
-(Exemple : Utilisation de nom de variable différent…)
-
-	•	On a rencontré des problèmes de lecture et navigation  dans la documentation   qui n’est disponible qu’en anglais mais qui ont étaient résolues a l’aide   des petites recherches sur les forums et sites et avec beaucoup d’efforts a lire l’anglais même si nous y sommes allergiques. 
-
-Par zaydane et issam.
-
-1/On n'a pas pu implémenter l'ensemble des éléments utilisés dans l'interface au sein d'une seule classe (MainWindow), par exemple : la TreeView qui se trouve à gauche est qui s'occupe du WorkSpace ainsi que EditorTab qui contient WebView.
-2/Lors de l'execution du programme au début, les éléments de l'interface c'est à dire la zonne de texte l'emplacement du TreeView et le menu ont été éparpeillé dans l'ecran et chacune
-d'eux comme une propre fenetre.
-3/ Le travail sur la zonne de texte pour générer plusieurs zonne de textes succéssive en meme
-temps.
-
-
-
-Solutions :
-1/ En faisant appel dans la classe MainWindow aux autres classes comme TabEditor et
-CentralEditor on a pu sortir du conflit de tout faire dans MainWindow sans avoir une
-interface complète (qui contient tout les éléments).
-2/Mettre toutes les fonctions principales d'affichage comme (createMenu() ,createToolbars …)
-dans une fonction init() était la solution pour rassembler tous les éléments de l'interface dans
-une seule fenetre.
-3/L'appel à la fonction QmdiArea nous a permit de travailler sur plusieurs zonnes de textes en
-meme temps au lieu d'une seule générée par la Qtextedit comme avant.
-
+				Il est possible d'admirer le résultat du travail du groupe \emph{Interface} dans le chapitre suivant.
 			\end{section}
 		\end{chapter}
 		\begin{chapter}{Résultat}
