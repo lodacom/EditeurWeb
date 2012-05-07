@@ -1,12 +1,12 @@
 #include"Tools.h"
 
 void Tools::init(){
-    htmlIcon = new QIcon("Pics/File-HTML-icon.png");
-    jsIcon = new QIcon("Pics/File-JS-icon.png");
-    phpIcon = new QIcon("Pics/File-PHP-icon.png");
-    cssIcon = new QIcon("Pics/File-CSS-icon.png");
-    fileIcon = new QIcon("Pics/File-icon.png");
-    projectIcon = new QIcon("Pics/Project-icon.png");
+    htmlIcon = new QIcon(":/Pics/File-HTML-icon.png");
+    jsIcon = new QIcon(":/Pics/File-JS-icon.png");
+    phpIcon = new QIcon(":/Pics/File-PHP-icon.png");
+    cssIcon = new QIcon(":/Pics/File-CSS-icon.png");
+    fileIcon = new QIcon(":/Pics/File-icon.png");
+    projectIcon = new QIcon(":/Pics/Project-icon.png");
 }
 
 string Tools::getExtension(const string filePath){
