@@ -579,6 +579,25 @@
 
 			\end{section}
 			\begin{section}{Classes graphiques}
+				La partie graphique fût pour nous une nouveauté puisqu'aucun d'entre nous n'avait jusqu'alors participé à un projet d'une si grande
+				ampleur avec une interface graphique. Autant dire que les débats furent houleux, chacun ayant sa propre vision des choses.\\
+				Et une fois de plus, M. Meynard trancha.\\
+
+				L'interface sera organisée comme sur le diagramme \ref{chauffage}.
+
+				\begin{figure}[ht]
+					\begin{center}
+						\includegraphics[width=12cm]{images/classesGraphiques.png}
+						\caption{Classes de l'interface graphique}
+						\label{chauffage}
+					\end{center}
+				\end{figure}~\\
+
+				Le principe est d'avoir un grand conteneur qui sera la classe \emph{MainWindow}. Ce qui a le double avantage de centraliser
+				tout ce qui concerne l'interface au même endroit et de respecter les conventions standard \gls{Qt}.
+
+
+
 			Présentation des classes utilisées pour l’interface.
 
 CentralEditor :
@@ -799,6 +818,36 @@ d’édition des fichiers PHP, CSS, HTML, et JavaScript, son workspace  et son W
 				\end{subsection}
 			\end{section}
 			\begin{section}{Interface}
+
+			Problèmes rencontrés : 
+	Par Hamza.
+	•	On a rencontré des difficultés à rassembler le travail qu’a fait 
+Chaque membre du groupe mais qui ont étaient réglées après plusieurs réunions et avec  l'aide du groupe chargé de la réalisation du système (Joakim et Mickael) qui nous a aidé à progresser
+Dans notre travail et aboutir aux contraintes de notre mission.
+(Exemple : Utilisation de nom de variable différent…)
+
+	•	On a rencontré des problèmes de lecture et navigation  dans la documentation   qui n’est disponible qu’en anglais mais qui ont étaient résolues a l’aide   des petites recherches sur les forums et sites et avec beaucoup d’efforts a lire l’anglais même si nous y sommes allergiques. 
+
+Par zaydane et issam.
+
+1/On n'a pas pu implémenter l'ensemble des éléments utilisés dans l'interface au sein d'une seule classe (MainWindow), par exemple : la TreeView qui se trouve à gauche est qui s'occupe du WorkSpace ainsi que EditorTab qui contient WebView.
+2/Lors de l'execution du programme au début, les éléments de l'interface c'est à dire la zonne de texte l'emplacement du TreeView et le menu ont été éparpeillé dans l'ecran et chacune
+d'eux comme une propre fenetre.
+3/ Le travail sur la zonne de texte pour générer plusieurs zonne de textes succéssive en meme
+temps.
+
+
+
+Solutions :
+1/ En faisant appel dans la classe MainWindow aux autres classes comme TabEditor et
+CentralEditor on a pu sortir du conflit de tout faire dans MainWindow sans avoir une
+interface complète (qui contient tout les éléments).
+2/Mettre toutes les fonctions principales d'affichage comme (createMenu() ,createToolbars …)
+dans une fonction init() était la solution pour rassembler tous les éléments de l'interface dans
+une seule fenetre.
+3/L'appel à la fonction QmdiArea nous a permit de travailler sur plusieurs zonnes de textes en
+meme temps au lieu d'une seule générée par la Qtextedit comme avant.
+
 			\end{section}
 		\end{chapter}
 		\begin{chapter}{Résultat}
