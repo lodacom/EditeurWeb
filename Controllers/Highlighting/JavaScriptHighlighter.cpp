@@ -11,10 +11,12 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent) : Highlighte
 
     // Les mots clé.
     keywordFormat.setForeground(Qt::darkMagenta);
+    keywordFormat.setFontWeight(QFont::Bold);
     addRule(JavaScriptData::keywordRegex, keywordFormat);
 
     // Les mots clé de déclaration.
     keywordDeclarationFormat.setForeground(Qt::darkBlue);
+    keywordDeclarationFormat.setFontWeight(QFont::Bold);
     addRule(JavaScriptData::keywordDeclarationRegex, keywordDeclarationFormat);
 
     // Les mots réservés.
