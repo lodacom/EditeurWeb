@@ -89,24 +89,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="keyword">public</span>:
 <a name="l00018"></a>00018     <span class="comment">//Constructeur Destructeur</span>
-<a name="l00019"></a>00019     <a class="code" href="class_file.html" title="Représente chaque fichier de l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;utilisateur.">File</a>(<span class="keywordtype">string</span> name = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">string</span> parentPath = <span class="stringliteral">&quot;&quot;</span>);
-<a name="l00020"></a>00020     <span class="keyword">virtual</span> ~<a class="code" href="class_file.html" title="Représente chaque fichier de l&amp;#39;arborescence d&amp;#39;espace de travail de l&amp;#39;utilisateur.">File</a>();
-<a name="l00021"></a>00021     <span class="comment">//Accesseurs</span>
-<a name="l00022"></a>00022     <span class="keyword">virtual</span> <span class="keywordtype">string</span> getExtension();
-<a name="l00023"></a>00023     <span class="comment">//Méthodes</span>
-<a name="l00024"></a>00024     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_file.html#a43d0e1af3412f6b04b0fde9af3cef442" title="Méthode permettant de savoir si l&amp;#39;élément est un File, un Folder, un Project ou un WorkSpace...">getType</a>();
-<a name="l00025"></a>00025 <span class="keyword">private</span>:
-<a name="l00026"></a>00026     <span class="comment">//Attributs</span>
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028 };
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030 <span class="preprocessor">#endif // FILE_H</span>
+<a name="l00024"></a>00024 <span class="comment"></span>    <a class="code" href="class_file.html#a5e803097bed4b86a2169a882b204bc03" title="Constructeur de la classe File.">File</a>(<span class="keywordtype">string</span> name = <span class="stringliteral">&quot;&quot;</span>, <span class="keywordtype">string</span> parentPath = <span class="stringliteral">&quot;&quot;</span>);
+<a name="l00025"></a>00025 
+<a name="l00029"></a>00029     <span class="keyword">virtual</span> <a class="code" href="class_file.html#ac704ebdf5f57d7a1c5ddf409d797fb69" title="Destructeur de la classe File.">~File</a>();
+<a name="l00030"></a>00030     <span class="comment">//Accesseurs</span>
+<a name="l00031"></a>00031 
+<a name="l00036"></a>00036     <span class="keyword">virtual</span> <span class="keywordtype">string</span> <a class="code" href="class_file.html#ad54ae98876dfbc56c75c8a83c9cfb149" title="Accesseur permettant d&amp;#39;obtenir l&amp;#39;extension du fichier.">getExtension</a>();
+<a name="l00037"></a>00037     <span class="comment">//Méthodes</span>
+<a name="l00038"></a>00038     <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_file.html#a43d0e1af3412f6b04b0fde9af3cef442" title="Méthode permettant de savoir si l&amp;#39;élément est un File, un Folder, un Project ou un WorkSpace...">getType</a>();
+<a name="l00039"></a>00039 <span class="keyword">private</span>:
+<a name="l00040"></a>00040     <span class="comment">//Attributs</span>
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 };
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="preprocessor">#endif // FILE_H</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="_file_8h.html">File.h</a>      </li>
-      <li class="footer">Generated on Tue Apr 24 2012 02:23:49 for WebShacke by&#160;
+      <li class="footer">Generated on Mon May 7 2012 15:27:36 for WebShacke by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
