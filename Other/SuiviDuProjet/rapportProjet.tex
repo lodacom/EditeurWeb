@@ -140,6 +140,13 @@
 		écrit dans une langue naturelle. Un analyseur syntaxique (parser, en anglais) est un programme informatique qui réalise cette tâche}
 	}
 
+	\newglossaryentry{MDI}
+	{
+		name={MDI},
+		description={En Informatique, Multiple Document Interface ou MDI désigne l'organisation de l'interface graphique d'une application où des
+		fenêtres « parentes » contiennent en leur sein des fenêtres enfants. Le cas typique d'application consiste en la fenêtre principale de l'application, avec un menu et des barres d'outils, contenant une (sous-)fenêtre par fichier ou projet ouvert}
+	}
+
 	\begin{titlepage}
 		\center{\includegraphics[width=5cm]{images/logoUM2.png}}\\ 
 		~\\
@@ -509,6 +516,7 @@
 				Une présentation plus détaillée se trouve dans l'annexe technique à la page \pageref{annexe}.
 			\end{section}
 			\begin{section}{Système de fichiers}
+			\label{classSystem}
 				La réflexion autour de l'organisation des fichiers gérés par l'application fût longue, bien que quelque peu avancée par les
 				diagrammes de cas d'utilisation que nous avions créés.\\
 				En effet, ces derniers nous donnaient un premier aperçu de l'approche à adopter pour traiter le sujet mais nous laissaient quand
@@ -594,29 +602,23 @@
 				\end{figure}~\\
 
 				Le principe est d'avoir un grand conteneur qui sera la classe \emph{MainWindow}. Ce qui a le double avantage de centraliser
-				tout ce qui concerne l'interface au même endroit et de respecter les conventions standard \gls{Qt}.
+				tout ce qui concerne l'interface au même endroit et de respecter les conventions standard \gls{Qt}.\\
 
 
+				Toutes les relations présentes dans le diagramme sont des compositions, on observe donc que le \emph{MainWindow}
+				(fenêtre principale) est composée de \emph{QDockWidget}, de \emph{QMenu} et d'un \emph{QMdiArea} respectivement
+				des barres latérales, des menus et des \gls{MDI} (espaces multidocuments).\\
 
-			Présentation des classes utilisées pour l’interface.
+				On retrouve dans notre barre latérale un \emph{WorkSpaceTree} associé au \emph{WorkSpace} décrit dans la partie \ref{classSystem}
+				et qui contiendra une arborescence du ou des projets ouvert(s).\\
 
-CentralEditor :
-Permet d'obtenir un onglet au centre de l'interface. Cet onglet possède les fonctionnalités d'auto-
-Complétion et de coloration syntaxique en fonction du langage choisi.
-Elle permet aussi la création d'un onglet, le Lancement de la complétion, la création d'un nouveau
-Fichier avec un nom par défaut, charger un fichier ouvert et de sauvegarder le fichier courant.
-WorkSpaceTree :
-Permet la sélection d'un espace de travail et de le parcourir, ensuite afficher dans la partie gauche
-Tous les fichiers et les dossiers qu'il contient. Aussi on y trouve la possibilité de renommer,
-Supprimer, copier et de coller un fichier ainsi qu'un dossier et d'ajouter un nouveau fichier ou projet
-à partir du TreeView.
-EditorTab :
-C'est la partie droite de l'interface qui contient TreeWidget qui permet d'afficher l'arborescence du
-fichier ouvert, ainsi que WebView qui permet à son tour de visualiser la page HTML au fur et à
-mesure que la rédaction du code.
-MainWindow :
-Permet d’obtenir ou définir  la fenêtre principale de l'application  avec son menu, sa zone 
-d’édition des fichiers PHP, CSS, HTML, et JavaScript, son workspace  et son WebView.
+				Le \emph{QMenu} sera dédié à des menus classiques avec sous-menus.\\
+
+				Quant au \emph{QMdiArea}, il accueillira un ou plusieurs \emph{CentralEditor}, l'éditeur de texte dans lequel seront appliquées
+				toutes les règles de formatages prévues.\\
+
+				Il est bon de préciser que dans le diagramme \ref{chauffage}, les classes dont le nom estpréfixé par la lettre \emph{Q}
+				sont des classes de \gls{Qt}, pour les autres, nous en seront les auteurs.
 			\end{section}
 		\end{chapter}
 		\begin{chapter}{Organisation du code : le modèle MVC}
@@ -818,6 +820,13 @@ d’édition des fichiers PHP, CSS, HTML, et JavaScript, son workspace  et son W
 				\end{subsection}
 			\end{section}
 			\begin{section}{Interface}
+				Le principal inconvénient concernant la mise en oeuvre de l'interface fut l'apprentissage de la documentation.\\
+				Il fallait non seulement comprendre les concepts de programmation d'interface graphique mais en même temps mettre
+				en application lesdits concepts.\\
+
+				Nous rencontrâmes donc plusieurs problèmes de synchronisation car les différents membres du groupe 
+
+
 
 			Problèmes rencontrés : 
 	Par Hamza.
@@ -889,7 +898,7 @@ meme temps au lieu d'une seule générée par la Qtextedit comme avant.
 			Dans le tableau \ref{raisin}, sont rassemblées toutes les spécifications du cahier des charges (colonne de droite) et il est
 			précisé si notre application possède ou non ces propriétés.\\
 			\begin{table}[h]
-			\caption{\label{raisin} Fonctionnalités spéciales dans les éditeurs étudiés}
+			\caption{\label{raisin} Comparatif avec le cahier des charges}
 			\centering
 				\begin{tabular}{|c||c|} % c signifie center, le texte de chaque colonne sera donc centré.
 				  \hline
@@ -1134,3 +1143,5 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
 		très professionnelle ce qui nous a beaucoup aidé.
 	\end{thebibliography}
 \end{document}
+
+
