@@ -1,3 +1,8 @@
+/*!
+  *\file Tools.h
+  *\brief Fichier d'en-tête de la classe Tools
+  *\author Divet
+  */
 #ifndef TOOLS_H
 #define TOOLS_H
 #include <string>
