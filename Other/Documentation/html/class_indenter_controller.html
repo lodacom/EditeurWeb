@@ -86,25 +86,90 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="IndenterController" -->
+<p>Classe controleur présente dans les central Editor, elle fait le lien avec les différents indenteurs.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_indenter_controller_8h_source.html">IndenterController.h</a>&gt;</code></p>
+
 <p><a href="class_indenter_controller-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48c54aaabad14c51e7f618d1b602d54b"></a><!-- doxytag: member="IndenterController::indentDetermin" ref="a48c54aaabad14c51e7f618d1b602d54b" args="(QString line)" -->
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>indentDetermin</b> (QString line)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3ae55b22909355cef6537670608f28c"></a><!-- doxytag: member="IndenterController::setLanguage" ref="aa3ae55b22909355cef6537670608f28c" args="(int language)" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setLanguage</b> (int language)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d1a79fbcd661af95daccbec9cec22fd"></a><!-- doxytag: member="IndenterController::IndenterController" ref="a3d1a79fbcd661af95daccbec9cec22fd" args="()" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indenter_controller.html#a3d1a79fbcd661af95daccbec9cec22fd">IndenterController</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fb865a91b91856cfbbdc5a26ae4b376"></a><!-- doxytag: member="IndenterController::~IndenterController" ref="a1fb865a91b91856cfbbdc5a26ae4b376" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indenter_controller.html#a1fb865a91b91856cfbbdc5a26ae4b376">~IndenterController</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indenter_controller.html#a48c54aaabad14c51e7f618d1b602d54b">indentDetermin</a> (QString line)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode permettant selon la ligne passée en paramètre de savoir si l'on indente ou non.  <a href="#a48c54aaabad14c51e7f618d1b602d54b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_indenter_controller.html#aa3ae55b22909355cef6537670608f28c">setLanguage</a> (int language)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode permettant de spécifier au controleur le langage courant.  <a href="#aa3ae55b22909355cef6537670608f28c"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Classe controleur présente dans les central Editor, elle fait le lien avec les différents indenteurs. </p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a48c54aaabad14c51e7f618d1b602d54b"></a><!-- doxytag: member="IndenterController::indentDetermin" ref="a48c54aaabad14c51e7f618d1b602d54b" args="(QString line)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int IndenterController::indentDetermin </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Méthode permettant selon la ligne passée en paramètre de savoir si l'on indente ou non. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line,:</td><td>ligne passée en paramètre </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>retourne -1 si il faut enlever une tabulation sur la ligne actuelle, 1 s'il faut en rajouter une à la suivante, et 0 lorsqu'on doit laissé l'indentation telle qu'elle. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa3ae55b22909355cef6537670608f28c"></a><!-- doxytag: member="IndenterController::setLanguage" ref="aa3ae55b22909355cef6537670608f28c" args="(int language)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IndenterController::setLanguage </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>language</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Méthode permettant de spécifier au controleur le langage courant. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">language,:</td><td>entier définissant le language, correspondant à une des constantes définies dans cette classe. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>EditeurWeb/Controllers/<a class="el" href="_indenter_controller_8h_source.html">IndenterController.h</a></li>
-<li>EditeurWeb/Controllers/IndenterController.cpp</li>
+<li>Controllers/<a class="el" href="_indenter_controller_8h_source.html">IndenterController.h</a></li>
+<li>Controllers/IndenterController.cpp</li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_indenter_controller.html">IndenterController</a>      </li>
-      <li class="footer">Generated on Mon May 7 2012 15:27:37 for WebShacke by&#160;
+      <li class="footer">Generated on Tue May 8 2012 19:00:21 for WebShacke by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

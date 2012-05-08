@@ -85,24 +85,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>HtmlIndenter Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="HtmlIndenter" -->
+<!-- doxytag: class="HtmlIndenter" --><!-- doxytag: inherits="Indenter" -->
+<p>Classe d'indentation, spécifique au language html.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_html_indenter_8h_source.html">HtmlIndenter.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for HtmlIndenter:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_html_indenter.png" usemap="#HtmlIndenter_map" alt=""/>
+  <map id="HtmlIndenter_map" name="HtmlIndenter_map">
+<area href="class_indenter.html" alt="Indenter" shape="rect" coords="0,0,82,24"/>
+</map>
+ </div></div>
+
 <p><a href="class_html_indenter-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a241a3d6c7b3cfa7c82097a39ad191a1a"></a><!-- doxytag: member="HtmlIndenter::indentDetermin" ref="a241a3d6c7b3cfa7c82097a39ad191a1a" args="(QString line)" -->
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>indentDetermin</b> (QString line)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_html_indenter.html#a241a3d6c7b3cfa7c82097a39ad191a1a">indentDetermin</a> (QString line)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode permettant selon la ligne passée en paramètre de savoir si l'on indente ou non.  <a href="#a241a3d6c7b3cfa7c82097a39ad191a1a"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Classe d'indentation, spécifique au language html. </p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a241a3d6c7b3cfa7c82097a39ad191a1a"></a><!-- doxytag: member="HtmlIndenter::indentDetermin" ref="a241a3d6c7b3cfa7c82097a39ad191a1a" args="(QString line)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int HtmlIndenter::indentDetermin </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Méthode permettant selon la ligne passée en paramètre de savoir si l'on indente ou non. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line,:</td><td>ligne passée en paramètre </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>retourne -1 si il faut enlever une tabulation sur la ligne actuelle, 1 s'il faut en rajouter une à la suivante, et 0 lorsqu'on doit laissé l'indentation telle qu'elle. </dd></dl>
+
+<p>Implements <a class="el" href="class_indenter.html#a83ba25c3a17d58befb6f202b6d468933">Indenter</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>EditeurWeb/Models/<a class="el" href="_html_indenter_8h_source.html">HtmlIndenter.h</a></li>
-<li>EditeurWeb/Models/HtmlIndenter.cpp</li>
+<li>Models/<a class="el" href="_html_indenter_8h_source.html">HtmlIndenter.h</a></li>
+<li>Models/HtmlIndenter.cpp</li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_html_indenter.html">HtmlIndenter</a>      </li>
-      <li class="footer">Generated on Mon May 7 2012 15:27:37 for WebShacke by&#160;
+      <li class="footer">Generated on Tue May 8 2012 19:00:20 for WebShacke by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

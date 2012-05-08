@@ -85,13 +85,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>PhpIndenter Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="PhpIndenter" --><!-- doxytag: inherits="AccoladeLanguageIndenter" --><div class="dynheader">
+<!-- doxytag: class="PhpIndenter" --><!-- doxytag: inherits="AccoladeLanguageIndenter" -->
+<p>Classe d'indentation, spécifique au language php.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_php_indenter_8h_source.html">PhpIndenter.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for PhpIndenter:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_php_indenter.png" usemap="#PhpIndenter_map" alt=""/>
   <map id="PhpIndenter_map" name="PhpIndenter_map">
-<area href="class_accolade_language_indenter.html" alt="AccoladeLanguageIndenter" shape="rect" coords="0,0,168,24"/>
+<area href="class_accolade_language_indenter.html" alt="AccoladeLanguageIndenter" shape="rect" coords="0,56,168,80"/>
+<area href="class_indenter.html" alt="Indenter" shape="rect" coords="0,0,168,24"/>
 </map>
  </div></div>
 
@@ -99,19 +105,50 @@ Inheritance diagram for PhpIndenter:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace52c47f3f07e883d452039173046871"></a><!-- doxytag: member="PhpIndenter::indentDetermin" ref="ace52c47f3f07e883d452039173046871" args="(QString line)" -->
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>indentDetermin</b> (QString line)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_php_indenter.html#ace52c47f3f07e883d452039173046871">indentDetermin</a> (QString line)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode permettant selon la ligne passée en paramètre de savoir si l'on indente ou non.  <a href="#ace52c47f3f07e883d452039173046871"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Classe d'indentation, spécifique au language php. </p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ace52c47f3f07e883d452039173046871"></a><!-- doxytag: member="PhpIndenter::indentDetermin" ref="ace52c47f3f07e883d452039173046871" args="(QString line)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PhpIndenter::indentDetermin </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Méthode permettant selon la ligne passée en paramètre de savoir si l'on indente ou non. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line,:</td><td>ligne passée en paramètre </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>retourne -1 si il faut enlever une tabulation sur la ligne actuelle, 1 s'il faut en rajouter une à la suivante, et 0 lorsqu'on doit laissé l'indentation telle qu'elle. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_accolade_language_indenter.html#a645e383a531d79b21c8b0d05e1894bcc">AccoladeLanguageIndenter</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>EditeurWeb/Models/<a class="el" href="_php_indenter_8h_source.html">PhpIndenter.h</a></li>
-<li>EditeurWeb/Models/PhpIndenter.cpp</li>
+<li>Models/<a class="el" href="_php_indenter_8h_source.html">PhpIndenter.h</a></li>
+<li>Models/PhpIndenter.cpp</li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="class_php_indenter.html">PhpIndenter</a>      </li>
-      <li class="footer">Generated on Mon May 7 2012 15:27:38 for WebShacke by&#160;
+      <li class="footer">Generated on Tue May 8 2012 19:00:21 for WebShacke by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

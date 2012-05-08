@@ -84,12 +84,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="textblock">Here are the classes, structs, unions and interfaces with brief descriptions:</div><table>
-  <tr><td class="indexkey"><a class="el" href="class_accolade_language_indenter.html">AccoladeLanguageIndenter</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_accolade_language_indenter.html">AccoladeLanguageIndenter</a></td><td class="indexvalue">Classe d'indentation, regroupant les languages à accolades </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_centraleditor.html">Centraleditor</a></td><td class="indexvalue">Permet d'obtenir un onglet au centre de l'interface. Cet onglet possède les fonctionnalités d'auto-completion et de coloration syntaxique en fonction du langage choisi </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_central_editor.html">CentralEditor</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_css_data.html">CssData</a></td><td class="indexvalue">Liste d'attributs statiques référençant les mots clés du langage css sous forme d'expressions régulières </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_c_s_s_data.html">CSSData</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_c_s_s_highlighter.html">CSSHighlighter</a></td><td class="indexvalue">Hérite des méthodes de la classe <a class="el" href="class_highlighter.html" title="On travaille avec des formats, chaque type de mot reconnaissable aura son propre format (format mot-c...">Highlighter</a>, classe de paramétrage pour spécialiser la coloration du CSS </td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_css_indenter.html">CssIndenter</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_css_indenter.html">CssIndenter</a></td><td class="indexvalue">Classe d'indentation, spécifique au language css </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_editor_tab.html">EditorTab</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_element.html">Element</a></td><td class="indexvalue">Regroupe l'ensemble des méthodes, attributs et constantes qui sont communs à tous les "fils" <a class="el" href="class_folder.html" title="Représente chaque dossier de l&#39;arborescence d&#39;espace de travail de l&#39;utilisateur, elle stocke les fichiers et dossiers qui la composent dans des vecteurs.">Folder</a>, <a class="el" href="class_file.html" title="Représente chaque fichier de l&#39;arborescence d&#39;espace de travail de l&#39;utilisateur.">File</a> et <a class="el" href="class_project.html" title="Représente les dossiers de l&#39;arborescence d&#39;espace de travail de l&#39;utilisateur qui sont l...">Project</a> </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_file.html">File</a></td><td class="indexvalue">Représente chaque fichier de l'arborescence d'espace de travail de l'utilisateur </td></tr>
@@ -98,21 +99,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr><td class="indexkey"><a class="el" href="struct_highlighting_rule.html">HighlightingRule</a></td><td class="indexvalue">Une simple paire d'un motif et d'un format. L'objectif est de pouvoir enregistrer pour chaque patron (sous forme d'expression régulière) un format à appliquer </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_html_data.html">HtmlData</a></td><td class="indexvalue">Liste d'attributs statiques référençant les mots clés du langage html sous forme d'expressions régulières </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_html_highlighter.html">HtmlHighlighter</a></td><td class="indexvalue">Classe de coloration du langage Html. Le JavaScript inclus et le Css inclus sont pris en charges par les classes <a class="el" href="class_java_script_highlighter.html" title="Hérite des méthodes de la classe Highlighter, cette classe se résume à une classe de paramétrage pour...">JavaScriptHighlighter</a> et CssHighlighter </td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_html_indenter.html">HtmlIndenter</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_html_tree_widget.html">HtmlTreeWidget</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_indenter_controller.html">IndenterController</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_html_indenter.html">HtmlIndenter</a></td><td class="indexvalue">Classe d'indentation, spécifique au language html </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_html_tree_widget.html">HtmlTreeWidget</a></td><td class="indexvalue">Classe graphique générée par QtDesigner </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_ui_1_1_html_tree_widget.html">Ui::HtmlTreeWidget</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_indenter.html">Indenter</a></td><td class="indexvalue">Classe abstraite, définissant la méthode indentDetermin commune à toutes les classes dérivant d'Indenter </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_indenter_controller.html">IndenterController</a></td><td class="indexvalue">Classe controleur présente dans les central Editor, elle fait le lien avec les différents indenteurs </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_java_script_data.html">JavaScriptData</a></td><td class="indexvalue">Liste d'attributs statiques référençant les mots clés du langage JavaScript sous forme d'expressions régulières </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_java_script_highlighter.html">JavaScriptHighlighter</a></td><td class="indexvalue">Hérite des méthodes de la classe <a class="el" href="class_highlighter.html" title="On travaille avec des formats, chaque type de mot reconnaissable aura son propre format (format mot-c...">Highlighter</a>, cette classe se résume à une classe de paramétrage pour spécialiser la coloration au JavaScript </td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_java_script_indenter.html">JavaScriptIndenter</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_java_script_indenter.html">JavaScriptIndenter</a></td><td class="indexvalue">Classe d'indentation, spécifique au language javascript </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_main_window.html">MainWindow</a></td><td class="indexvalue">Permet d'obtenir toute l'interface utilisateur avec son menu, son dock, et ses actions correspondantes </td></tr>
   <tr><td class="indexkey"><a class="el" href="struct_multiline_highlighting_rule.html">MultilineHighlightingRule</a></td><td class="indexvalue">Un motif de début, un motif de fin, un format à appliquer à toutes les lignes entre ces motifs et un code d'état. Utile pour les commentaires multilignes par exemple </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_panier.html">Panier</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_php_data.html">PhpData</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_php_data.html">PhpData</a></td><td class="indexvalue">Liste d'attributs statiques référençant les mots clés du langage php sous forme d'expressions régulières </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_php_highlighter.html">PhpHighlighter</a></td><td class="indexvalue">Hérite des méthodes de la classe <a class="el" href="class_highlighter.html" title="On travaille avec des formats, chaque type de mot reconnaissable aura son propre format (format mot-c...">Highlighter</a>, classe de paramétrage pour spécialiser la coloration du PHP </td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_php_indenter.html">PhpIndenter</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_php_indenter.html">PhpIndenter</a></td><td class="indexvalue">Classe d'indentation, spécifique au language php </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_project.html">Project</a></td><td class="indexvalue">Représente les dossiers de l'arborescence d'espace de travail de l'utilisateur qui sont les racines des projets en développement </td></tr>
   <tr><td class="indexkey"><a class="el" href="struct_special_mode.html">SpecialMode</a></td><td class="indexvalue">Un mode spécial est un mode JavaScript inclus ou Css inclus. On enregistre toutes les variables nécessaires pour formater ces langages </td></tr>
-  <tr><td class="indexkey"><a class="el" href="class_tools.html">Tools</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_tools.html">Tools</a></td><td class="indexvalue">Regroupe un certain nombre de méthodes "outils" statiques, et autre éléments statiques </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_ui___html_tree_widget.html">Ui_HtmlTreeWidget</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="class_work_space.html">WorkSpace</a></td><td class="indexvalue">Représente l'espace de travail de l'utilisateur, elle stocke les projets en cours de développement dans un vecteur </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_work_space_tree.html">WorkSpaceTree</a></td><td class="indexvalue">Vue associée à l'arborescence d'espace de travail de l'utilisateur </td></tr>
   <tr><td class="indexkey"><a class="el" href="class_work_space_tree_controller.html">WorkSpaceTreeController</a></td><td class="indexvalue">Controller agissant sur la vue et le modèle de l'arborescence d'espace de travail de l'utilisateur </td></tr>
@@ -121,7 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="footer">Generated on Mon May 7 2012 15:27:36 for WebShacke by&#160;
+      <li class="footer">Generated on Tue May 8 2012 19:00:19 for WebShacke by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
