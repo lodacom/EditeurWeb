@@ -824,12 +824,13 @@
 				La difficulté réside dans la cohabitation de nos classes avec celles du \gls{C++}.\\
 				Outre quelques initialisations de structures (\emph{Dirent}, \emph{Dir}, \emph{stat}, ...) et variables de parcours, il faut des
 				conversions des chemins de fichiers de type \emph{string} vers le type \emph{char*} pour correspondre aux signatures de certaines
-				fonction de \gls{C++}.
+				fonctions de \gls{C++}.
 
 
 				Si l'ouverture ne pose pas de problèmes, la ligne \mint{cpp}|folderPath = (char*)malloc(folderPathSize * sizeof(char));|
 				alloue la mémoire nécessaire pour le parcours.\\
-				Cette ligne d'apparence ordinaire mérite d'être soulignée puisqu'elle fait partie de celles qui ont engendré des problèmes de fuites mémoire, dont la résolution fut longue et pénible.\\
+				Cette ligne d'apparence ordinaire mérite d'être soulignée puisqu'elle fait partie de celles qui ont engendré des problèmes de fuites 
+				mémoire, dont la résolution fut longue et pénible.\\
 
 
 				L'intérêt de créer notre propre fonction de scan commence d'ailleurs par cette ligne, puisque chaque élément de l'arborescence qui
@@ -1075,7 +1076,7 @@
 
 		Pour ce qui est de la programmation le MVC m'a permis de ne pas me disperser, de respecter une standardisation connue. L'utilisation d'un 
 		nouveau framework , et l'utilisation de sa documentation a été forcément pour moi une nouveauté. Ce dernier m'a réellement plu pour son
-		utilisation simpliste, épurer ... bref tous les avantages d'un IDE.\\
+		utilisation simpliste, épurée ... bref tous les avantages d'un IDE.\\
 
 		Ce projet m'a également ouvert les yeux sur l'ampleur de la prise en main d'un tel projet. Proche d'un logiciel commercial, ce dernier m'a
 		encouragé à persévérer dans mes convictions et dans la concrétisation sous mes yeux d'un projet d'importance.\\ 
