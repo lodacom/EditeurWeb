@@ -25,6 +25,7 @@ void MainWindow::init()
             this, SLOT(setActiveSubWindow(QWidget*)));
     indenterController = new IndenterController();
     setupWorkSpaceDock();
+    setupHtmlDock();
     //setupColoration();
     createActions();
     createMenus();
@@ -36,16 +37,6 @@ void MainWindow::init()
 
     QMainWindow::setWindowTitle(tr("WebShake"));
     setUnifiedTitleAndToolBarOnMac(true);
-
-
-    QDockWidget *dock = new QDockWidget("Html", this);
-    addDockWidget(Qt::RightDockWidgetArea, dock);
-    QWidget *dockContents = new QWidget;
-    dock->setWidget(dockContents);
-    this->htmlTreeWidget = new HtmlTreeWidget(this);
-    QVBoxLayout *dockLayout = new QVBoxLayout;
-    dockLayout->addWidget(htmlTreeWidget);
-    dockContents->setLayout(dockLayout);
 }
 
 void MainWindow::createActions()
@@ -510,3 +501,14 @@ void MainWindow::setupWorkSpaceDock()
     QObject::connect(treeView, SIGNAL(fileOpened(QString)), this, SLOT(openFile(QString)));
 }
 
+void MainWindow::setupHtmlDock()
+{
+    QDockWidget *dock = new QDockWidget("Html", this);
+    addDockWidget(Qt::RightDockWidgetArea, dock);
+    QWidget *dockContents = new QWidget;
+    dock->setWidget(dockContents);
+    this->htmlTreeWidget = new HtmlTreeWidget(this);
+    QVBoxLayout *dockLayout = new QVBoxLayout;
+    dockLayout->addWidget(htmlTreeWidget);
+    dockContents->setLayout(dockLayout);
+}
