@@ -1,3 +1,8 @@
+/*!
+  *\file IndenterController.h
+  *\brief Fichier d'en-tête de la classe IndenterController
+  *\author Divet
+  */
 #ifndef INDENTERCONTROLLER_H
 #define INDENTERCONTROLLER_H
 #include <QObject>

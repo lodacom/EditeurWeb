@@ -1,3 +1,8 @@
+/*!
+  *\file CssIndenter.h
+  *\brief Fichier d'en-tête de la classe CssIndenter
+  *\author Olivier Pierre
+  */
 #ifndef CSSINDENTER_H
 #define CSSINDENTER_H
 #include "AccoladeLanguageIndenter.h"
