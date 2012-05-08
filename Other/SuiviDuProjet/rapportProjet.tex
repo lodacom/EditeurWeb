@@ -147,6 +147,32 @@
 		fenêtres « parentes » contiennent en leur sein des fenêtres enfants. Le cas typique d'application consiste en la fenêtre principale de l'application, avec un menu et des barres d'outils, contenant une (sous-)fenêtre par fichier ou projet ouvert}
 	}
 
+	\newglossaryentry{Flex}
+	{
+		name={Flex},
+		description={Flex est un outil pour générer des analyseurs, programmes qui reconnaissent des motifs lexicaux dans du texte}
+	}
+
+	\newglossaryentry{Bison}
+	{
+		name={Bison},
+		description={GNU Bison est l'implémentation de l'analyseur syntaxique yacc par le projet GNU}
+	}
+
+	\newglossaryentry{Valgrind}
+	{
+		name={Valgrind},
+		description={Valgrind (prononcé [vælɡrɪnd], et non [vælɡraɪnd]1) est un outil de programmation libre pour déboguer, effectuer du profilage 
+		de code et mettre en évidence des fuites mémoires}
+	}
+
+	\newglossaryentry{C++}
+	{
+		name={C++},
+		description={Le C++ est un langage de programmation permettant la programmation sous de multiples paradigmes comme la programmation
+		procédurale, la programmation orientée objet et la programmation générique. C++ est actuellement le 4e langage le plus utilisé au monde}
+	}
+
 	\begin{titlepage}
 		\center{\includegraphics[width=5cm]{images/logoUM2.png}}\\ 
 		~\\
@@ -340,8 +366,9 @@
 			Les diagrammes seront dessinés grâce à une application web nommée yUML (cf. sitographie, p.\pageref{sitographie}).\\
 
 
-			Concernant le langage de programmation principal, nous choisîmes C++. Ce choix est motivé par deux raisons, d'une part nous apprenons
-			actuellement ce langage en cours, d'autre part, il s'agit d'un langage stable, documenté et qu'il fait bon d'avoir dans sa besace.\\
+			Concernant le langage de programmation principal, nous choisîmes \gls{C++}.
+			Ce choix est motivé par deux raisons, d'une part nous apprenons actuellement ce langage en cours, d'autre part,
+			il s'agit d'un langage stable, documenté et qu'il fait bon d'avoir dans sa besace.\\
 
 
 			Après cela M. Meynard nous proposa le framework \gls{Qt}. Un peu austère de prime abord, presque effrayant, il s'avéra finalement très
@@ -365,12 +392,12 @@
 				\item[Facebook.com :] Pour les annonces importantes, les messages, les dates de réunions, etc.
 			\end{description}~\\
 
-			Citons aussi TeamGantt.com, une application qui permet de dessiner un (très joli) diagramme de Gantt en ligne.
+			Citons aussi TeamGantt.com, une application qui permet de dessiner un (très joli) \gls{diagramme de Gantt} en ligne.
 		\end{chapter}
 		\begin{chapter}{Organisation}
-		\begin{section}{Diagramme de Gantt}
-			Le projet se déroulant sur quatre mois, il a fallu faire un planning qui s'étale sur ledit laps de temps.
-			Voici toutes les étapes du projet inscrites sur un \gls{diagramme de Gantt}.
+			\begin{section}{Diagramme de Gantt}
+				Le projet se déroulant sur quatre mois, il a fallu faire un planning qui s'étale sur ledit laps de temps.
+				Voici toutes les étapes du projet inscrites sur un \gls{diagramme de Gantt}.
 				\begin{figure}[h]
 					\begin{center}
 						\includegraphics[width=17cm]{images/DiagrammeGantt.png}
@@ -531,12 +558,13 @@
 					\end{center}
 				\end{figure}~\\
 				Avant d'éditer ce diagramme, nous nous étions mis d'accord, pour des raisons évidentes, sur une factorisation importante de 
-				notre code. Ainsi, la classe Élément regroupe tous les attributs, constantes et méthodes communs à tous les types d'items 
+				notre code. Ainsi, la classe \emph{Element} regroupe tous les attributs, constantes et méthodes communs à tous les types d'items 
 				traités par l'application.\\
-				À la manière d'un dossier, un Projet pourra être composé de fichiers et de dossiers, mais aura des méthodes qui lui sont propres,
-				telles qu'une suppression de son contenu. Le WorkSpace lui ne sera pas traîté comme un dossier mais plutôt comme un élément
-				particulier ne contenant que des projets.\\
-				Pour le reste, les classes Folder et File parlent d'elles-mêmes.
+				À la manière d'un dossier, un \emph{Projet} pourra être composé de fichiers et de dossiers,
+				mais aura des méthodes qui lui sont propres	telles qu'une suppression de son contenu.
+				Le \emph{WorkSpace} quant à lui ne sera pas traîté comme un dossier mais plutôt comme un élément particulier ne contenant
+				que des projets.\\
+				Pour le reste, les classes \emph{Folder} et \emph{File} (resp. \emph{Dossier} et \emph{Fichier}) parlent d'elles-mêmes.
 			\end{section}
 			\begin{section}{Indentation}
 				Nous avons définis avec M. Meynard l'indentation automatique comme étant la capacité qu'a le programme à ajouter (ou retrancher)
@@ -556,10 +584,8 @@
 
 				Quant à la classe associée au \gls{Html}, comme celui-ci est langage un peu particulier car il fonctionne par balises, elle
 				spécialisera directement la classe \emph{Indenter}.
-
 			\end{section}
 			\begin{section}{\Gls{autocomplétion}}
-
 				L'autocomplétion, est une fonctionnalité informatique permettant à l'utilisateur de limiter la quantité d'informations qu'il
 				saisit avec son clavier, en se voyant proposer un complément qui pourrait convenir à la chaîne de caractères qu'il a
 				commencé à taper.\\
@@ -598,7 +624,6 @@
 
 				Quant aux dictionnaires sus-cités, ils sont au nombre de quatre et contiennent les mots clés de chacun des langages traités (à savoir
 				\gls{Html}, \gls{Css}, \gls{JavaScript}, \gls{Php}).
-
 			\end{section}
 			\begin{section}{Classes graphiques}
 				La partie graphique fût pour nous une nouveauté puisqu'aucun d'entre nous n'avait jusqu'alors participé à un projet d'une si grande
@@ -677,7 +702,7 @@
 		\begin{chapter}{Travail de groupe}
 			\begin{section}{Répartition des tâches}
 				C'est une fois la conception terminée que se fit sentir le besoin de distinguer différentes parties dans le projet. Ceci afin de
-				marcher fermement dans un sens bien définit au lieu de nous aventurer au hasard.
+				marcher fermement dans un sens bien défini et d'éviter des erreurs de planification.
 				Nous sollicitâmes donc quelques conseils auprès de M. Meynard qui nous aida donc à déterminer les grandes parties qui pouvaient 
 				être séparées. C'est ainsi que virent le jour trois orientations :\\
 				\begin{description}
@@ -724,7 +749,7 @@
 					\item Dans une moindre mesure, il sera possible de commenter les variables et constantes importantes avec la même notation.
 				\end{itemize}~\\
 
-				Bien que les règles citées ci-dessus soient des conventions communément admises (dans le monde C++ du moins), il valait mieux
+				Bien que les règles citées ci-dessus soient des conventions communément admises (dans le monde \gls{C++} du moins), il valait mieux
 				bien les préciser de manière à éviter toute mauvaise surprise.
 			\end{section}
 			\begin{section}{Les réunions hebdomadaires}
@@ -737,15 +762,14 @@
 				S'ensuit une séance de remue-méninges pour discuter, critiquer, approuver ou réprouver ce qui vient d'être présenté.
 				Parfois, des discussions moins techniques venaient nourrir le débat, relatives par exemple à l'organisation de ce document.\\
 
-				Il existe un rapport de chacune de ces réunions, sous la forme d'un site créé par les soins d'un membre du groupe, 
-				dans l'unique but de stocker contenus, dates et titres, afin d'être utilisé comme un journal de bord, sur lequel nous écrivions
-				chaque semaine un petit compte rendu de nos rencontres.
+				Il existe un rapport de chacune de ces réunions, sous la forme d'un site créé par les soins d'un membre du groupe.
+				Après chaque colloque, notre scribe désigné se chargeait de résumer la session afin de garder une trace datée et titrée qui
+				servirait de journal de bord.
 
 				\begin{figure}[ht]
 					\begin{center}
 						\includegraphics[width=18cm]{images/journal.jpg}
 						\caption{Un extrait du journal de bord}
-						\label{jdb}
 					\end{center}
 				\end{figure}~\\
 
@@ -768,77 +792,65 @@
 						\label{dindon}
 					\end{center}
 				\end{figure}~\\
-
 			\end{section}
-
 			\begin{section}{Système}
-				À ce stade là nous avions donc une idée relativement fixe non seulement de l'organisation des fichiers servant au développement
-				de l'aspect \emph{système} de l'application, mais également de ce qu'allait donner visuellement notre travail,
-				à savoir une arborescence de fichiers sur la gauche de la fenêtre principale, à la manière d'un Eclipse ou d'un QT Creator,
-				et l'envie de commencer à programmer se faisait plus que jamais ressentir, mais quelques petits détails restaient encore à régler.\\
+			\label{calebasse}
+				Arrivés au stade de l'implémentation système, nous avions une idée relativement fixe de l'organisation des fichiers servant au
+				développement de l'aspect \emph{système} de l'application. Nous savions également ce qu'allait donner visuellement notre travail
+				à savoir une arborescence de fichiers sur la gauche de la fenêtre principale, à la manière d'un Eclipse ou d'un QT Creator.
+				L'envie de commencer à programmer se faisait plus que jamais ressentir, mais quelques petits détails restaient encore à régler.\\
 
 
-				En effet, l'utilisation de \gls{Qt} ainsi que de l'architecture MVC nous contraint à d'abord nous documenter sur ce que ce 
-				framework proposait pour répondre à nos attentes. Et la réponse ne se fit pas attendre longtemps puisque le \emph{QDirModel} 
-				apparaissait comme correspondant parfaitemement, étant donné qu'il s'agit d'un modèle de données spécialement conçu pour être
-				peuplé par une arborescence de fichiers, à partir du seul chemin vers la racine de cette arborescence.\\
+				En effet, l'utilisation de \gls{Qt} ainsi que de l'architecture \gls{MVC} nous contraint à nous documenter sur ce que ce 
+				framework proposait pour répondre à nos attentes.\\
+				La réponse ne tarda point puisque le \emph{QDirModel} apparaissait comme correspondant parfaitemement, étant donné qu'il s'agit d'un
+				modèle de données spécialement conçu pour être peuplé par une arborescence de fichiers.\\
 
 
-				Mais cette solution s'est rapidement montrée insuffisante pour ce que nous avons prévu, notamment à cause du fichier de 
+				Malheureusement, cette solution s'est rapidement montrée insuffisante pour ce que nous prévoyions, notamment à cause du fichier de 
 				configuration de nos projets. Notre idée étant de remplir l'arborescence d'espace de travail de l'utilisateur uniquement par des
-				projets, qui, comme expliqué plus haut, sont des dossiers contenant un fichier de configuration nommé \emph{.pro} à leur racine (dont 
-				nous exposerons l'utilité plus tard), et ledit \emph{QDirModel} ne permet pas de filtrer la population du modèle selon un quelconque
-				paramètre.
+				projets, qui, comme expliqué plus haut, sont des dossiers contenant un fichier de configuration nommé \emph{.pro} à leur racine.\\
+				Le \emph{QDirModel} ne permet pas de filtrer la population du modèle selon un quelconque paramètre donc a fortiori le paramètre
+				d'existence d'un éventuel \emph{.pro}.
 
-				Nous avons donc pris la décision de créer nous mêmes une fonction remplissant notre modèle de données (selon le type de l'élément à parcourir, i-e WorkSpace, Project ou Folder), nous permettant donc, non seulement de filtrer le remplissage des modèles, mais également d'effectuer certaines actions directement lors du parcours (récursif) de l'arborescence d'espace de travail, comme l'attribution de noms aux éléments trouvés, l'instanciation d'objets correspondant aux éléments (File, Folder, Project), etc...
-
-				Ces fonctions (nommées scan dans les classes), consistent en des parcours récursifs de l'arborescence WorkSpace. Outre quelques initialisations de structures (Dirent, Dir, stat, ...) et variables nécessaires au parcours, ainsi que des conversions des chemins de fichiers de type string vers le type char* (pour correspondrent aux signatures de certaines fonction de C++), elles commencent par tester que l'ouverture du dossier choisi comme racine de l'espace de travail s'est bien déroulée, affichant une erreur si ce n'est pas le cas.\\
-				Si l'ouverture ne pose pas de problèmes, la ligne folderPath = (char*)malloc(folderPathSize * sizeof(char));
-				alloue la mémoirenécessaire au nom du dossier à parcourir. 
-				Cette ligne d'apparence ordinaire, vue maintes et maintes fois dans les applications, mérite d'être soulignée puisqu'elle fait partie de celles qui ont engendré des problèmes de fuites mémoires, longs et pénibles
-				à résoudre, dont nous parlerons plus tard.\\
-				L'intérêt de créer notre propre fonction de scan commence d'ailleurs par cette instruction, puisque chaque élément de l'arborescence qui sera ajouté au modèle se voit instancié et affecté d'un attribut "path", une chaine de caractère permettant de stocker le chemin
-
-				(relatif à la racine de l'arborescence) du fichier qu'il représente.S'ensuit un léger jeux de concaténations, pour, dans le cas du scan de l'espace de travail, créer le chemin d'un éventuel fichier
-				de configuration ".pro", qui s'il est trouvé engendrera l'ajout à un vecteur de projets du dossier directement parent dudit fichier.
-				Dans ce cas de figure, le scan du projet ajouté est alors lancé, et celui-ci va alors ajouter tous les fichiers et dossiers qu'il contient à ses vecteurs respectifs \emph{file} et \emph{folders}.\\
+				Nous arrêtâmes de créer nous même des fonctions remplissant notre modèle de données selon le type de l'élément rencontré
+				(\emph{WorkSpace}, \emph{Project} ou \emph{Folder}). Ce qui permettait non seulement de filtrer le remplissage des modèles mais
+				également d'effectuer certaines actions directement lors du parcours (récursif) de l'arborescence de fichiers.
+				Par exemple attribuer des noms aux éléments trouvés, instancier des objets correspondant aux éléments (\emph{File}, \emph{Folder},
+				\emph{Project}) et bien d'autres choses.\\
 
 
-(À la suite de ma dernière phrases (Mickael))
-Une fois le workspace choisi, une vue sur l'arborescence des projets est disponible.
-A partir de cet arborescence l'utilisateur peut enfin interagir avec.
-Plusieurs intéractions sont disponibles avec les éléments de la vue.
-Le double clic entraîne l'ouverture du fichier ou l'ouverture/fermeture d'un dossier/projet.
-Le clic droit quand à lui ouvre un menu déroulant, dans lequel on retrouve les intéractions communes : déplacement, copie, renommage, ouverture, suppression, ajout de fichier, de dossier etc...
+				Ces fonctions (nommées \emph{scan} dans les classes), consistent en des parcours récursifs de l'arborescence \emph{WorkSpace}.
+				La difficulté réside dans la cohabitation de nos classes avec celles du \gls{C++}.\\
+				Outre quelques initialisations de structures (\emph{Dirent}, \emph{Dir}, \emph{stat}, ...) et variables de parcours, il faut des
+				conversions des chemins de fichiers de type \emph{string} vers le type \emph{char*} pour correspondre aux signatures de certaines
+				fonction de \gls{C++}.
 
-Nous allons maintenant détailler comment ces intéractions sont gérées.
-Premièrement, lors de la sélection du workspace, on instancie un controleur de la classe WorkSpaceTreeController faisant la liaison entre le modèle et la vue. Ce controleur instancie également un objet de la classe WorkSpace. Lorsqu'une intéraction a lieu avec un élément, un index est donné à ce controleur, ainsi que la méthode à appliquer au modèle. L'index est un objet de classe QModelIndex donné par les classes de Qt c'est à partir de lui qu'on va récupérer l'élément visé dans le modèle. Le controleur s'occupe de transformer l'index en liste. Cette liste est donc le « chemin » pour trouver l'élément.
-Cette liste est donnée au workspace.
-Et récursivement l'algorithme suivant est appliquée :
-L'élément qui reçoit la liste, vérifie que la liste est de taille supérieure à 1.
-Si la taille est supérieure à 1 : l'élément retire le premier index de cette liste, et la donne à l'élément correspondant à l'index.
-Si la taille est égale à 1 : l'élément retire le dernier index et ordonne à l'élément correspondant à cet index d'éffectuer telle action.
 
-Chargement de l'image intéractions
+				Si l'ouverture ne pose pas de problèmes, la ligne \mint{cpp}|folderPath = (char*)malloc(folderPathSize * sizeof(char));|
+				alloue la mémoire nécessaire pour le parcours.\\
+				Cette ligne d'apparence ordinaire mérite d'être soulignée puisqu'elle fait partie de celles qui ont engendré des problèmes de fuites
+				mémoire, dont la résolution fut longe et pénible.\\
 
-(Met ça à la suite je ferai une transition!)
 
-En supposant le fait, que des utilisateurs viendrait à utiliser notre application pour gérer un nombre important de sites web, nous avons étudié la réaction de notre logiciel face à un nombre important de fichiers.
-Pour cela, nous avons importé environ 16000 fichiers dans un workspace.
-Testé l'ouverture de celui-ci. Pour une telle base, le temps pour l'ouverture était de l'ordre de 6 à 7 secondes, sur un PC équipé d'un processeur i3.
-Mais le plus inquiétant n'était pas vraiment cette attente.
-En effet en étudiant l'occupation mémoire de l'application, nous nous sommes aperçus grâce à la commande top, qu'a chaque réouverture du même workspace, l'occupation en mémoire augmentait de 2 à 3% sur une mémoire d'un giga.
-Nous avons donc utilisé un outil conçu pour corriger ces fuites : Valgrind.
-L'analyse de notre logiciel avec cet outil nous a permis de trouver plusieurs mauvaises utilisations d'allocations et libérations mémoires.
-En effet nous nous sommes aperçus que des allocations mémoires se faisaient sur  un même objet dans une boucle, sans jamais libérer ce dernier.
-Valgrind nous a fait remarqué que sur certains objets, ou pointeurs, des confusions entre les libérateurs free, delete et delete[] étaient présentes, conduisant ainsi à une mauvaise libération de la mémoire.
-Finalement les fuites se sont fortement réduites passant à 0.1%. Malheureusement, certaines ne sont pas inhérente à notre code, Valgrind notant des fuites dans des appels de Qt. Nous ne sommes pas parvenus à atteindre le 0%.
-En ce qui concerne le temps de chargement, nous nous sommes aperçus qu'à chaque création d'un élément (fichier, dossier, projet etc...) une icône était créée pour ce dernier.
-Nous avons donc choisi d'insérer dans la classe Tools qui contient un certain nombre d'éléments statiques, de charger toutes les icônes du projet une fois statiquement, et de lier ces icônes aux éléments.
-Finalement le temps d'ouverture de ce workspace est tombé à environ une seconde. Ce qui est nettement mieux.
+				L'intérêt de créer notre propre fonction de scan commence d'ailleurs par cette ligne, puisque chaque élément de l'arborescence qui
+				sera ajouté au modèle se voit instancié et affecté d'un attribut \emph{path}, une chaine de caractère permettant de stocker le chemin
+				(relatif à la racine de l'arborescence) du fichier qu'il représente.
+				S'ensuit un léger jeu de concaténations pour éventuellement créer le chemin d'un fichier de configuration \emph{.pro}, qui s'il est
+				trouvé augmentera la liste des projets gérés.\\
 
-				Dans ce cas de figure, le scan du projet ajouté est lancé, et celui-ci va alors ajouter tous les fichiers et dossiers qu'il contient à ses vecteurs respectifs \emph{file} et \emph{folders}.\\
-				Le déclenchement de ces parcours se réalise à l'instant où l'utilisateur sélectionne l'espace de travail de son choix via le menu de l'application.
+
+				Une fois le workspace choisi, une vue interactive sur l'arborescence des projets est disponible.\\
+				Le double clic entraîne l'ouverture du fichier ou l'ouverture/fermeture d'un dossier/projet.
+				Le clic droit quand à lui ouvre un menu déroulant, dans lequel on retrouve les options classiques : déplacement, copie, renommage, ouverture, suppression, ajout de fichier, de dossier, et caetera.\\
+
+				\begin{figure}[h]
+					\begin{center}
+						\includegraphics[width=17cm]{images/interactions.png}
+						\caption{Les options disponibles au clic droit}
+						\label{flute}
+					\end{center}
+				\end{figure}~\\
 
 			\end{section}
 			\begin{section}{Fonctionnalités}
@@ -849,7 +861,7 @@ Finalement le temps d'ouverture de ce workspace est tombé à environ une second
 					\begin{figure}[h]
 						\begin{center}
 							\includegraphics[width=8cm]{images/screenColoration.png}
-							\caption{La coloration en action en pratique}
+							\caption{La coloration en action}
 						\end{center}
 					\end{figure}~\\					
 				\end{subsection}
@@ -1046,6 +1058,12 @@ Pour ma part, ces 3 mois de travail ont été une grande source d'apprentissage.
 		\end{section}
 
 		\begin{section}*{Olivier}
+		Tout au long de ces trois mois, il n'y avait pas une seule semaine qui apportait sa nouveauté. L'initiation
+à un système de gestion de version tel que GitHub, l’apparition d'un nouvel environnement de développement avec QtCreator (et ses nombreuses librairies, sa documentation touffue), la direction d'un groupe de huit personnes, toutes ces choses ont été nouvelles pour moi.\\
+Concernant la gestion du groupe, il m'a fallu être démocratique, laisser fleurir les idées en vrac, canaliser chaque esprit vers notre objectif. Il a fallu parfois prendre des décisions difficiles rapidement, tout en respectant les opinions de chacun. Occasionnellement, il a fallu également forcer le destin et s'imposer dans les moments difficiles.\\
+Pour ce qui est de la programmation le MVC m'a permis de ne pas me disperser, de respecter une standardisation connue. L'utilisation d'un nouveau framework , et l'utilisation de sa documentation a été forcément pour moi une nouveauté. Ce dernier m'a réellement plu pour son utilisation simpliste, épurer ... bref tous les avantages d'un IDE.\\
+Ce projet m'a également ouvert les yeux sur l'ampleur de la prise en main d'un tel projet. Proche d'un logiciel commercial, ce dernier m'a encouragé à persévérer dans mes convictions et dans la concrétisation sous mes yeux d'un projet d'importance.\\ 
+Ce projet m'a beaucoup plu. Il m'a apporté toutes les expériences proches de celles des entreprises. Tant au point de vu collaboration concernant le groupe, et tout autant au point de vu apprentissage et prise en main de nouveaux outils très pratique pour la situation à laquelle nous étions confrontés.\\
 		\end{section}
 
 		\begin{section}*{Hamza}
@@ -1058,6 +1076,10 @@ Pour ma part, ces 3 mois de travail ont été une grande source d'apprentissage.
 		\end{section}
 
 		\begin{section}*{Joachim}
+		Ma conclusion: Pour ma part le projet fût une bonne expérience, premièrement il m'a permit de développer mes compétences dans le language c++, apprendre à utiliser Qt et tout un tas d'outils jamais utilisé jusqu'alors: Valgrind, Git, yUml, etc.
+Deuxièmement, ayant déjà réalisé un projet à l'IUT, il ne m'était jamais arrivé de travailler avec autant de personne. Celà fût fort agréable, car en ayant réussi à diviser notre projet en sous parties, on voyait vraiment que chacun des groupes apportait sa pierre à l'édifice tout en restant cohérent sur le résultat final.
+Pour finir je dirais que le projet nous permet à chacun de nous de toucher du doigt notre futur travail, ce qui est vraiment motivant.
+J'ai lu le rapport hier, j'ai souligné quelques fautes par ci par là, tu voudras que je te les montre?
 		\end{section}
 
 		\begin{section}*{Zaydane}
@@ -1180,7 +1202,39 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
 		non fonctionnels.\\
 
 		Pour remédier à celà, il eut fallu effectuer un travail plus poussé (et bien plus long) sur l'analyse du texte. Par exemple, créer un 
-		\gls{parseur} basique à l'aide des outils \gls{flex}/\gls{Bison}. Ce fut un moment notre idée, mais vite abandonnée par manque de temps.
+		\gls{parseur} basique à l'aide des outils \gls{Flex}/\gls{Bison}. Ce fut un moment notre idée, mais vite abandonnée par manque de temps.
+	\end{section}
+
+	\begin{section}{Le problème des fuites mémoires}
+		Dans la section \ref{calebasse}, sont brièvement évoqués des problèmes de fuites mémoire. Ce problème fut découvert à la suite
+		d'un test effectué comme suit.
+		En supposant que des utilisateurs viendraient à utiliser notre application pour gérer un nombre important de sites web, nous avons importé
+		environ 16000 fichiers dans un \emph{workspace}.\\
+		Pour une telle base, le temps pour ouvrir l'espace de travail était de l'ordre de 6 à 7 secondes, sur un PC équipé d'un processeur i3.\\
+		Mais le plus inquiétant n'était pas vraiment cette lenteur.\\
+		En effet en étudiant l'occupation mémoire de l'application, nous aperçumes grâce à la commande \emph{top}, qu'à chaque réouverture du même 
+		\emph{workspace}, l'occupation en mémoire augmentait de 2 à 3\% sur une mémoire de 1Go.\\
+
+
+		Il fallut donc utiliser un outil conçu pour corriger ces fuites : \gls{Valgrind}.\\
+		L'analyse de notre logiciel avec cet outil nous permis de trouver plusieurs mauvaises utilisations d'allocations et libérations mémoires.
+		En effet nous constatâmes que des allocations mémoires se faisaient sur  un même objet en boucle, remplissant rapidement l'espace
+		disponible.\\
+		\gls{Valgrind} nous fit remarquer que sur certains objets ou pointeurs, des confusions entre les libérateurs \emph{free}, \emph{delete} et
+		\emph{delete[]} étaient présentes, conduisant à une mauvaise libération de la mémoire.\\
+
+
+		Finalement les fuites se sont fortement réduites passant à 0.1\%.\\
+		Malheureusement, certaines ne sont pas inhérente à notre code, \gls{Valgrind} notant des fuites dans des appels de \gls{Qt} (fonctions que 
+		nous ne pouvons pas modifier), ous ne sommes pas parvenus à atteindre le 0\%.\\
+
+		En ce qui concerne le temps de chargement, nous nous sommes aperçus qu'à chaque création d'un élément (fichier, dossier, projet etc...) une
+		icône était créée pour ce dernier.
+
+		Nous avons donc choisi d'insérer dans la classe \emph{Tools} qui contient un certain nombre d'éléments statiques, de charger toutes les
+		icônes du projet une fois statiquement, et de lier ces icônes aux éléments.
+
+		Finalement le temps d'ouverture de ce workspace est tombé à environ une seconde, ce qui est nettement mieux.
 	\end{section}
 	\end{chapter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1234,7 +1288,22 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
 		Stackoverflow : www.stackoverflow.com \\
 		Un forum où sont posés et résolus de nombreux problèmes de programmation. Les personnes qui répondent le font de manière
 		très professionnelle ce qui nous a beaucoup aidé.
-	\end{thebibliography}
+		~\\
+		\bibitem{Le site du zéro}
+		Le site du zéro : www.siteduzero.com \\
+		Un ensemble bien organisé de cours dans différentes branches de l'informatique et un forum très actif font du site du zéro
+		un bon choix pour les débutants.
+		~\\
+		\bibitem{Developpez.com}
+		Developpez.com : www.developpez.com \\
+		Ce site est une source inépuisable de données, documentations, questions et réponses concernant la programmation dans tout les langages.
+		~\\
+		\bibitem{Sourceforge}
+		Sourceforge : www.sourceforge.net \\
+		Le site de référence en matière de projets open source, c'est ici que nous avons trouvés des exemples de parseurs.
+		~\\
+		\bibitem{QtFr.org}
+		QtFr.org : qtfr.org \\
+		Forum de la communauté francophone de Qt, pour les anglophobes.
+		\end{thebibliography}
 \end{document}
-
-

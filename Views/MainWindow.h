@@ -156,7 +156,7 @@ private:
      */
     void init();
     void setupWorkSpaceDock();
-    //void setupHtmlDock();
+    void setupHtmlDock();
 
     /*!
      * \brief Crée toutes les actions dont à besoin l'utilisateur

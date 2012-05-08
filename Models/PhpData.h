@@ -1,12 +1,19 @@
-/*
- * Commentaires ici.
- */
+/*!
+* \file HtmlData.h
+* \brief Déclaration de la classe de données du php.
+* \author Abdelhamid
+* \version 0.1
+*/
 
 #ifndef PhpData_h
 #define PhpData_h
 
 #include <QRegExp>
-
+/*!
+* \class PhpData
+* \brief Liste d'attributs statiques référençant les mots clés
+* du langage php sous forme d'expressions régulières.
+*/
 class PhpData
 {
     public:
@@ -20,7 +27,7 @@ class PhpData
         static QRegExp multilineCommentEndRegex;
         static QRegExp singleLineCommentRegex;
         static QRegExp functionRegex;
-	static QRegExp startPhpRegex;
+        static QRegExp startPhpRegex;
         static QRegExp endPhpRegex;
 };
 
