@@ -1,7 +1,8 @@
 #ifndef ACCOLADELANGUAGEINDENTER_H
 #define ACCOLADELANGUAGEINDENTER_H
 #include <QString>
-class AccoladeLanguageIndenter{
+#include "Indenter.h"
+class AccoladeLanguageIndenter : public virtual Indenter{
 public:
     AccoladeLanguageIndenter();
     virtual ~AccoladeLanguageIndenter();

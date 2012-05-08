@@ -1,7 +1,8 @@
 #ifndef HTMLINDENTER_H
 #define HTMLINDENTER_H
 #include <QString>
-class HtmlIndenter{
+#include "Indenter.h"
+class HtmlIndenter: public virtual Indenter{
 public:
     HtmlIndenter();
     virtual ~HtmlIndenter();
