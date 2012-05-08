@@ -2,6 +2,10 @@
 #define ACCOLADELANGUAGEINDENTER_H
 #include <QString>
 #include "Indenter.h"
+/*!
+  *\class AccoladeLanguageIndenter
+  *\brief Classe d'indentation, regroupant les languages à accolades.
+  */
 class AccoladeLanguageIndenter : public virtual Indenter{
 public:
     AccoladeLanguageIndenter();
