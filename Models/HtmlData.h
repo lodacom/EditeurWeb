@@ -1,6 +1,6 @@
 /*!
 * \file HtmlData.h
-* \brief déclaration de la classe de données du html.
+* \brief Déclaration de la classe de données du html.
 * \author Abdelhamid
 * \version 0.1
 */

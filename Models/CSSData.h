@@ -1,8 +1,19 @@
+/*!
+* \file CssData.h
+* \brief Déclaration de la classe de données du css.
+* \author Abdelhamid
+* \version 0.1
+*/
 #ifndef CSSDATA_H
 #define CSSDATA_H
 
 #include <QRegExp>
 
+/*!
+* \class CssData
+* \brief Liste d'attributs statiques référençant les mots clés
+* du langage css sous forme d'expressions régulières.
+*/
 class CSSData
 {
     public:
