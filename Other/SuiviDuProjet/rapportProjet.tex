@@ -846,18 +846,20 @@
 
 				\begin{figure}[h]
 					\begin{center}
-						\includegraphics[width=17cm]{images/interactions.png}
+						\includegraphics[width=8cm]{images/interactions.png}
 						\caption{Les options disponibles au clic droit}
 						\label{flute}
 					\end{center}
 				\end{figure}~\\
-
 			\end{section}
 			\begin{section}{Fonctionnalités}
 				\begin{subsection}{Coloration}
 					La coloration est un principe simple et rapide en mettre en oeuvre, ce fut la première fonctionnalité à être implémentée.\\
 					Le principal problème est de gérer une coloration sur plusieurs lignes étant donné que l'analyse du texte se fait ligne par
-					ligne.
+					ligne.\\
+
+					La solution fut de créer des états tels que \emph{IN_COMMENT_STATE} par exemple, qui permettent de savoir si la ligne courante
+					est en commentaire ou non.
 					\begin{figure}[h]
 						\begin{center}
 							\includegraphics[width=8cm]{images/screenColoration.png}
@@ -1226,7 +1228,7 @@ JavaScriptHighlighter::JavaScriptHighlighter(QTextDocument *parent)
 
 		Finalement les fuites se sont fortement réduites passant à 0.1\%.\\
 		Malheureusement, certaines ne sont pas inhérente à notre code, \gls{Valgrind} notant des fuites dans des appels de \gls{Qt} (fonctions que 
-		nous ne pouvons pas modifier), ous ne sommes pas parvenus à atteindre le 0\%.\\
+		nous ne pouvons pas modifier), nous ne sommes pas parvenus à atteindre le 0\%.\\
 
 		En ce qui concerne le temps de chargement, nous nous sommes aperçus qu'à chaque création d'un élément (fichier, dossier, projet etc...) une
 		icône était créée pour ce dernier.
