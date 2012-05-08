@@ -63,7 +63,6 @@ void MainWindow::createActions()
     connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
     closeAct = new QAction(tr("&Close"), this);
-    closeAct->setShortcut(tr("Ctrl+W"));
     closeAct->setStatusTip(tr("Close this window"));
     connect(closeAct, SIGNAL(triggered()), this, SLOT(close()));
 

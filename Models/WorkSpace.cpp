@@ -64,7 +64,8 @@ void WorkSpace::scan(){
                                                         project.sort();
 							projects.push_back(project);//Ajout du projet au vecteur
 						} else {
-                                                        cout << "Pas de .pro dans " << readFile->d_name << endl;
+                            //DEBUG
+                            //cout << "Pas de .pro dans " << readFile->d_name << endl;
 						}
                                         }
 				}

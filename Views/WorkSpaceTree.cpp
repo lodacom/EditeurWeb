@@ -10,12 +10,6 @@ WorkSpaceTree::WorkSpaceTree(){
     this->setModel(model);
     this->setEditTriggers(NoEditTriggers);
     this->setExpandsOnDoubleClick(true);
-    //Drag n Drop
-    this->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    this->setDragEnabled(true);
-    this->setDropIndicatorShown(true);
-    this->setAcceptDrops(true);
-    //
     setContextMenuPolicy(Qt::CustomContextMenu);
     QObject::connect(wsController, SIGNAL(newWorkSpace()), this, SLOT(setWSModel()));
     QObject::connect(this, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(getFilePath(const QModelIndex &)));
@@ -145,7 +139,6 @@ void WorkSpaceTree::mousePressEvent(QMouseEvent * e){
      if(e->button() == Qt::RightButton){ // Si clic droit
             clickedIndex = indexAt(e->pos());
             if (clickedIndex.row() != -1){ // Si on clique sur un élément
-                cout << clickedIndex.row() << endl;
                 int type = wsController->getElementType(clickedIndex);
                 if (type == FILE_TYPE){
                     fileMenu->move(cursor().pos());
